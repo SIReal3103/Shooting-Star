@@ -1,18 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Combat
 {
     public class Damager : MonoBehaviour
     {
-        private float criticalChance;
-        private float critEfficent;
-        private float lifeSteal; // Depends on damage dealt
+        [SerializeField] float criticalChance;
+        [SerializeField] float critEfficent;
+        [SerializeField] int initialDamage;
 
-        public float CriticalChance { get => criticalChance; set => criticalChance = value; }
-        public float CritEfficent { get => critEfficent; set => critEfficent = value; }
-        public float LifeSteal { get => lifeSteal; set => lifeSteal = value; }
+        public void DealtDamageTo(Damageable damageable)
+        {
+            damageable.DealDamage(GetDamageDealt());
+        }
+
+        private int GetDamageDealt()
+        {
+            if(Random.value < criticalChance)
+            {
+                return (int) (initialDamage * (1f + criticalChance));
+            }
+
+            return 0;
+        }
     }
 }

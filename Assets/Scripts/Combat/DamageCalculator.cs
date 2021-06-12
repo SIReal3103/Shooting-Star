@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Combat
 {
     public class DamageCalculator : MonoBehaviour
     {
         int pureDamage;
-        Damagable damageTarget;
+        Damageable damageTarget;
 
-        public DamageCalculator(Damagable damageTarget, int pureDamage)
+        public DamageCalculator(Damageable damageTarget, int pureDamage)
         {
             this.damageTarget = damageTarget;
             this.pureDamage = pureDamage;

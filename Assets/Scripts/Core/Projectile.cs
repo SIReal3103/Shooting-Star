@@ -10,6 +10,9 @@ namespace Game.Core
     public abstract class Projectile : MonoBehaviour
     {
         public Vector2 moveDirection;
+        [HideInInspector]
+        public GameObject source;
+
         Mover mover;
 
         private void Start()
@@ -17,7 +20,7 @@ namespace Game.Core
             mover = GetComponent<Mover>();
         }
 
-        private void Update()
+        protected void Update()
         {
             mover.MoveWith(moveDirection);
         }

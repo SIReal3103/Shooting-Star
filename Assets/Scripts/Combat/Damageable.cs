@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Combat
 {
-    public class Damagable : MonoBehaviour
+    public class Damageable : MonoBehaviour
     {
         [SerializeField] int maxHealth;
         [SerializeField] int health;

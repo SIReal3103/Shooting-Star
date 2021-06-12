@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Game.Template
 {
-    [Serializable]
-    public abstract class Pool<TPool, TObject, TInfo> : MonoBehaviour
-        where TPool : Pool<TPool, TObject, TInfo>
-        where TObject : PoolObject<TPool, TObject, TInfo>, new()
+    public abstract class Pool<TPool, TObject, TData> : MonoBehaviour
+        where TPool : Pool<TPool, TObject, TData>
+        where TObject : PoolObject<TPool, TObject, TData>, new()
     {
         [SerializeField] GameObject prefab;
 
@@ -16,90 +15,63 @@ namespace Game.Template
 
         private void Start()
         {
-            for (int i = 0; i < poolSize; i++)
+            for(int i = 0; i < poolSize; i++)
             {
-                TObject poolObject = CreateNewPoolObject();
-                pool.Add(poolObject);
-                Push(poolObject);
+                AddToPool(CreateNewPoolObject());
             }
+        }
+
+        private void AddToPool(TObject poolObject)
+        {
+            pool.Add(poolObject);
+            Push(poolObject);
         }
 
         private TObject CreateNewPoolObject()
         {
-            TObject objectPool = new TObject();
-            objectPool.instance = Instantiate(prefab, transform);
-            objectPool.pool = this as TPool;
-
-            return objectPool;
-        }
-
-        public void Push(TObject poolObject)
-        {
-            poolObject.InUse = false;
-        }
-
-        public TObject Pop()
-        {
-            TObject poolObject = GetIdlePoolObject();
-            poolObject.InUse = true;
+            TObject poolObject = new TObject();
+            poolObject.instance = Instantiate(prefab, transform);
+            poolObject.pool = this as TPool;
 
             return poolObject;
         }
 
-        private TObject GetIdlePoolObject()
+        public TObject Pop()
         {
-            for (int i = 0; i < poolSize; i++)
+            foreach(TObject poolObject in pool)
             {
-                if (!pool[i].InUse)
+                if(poolObject.inPool)
                 {
-                    return pool[i];
+                    poolObject.inPool = false;
+                    poolObject.WakeUp();
+                    return poolObject;
                 }
             }
 
-            Debug.LogError("Insufficient pool size");
+            Debug.LogError("Pool empty");
             return null;
+        }
+
+        public void Push(TObject poolObject)
+        {
+            poolObject.inPool = true;
+            poolObject.Sleep();
         }
     }
 
-    [Serializable]
-    public abstract class PoolObject<TPool, TObject, TInfo>
-        where TPool : Pool<TPool, TObject, TInfo>
-        where TObject : PoolObject<TPool, TObject, TInfo>, new()
+    public abstract class PoolObject<TPool, TObject, TData>
+        where TPool : Pool<TPool, TObject, TData>
+        where TObject : PoolObject<TPool, TObject, TData>, new()
     {
         public TPool pool;
         public GameObject instance;
+        public bool inPool;
 
-        private bool inUse;
+        public abstract void Init(TData data);
 
-        public PoolObject()
-        {
-            inUse = true;
-        }
 
-        internal bool InUse
-        {
-            get => inUse;
-            set
-            {
-                if (value == inUse) return;
-
-                if (value)
-                {
-                    WakeUp();
-                }
-                else
-                {
-                    Sleep();
-                }
-
-                inUse = value;
-            }
-        }
-
-        public abstract void Init(TInfo initializeValue);
-
-        protected abstract void WakeUp();
-        protected abstract void Sleep();
+        public abstract void WakeUp();
+        public abstract void Sleep();
 
         public void ReturnToPool()
         {

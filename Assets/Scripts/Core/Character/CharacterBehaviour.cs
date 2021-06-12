@@ -5,8 +5,8 @@ using Game.Movement;
 
 namespace Game.Core
 {
-    [RequireComponent(typeof(Damagable))]
     [RequireComponent(typeof(Damager))]
+    [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
     public class CharacterBehaviour : MonoBehaviour
     {
