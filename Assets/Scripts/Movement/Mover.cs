@@ -1,20 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Game.Combat;
+﻿using UnityEngine;
 
 namespace Game.Movement
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        public float speed = 10f;
-
         Rigidbody2D rb;
 
-        // Fire bulllet
-        [SerializeField] KeyCode FireBulletKey = KeyCode.Space;
-        [SerializeField] ProjectileFactory ProjectileFactory;
+        [SerializeField] float speed = 10f;        
 
         Vector2 direction;
 
@@ -29,13 +22,8 @@ namespace Game.Movement
 
         private void UpdatePosition()
         {
-            rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+            rb.MovePosition(rb.position + speed * Time.deltaTime * direction);
             direction = Vector2.zero;
-     
-            if (Input.GetKeyDown(FireBulletKey))
-            {
-                ProjectileFactory.Fire(this.gameObject, Vector3.up);
-            }
         }
 
         public void MoveWith(Vector2 direction)
