@@ -15,7 +15,7 @@ namespace Game.Combat
             // Create and fire to target
             Projectile projectile = Instantiate(ProjectToFire, attacker.transform.position, Quaternion.identity);
 
-            projectile.Fire(attacker, direction);
+            projectile.Fire(attacker, direction, this);
         }
     }
 }

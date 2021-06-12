@@ -10,6 +10,7 @@ namespace Game.Combat
         public Transform Body;
         Rigidbody2D _rigibody2D;
         GameObject _attacker;
+        ProjectileFactory _factory;
 
         public event Action<GameObject> CollidedWithTarget;
 
@@ -31,9 +32,10 @@ namespace Game.Combat
             }
         }
 
-        public void Fire(GameObject attacker, Vector3 direction)
+        public void Fire(GameObject attacker, Vector3 direction, ProjectileFactory factory)
         {
             this._attacker = attacker;
+            _factory = factory;
             SetDirection(direction);
         }
 
@@ -49,10 +51,12 @@ namespace Game.Combat
             if (_attacker == null || defender == null)
                 return;
 
+            Attack attack = _factory.CreateAttack(_attacker, defender);
+
             var attackables = defender.GetComponentsInChildren(typeof(IAttackable));
             foreach (IAttackable a in attackables)
             {
-                a.OnAttack(_attacker);
+                a.OnAttack(_attacker, attack);
             }
         }
     }
