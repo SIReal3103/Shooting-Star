@@ -10,7 +10,7 @@ namespace Game.Core
     public class Bullet : Projectile
     {
         [SerializeField]
-        bool destroyWhenOutOfScreen = false;
+        bool destroyWhenOutOfScreen = true;
         [SerializeField]
         Vector2 outScreenOffSet = Vector2.zero;
         
@@ -29,7 +29,6 @@ namespace Game.Core
         private bool CheckIsOutOfScreen()
         {
             Vector2 screenPosition = Camera.main.WorldToViewportPoint(transform.position);
-            Debug.Log(screenPosition);
             return
                 screenPosition.x < -outScreenOffSet.x || screenPosition.x > 1f + outScreenOffSet.x ||
                 screenPosition.y < -outScreenOffSet.y || screenPosition.y > 1f + outScreenOffSet.y;
@@ -37,13 +36,14 @@ namespace Game.Core
 
         void OnCollisionEnter2D(Collision2D collision)
         {
+            // UNDONE: Bullet can collide with each other
             if(!collision.transform.CompareTag(source.tag))
             {
                 Damageable damageable;
 
                 if (!collision.transform.TryGetComponent<Damageable>(out damageable))
                 {
-                    Debug.Log("Tag is not comparable with object components");
+                    Debug.Log("Collide with GameObject with invalid tag");
                 }
 
                 GetComponent<Damager>().DealtDamageTo(damageable);

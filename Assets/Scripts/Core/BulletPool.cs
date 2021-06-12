@@ -14,22 +14,16 @@ namespace Game.Core
     {
         public override void Init(BulletData data)
         {
-            Bullet bullet = instance.GetComponent<Bullet>();
+            Bullet bullet = GetInstance().GetComponent<Bullet>();
+            AssignBulletData(bullet, data);
+        }
 
+        private void AssignBulletData(Bullet bullet, BulletData data)
+        {
             bullet.transform.position = data.origin;
             bullet.moveDirection = data.moveDirection;
             bullet.source = data.source;
             bullet.bulletObject = this;
-        }
-
-        public override void WakeUp()
-        {
-            instance.SetActive(true);
-        }
-
-        public override void Sleep()
-        {
-            instance.SetActive(false);
         }
     }
 

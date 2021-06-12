@@ -30,8 +30,7 @@ namespace Game.Template
         private TObject CreateNewPoolObject()
         {
             TObject poolObject = new TObject();
-            poolObject.instance = Instantiate(prefab, transform);
-            poolObject.pool = this as TPool;
+            poolObject.Init(this as TPool, Instantiate(prefab, transform));
 
             return poolObject;
         }
@@ -40,22 +39,20 @@ namespace Game.Template
         {
             foreach(TObject poolObject in pool)
             {
-                if(poolObject.inPool)
+                if(poolObject.IsInPool())
                 {
-                    poolObject.inPool = false;
-                    poolObject.WakeUp();
+                    poolObject.SetInPool(false);
                     return poolObject;
                 }
             }
 
-            Debug.LogError("Pool empty");
+            Debug.LogError("Insufficient pool size");
             return null;
         }
 
         public void Push(TObject poolObject)
         {
-            poolObject.inPool = true;
-            poolObject.Sleep();
+            poolObject.SetInPool(true);
         }
     }
 
@@ -63,19 +60,57 @@ namespace Game.Template
         where TPool : Pool<TPool, TObject, TData>
         where TObject : PoolObject<TPool, TObject, TData>, new()
     {
-        public TPool pool;
-        public GameObject instance;
-        public bool inPool;
+        private TPool pool;
+        private bool inPool;
+
+        private GameObject instance;
+
+        public GameObject GetInstance()
+        {
+            return instance;
+        }
+
+        public void Init(TPool pool, GameObject instance)
+        {
+            this.pool = pool;
+            this.instance = instance;
+            SetInPool(false);
+        }
+
+        public bool IsInPool()
+        {
+            return inPool;
+        }
+
+        public void SetInPool(bool inPool)
+        {
+            if(inPool)
+            {
+                Sleep();
+            }
+            else
+            {
+                WakeUp();
+            }
+
+            this.inPool = inPool;
+        }
 
         public abstract void Init(TData data);
-
-
-        public abstract void WakeUp();
-        public abstract void Sleep();
 
         public void ReturnToPool()
         {
             pool.Push(this as TObject);
+        }
+
+        protected virtual void WakeUp()
+        {
+            instance.SetActive(true);
+        }
+
+        protected virtual void Sleep()
+        {
+            instance.SetActive(false);
         }
     }
 }
