@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Game.Combat
 {
+    [System.Serializable]
     [CreateAssetMenu(fileName = "Projectile.asset", menuName = "Attack/ProjectileAttack")]
     public class ProjectileFactory : AttackFactory
     {

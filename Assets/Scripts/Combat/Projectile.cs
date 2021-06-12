@@ -8,16 +8,18 @@ namespace Game.Combat
     public class Projectile : MonoBehaviour
     {
         public Transform Body;
+        public float speed;
+
+        //
         Rigidbody2D _rigibody2D;
         GameObject _attacker;
         ProjectileFactory _factory;
 
         public event Action<GameObject> CollidedWithTarget;
 
-        private void Start()
+        private void Awake()
         {
             _rigibody2D = GetComponent<Rigidbody2D>();
-
             CollidedWithTarget += OnProjectileCollided;
         }
 
@@ -43,7 +45,7 @@ namespace Game.Combat
         {
             float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            _rigibody2D.AddForce(direction);
+            _rigibody2D.AddForce(direction * speed);
         }
 
         private void OnProjectileCollided(GameObject defender)

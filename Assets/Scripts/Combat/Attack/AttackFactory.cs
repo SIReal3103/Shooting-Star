@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Combat
 {
-    public class AttackFactory : MonoBehaviour
+    public class AttackFactory : ScriptableObject
     {
         public int minDamageBonus;
         public int maxDamageBonus;

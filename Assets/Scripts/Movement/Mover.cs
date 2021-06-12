@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Combat;
 
 namespace Game.Movement
 {
@@ -11,6 +12,10 @@ namespace Game.Movement
 
         Rigidbody2D rb;
 
+        // Fire bulllet
+        [SerializeField] KeyCode FireBulletKey = KeyCode.Space;
+        [SerializeField] ProjectileFactory ProjectileFactory;
+
         Vector2 direction;
 
         private void Start() {
@@ -20,6 +25,11 @@ namespace Game.Movement
         private void Update() {
             rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
             direction = Vector2.zero;
+     
+            if (Input.GetKeyDown(FireBulletKey))
+            {
+                ProjectileFactory.Fire(this.gameObject, Vector3.up);
+            }
         }
 
         public void MoveWith(Vector2 direction)
