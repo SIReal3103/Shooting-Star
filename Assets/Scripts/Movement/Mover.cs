@@ -17,7 +17,13 @@ namespace Game.Movement
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void Update() {
+        private void Update()
+        {
+            UpdatePosition();
+        }
+
+        private void UpdatePosition()
+        {
             rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
             direction = Vector2.zero;
         }
