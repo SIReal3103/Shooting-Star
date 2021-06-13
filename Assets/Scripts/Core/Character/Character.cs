@@ -7,7 +7,7 @@ namespace Game.Core
 {
     [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
-    [RequireComponent(typeof(CharacterBehaviour))]
+    [RequireComponent(typeof(PlayerBehaviour))]
     public class Character : MonoBehaviour
     {
         public static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";

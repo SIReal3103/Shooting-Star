@@ -30,7 +30,7 @@ namespace Game.Template
         private TObject CreateNewPoolObject()
         {
             TObject poolObject = new TObject();
-            poolObject.Init(this as TPool, Instantiate(prefab, transform));
+            poolObject.InitPoolObject(this as TPool, Instantiate(prefab, transform));
 
             return poolObject;
         }
@@ -69,7 +69,7 @@ namespace Game.Template
             return instance;
         }
 
-        public void Init(TPool pool, GameObject instance)
+        public void InitPoolObject(TPool pool, GameObject instance)
         {
             this.pool = pool;
             this.instance = instance;

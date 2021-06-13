@@ -12,7 +12,7 @@ namespace Game.Movement
     public class Mover : MonoBehaviour
     {
         [SerializeField]
-        MoveData data;
+        MoveData initialData;
 
         private MoveStategy moveStrategy;
         public MoveStategy MoveStrategy
@@ -22,12 +22,22 @@ namespace Game.Movement
             set
             {
                 moveStrategy = value;
-                moveStrategy.data = data;
+                LoadDataToStategy();
             }
         }
 
+        private void LoadDataToStategy()
+        {
+            moveStrategy.data = initialData;
+        }
+
+        public void SetDestination(Vector2 destination)
+        {
+            moveStrategy.data.destination = destination;
+        }
+
         private void Start() {
-            data.rb = GetComponent<Rigidbody2D>();
+            initialData.rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
@@ -47,7 +57,7 @@ namespace Game.Movement
                 case MovementType.Linearity:
                     return new MoveLinearity();
                 case MovementType.Lerp:
-                    return new MoveLinearity();
+                    return new MoveLerp();
                 default:
                     throw new UnityException("Invalid move strategy");
             }
@@ -73,7 +83,7 @@ namespace Game.Movement
     {
         public override void UpdatePath()
         {
-            throw new System.NotImplementedException();
+            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.tiltSpeed * Time.deltaTime));
         }
     }
 

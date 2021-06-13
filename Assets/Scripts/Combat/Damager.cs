@@ -12,7 +12,7 @@ namespace Game.Combat
         {
             if(Random.value < criticalChance)
             {
-                return (int) (initialDamage * (1f + criticalChance));
+                return (int) (initialDamage * (1f + critEfficent));
             }
 
             return initialDamage;
