@@ -69,7 +69,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d0a4466cd32ae4aad2ba0a9e6ef645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  data:
+    speed: 10
+    tiltSpeed: 0
+    destination: {x: 0, y: 0}
+    rb: {fileID: 0}
 --- !u!70 &409123565710036420
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -98,9 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialDamage: 10
   criticalChance: 0
   critEfficent: 0
-  initialDamage: 0
 --- !u!114 &1130381535657301370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f7f625b08433a40881194a5ffbb5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0}
   source: {fileID: 0}
   destroyWhenOutOfScreen: 1
   outScreenOffSet: {x: 0, y: 0}

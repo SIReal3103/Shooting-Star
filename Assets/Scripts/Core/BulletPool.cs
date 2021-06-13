@@ -21,7 +21,7 @@ namespace Game.Core
         private void AssignBulletData(Bullet bullet, BulletData data)
         {
             bullet.transform.position = data.origin;
-            bullet.moveDirection = data.moveDirection;
+            bullet.SetDirection(data.moveDirection);
             bullet.source = data.source;
             bullet.bulletObject = this;
         }

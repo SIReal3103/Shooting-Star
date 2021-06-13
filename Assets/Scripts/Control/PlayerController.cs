@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Game.Core
+
+public class PlayerController : MonoBehaviour
 {
-    public class CharacterBehaviour : MonoBehaviour
+    private void Update()
     {
         
     }

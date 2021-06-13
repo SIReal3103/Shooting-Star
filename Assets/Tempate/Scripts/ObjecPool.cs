@@ -46,8 +46,7 @@ namespace Game.Template
                 }
             }
 
-            Debug.LogError("Insufficient pool size");
-            return null;
+            throw new UnityException("Insufficient pool size");
         }
 
         public void Push(TObject poolObject)

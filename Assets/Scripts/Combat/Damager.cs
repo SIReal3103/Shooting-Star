@@ -4,23 +4,18 @@ namespace Game.Combat
 {
     public class Damager : MonoBehaviour
     {
-        [SerializeField] float criticalChance;
-        [SerializeField] float critEfficent;
-        [SerializeField] int initialDamage;
+        [SerializeField] int initialDamage = 10;
+        [SerializeField] float criticalChance = 0;
+        [SerializeField] float critEfficent = 0;
 
-        public void DealtDamageTo(Damageable damageable)
-        {
-            damageable.DealDamage(GetDamageDealt());
-        }
-
-        private int GetDamageDealt()
+        public int GetFinalDamage()
         {
             if(Random.value < criticalChance)
             {
                 return (int) (initialDamage * (1f + criticalChance));
             }
 
-            return 0;
+            return initialDamage;
         }
     }
 }

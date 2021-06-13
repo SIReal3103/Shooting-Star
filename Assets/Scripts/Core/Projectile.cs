@@ -9,20 +9,21 @@ namespace Game.Core
     [RequireComponent(typeof(Mover))]
     public abstract class Projectile : MonoBehaviour
     {
-        public Vector2 moveDirection;
         [HideInInspector]
         public GameObject source;
 
         Mover mover;
 
-        private void Start()
+        private void OnEnable()
         {
+            Debug.Log("Set " + name);
             mover = GetComponent<Mover>();
+            mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
         }
 
-        protected void Update()
+        public void SetDirection(Vector2 direction)
         {
-            mover.MoveWith(moveDirection);
+            mover.MoveStrategy.data.destination = direction * Mathf.Infinity;
         }
     }
 }

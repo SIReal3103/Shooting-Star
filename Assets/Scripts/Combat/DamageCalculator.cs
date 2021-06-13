@@ -2,28 +2,31 @@
 
 namespace Game.Combat
 {
-    public class DamageCalculator : MonoBehaviour
+    public class DamageCalculator
     {
-        int pureDamage;
-        Damageable damageTarget;
+        Damager damager;
+        Damageable damageable;
 
-        public DamageCalculator(Damageable damageTarget, int pureDamage)
+        public DamageCalculator(Damageable damageTarget, Damager damager)
         {
-            this.damageTarget = damageTarget;
-            this.pureDamage = pureDamage;
+            this.damageable = damageTarget;
+            this.damager = damager;
         }
 
         public int GetDamageDealt()
         {
-            if (IsDodgeSuccess())
-                return Mathf.Min(damageTarget.Health, Mathf.Max(0, pureDamage - damageTarget.DefenseByValue));
+            if (IsDodgeSuccess()) return 0;
+            return FomularResult();
+        }
 
-            return 0;
+        private int FomularResult()
+        {
+            return Mathf.Min(damageable.Health, Mathf.Max(0, damager.GetFinalDamage() - damageable.DefenseByValue));
         }
 
         private bool IsDodgeSuccess()
         {
-            return Random.value < damageTarget.DodgeChance;
+            return Random.value < damageable.DodgeChance;
         }
     }
 }

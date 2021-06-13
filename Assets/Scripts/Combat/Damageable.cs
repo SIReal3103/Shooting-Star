@@ -4,20 +4,21 @@ namespace Game.Combat
 {
     public class Damageable : MonoBehaviour
     {
-        [SerializeField] int maxHealth;
-        [SerializeField] int health;
+        [SerializeField] int maxHealth = 100;
+        [SerializeField] int health = 100;
 
-        [SerializeField] int defenseByValue;
-        [SerializeField] float dodgeChance;
+        [SerializeField] int defenseByValue = 0;
+        [SerializeField] float dodgeChance = 0;
 
         public int MaxHealth { get => maxHealth; }
         public int Health { get => health; set => health = Mathf.Clamp(value, 0, MaxHealth); }
         public int DefenseByValue { get => defenseByValue; }
         public float DodgeChance { get => dodgeChance; }
 
-        public void DealDamage(int damage)
+        public void TakeDamageFrom(Damager damager)
         {
-            DamageCalculator calculator = new DamageCalculator(this, damage);
+            DamageCalculator calculator = new DamageCalculator(this, damager);
+            Debug.Log(calculator.GetDamageDealt());
             DrawHealth(calculator.GetDamageDealt());
         }
 

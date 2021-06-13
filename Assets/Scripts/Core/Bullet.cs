@@ -13,13 +13,11 @@ namespace Game.Core
         bool destroyWhenOutOfScreen = true;
         [SerializeField]
         Vector2 outScreenOffSet = Vector2.zero;
-        
+        [HideInInspector]
         public BulletObject bulletObject;
 
-        new void Update()
+        private void Update()
         {
-            base.Update();
-
             if(destroyWhenOutOfScreen && CheckIsOutOfScreen())
             {
                 ReturnToPool();
@@ -41,12 +39,12 @@ namespace Game.Core
             {
                 Damageable damageable;
 
-                if (!collision.transform.TryGetComponent<Damageable>(out damageable))
+                if (!collision.transform.TryGetComponent(out damageable))
                 {
-                    Debug.Log("Collide with GameObject with invalid tag");
+                    return;
                 }
 
-                GetComponent<Damager>().DealtDamageTo(damageable);
+                damageable.TakeDamageFrom(GetComponent<Damager>());
                 ReturnToPool();
             }
         }
