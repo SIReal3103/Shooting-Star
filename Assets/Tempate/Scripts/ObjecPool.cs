@@ -96,7 +96,7 @@ namespace Game.Template
             this.inPool = inPool;
         }
 
-        public abstract void Init(TData data);
+        public abstract void InitData(TData data);
 
         public void ReturnToPool()
         {

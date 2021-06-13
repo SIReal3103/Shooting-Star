@@ -12,7 +12,7 @@ namespace Game.Core
 
     public class BulletObject : PoolObject<BulletPool, BulletObject, BulletData>
     {
-        public override void Init(BulletData data)
+        public override void InitData(BulletData data)
         {
             Bullet bullet = GetInstance().GetComponent<Bullet>();
             AssignBulletData(bullet, data);
