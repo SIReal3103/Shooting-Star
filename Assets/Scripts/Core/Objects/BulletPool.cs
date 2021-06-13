@@ -15,10 +15,10 @@ namespace Game.Core
         public override void InitData(BulletData data)
         {
             Bullet bullet = GetInstance().GetComponent<Bullet>();
-            AssignBulletData(bullet, data);
+            AssignData(bullet, data);
         }
 
-        private void AssignBulletData(Bullet bullet, BulletData data)
+        private void AssignData(Bullet bullet, BulletData data)
         {
             bullet.transform.position = data.origin;
             bullet.SetDirection(data.moveDirection);

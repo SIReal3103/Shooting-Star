@@ -31,5 +31,10 @@ namespace Game.Combat
         {
             this.Health += health;
         }
+
+        public bool IsDead()
+        {
+            return this.Health == 0;
+        }
     }
 }
