@@ -38,7 +38,6 @@ namespace Game.Core
             if(!collision.transform.CompareTag(source.tag))
             {
                 Damageable damageable;
-
                 if (!collision.transform.TryGetComponent(out damageable))
                 {
                     return;

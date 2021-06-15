@@ -34,7 +34,7 @@ namespace Game.Core
 
         public void ChangeNewGunAndDestroyCurrent(Gun gunPrefab)
         {
-            if (currentGun != null) Destroy(currentGun.gameObject);
+            if (currentGun != null) Destroy(currentGun);
             currentGun = Instantiate(gunPrefab, transform);
             currentGun.Init(this);
         }

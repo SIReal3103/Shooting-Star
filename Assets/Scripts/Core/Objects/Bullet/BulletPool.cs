@@ -23,6 +23,7 @@ namespace Game.Core
             bullet.transform.position = data.origin;
             bullet.SetDirection(data.moveDirection);
             bullet.source = data.source;
+
             bullet.bulletObject = this;
         }
     }

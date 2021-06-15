@@ -6,13 +6,16 @@ namespace Game.Core
 {
     public class Gun : MonoBehaviour
     {
-        [SerializeField] BulletPool BulletPool;
         [SerializeField] Vector2[] bulletDirections;
 
-        [HideInInspector] private Gunner gunHolder;
+        [SerializeField] BulletPool BulletPool;
+        Gunner gunHolder;
 
         public void Init(Gunner gunHolder)
         {
+            if(BulletPool == null)
+                BulletPool = BulletPoolManager.Instance.GetBulletPool();
+
             this.gunHolder = gunHolder;
         }
 
