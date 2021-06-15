@@ -21,14 +21,18 @@ namespace Game.Core
         private void AssignData(EnemyBehaviour enemy, EnemyData data)
         {
             enemy.enemyObject = this;
+
+            enemy.transform.position = data.position;
         }
     }
 
     public class EnemyData
     {
-        public EnemyData()
-        {
+        public Vector3 position;
 
+        public EnemyData(Vector3 position)
+        {
+            this.position = position;
         }
     }
 }
