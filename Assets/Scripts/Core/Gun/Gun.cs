@@ -6,29 +6,22 @@ namespace Game.Core
 {
     public class Gun : MonoBehaviour
     {
-        /// <summary>
-        /// Add this class to change gun by player.
-        /// </summary>
+        [SerializeField] BulletPool BulletPool;
+        [SerializeField] Vector2[] bulletDirections;
 
-        [Header("Gun")]
-        /// Number of bullet firing
-        public int NumberOfBullet;
-        /// Direction of each bullet;
-        [Tooltip("Direction of each bullet from left to right")]
-        public List<Vector2> BulletDirectionList = new List<Vector2>();
-        /// Bullet that gun firing;
-        public BulletPool BulletPrefab;
-        
+        [HideInInspector] private Gunner gunHolder;
 
-        [HideInInspector]
-        public Character _character;
-
-        public void Firing()
+        public void Init(Gunner gunHolder)
         {
-            for (int i = 0; i < NumberOfBullet; i++)
+            this.gunHolder = gunHolder;
+        }
+
+        public void Fire()
+        {
+            for (int i = 0; i < bulletDirections.Length; i++)
             {
-                BulletData bulletData = new BulletData(gameObject, _character.GetBulletSpawnPosition(), BulletDirectionList[i]);
-                BulletPrefab.Pop().InitData(bulletData);
+                BulletData bulletData = new BulletData(gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirections[i]);
+                BulletPool.Pop().InitData(bulletData);
             }
         }
     }
