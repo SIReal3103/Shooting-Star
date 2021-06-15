@@ -322,7 +322,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7573822122104172061}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 829078599}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eb4f015ca544294492dfcaa230bc919, type: 3}
