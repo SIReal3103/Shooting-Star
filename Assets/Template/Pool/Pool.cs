@@ -11,11 +11,11 @@ namespace Game.Template
         [SerializeField] GameObject prefab;
 
         List<TObject> pool = new List<TObject>();
-        [SerializeField] int poolSize = 10;
+        [SerializeField] int initialPoolSize = 10;
 
         private void Start()
         {
-            for(int i = 0; i < poolSize; i++)
+            for(int i = 0; i < initialPoolSize; i++)
             {
                 AddToPool(CreateNewPoolObject());
             }
@@ -46,7 +46,7 @@ namespace Game.Template
                 }
             }
 
-            throw new UnityException("Insufficient pool size");
+            return CreateNewPoolObject();
         }
 
         public void Push(TObject poolObject)
