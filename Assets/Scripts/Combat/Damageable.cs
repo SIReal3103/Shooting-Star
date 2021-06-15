@@ -18,7 +18,6 @@ namespace Game.Combat
         public void TakeDamageFrom(Damager damager)
         {
             DamageCalculator calculator = new DamageCalculator(this, damager);
-            Debug.Log(calculator.GetDamageDealt());
             DrawHealth(calculator.GetDamageDealt());
         }
 

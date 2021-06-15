@@ -16,8 +16,16 @@ namespace Game.Core
 
         private void OnEnable()
         {
-            mover = GetComponent<Mover>();
-            mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
+            LoadMoverStrategy();
+        }
+
+        private void LoadMoverStrategy()
+        {
+            if (mover == null)
+            {
+                mover = GetComponent<Mover>();
+                mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
+            }
         }
 
         public void SetDirection(Vector2 direction)
