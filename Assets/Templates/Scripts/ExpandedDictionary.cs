@@ -23,8 +23,6 @@ public class ExpandedDictionary<TObject>
             TObject child = transform.GetChild(i).GetComponent<TObject>();
 
             dictionary.Add(child.name, child);
-
-            Debug.Log(child.name);
         }
     }
 
