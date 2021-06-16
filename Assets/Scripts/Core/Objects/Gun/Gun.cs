@@ -7,15 +7,14 @@ namespace Game.Core
     public class Gun : MonoBehaviour
     {
         [SerializeField] Vector2[] bulletDirections;
-        [SerializeField] BulletPool BulletPool;
-        Gunner gunHolder;
 
-        public void Init(Gunner gunHolder)
+        private BulletPool bulletPool;
+        private Gunner gunHolder;
+
+        public void Init(Gunner gunHolder, BulletPool bulletPool)
         {
-            if(BulletPool == null)
-                BulletPool = BulletPoolManager.Instance.GetBulletPool();
-
             this.gunHolder = gunHolder;
+            this.bulletPool = bulletPool;
         }
 
         public void Fire()
@@ -23,7 +22,7 @@ namespace Game.Core
             for (int i = 0; i < bulletDirections.Length; i++)
             {
                 BulletData bulletData = new BulletData(gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirections[i]);
-                BulletPool.Pop().InitData(bulletData);
+                bulletPool.Pop().InitData(bulletData);
             }
         }
     }

@@ -13,6 +13,8 @@ namespace Game.Core
         [SerializeField] Gun initialGunPrefab;
 
         Gun currentGun;
+        [SerializeField] BulletPool currentBulletPool;
+
         Transform bulletSpawnPoint;
 
         float timeSinceLastFire = Mathf.Infinity;
@@ -36,7 +38,7 @@ namespace Game.Core
             if (currentGun != null) Destroy(currentGun);
 
             currentGun = Instantiate(gunPrefab, transform);
-            currentGun.Init(this);
+            currentGun.Init(this, currentBulletPool);
         }
 
         public void FireBehaviour()
@@ -56,6 +58,6 @@ namespace Game.Core
         private void UpdateTimer()
         {
             timeSinceLastFire += Time.deltaTime;
-        }     
+        }
     } 
 }
