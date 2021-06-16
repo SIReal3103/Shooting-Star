@@ -4,168 +4,163 @@
 #endif
 
 using System;
+
 using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
+
 using System.Collections.Generic;
-using UnityEngine.Audio;
-using Game.Core;
 
-namespace Game.Event
-{	
 
-	[ExecuteAlways]
-	public static class MMEventManager 
+[ExecuteAlways]
+public static class MMEventManager 
+{
+	private static Dictionary<Type, List<MMEventListenerBase>> _subscribersList;
+
+	static MMEventManager()
 	{
-	    private static Dictionary<Type, List<MMEventListenerBase>> _subscribersList;
+	    _subscribersList = new Dictionary<Type, List<MMEventListenerBase>>();
+	}
 
-		static MMEventManager()
+	/// <summary>
+	/// Adds a new subscriber to a certain event.
+	/// </summary>
+	/// <param name="listener">listener.</param>
+	/// <typeparam name="MMEvent">The event type.</typeparam>
+	public static void AddListener<MMEvent>( MMEventListener<MMEvent> listener ) where MMEvent : struct
+	{
+	    Type eventType = typeof( MMEvent );
+
+	    if( !_subscribersList.ContainsKey( eventType ) )
+	        _subscribersList[eventType] = new List<MMEventListenerBase>();
+
+	    if( !SubscriptionExists( eventType, listener ) )
+	        _subscribersList[eventType].Add( listener );
+	}
+
+	/// <summary>
+	/// Removes a subscriber from a certain event.
+	/// </summary>
+	/// <param name="listener">listener.</param>
+	/// <typeparam name="MMEvent">The event type.</typeparam>
+	public static void RemoveListener<MMEvent>( MMEventListener<MMEvent> listener ) where MMEvent : struct
+	{
+	    Type eventType = typeof( MMEvent );
+
+	    if( !_subscribersList.ContainsKey( eventType ) )
 	    {
-	        _subscribersList = new Dictionary<Type, List<MMEventListenerBase>>();
+			#if EVENTROUTER_THROWEXCEPTIONS
+				throw new ArgumentException( string.Format( "Removing listener \"{0}\", but the event type \"{1}\" isn't registered.", listener, eventType.ToString() ) );
+			#else
+				return;
+			#endif
 	    }
 
-	    /// <summary>
-	    /// Adds a new subscriber to a certain event.
-	    /// </summary>
-		/// <param name="listener">listener.</param>
-	    /// <typeparam name="MMEvent">The event type.</typeparam>
-	    public static void AddListener<MMEvent>( MMEventListener<MMEvent> listener ) where MMEvent : struct
-	    {
-	        Type eventType = typeof( MMEvent );
+		List<MMEventListenerBase> subscriberList = _subscribersList[eventType];
 
-	        if( !_subscribersList.ContainsKey( eventType ) )
-	            _subscribersList[eventType] = new List<MMEventListenerBase>();
+        #if EVENTROUTER_THROWEXCEPTIONS
+	        bool listenerFound = false;
+        #endif
 
-	        if( !SubscriptionExists( eventType, listener ) )
-	            _subscribersList[eventType].Add( listener );
-	    }
-
-	    /// <summary>
-	    /// Removes a subscriber from a certain event.
-	    /// </summary>
-		/// <param name="listener">listener.</param>
-	    /// <typeparam name="MMEvent">The event type.</typeparam>
-	    public static void RemoveListener<MMEvent>( MMEventListener<MMEvent> listener ) where MMEvent : struct
-	    {
-	        Type eventType = typeof( MMEvent );
-
-	        if( !_subscribersList.ContainsKey( eventType ) )
-	        {
-				#if EVENTROUTER_THROWEXCEPTIONS
-					throw new ArgumentException( string.Format( "Removing listener \"{0}\", but the event type \"{1}\" isn't registered.", listener, eventType.ToString() ) );
-				#else
-					return;
-				#endif
-	        }
-
-			List<MMEventListenerBase> subscriberList = _subscribersList[eventType];
-
-            #if EVENTROUTER_THROWEXCEPTIONS
-	            bool listenerFound = false;
-            #endif
-
-            for (int i = 0; i<subscriberList.Count; i++)
+        for (int i = 0; i<subscriberList.Count; i++)
+		{
+			if( subscriberList[i] == listener )
 			{
-				if( subscriberList[i] == listener )
-				{
-					subscriberList.Remove( subscriberList[i] );
-                    #if EVENTROUTER_THROWEXCEPTIONS
-					    listenerFound = true;
-                    #endif
+				subscriberList.Remove( subscriberList[i] );
+                #if EVENTROUTER_THROWEXCEPTIONS
+					listenerFound = true;
+                #endif
 
-                    if ( subscriberList.Count == 0 )
-                    {
-                        _subscribersList.Remove(eventType);
-                    }						
+                if ( subscriberList.Count == 0 )
+                {
+                    _subscribersList.Remove(eventType);
+                }						
 
-					return;
-				}
+				return;
 			}
+		}
 
-            #if EVENTROUTER_THROWEXCEPTIONS
-		        if( !listenerFound )
-		        {
-					throw new ArgumentException( string.Format( "Removing listener, but the supplied receiver isn't subscribed to event type \"{0}\".", eventType.ToString() ) );
-		        }
-            #endif
-	    }
+        #if EVENTROUTER_THROWEXCEPTIONS
+		    if( !listenerFound )
+		    {
+				throw new ArgumentException( string.Format( "Removing listener, but the supplied receiver isn't subscribed to event type \"{0}\".", eventType.ToString() ) );
+		    }
+        #endif
+	}
 
-	    /// <summary>
-	    /// Triggers an event. All instances that are subscribed to it will receive it (and will potentially act on it).
-	    /// </summary>
-		/// <param name="newEvent">The event to trigger.</param>
-	    /// <typeparam name="MMEvent">The 1st type parameter.</typeparam>
-	    public static void TriggerEvent<MMEvent>( MMEvent newEvent ) where MMEvent : struct
-	    {
-	        List<MMEventListenerBase> list;
-	        if( !_subscribersList.TryGetValue( typeof( MMEvent ), out list ) )
+	/// <summary>
+	/// Triggers an event. All instances that are subscribed to it will receive it (and will potentially act on it).
+	/// </summary>
+	/// <param name="newEvent">The event to trigger.</param>
+	/// <typeparam name="MMEvent">The 1st type parameter.</typeparam>
+	public static void TriggerEvent<MMEvent>( MMEvent newEvent ) where MMEvent : struct
+	{
+	    List<MMEventListenerBase> list;
+	    if( !_subscribersList.TryGetValue( typeof( MMEvent ), out list ) )
 #if EVENTROUTER_REQUIRELISTENER
-			            throw new ArgumentException( string.Format( "Attempting to send event of type \"{0}\", but no listener for this type has been found. Make sure this.Subscribe<{0}>(EventRouter) has been called, or that all listeners to this event haven't been unsubscribed.", typeof( MMEvent ).ToString() ) );
+			        throw new ArgumentException( string.Format( "Attempting to send event of type \"{0}\", but no listener for this type has been found. Make sure this.Subscribe<{0}>(EventRouter) has been called, or that all listeners to this event haven't been unsubscribed.", typeof( MMEvent ).ToString() ) );
 #else
-			                return;
+			            return;
 #endif
 			
-			for (int i=0; i<list.Count; i++)
-			{
-				( list[i] as MMEventListener<MMEvent> ).OnMMEvent( newEvent );
-			}
-	    }
-
-	    /// <summary>
-	    /// Checks if there are subscribers for a certain type of events
-	    /// </summary>
-	    /// <returns><c>true</c>, if exists was subscriptioned, <c>false</c> otherwise.</returns>
-	    /// <param name="type">Type.</param>
-	    /// <param name="receiver">Receiver.</param>
-	    private static bool SubscriptionExists( Type type, MMEventListenerBase receiver )
-	    {
-	        List<MMEventListenerBase> receivers;
-
-	        if( !_subscribersList.TryGetValue( type, out receivers ) ) return false;
-
-	        bool exists = false;
-
-			for (int i=0; i<receivers.Count; i++)
-			{
-				if( receivers[i] == receiver )
-				{
-					exists = true;
-					break;
-				}
-			}
-
-	        return exists;
-	    }
+		for (int i=0; i<list.Count; i++)
+		{
+			( list[i] as MMEventListener<MMEvent> ).OnMMEvent( newEvent );
+		}
 	}
 
 	/// <summary>
-	/// Static class that allows any class to start or stop listening to events
+	/// Checks if there are subscribers for a certain type of events
 	/// </summary>
-	public static class EventRegister
+	/// <returns><c>true</c>, if exists was subscriptioned, <c>false</c> otherwise.</returns>
+	/// <param name="type">Type.</param>
+	/// <param name="receiver">Receiver.</param>
+	private static bool SubscriptionExists( Type type, MMEventListenerBase receiver )
 	{
-	    public delegate void Delegate<T>( T eventType );
+	    List<MMEventListenerBase> receivers;
 
-	    public static void MMEventStartListening<EventType>( this MMEventListener<EventType> caller ) where EventType : struct
-	    {
-			MMEventManager.AddListener<EventType>( caller );
-	    }
+	    if( !_subscribersList.TryGetValue( type, out receivers ) ) return false;
 
-		public static void MMEventStopListening<EventType>( this MMEventListener<EventType> caller ) where EventType : struct
-	    {
-			MMEventManager.RemoveListener<EventType>( caller );
-	    }
+	    bool exists = false;
+
+		for (int i=0; i<receivers.Count; i++)
+		{
+			if( receivers[i] == receiver )
+			{
+				exists = true;
+				break;
+			}
+		}
+
+	    return exists;
 	}
+}
 
-	/// <summary>
-	/// Event listener basic interface
-	/// </summary>
-	public interface MMEventListenerBase { };
+/// <summary>
+/// Static class that allows any class to start or stop listening to events
+/// </summary>
+public static class EventRegister
+{
+	public delegate void Delegate<T>( T eventType );
 
-	/// <summary>
-	/// A public interface you'll need to implement for each type of event you want to listen to.
-	/// </summary>
-	public interface MMEventListener<T> : MMEventListenerBase
+	public static void MMEventStartListening<EventType>( this MMEventListener<EventType> caller ) where EventType : struct
 	{
-	    void OnMMEvent( T eventType );
+		MMEventManager.AddListener<EventType>( caller );
 	}
+
+	public static void MMEventStopListening<EventType>( this MMEventListener<EventType> caller ) where EventType : struct
+	{
+		MMEventManager.RemoveListener<EventType>( caller );
+	}
+}
+
+/// <summary>
+/// Event listener basic interface
+/// </summary>
+public interface MMEventListenerBase { };
+
+/// <summary>
+/// A public interface you'll need to implement for each type of event you want to listen to.
+/// </summary>
+public interface MMEventListener<T> : MMEventListenerBase
+{
+	void OnMMEvent( T eventType );
 }

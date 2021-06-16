@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 using Game.Core;
-using Game.Template;
 
 namespace Game.Event
 {
