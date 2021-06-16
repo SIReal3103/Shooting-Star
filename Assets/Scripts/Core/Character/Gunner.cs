@@ -33,7 +33,12 @@ namespace Game.Core
             UpdateTimer();
         }
 
-        public void ChangeNewGunAndDestroyCurrent(Gun gunPrefab)
+        public void ChangeToStrongerGun()
+        {
+            ChangeNewGunAndDestroyCurrent(GunManager.Instance.GetStrongerGunFrom(currentGun));
+        }
+
+        private void ChangeNewGunAndDestroyCurrent(Gun gunPrefab)
         {
             if (currentGun != null) Destroy(currentGun);
 

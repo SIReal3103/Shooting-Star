@@ -26,9 +26,9 @@ namespace Game.Core
             mover.SetDestination(Position);
         }
 
-        internal void ChangeGunBehaviour()
+        public void ChangeStrongerGunBehaviour()
         {
-            
+            gunner.ChangeToStrongerGun();
         }
     }
 }

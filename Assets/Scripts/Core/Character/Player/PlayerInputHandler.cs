@@ -19,7 +19,7 @@ namespace Game.Core
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                player.ChangeGunBehaviour();
+                player.ChangeStrongerGunBehaviour();
             }
         }
 
