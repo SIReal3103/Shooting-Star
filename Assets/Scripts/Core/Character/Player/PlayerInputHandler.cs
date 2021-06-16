@@ -16,6 +16,11 @@ namespace Game.Core
         private void Update()
         {
             player.MoveBehaviour(GetMousePosition());
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                player.ChangeGunBehaviour();
+            }
         }
 
         private static Vector3 GetMousePosition()
