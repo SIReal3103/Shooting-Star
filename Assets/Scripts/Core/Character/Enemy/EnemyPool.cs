@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-using Game.Template;
-
 namespace Game.Core
 {
     public class EnemyPool : Pool<EnemyPool, EnemyObject, EnemyData>

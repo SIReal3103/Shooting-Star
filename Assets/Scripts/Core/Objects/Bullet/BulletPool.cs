@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-using Game.Template;
-
 namespace Game.Core
 {
     public class BulletPool : Pool<BulletPool, BulletObject, BulletData>
