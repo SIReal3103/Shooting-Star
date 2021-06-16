@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 using Game.Event;
 
 namespace Game.Core
 {
     [RequireComponent(typeof(Character))]
-    public class Gunner : MonoBehaviour, MMEventListener<ChangeWeaponEvent>
+    public class Gunner : MonoBehaviour
     {
         public static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";
 
@@ -57,22 +56,6 @@ namespace Game.Core
         private void UpdateTimer()
         {
             timeSinceLastFire += Time.deltaTime;
-        }
-
-        public void OnMMEvent(ChangeWeaponEvent eventType)
-        {
-            ChangeNewGunAndDestroyCurrent(eventType.Gun.GetComponent<Gun>());
-        }
-
-        private void OnEnable()
-        {
-            this.MMEventStartListening<ChangeWeaponEvent>();
-        }
-
-        private void OnDisable()
-        {
-            this.MMEventStopListening<ChangeWeaponEvent>();
-        }        
-    }
-    
+        }     
+    } 
 }

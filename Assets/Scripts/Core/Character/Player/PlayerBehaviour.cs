@@ -19,11 +19,6 @@ namespace Game.Core
             mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Lerp);
         }
 
-        private void Update()
-        {
-            MoveBehaviour(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-
         public void MoveBehaviour(Vector2 Position)
         {
             mover.SetDestination(Position);

@@ -13,77 +13,7 @@ using Game.Core;
 
 namespace Game.Event
 {	
-	/// <summary>
-	/// GameEvents are used throughout the game for general game events (game started, game ended, life lost, etc.)
-	/// </summary>
-	public struct GameEvent
-	{
-		public string EventName;
-		public GameEvent(string newName)
-		{
-			EventName = newName;
-        }
-        static GameEvent e;
-        public static void Trigger(string newName)
-        {
-            e.EventName = newName;
-            MMEventManager.TriggerEvent(e);
-        }
-    }
 
-	public struct ChangeWeaponEvent
-	{
-		public GameObject Gun;
-
-		public ChangeWeaponEvent(GameObject gun)
-		{
-			this.Gun = gun;
-		}
-		static ChangeWeaponEvent e;
-		public static void Trigger(GameObject gun)
-		{
-			e.Gun = gun;
-			MMEventManager.TriggerEvent(e);
-		}
-	}
-
-	/// <summary>
-	/// This class handles event management, and can be used to broadcast events throughout the game, to tell one class (or many) that something's happened.
-	/// Events are structs, you can define any kind of events you want. This manager comes with GameEvents, which are 
-	/// basically just made of a string, but you can work with more complex ones if you want.
-	/// 
-	/// To trigger a new event, from anywhere, do YOUR_EVENT.Trigger(YOUR_PARAMETERS)
-	/// So GameEvent.Trigger("Save"); for example will trigger a Save GameEvent
-	/// 
-	/// you can also call MMEventManager.TriggerEvent(YOUR_EVENT);
-	/// For example : MMEventManager.TriggerEvent(new GameEvent("GameStart")); will broadcast an GameEvent named GameStart to all listeners.
-	///
-	/// To start listening to an event from any class, there are 3 things you must do : 
-	///
-	/// 1 - tell that your class implements the MMEventListener interface for that kind of event.
-	/// For example: public class GUIManager : Singleton<GUIManager>, MMEventListener<GameEvent>
-	/// You can have more than one of these (one per event type).
-	///
-	/// 2 - On Enable and Disable, respectively start and stop listening to the event :
-	/// void OnEnable()
-	/// {
-	/// 	this.MMEventStartListening<GameEvent>();
-	/// }
-	/// void OnDisable()
-	/// {
-	/// 	this.MMEventStopListening<GameEvent>();
-	/// }
-	/// 
-	/// 3 - Implement the MMEventListener interface for that event. For example :
-	/// public void OnMMEvent(GameEvent gameEvent)
-	/// {
-	/// 	if (gameEvent.EventName == "GameOver")
-	///		{
-	///			// DO SOMETHING
-	///		}
-	/// } 
-	/// will catch all events of type GameEvent emitted from anywhere in the game, and do something if it's named GameOver
-	/// </summary>
 	[ExecuteAlways]
 	public static class MMEventManager 
 	{
