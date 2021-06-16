@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace Game.Core
 {
+    /// <summary>
+    /// Add this class to create gun
+    /// </summary>
     public class Gun : MonoBehaviour
     {
+        [Header("Gun name")]
+        public string GunName;
+
+        [Header("Gun information")]
         [SerializeField] Vector2[] bulletDirections;
 
         [SerializeField] BulletPool BulletPool;

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Event;
 
 namespace Game.Core
 {
     [RequireComponent(typeof(Character))]
-    public class Gunner : MonoBehaviour
+    public class Gunner : MonoBehaviour, MMEventListener<ChangeWeaponEvent>
     {
         public static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";
 
@@ -20,7 +21,6 @@ namespace Game.Core
         private void Start()
         {
             bulletSpawnPoint = transform.Find(BULLET_SPAWN_POINT_PATH);
-            currentGun = initialGunPrefab.GetComponent<Gun>();
 
             ChangeNewGunAndDestroyCurrent(initialGunPrefab);
         }
@@ -35,6 +35,7 @@ namespace Game.Core
         public void ChangeNewGunAndDestroyCurrent(Gun gunPrefab)
         {
             if (currentGun != null) Destroy(currentGun);
+
             currentGun = Instantiate(gunPrefab, transform);
             currentGun.Init(this);
         }
@@ -57,6 +58,21 @@ namespace Game.Core
         {
             timeSinceLastFire += Time.deltaTime;
         }
+
+        public void OnMMEvent(ChangeWeaponEvent eventType)
+        {
+            ChangeNewGunAndDestroyCurrent(eventType.Gun.GetComponent<Gun>());
+        }
+
+        private void OnEnable()
+        {
+            this.MMEventStartListening<ChangeWeaponEvent>();
+        }
+
+        private void OnDisable()
+        {
+            this.MMEventStopListening<ChangeWeaponEvent>();
+        }        
     }
     
 }

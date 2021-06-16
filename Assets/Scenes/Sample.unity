@@ -203,6 +203,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.37
       objectReference: {fileID: 0}
+    - target: {fileID: 5330085557332132239, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialGunPrefab
+      value: 
+      objectReference: {fileID: 1927165281732816591, guid: e4ebf6bcab8d6c44db881cca4787c6cd,
+        type: 3}
     - target: {fileID: 5365085402913456819, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: currentPool
@@ -477,8 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc38d5525d148af47a13d970180c8daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunner: {fileID: 0}
-  pool: {fileID: 0}
 --- !u!1001 &7573822122104172061
 PrefabInstance:
   m_ObjectHideFlags: 0
