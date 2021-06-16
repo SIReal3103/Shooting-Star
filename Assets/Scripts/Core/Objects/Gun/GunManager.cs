@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunManager : Singleton<GunManager>
+namespace Game.Core
 {
-    
+    public class GunManager : Singleton<GunManager>
+    {
+        [SerializeField] Gun[] gunPrefabs;
+    }
 }
