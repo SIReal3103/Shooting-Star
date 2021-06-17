@@ -41,7 +41,7 @@ namespace Game.Core
 
         private void SpawnEnemyAtPoint(Vector2 spawnPoint)
         {
-            pool.Pop().InitData(new EnemyData(spawnPoint));
+            pool.Pop(new EnemyData(spawnPoint));
         }
     }
 }

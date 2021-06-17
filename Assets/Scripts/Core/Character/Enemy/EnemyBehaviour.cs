@@ -11,13 +11,11 @@ namespace Game.Core
 {
     [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
-    public class EnemyBehaviour : MonoBehaviour
+    public class EnemyBehaviour : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBehaviour>
     {
-        // Pooling
-        [HideInInspector]
-        public EnemyObject enemyObject;
-
         Mover mover;
+
+        public EnemyPool CurrentPool { get; set; }
 
         private void Start()
         {
@@ -45,7 +43,20 @@ namespace Game.Core
 
         private void ReturnToPool()
         {
-            enemyObject.ReturnToPool();
-        }    
+            CurrentPool.ReturnToPool(this);
+        }
+
+        public void WakeUp(object args)
+        {
+            EnemyData data = args as EnemyData;
+            gameObject.SetActive(true);
+            transform.position = data.spawnPosition;
+        }
+
+        public void Sleep()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
+
