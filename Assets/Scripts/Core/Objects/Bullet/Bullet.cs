@@ -7,14 +7,14 @@ namespace Game.Core
     [RequireComponent(typeof(CapsuleCollider2D))]
     [RequireComponent(typeof(Damager))]
 
-    public class Bullet : Projectile
+    public class Bullet : Projectile, IANTsPoolObject<BulletPool, Bullet>
     {
         [SerializeField]
         bool destroyWhenOutOfScreen = true;
         [SerializeField]
         Vector2 outScreenOffSet = Vector2.zero;
-        [HideInInspector]
-        public BulletObject bulletObject;
+
+        public BulletPool CurrentPool { get; set; }
 
         private void Update()
         {
@@ -34,7 +34,6 @@ namespace Game.Core
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            // UNDONE: Bullet can collide with each other
             if(!collision.transform.CompareTag(source.tag))
             {
                 Damageable damageable;
@@ -50,7 +49,38 @@ namespace Game.Core
 
         private void ReturnToPool()
         {
-            bulletObject.ReturnToPool();
+            CurrentPool.ReturnToPool(this);
+        }
+
+        public void WakeUp(System.Object args)
+        {
+            gameObject.SetActive(true);
+
+            BulletData data = args as BulletData;
+
+            transform.position = data.origin;
+            SetDirection(data.moveDirection);
+            source = data.source;
+        }
+
+        public void Sleep()
+        {
+            gameObject.SetActive(false);
+        }
+
+    }
+
+    public class BulletData
+    {
+        public Vector2 origin;
+        public Vector2 moveDirection;
+        public GameObject source;
+
+        public BulletData(GameObject source, Vector2 origin, Vector2 moveDirection)
+        {
+            this.source = source;
+            this.origin = origin;
+            this.moveDirection = moveDirection;
         }
     }
 }
