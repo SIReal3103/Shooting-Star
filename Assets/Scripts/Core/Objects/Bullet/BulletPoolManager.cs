@@ -8,7 +8,7 @@ namespace Game.Core
     {
         protected BulletPoolManager() { }
 
-        [SerializeField] string DEFAULT_GUN_KEY = "BulletPoolLevel1";
+        [SerializeField] string DEFAULT_BULLET_KEY = "BulletPoolLevel1";
 
         ExpandedDictionary<BulletPool> bulletPools;
 
@@ -24,7 +24,7 @@ namespace Game.Core
 
         public BulletPool GetBulletPool()
         {
-            return bulletPools.GetValueFrom(DEFAULT_GUN_KEY);
+            return bulletPools.GetValueFrom(DEFAULT_BULLET_KEY);
         }
     }
 }

@@ -7,9 +7,28 @@ public class ExpandedDictionary<TObject>
     private Dictionary<string, TObject> dictionary;
     GameObject container;
 
-    public ICollection<string> GetKeys()
+    public TObject GetNextItem(TObject currentItem)
     {
-        return dictionary.Keys;
+        string currentKey = currentItem.name;
+        return dictionary[GetNextKey(currentKey)];
+    }
+
+    private string GetNextKey(string currentKey)
+    {
+        List<string> keys = new List<string>(dictionary.Keys);
+        int indexOfCurrentKey = keys.IndexOf(currentKey);
+        return keys[GetNextIndexIfThereIs(indexOfCurrentKey)];
+    }
+
+    private int GetNextIndexIfThereIs(int index)
+    {
+        if (index + 1 == dictionary.Count)
+        {
+            Debug.Log("Can't get next index of the last item");
+            return index;
+        }
+
+        return index + 1;
     }
 
     public ExpandedDictionary(GameObject container)
