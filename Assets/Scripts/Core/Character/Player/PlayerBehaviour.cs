@@ -30,5 +30,10 @@ namespace Game.Core
         {
             gunner.ChangeToStrongerGun();
         }
+
+        public void ChangeStrongerBulletBehaviour()
+        {
+            gunner.ChangeToStrongerBullet();
+        }
     }
 }

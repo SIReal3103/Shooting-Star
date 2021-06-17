@@ -8,16 +8,14 @@ namespace Game.Core
     {
         [SerializeField] Vector2[] bulletDirections;
 
-        private BulletPool bulletPool;
         private Gunner gunHolder;
 
         public void Init(Gunner gunHolder, BulletPool bulletPool)
         {
             this.gunHolder = gunHolder;
-            this.bulletPool = bulletPool;
         }
 
-        public void Fire()
+        public void Fire(BulletPool bulletPool)
         {
             for (int i = 0; i < bulletDirections.Length; i++)
             {

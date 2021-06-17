@@ -15,7 +15,7 @@ namespace Game.Core
             gunDictionary = new ExpandedDictionary<Gun>(gameObject);
         }
 
-        public Gun GetStrongerGunFrom(Gun currentGun)
+        public Gun GetNextGun(Gun currentGun)
         {
             return gunDictionary.GetNextItem(currentGun);
         }

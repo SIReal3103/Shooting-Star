@@ -17,6 +17,11 @@ namespace Game.Core
             bulletPools = new ExpandedDictionary<BulletPool>(gameObject);
         }
 
+        public BulletPool GetNextBulletPool(BulletPool bulletPool)
+        {
+            return bulletPools.GetNextItem(bulletPool);
+        }
+
         public BulletPool GetBulletPool(string s)
         {
             return bulletPools.GetValueFrom(s);

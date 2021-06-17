@@ -21,6 +21,10 @@ namespace Game.Core
             {
                 player.ChangeStrongerGunBehaviour();
             }
+            if(Input.GetKeyDown(KeyCode.Z))
+            {
+                player.ChangeStrongerBulletBehaviour();
+            }
         }
 
         private static Vector3 GetMousePosition()

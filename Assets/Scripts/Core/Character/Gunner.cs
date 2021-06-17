@@ -35,7 +35,12 @@ namespace Game.Core
 
         public void ChangeToStrongerGun()
         {
-            ChangeNewGunAndDestroyCurrent(GunManager.Instance.GetStrongerGunFrom(currentGun));
+            ChangeNewGunAndDestroyCurrent(GunManager.Instance.GetNextGun(currentGun));
+        }
+
+        public void ChangeToStrongerBullet()
+        {
+            currentBulletPool = BulletPoolManager.Instance.GetNextBulletPool(currentBulletPool);
         }
 
         private void ChangeNewGunAndDestroyCurrent(Gun gunPrefab)
@@ -52,7 +57,7 @@ namespace Game.Core
         {
             if (timeSinceLastFire > timeBetweenFire)
             {
-                currentGun.Fire();
+                currentGun.Fire(currentBulletPool);
                 timeSinceLastFire = 0;
             }
         }
