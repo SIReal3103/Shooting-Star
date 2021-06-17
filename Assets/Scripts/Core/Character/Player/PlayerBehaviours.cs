@@ -8,7 +8,7 @@ using Game.Movement;
 
 namespace Game.Core
 {
-    public class PlayerBehaviour : MonoBehaviour
+    public class PlayerBehaviours : MonoBehaviour
     {
         Mover mover;
         Gunner gunner;
@@ -23,7 +23,7 @@ namespace Game.Core
 
         public void MoveBehaviour(Vector2 Position)
         {
-            mover.SetDestination(Position);
+            mover.StartMovingTo(Position);
         }
 
         public void ChangeStrongerGunBehaviour()

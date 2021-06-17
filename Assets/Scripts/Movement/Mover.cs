@@ -11,8 +11,9 @@ namespace Game.Movement
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        [SerializeField]
-        MoveData initialData;
+        [SerializeField] MoveData initialData;
+
+        private bool isStop = true;
 
         private MoveStategy moveStrategy;
         public MoveStategy MoveStrategy
@@ -26,22 +27,30 @@ namespace Game.Movement
             }
         }
 
+        private void Start()
+        {
+            initialData.rb = GetComponent<Rigidbody2D>();
+        }
+
         private void LoadDataToStategy()
         {
             moveStrategy.data = initialData;
         }
 
-        public void SetDestination(Vector2 destination)
+        public void StopMoving()
         {
-            moveStrategy.data.destination = destination;
+            isStop = true;
         }
 
-        private void Start() {
-            initialData.rb = GetComponent<Rigidbody2D>();
+        public void StartMovingTo(Vector2 destination)
+        {
+            isStop = false;
+            moveStrategy.data.destination = destination;
         }
 
         private void Update()
         {
+            if (isStop) return;
             MoveStrategy?.UpdatePath();
         }
     }

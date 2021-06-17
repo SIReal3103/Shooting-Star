@@ -11,8 +11,11 @@ namespace Game.Core
 {
     [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
-    public class EnemyBehaviour : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBehaviour>
+    public class EnemyBehaviours : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBehaviours>
     {
+        [SerializeField] ANTsPolygon prepareZone;
+        Vector2 preparePosition = Vector2.zero;
+
         Mover mover;
 
         public EnemyPool CurrentPool { get; set; }
@@ -21,22 +24,21 @@ namespace Game.Core
         {
             mover = GetComponent<Mover>();
             mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
+
+            preparePosition = prepareZone.GetRandomPointOnSurface();
         }
 
-        private void Update()
+        public void MoveToPrepareZone()
         {
-            if(GetComponent<Damageable>().IsDead())
-            {
-                DeadBehaviour();
-            }
+            mover.StartMovingTo(preparePosition);
         }
 
-        public void MoveBehaviour(Vector2 position)
+        public void StopMoving()
         {
-            mover.SetDestination(position);
+            mover.StopMoving();
         }
 
-        private void DeadBehaviour()
+        public void Dead()
         {
             ReturnToPool();
         }
@@ -45,6 +47,8 @@ namespace Game.Core
         {
             CurrentPool.ReturnToPool(this);
         }
+
+        // IANTsPoolObject implementation
 
         public void WakeUp(object args)
         {

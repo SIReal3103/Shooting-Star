@@ -30,7 +30,7 @@ namespace Game.Core
 
         public void SetDirection(Vector2 direction)
         {
-            mover.SetDestination(direction * 1000);
+            mover.StartMovingTo(direction * 1000);
         }
     }
 }

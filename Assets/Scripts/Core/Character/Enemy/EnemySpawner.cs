@@ -6,7 +6,7 @@ namespace Game.Core
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] WayPoint spawnPath;
+        [SerializeField] ANTsPolygon spawnPath;
         [SerializeField] float spawnRate = 1f;
 
         [SerializeField] EnemyPool pool;
@@ -34,7 +34,7 @@ namespace Game.Core
         {
             if (timeSinceLastSpawn > spawnRate)
             {
-                SpawnEnemyAtPoint(spawnPath.GetRandomPoint());
+                SpawnEnemyAtPoint(spawnPath.GetRandomPointOnPath());
                 timeSinceLastSpawn = 0;
             }
         }

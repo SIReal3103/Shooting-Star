@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Game.Core
 {
-    [RequireComponent(typeof(PlayerBehaviour))]
+    [RequireComponent(typeof(PlayerBehaviours))]
     public class PlayerInputHandler : MonoBehaviour
     {
-        PlayerBehaviour player;
+        PlayerBehaviours player;
 
         private void Start()
         {
-            player = GetComponent<PlayerBehaviour>();
+            player = GetComponent<PlayerBehaviours>();
         }
 
         private void Update()

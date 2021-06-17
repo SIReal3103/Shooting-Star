@@ -2,7 +2,7 @@
 
 namespace Game.Core
 {
-    public class EnemyPool : ANTsPool<EnemyPool, EnemyBehaviour>
+    public class EnemyPool : ANTsPool<EnemyPool, EnemyBehaviours>
     {
 
     }
