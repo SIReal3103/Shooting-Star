@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Game.Core
@@ -12,18 +13,18 @@ namespace Game.Core
         private void Start()
         {
             gunDictionary = new ExpandedDictionary<Gun>(gameObject);
-            numberOfGuns = transform.childCount;
+            numberOfGuns = gunDictionary.Size();
         }
 
         public Gun GetStrongerGunFrom(Gun weakerGun)
         {
-            return gunDictionary.GetValueFrom(GetNextKey(weakerGun.name));
+            return gunDictionary.GetValueFrom(GetNextGunKey(weakerGun.name));
         }
 
-        private string GetNextKey(string key)
+        private string GetNextGunKey(string key)
         {
-            List<string> keyList = gunDictionary.keys;
-            return keyList[GetNextGunIndex(keyList.IndexOf(key))];
+            List<string> keys = new List<string>(gunDictionary.GetKeys());
+            return keys[GetNextGunIndex(keys.IndexOf(key))];
         }
 
         private int GetNextGunIndex(int index)

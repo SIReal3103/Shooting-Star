@@ -134,8 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenFire: 0.5
-  initialGunPrefab: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+  initialGunPrefab: {fileID: 6574916733370369350, guid: 6296cdc56c65bce49ae428dd27e31308,
     type: 3}
+  currentBulletPool: {fileID: 0}
 --- !u!114 &7944987900879760466
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,12 +7,14 @@ public class ExpandedDictionary<TObject>
     private Dictionary<string, TObject> dictionary;
     GameObject container;
 
-    public List<string> keys;
+    public ICollection<string> GetKeys()
+    {
+        return dictionary.Keys;
+    }
 
     public ExpandedDictionary(GameObject container)
     {
         dictionary = new Dictionary<string, TObject>();
-        keys = new List<string>();
 
         this.container = container;
         LoadContainer();
@@ -26,7 +28,6 @@ public class ExpandedDictionary<TObject>
             TObject child = transform.GetChild(i).GetComponent<TObject>();
 
             dictionary.Add(child.name, child);
-            keys.Add(child.name);
         }
     }
 
@@ -38,5 +39,10 @@ public class ExpandedDictionary<TObject>
             throw new UnityException("No value in container for key: " + key);
         }
         return value;
+    }
+
+    public int Size()
+    {
+        return dictionary.Count;
     }
 }

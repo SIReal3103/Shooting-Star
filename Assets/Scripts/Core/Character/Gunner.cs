@@ -43,6 +43,8 @@ namespace Game.Core
             if (currentGun != null) Destroy(currentGun);
 
             currentGun = Instantiate(gunPrefab, transform);
+            // Remove (Clone) trailing
+            currentGun.name = gunPrefab.name;
             currentGun.Init(this, currentBulletPool);
         }
 
