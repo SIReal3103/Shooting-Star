@@ -13,29 +13,32 @@ namespace ANTs.Game
     {
         [SerializeField] MoveData initialData;
 
-        private bool isStop = true;
+        private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
+        private bool isStop = true;
+
 
         public MoveStrategy MoveStrategy
         {
             get => moveStrategy;
-
-            set
-            {
-                moveStrategy = value;
-                LoadDataToStrategy();
-            }
+            set { moveStrategy = value; LoadDataToStrategy(); }
         }
 
         private void Start()
         {
-            initialData.rb = GetComponent<Rigidbody2D>();
+            this.rb = GetComponent<Rigidbody2D>();
+            initialData.rb = this.rb;
         }
 
         private void Update()
         {
             if (isStop) return;
+
             MoveStrategy?.UpdatePath();
+            if ((moveStrategy.data.destination - rb.position).magnitude < moveStrategy.data.DestinationOffset)
+            {
+                StopMoving();
+            }
         }
 
         private void LoadDataToStrategy()
@@ -59,9 +62,9 @@ namespace ANTs.Game
     {
         private MoveFactory() { }
 
-        public static MoveStrategy CreateMove(MovementType movetype)
+        public static MoveStrategy CreateMove(MovementType moveType)
         {
-            switch (movetype)
+            switch (moveType)
             {
                 case MovementType.Linearity:
                     return new MoveLinearity();
@@ -84,7 +87,7 @@ namespace ANTs.Game
         public override void UpdatePath()
         {
             Vector2 direction = (data.destination - data.rb.position).normalized;
-            data.rb.MovePosition(data.rb.position + data.speed * Time.deltaTime * direction);
+            data.rb.MovePosition(data.rb.position + data.Speed * Time.deltaTime * direction);
         }
     }
 
@@ -92,18 +95,23 @@ namespace ANTs.Game
     {
         public override void UpdatePath()
         {
-            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.tiltSpeed * Time.deltaTime));
+            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
         }
     }
 
     [System.Serializable]
     public class MoveData
     {
-        public float speed = 10f;
-        public float tiltSpeed;
+        [SerializeField] float speed = 10f;
+        [SerializeField] float tiltSpeed = 0f;
+        [SerializeField] float destinationOffset = 0.1f;
+
         [HideInInspector]
         public Vector2 destination;
         [HideInInspector]
         public Rigidbody2D rb;
+        public float Speed { get => speed; }
+        public float TiltSpeed { get => tiltSpeed; }
+        public float DestinationOffset { get => destinationOffset; }
     }
 }
