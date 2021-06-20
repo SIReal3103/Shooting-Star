@@ -91,16 +91,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3726713874224106436, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3726713874224106436, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.37
-      objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: initialData.tiltSpeed

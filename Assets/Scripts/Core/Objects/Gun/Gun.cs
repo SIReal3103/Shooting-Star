@@ -24,7 +24,10 @@ namespace ANTs.Game
 
             for (int i = 0; i < bulletDirections.Length; i++)
             {
-                BulletData bulletData = new BulletData(gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirections[i]);
+                float rotationAngle = gunHolder.transform.rotation.eulerAngles.z;
+                Vector2 bulletDirection = Quaternion.AngleAxis(rotationAngle, Vector3.forward) * bulletDirections[i];
+
+                BulletData bulletData = new BulletData(gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirection);
                 currentBulletPool.Pop(bulletData);
             }
         }
