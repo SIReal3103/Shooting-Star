@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 3726713874072087786}
   - component: {fileID: 7222730965000918530}
   - component: {fileID: 8336205361287467119}
-  - component: {fileID: 6942720147483577663}
   - component: {fileID: 7604222906058201490}
   - component: {fileID: 4471062807245653946}
-  - component: {fileID: 7944987900879760466}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -93,18 +91,6 @@ MonoBehaviour:
     tiltSpeed: 0
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
---- !u!114 &6942720147483577663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3726713874072087784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb59feea5b96ef488d65292b8c921fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &7604222906058201490
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,18 +122,6 @@ MonoBehaviour:
   timeBetweenFire: 0.5
   initialGunPrefab: {fileID: 0}
   initialBulletPool: {fileID: 0}
---- !u!114 &7944987900879760466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3726713874072087784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb59feea5b96ef488d65292b8c921fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3726713874224106435
 GameObject:
   m_ObjectHideFlags: 0

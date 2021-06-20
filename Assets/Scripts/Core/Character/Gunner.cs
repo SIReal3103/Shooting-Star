@@ -28,35 +28,13 @@ namespace ANTs.Game
             LoadNewGunAndDestroyCurrent(gunPrefabToLoad);
 
             BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultBulletPool();
-            currentBulletPool = bulletPoolToLoad;
-            currentGun.SetBulletPool(currentBulletPool);
+            SetBulletPoolForCurrentGun(bulletPoolToLoad);
         }
 
         private void Update()
         {
             Fire();
             UpdateTimer();
-        }
-
-        public void ChangeStrongerGun()
-        {
-            LoadNewGunAndDestroyCurrent(GunManager.Instance.GetNextGun(currentGun));
-        }
-
-        public void ChangeStrongerBullet()
-        {
-            currentBulletPool = BulletPoolManager.Instance.GetNextBulletPool(initialBulletPool);
-            currentGun.SetBulletPool(currentBulletPool);
-        }
-
-        private void LoadNewGunAndDestroyCurrent(Gun gunPrefab)
-        {
-            if (currentGun != null) Destroy(currentGun);
-
-            currentGun = Instantiate(gunPrefab, transform);
-            // Remove trailing (Clone) 
-            currentGun.name = gunPrefab.name;
-            currentGun.Init(this, currentBulletPool);
         }
 
         public void Fire()
@@ -66,6 +44,35 @@ namespace ANTs.Game
                 currentGun.Fire();
                 timeSinceLastFire = 0;
             }
+        }
+
+        public void ChangeStrongerGun()
+        {
+            LoadNewGunAndDestroyCurrent(GunManager.Instance.GetNextGun(currentGun));
+        }
+
+        public void ChangeStrongerBullet()
+        {
+            SetBulletPoolForCurrentGun(
+                BulletPoolManager.Instance.GetNextBulletPool(initialBulletPool)
+                );
+        }
+
+        private void LoadNewGunAndDestroyCurrent(Gun gunPrefab)
+        {
+            if (currentGun != null) Destroy(currentGun);
+
+            currentGun = Instantiate(gunPrefab, transform);
+            // Remove trailing (Clone) 
+            currentGun.name = gunPrefab.name;
+            currentGun.Init(this);
+            SetBulletPoolForCurrentGun(currentBulletPool);
+        }
+
+        private void SetBulletPoolForCurrentGun(BulletPool bulletPoolToLoad)
+        {
+            currentBulletPool = bulletPoolToLoad;
+            currentGun.SetBulletPool(currentBulletPool);
         }
 
         public Vector2 GetBulletSpawnPosition()
