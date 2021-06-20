@@ -6,7 +6,7 @@ namespace ANTs.Game
     {
         [SerializeField] int maxHealth = 100;
         [SerializeField] int health = 100;
-
+        [Space]
         [SerializeField] int defenseByValue = 0;
         [SerializeField] float dodgeChance = 0;
 

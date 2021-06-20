@@ -13,7 +13,7 @@ namespace ANTs.Game
             this.holder = holder;
         }
 
-        static ChangeGunEvent changeGunEvent;
+        private static ChangeGunEvent changeGunEvent;
         public static void Trigger(Gunner Holder, Gun newGun)
         {
             changeGunEvent.holder = Holder;

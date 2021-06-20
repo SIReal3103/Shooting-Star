@@ -16,7 +16,7 @@ namespace ANTs.Template
             return GetRandomPointBetween(e);
         }
 
-        public Vector2 GetCenter()
+        private Vector2 GetCenter()
         {
             Vector2 result = Vector2.zero;
             for (int i = 0; i < transform.childCount; i++)

@@ -2,31 +2,31 @@
 
 namespace ANTs.Game
 {
-    [RequireComponent(typeof(PlayerBehaviours))]
+    [RequireComponent(typeof(PlayerControlFacade))]
     public class PlayerInputHandler : MonoBehaviour
     {
-        PlayerBehaviours player;
+        private PlayerControlFacade player;
 
         private void Start()
         {
-            player = GetComponent<PlayerBehaviours>();
+            player = GetComponent<PlayerControlFacade>();
         }
 
         private void Update()
         {
-            player.MoveBehaviour(GetMousePosition());
+            player.StartMovingTo(GetMousePosition());
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                player.ChangeStrongerGunBehaviour();
+                player.ChangeStrongerGun();
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                player.ChangeStrongerBulletBehaviour();
+                player.ChangeStrongerBullet();
             }
         }
 
-        private static Vector3 GetMousePosition()
+        private static Vector2 GetMousePosition()
         {
             return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }

@@ -5,10 +5,9 @@ namespace ANTs.Game
     [RequireComponent(typeof(Mover))]
     public abstract class Projectile : MonoBehaviour
     {
-        [HideInInspector]
-        public GameObject source;
+        private Mover mover;
 
-        Mover mover;
+        public GameObject Source { get; set; }
 
         private void OnEnable()
         {

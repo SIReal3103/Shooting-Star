@@ -14,16 +14,16 @@ namespace ANTs.Game
         [SerializeField] MoveData initialData;
 
         private bool isStop = true;
+        private MoveStrategy moveStrategy;
 
-        private MoveStategy moveStrategy;
-        public MoveStategy MoveStrategy
+        public MoveStrategy MoveStrategy
         {
             get => moveStrategy;
 
             set
             {
                 moveStrategy = value;
-                LoadDataToStategy();
+                LoadDataToStrategy();
             }
         }
 
@@ -32,7 +32,13 @@ namespace ANTs.Game
             initialData.rb = GetComponent<Rigidbody2D>();
         }
 
-        private void LoadDataToStategy()
+        private void Update()
+        {
+            if (isStop) return;
+            MoveStrategy?.UpdatePath();
+        }
+
+        private void LoadDataToStrategy()
         {
             moveStrategy.data = initialData;
         }
@@ -47,39 +53,33 @@ namespace ANTs.Game
             isStop = false;
             moveStrategy.data.destination = destination;
         }
-
-        private void Update()
-        {
-            if (isStop) return;
-            MoveStrategy?.UpdatePath();
-        }
     }
 
     public abstract class MoveFactory
     {
         private MoveFactory() { }
 
-        public static MoveStategy CreateMove(MovementType movetype)
+        public static MoveStrategy CreateMove(MovementType movetype)
         {
             switch (movetype)
             {
                 case MovementType.Linearity:
                     return new MoveLinearity();
                 case MovementType.Lerp:
-                    return new MoveLerp();
+                    return new LerpMovement();
                 default:
                     throw new UnityException("Invalid move strategy");
             }
         }
     }
 
-    public abstract class MoveStategy
+    public abstract class MoveStrategy
     {
         public MoveData data;
         public abstract void UpdatePath();
     }
 
-    public class MoveLinearity : MoveStategy
+    public class MoveLinearity : MoveStrategy
     {
         public override void UpdatePath()
         {
@@ -88,7 +88,7 @@ namespace ANTs.Game
         }
     }
 
-    public class MoveLerp : MoveStategy
+    public class LerpMovement : MoveStrategy
     {
         public override void UpdatePath()
         {

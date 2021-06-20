@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace ANTs.Game
 {
-    public class EnemyMoveToPreparePositionSMB : SceneLinkedSMB<EnemyBehaviour>
+    public class EnemyMoveToPrepareZone : SceneLinkedSMB<EnemyControlFacade>
     {
         [SerializeField] ANTsPolygon prepareZone;
+
         public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //TODO: this
+            monoBehaviour.StartMovingTo(prepareZone.GetRandomPointOnSurface());
         }
     }
 }

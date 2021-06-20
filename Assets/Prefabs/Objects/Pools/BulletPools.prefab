@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb4f015ca544294492dfcaa230bc919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8457462664891877127, guid: 96d72ea3ef0260147ab31f12969479f4, type: 3}
+  prefab: {fileID: 6397073948560994783, guid: 96d72ea3ef0260147ab31f12969479f4, type: 3}
   initialPoolSize: 10
 --- !u!1 &3667051446413821816
 GameObject:
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb4f015ca544294492dfcaa230bc919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2477570257182526307, guid: 149311a30b02d9d468acf5a34278a8db, type: 3}
+  prefab: {fileID: 1151250945646034363, guid: 149311a30b02d9d468acf5a34278a8db, type: 3}
   initialPoolSize: 10
 --- !u!1 &6678999856739358814
 GameObject:
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb4f015ca544294492dfcaa230bc919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3313937270686905510, guid: 9805837e282251444adf7e7b6119cc7e, type: 3}
+  prefab: {fileID: 28554062510686846, guid: 9805837e282251444adf7e7b6119cc7e, type: 3}
   initialPoolSize: 10
 --- !u!1 &7573822122396029530
 GameObject:
@@ -181,4 +181,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f814c230766554198e2225af7dc19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEFAULT_GUN_KEY: 
+  defaulBulletPool: {fileID: 1958506739191347290}

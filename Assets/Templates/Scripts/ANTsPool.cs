@@ -10,7 +10,7 @@ namespace ANTs.Template
         [SerializeField] private TObject prefab;
         [SerializeField] private int initialPoolSize = 10;
 
-        Queue<TObject> objects;
+        private Queue<TObject> objects;
 
         private void Start()
         {

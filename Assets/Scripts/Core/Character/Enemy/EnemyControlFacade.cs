@@ -6,26 +6,21 @@ namespace ANTs.Game
 {
     [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
-    public class EnemyBehaviour : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBehaviour>
+    public class EnemyControlFacade : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyControlFacade>
     {
-        [SerializeField] ANTsPolygon prepareZone;
-        Vector2 preparePosition = Vector2.zero;
-
-        Mover mover;
-
         public EnemyPool CurrentPool { get; set; }
+
+        private Mover mover;
 
         private void Start()
         {
             mover = GetComponent<Mover>();
             mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
-
-            // preparePosition = prepareZone.GetRandomPointOnSurface();
         }
 
-        public void MoveToPrepareZone()
+        public void StartMovingTo(Vector2 destination)
         {
-            mover.StartMovingTo(preparePosition);
+            mover.StartMovingTo(destination);
         }
 
         public void StopMoving()

@@ -7,7 +7,7 @@ namespace ANTs.Template
         where TObject : MonoBehaviour
     {
         private Dictionary<string, TObject> dictionary;
-        GameObject container;
+        private GameObject container;
 
         public TObject GetNextItem(TObject currentItem)
         {

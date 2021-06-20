@@ -2,67 +2,77 @@
 
 namespace ANTs.Game
 {
-    [RequireComponent(typeof(Character))]
+    [RequireComponent(typeof(BulletPool))]
     public class Gunner : MonoBehaviour
     {
-        public static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";
+        private static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";
 
         [SerializeField] float timeBetweenFire = 0.5f;
+        [Space]
+        [Tooltip("Initial gun type for gunner")]
         [SerializeField] Gun initialGunPrefab;
-
-        Gun currentGun;
-        [SerializeField] BulletPool currentBulletPool;
-
-        Transform bulletSpawnPoint;
+        [Tooltip("Initial bullet type for gunner")]
+        [SerializeField] BulletPool initialBulletPool;
 
         float timeSinceLastFire = Mathf.Infinity;
+        Gun currentGun;
+        
+        BulletPool currentBulletPool;
+
+        Transform bulletSpawnPoint;
 
         private void Start()
         {
             bulletSpawnPoint = transform.Find(BULLET_SPAWN_POINT_PATH);
 
-            ChangeNewGunAndDestroyCurrent(initialGunPrefab);
+            Gun gunPrefabToLoad = initialGunPrefab ? initialGunPrefab : GunManager.Instance.GetDefaultGunPrefab();
+            LoadNewGunAndDestroyCurrent(gunPrefabToLoad);
+
+            BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultBulletPool();
+            currentBulletPool = bulletPoolToLoad;
+            currentGun.SetBulletPool(currentBulletPool);
         }
 
         private void Update()
         {
-            FireBehaviour();
-
+            Fire();
             UpdateTimer();
         }
 
-        public void ChangeToStrongerGun()
+        public void ChangeStrongerGun()
         {
-            ChangeNewGunAndDestroyCurrent(GunManager.Instance.GetNextGun(currentGun));
+            LoadNewGunAndDestroyCurrent(GunManager.Instance.GetNextGun(currentGun));
         }
 
-        public void ChangeToStrongerBullet()
+        public void ChangeStrongerBullet()
         {
-            currentBulletPool = BulletPoolManager.Instance.GetNextBulletPool(currentBulletPool);
+            currentBulletPool = BulletPoolManager.Instance.GetNextBulletPool(initialBulletPool);
+            currentGun.SetBulletPool(currentBulletPool);
         }
 
-        private void ChangeNewGunAndDestroyCurrent(Gun gunPrefab)
+        private void LoadNewGunAndDestroyCurrent(Gun gunPrefab)
         {
             if (currentGun != null) Destroy(currentGun);
 
             currentGun = Instantiate(gunPrefab, transform);
-            // Remove (Clone) trailing
+            // Remove trailing (Clone) 
             currentGun.name = gunPrefab.name;
             currentGun.Init(this, currentBulletPool);
         }
 
-        public void FireBehaviour()
+        public void Fire()
         {
             if (timeSinceLastFire > timeBetweenFire)
             {
-                currentGun.Fire(currentBulletPool);
+                currentGun.Fire();
                 timeSinceLastFire = 0;
             }
         }
 
         public Vector2 GetBulletSpawnPosition()
         {
-            return new Vector2(bulletSpawnPoint.position.x, bulletSpawnPoint.position.y);
+            var position = bulletSpawnPoint.position;
+            return new Vector2(position.x, position.y);
         }
 
         private void UpdateTimer()

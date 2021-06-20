@@ -1,10 +1,13 @@
 ﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Game
 {
     public class GunManager : Singleton<GunManager>
     {
-        ExpandedDictionary<Gun> gunDictionary;
+        [SerializeField] Gun defaultGunPrefab;
+
+        private ExpandedDictionary<Gun> gunDictionary;
 
         private void Start()
         {
@@ -14,6 +17,11 @@ namespace ANTs.Game
         public Gun GetNextGun(Gun currentGun)
         {
             return gunDictionary.GetNextItem(currentGun);
+        }
+
+        public Gun GetDefaultGunPrefab()
+        {
+            return defaultGunPrefab;
         }
     }
 }

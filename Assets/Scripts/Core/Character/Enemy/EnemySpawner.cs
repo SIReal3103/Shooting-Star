@@ -1,21 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 using ANTs.Template;
 
 namespace ANTs.Game
 {
+    [RequireComponent(typeof(EnemyPool))]
     public class EnemySpawner : MonoBehaviour
     {
+        [Tooltip("The path which the enemy spawn on")]
         [SerializeField] ANTsPolygon spawnPath;
+        [Tooltip("Time between spawns")]
         [SerializeField] float spawnRate = 1f;
 
-        [SerializeField] EnemyPool pool;
-
-        float timeSinceLastSpawn = Mathf.Infinity;
+        private EnemyPool enemyPool;
+        private float timeSinceLastSpawn = Mathf.Infinity;
 
         private void Start()
         {
-
+            enemyPool = GetComponent<EnemyPool>();
         }
 
         private void Update()
@@ -41,7 +44,7 @@ namespace ANTs.Game
 
         private void SpawnEnemyAtPoint(Vector2 spawnPoint)
         {
-            pool.Pop(new EnemyData(spawnPoint));
+            enemyPool.Pop(new EnemyData(spawnPoint));
         }
     }
 }

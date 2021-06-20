@@ -9,10 +9,10 @@ namespace ANTs.Game
 
     public class Bullet : Projectile, IANTsPoolObject<BulletPool, Bullet>
     {
-        [SerializeField]
-        bool destroyWhenOutOfScreen = true;
-        [SerializeField]
-        Vector2 outScreenOffSet = Vector2.zero;
+        [Tooltip("Decide whether if the bullet will be destroyed when out of player view")]
+        [SerializeField] bool destroyWhenOutOfScreen = true;
+        [Tooltip("The boundaries of which the bullet will be destroyed")]
+        [SerializeField] Vector2 outScreenOffSet = Vector2.zero;
 
         public BulletPool CurrentPool { get; set; }
 
@@ -34,7 +34,7 @@ namespace ANTs.Game
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.transform.CompareTag(source.tag))
+            if (!collision.transform.CompareTag(Source.tag))
             {
                 Damageable damageable;
                 if (!collision.transform.TryGetComponent(out damageable))
@@ -60,7 +60,7 @@ namespace ANTs.Game
 
             transform.position = data.origin;
             SetDirection(data.moveDirection);
-            source = data.source;
+            Source = data.source;
         }
 
         public void Sleep()

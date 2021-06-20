@@ -6,11 +6,12 @@ namespace ANTs.Game
 {
     public class BulletPoolManager : Singleton<BulletPoolManager>
     {
+        [Tooltip("The default bullet to load when other gunner need")]
+        [SerializeField] BulletPool defaulBulletPool;
+
+        private ExpandedDictionary<BulletPool> bulletPools;
+
         protected BulletPoolManager() { }
-
-        [SerializeField] string DEFAULT_BULLET_KEY = "BulletPoolLevel1";
-
-        ExpandedDictionary<BulletPool> bulletPools;
 
         private void Start()
         {
@@ -22,14 +23,14 @@ namespace ANTs.Game
             return bulletPools.GetNextItem(bulletPool);
         }
 
-        public BulletPool GetBulletPool(string s)
+        public BulletPool GetBulletPool(string key)
         {
-            return bulletPools.GetValueFrom(s);
+            return bulletPools.GetValueFrom(key);
         }
 
-        public BulletPool GetBulletPool()
+        public BulletPool GetDefaultBulletPool()
         {
-            return bulletPools.GetValueFrom(DEFAULT_BULLET_KEY);
+            return defaulBulletPool;
         }
     }
 }
