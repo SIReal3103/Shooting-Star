@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Movement
+namespace ANTs.Game
 {
     public enum MovementType
     {
@@ -61,7 +61,7 @@ namespace Game.Movement
 
         public static MoveStategy CreateMove(MovementType movetype)
         {
-            switch(movetype)
+            switch (movetype)
             {
                 case MovementType.Linearity:
                     return new MoveLinearity();

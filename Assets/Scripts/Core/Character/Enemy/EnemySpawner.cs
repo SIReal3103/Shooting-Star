@@ -1,8 +1,8 @@
-﻿using System;
+﻿using UnityEngine;
 
-using UnityEngine;
+using ANTs.Template;
 
-namespace Game.Core
+namespace ANTs.Game
 {
     public class EnemySpawner : MonoBehaviour
     {

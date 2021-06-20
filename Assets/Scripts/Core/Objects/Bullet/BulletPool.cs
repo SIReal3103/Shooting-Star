@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Game.Core
+using ANTs.Template;
+
+namespace ANTs.Game
 {
     public class BulletPool : ANTsPool<BulletPool, Bullet>
     {

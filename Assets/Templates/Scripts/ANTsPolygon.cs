@@ -1,74 +1,74 @@
-﻿using System;
+﻿using UnityEngine;
 
-using UnityEngine;
-
-
-public class ANTsPolygon : MonoBehaviour
+namespace ANTs.Template
 {
-    struct Edge
+    public class ANTsPolygon : MonoBehaviour
     {
-        public Vector2 a;
-        public Vector2 b;
-    }
-
-    public Vector2 GetRandomPointOnSurface()
-    {
-        Edge e = new Edge { a = GetRandomPointOnPath(), b = GetCenter() };
-        return GetRandomPointBetween(e);
-    }
-
-    public Vector2 GetCenter()
-    {
-        Vector3 result = Vector3.zero;
-        for(int i = 0; i < transform.childCount; i++)
+        private struct Edge
         {
-            result += GetPositionOfChild(i);
+            public Vector2 a;
+            public Vector2 b;
         }
 
-        return result / transform.childCount;
-    }
+        public Vector2 GetRandomPointOnSurface()
+        {
+            Edge e = new Edge {a = GetRandomPointOnPath(), b = GetCenter()};
+            return GetRandomPointBetween(e);
+        }
 
-    public Vector2 GetRandomPointOnPath()
-    {
-        return GetRandomPointBetween(GetRandomEdge());
-    }
+        public Vector2 GetCenter()
+        {
+            Vector2 result = Vector2.zero;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                result += GetPositionOfChild(i);
+            }
 
-    private Edge GetRandomEdge()
-    {
-        int a = RandomIntRange(0, transform.childCount);
-        int b = GetNextChildIndex(a);
-        return new Edge { a = GetPositionOfChild(a), b = GetPositionOfChild(b) };
-    }
+            return result / transform.childCount;
+        }
 
-    private Vector2 GetRandomPointBetween(Edge edge)
-    {
-        Vector2 delt = edge.b - edge.a;
-        return edge.a + delt * RandomBetween01();
-    }
+        public Vector2 GetRandomPointOnPath()
+        {
+            return GetRandomPointBetween(GetRandomEdge());
+        }
 
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-            Gizmos.DrawLine(GetPositionOfChild(i), GetPositionOfChild(GetNextChildIndex(i)));
-    }
+        private Edge GetRandomEdge()
+        {
+            int a = RandomIntRange(0, transform.childCount);
+            int b = GetNextChildIndex(a);
+            return new Edge {a = GetPositionOfChild(a), b = GetPositionOfChild(b)};
+        }
 
-    private int GetNextChildIndex(int i)
-    {
-        return (i + 1) % transform.childCount;
-    }
+        private Vector2 GetRandomPointBetween(Edge edge)
+        {
+            Vector2 delt = edge.b - edge.a;
+            return edge.a + delt * RandomBetween01();
+        }
 
-    private Vector3 GetPositionOfChild(int i)
-    {
-        return transform.GetChild(i).position;
-    }
+        private void OnDrawGizmos()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+                Gizmos.DrawLine(GetPositionOfChild(i), GetPositionOfChild(GetNextChildIndex(i)));
+        }
 
-    private int RandomIntRange(int left, int right)
-    {
-        return UnityEngine.Random.Range(left, right);
-    }
+        private int GetNextChildIndex(int i)
+        {
+            return (i + 1) % transform.childCount;
+        }
 
-    private float RandomBetween01()
-    {
-        return UnityEngine.Random.value;
+        private Vector2 GetPositionOfChild(int i)
+        {
+            return transform.GetChild(i).position;
+        }
+
+        private int RandomIntRange(int left, int right)
+        {
+            return UnityEngine.Random.Range(left, right);
+        }
+
+        private float RandomBetween01()
+        {
+            return UnityEngine.Random.value;
+        }
     }
 }

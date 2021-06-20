@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game.Core
+namespace ANTs.Game
 {
     public class Gun : MonoBehaviour
     {

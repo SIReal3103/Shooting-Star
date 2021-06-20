@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using Game.Combat;
-using System;
 
-namespace Game.Core
+using ANTs.Template;
+
+namespace ANTs.Game
 {
     [RequireComponent(typeof(CapsuleCollider2D))]
     [RequireComponent(typeof(Damager))]
@@ -18,7 +18,7 @@ namespace Game.Core
 
         private void Update()
         {
-            if(destroyWhenOutOfScreen && CheckIsOutOfScreen())
+            if (destroyWhenOutOfScreen && CheckIsOutOfScreen())
             {
                 ReturnToPool();
             }
@@ -34,7 +34,7 @@ namespace Game.Core
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if(!collision.transform.CompareTag(source.tag))
+            if (!collision.transform.CompareTag(source.tag))
             {
                 Damageable damageable;
                 if (!collision.transform.TryGetComponent(out damageable))

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Combat
+namespace ANTs.Game
 {
     public class Damager : MonoBehaviour
     {
@@ -10,9 +10,9 @@ namespace Game.Combat
 
         public int GetFinalDamage()
         {
-            if(Random.value < criticalChance)
+            if (Random.value < criticalChance)
             {
-                return (int) (initialDamage * (1f + critEfficent));
+                return (int)(initialDamage * (1f + critEfficent));
             }
 
             return initialDamage;

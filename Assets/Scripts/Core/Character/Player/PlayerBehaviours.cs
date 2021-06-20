@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
-using UnityEngine;
-
-using Game.Movement;
-
-namespace Game.Core
+namespace ANTs.Game
 {
     public class PlayerBehaviours : MonoBehaviour
     {

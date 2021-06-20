@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using ANTs.Template;
 using UnityEngine;
 
-namespace Game.Core
+namespace ANTs.Game
 {
-    public class EnemyMoveToPreparePositionSMB : SceneLinkedSMB<EnemyBehaviours>
+    public class EnemyMoveToPreparePositionSMB : SceneLinkedSMB<EnemyBehaviour>
     {
+        [SerializeField] ANTsPolygon prepareZone;
         public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //TODO: this

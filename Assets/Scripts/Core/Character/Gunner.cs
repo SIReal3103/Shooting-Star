@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 
-using Game.Event;
-
-namespace Game.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(Character))]
     public class Gunner : MonoBehaviour
@@ -71,5 +69,5 @@ namespace Game.Core
         {
             timeSinceLastFire += Time.deltaTime;
         }
-    } 
+    }
 }

@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace ANTs.Game
 {
-    private void Update()
+    public class PlayerController : MonoBehaviour
     {
-        
+        private void Update()
+        {
+
+        }
     }
 }

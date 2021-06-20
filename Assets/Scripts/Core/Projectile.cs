@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Game.Movement;
+﻿using UnityEngine;
 
-namespace Game.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(Mover))]
     public abstract class Projectile : MonoBehaviour

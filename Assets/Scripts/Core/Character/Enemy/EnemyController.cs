@@ -1,26 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Game.Combat;
+﻿using UnityEngine;
 
-namespace Game.Core
+using ANTs.Template;
+
+namespace ANTs.Game
 {
-    [RequireComponent(typeof(EnemyBehaviours))]
+    [RequireComponent(typeof(EnemyBehaviour))]
     [RequireComponent(typeof(Damageable))]
     public class EnemyController : MonoBehaviour
     {
         [SerializeField] ANTsPolygon PlayGround;
 
-        EnemyBehaviours enemy;
+        EnemyBehaviour enemy;
 
         private void Start()
         {
-            enemy = GetComponent<EnemyBehaviours>();
+            enemy = GetComponent<EnemyBehaviour>();
         }
 
         private void Update()
         {
-            if(GetComponent<Damageable>().IsDead())
+            if (GetComponent<Damageable>().IsDead())
             {
                 enemy.Dead();
             }

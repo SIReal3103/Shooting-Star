@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Game.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(PlayerBehaviours))]
     public class PlayerInputHandler : MonoBehaviour
@@ -17,11 +16,11 @@ namespace Game.Core
         {
             player.MoveBehaviour(GetMousePosition());
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 player.ChangeStrongerGunBehaviour();
             }
-            if(Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 player.ChangeStrongerBulletBehaviour();
             }

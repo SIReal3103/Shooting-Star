@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
-using UnityEngine;
+using ANTs.Template;
 
-using Game.Combat;
-using Game.Movement;
-
-namespace Game.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
-    public class EnemyBehaviours : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBehaviours>
+    public class EnemyBehaviour : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBehaviour>
     {
         [SerializeField] ANTsPolygon prepareZone;
         Vector2 preparePosition = Vector2.zero;
@@ -25,7 +20,7 @@ namespace Game.Core
             mover = GetComponent<Mover>();
             mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
 
-            preparePosition = prepareZone.GetRandomPointOnSurface();
+            // preparePosition = prepareZone.GetRandomPointOnSurface();
         }
 
         public void MoveToPrepareZone()

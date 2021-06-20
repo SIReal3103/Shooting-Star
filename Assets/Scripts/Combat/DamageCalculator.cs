@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Combat
+namespace ANTs.Game
 {
     public class DamageCalculator
     {

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Game.Core
+using ANTs.Template;
+
+namespace ANTs.Game
 {
-    public class EnemyPool : ANTsPool<EnemyPool, EnemyBehaviours>
+    public class EnemyPool : ANTsPool<EnemyPool, EnemyBehaviour>
     {
 
     }
