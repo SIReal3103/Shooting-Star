@@ -4,6 +4,8 @@ namespace ANTs.Game
 {
     public struct ChangeGunEvent
     {
+        private static ChangeGunEvent changeGunEvent;
+
         public Gun newGun;
         public Gunner holder;
 
@@ -13,7 +15,6 @@ namespace ANTs.Game
             this.holder = holder;
         }
 
-        private static ChangeGunEvent changeGunEvent;
         public static void Trigger(Gunner Holder, Gun newGun)
         {
             changeGunEvent.holder = Holder;

@@ -4,7 +4,6 @@ using ANTs.Template;
 
 namespace ANTs.Game
 {
-    [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(Mover))]
     public class EnemyControlFacade : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyControlFacade>
     {

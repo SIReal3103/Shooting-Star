@@ -58,6 +58,7 @@ namespace ANTs.Game
                 );
         }
 
+
         private void LoadNewGunAndDestroyCurrent(Gun gunPrefab)
         {
             if (currentGun != null) Destroy(currentGun);

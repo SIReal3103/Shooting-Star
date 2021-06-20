@@ -3,27 +3,27 @@ using UnityEngine.Animations;
 
 namespace ANTs.Template
 {
-    public class SceneLinkedSMB<TMonoBehaviour> : SealedSMB
-        where TMonoBehaviour : MonoBehaviour
+    public class SceneLinkedSMB<TCallBack> : SealedSMB
+        where TCallBack : MonoBehaviour, ISMBCallBack
     {
-        protected TMonoBehaviour monoBehaviour;
+        protected TCallBack callBack;
 
         bool firstFrameHappened;
         bool lastFrameHappened;
 
-        public static void Initialise(Animator animator, TMonoBehaviour monoBehaviour)
+        public static void Initialise(Animator animator, TCallBack callBack)
         {
-            SceneLinkedSMB<TMonoBehaviour>[] sceneLinkedSMBs = animator.GetBehaviours<SceneLinkedSMB<TMonoBehaviour>>();
+            SceneLinkedSMB<TCallBack>[] sceneLinkedSMBs = animator.GetBehaviours<SceneLinkedSMB<TCallBack>>();
 
             for (int i = 0; i < sceneLinkedSMBs.Length; i++)
             {
-                sceneLinkedSMBs[i].InternalInitialise(animator, monoBehaviour);
+                sceneLinkedSMBs[i].InternalInitialise(animator, callBack);
             }
         }
 
-        protected void InternalInitialise(Animator animator, TMonoBehaviour monoBehaviour)
+        protected void InternalInitialise(Animator animator, TCallBack callBack)
         {
-            this.monoBehaviour = monoBehaviour;
+            this.callBack = callBack;
             OnStart(animator);
         }
 
@@ -91,7 +91,10 @@ namespace ANTs.Template
         /// <summary>
         /// Called before Updates when execution of the state first starts (on transition to the state).
         /// </summary>
-        public virtual void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            callBack.OnSLStateEnter(animator, stateInfo, layerIndex);
+        }
 
         /// <summary>
         /// Called after OnSLStateEnter every frame during transition to the state.
@@ -106,7 +109,10 @@ namespace ANTs.Template
         /// <summary>
         /// Called every frame after PostEnter when the state is not being transitioned to or from.
         /// </summary>
-        public virtual void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            callBack.OnSLStateNoTransitionUpdate(animator, stateInfo, layerIndex);
+        }
 
         /// <summary>
         /// Called on the first frame after the transition from the state has started.  Note that if the transition has a duration of less than a frame, this will not be called.
@@ -121,7 +127,10 @@ namespace ANTs.Template
         /// <summary>
         /// Called after Updates when execution of the state first finshes (after transition from the state).
         /// </summary>
-        public virtual void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+        public virtual void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            callBack.OnSLStateExit(animator, stateInfo, layerIndex);
+        }
 
         /// <summary>
         /// Called before Updates when execution of the state first starts (on transition to the state).
@@ -171,4 +180,23 @@ public abstract class SealedSMB : StateMachineBehaviour
     public sealed override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
 
     public sealed override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }
+}
+
+public interface ISMBCallBack
+{
+    //public abstract void OnStart(Animator animator);
+    void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    //public abstract void OnSLTransitionToStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    //public abstract void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    //public abstract void OnSLStatePreExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    //public abstract void OnSLTransitionFromStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex);
+    //public abstract void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
+    //public abstract void OnSLTransitionToStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
+    //public abstract void OnSLStatePostEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
+    //public abstract void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
+    //public abstract void OnSLStatePreExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
+    //public abstract void OnSLTransitionFromStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
+    //public abstract void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller);
 }

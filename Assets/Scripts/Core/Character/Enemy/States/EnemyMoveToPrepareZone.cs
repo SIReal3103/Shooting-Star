@@ -1,15 +1,41 @@
-﻿using ANTs.Template;
-using UnityEngine;
+﻿using UnityEngine;
+
+using ANTs.Template;
 
 namespace ANTs.Game
 {
-    public class EnemyMoveToPrepareZone : SceneLinkedSMB<EnemyControlFacade>
+    public class EnemyMoveToPrepareZone : MonoBehaviour, ISMBCallBack
     {
+        [Header("Game system properties")]
+        [Tooltip("The animator which control the CallBack")]
+        [SerializeField] Animator animator;
+        [Tooltip("The object which control the state")]
+        [SerializeField] EnemyControlFacade controller;
+        [Header("State data")]
         [SerializeField] ANTsPolygon prepareZone;
 
-        public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        private Vector2 preparePosition;
+
+        private void Start()
         {
-            monoBehaviour.StartMovingTo(prepareZone.GetRandomPointOnSurface());
+            SceneLinkedSMB<EnemyMoveToPrepareZone>.Initialise(animator, this);
+
+            preparePosition = prepareZone.GetRandomPointOnSurface();
+        }
+
+        public void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            controller.StartMovingTo(preparePosition);
+        }
+
+        public void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            
+        }
+
+        public void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace ANTs.Game
 {
     [RequireComponent(typeof(Mover))]
-    [RequireComponent((typeof(Gunner)))]
+    [RequireComponent(typeof(Gunner))]
     public class PlayerControlFacade : MonoBehaviour
     {
         private Mover mover;
