@@ -14,12 +14,11 @@ namespace ANTs.Game
         [Tooltip("Initial bullet type for gunner")]
         [SerializeField] BulletPool initialBulletPool;
 
-        float timeSinceLastFire = Mathf.Infinity;
-        Gun currentGun;
-        
-        BulletPool currentBulletPool;
+        private Gun currentGun;
+        private BulletPool currentBulletPool;
+        private Transform bulletSpawnPoint;
 
-        Transform bulletSpawnPoint;
+        private float timeSinceLastFire = Mathf.Infinity;
 
         private void Start()
         {

@@ -4,8 +4,8 @@ namespace ANTs.Game
 {
     public class DamageCalculator
     {
-        Damager damager;
-        Damageable damageable;
+        private Damager damager;
+        private Damageable damageable;
 
         public DamageCalculator(Damageable damageTarget, Damager damager)
         {

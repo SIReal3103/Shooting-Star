@@ -8,9 +8,9 @@ namespace ANTs.Game
     [RequireComponent(typeof(Mover))]
     public class EnemyControlFacade : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyControlFacade>
     {
-        public EnemyPool CurrentPool { get; set; }
-
         private Mover mover;
+
+        public EnemyPool CurrentPool { get; set; }
 
         private void Start()
         {
