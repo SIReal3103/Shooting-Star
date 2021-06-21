@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ANTs.Game
 {
@@ -11,6 +12,8 @@ namespace ANTs.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
+        public event Action onArrivedEvent;
+
         [SerializeField] MoveData initialData;
 
         private Rigidbody2D rb;
@@ -35,10 +38,16 @@ namespace ANTs.Game
             if (isStop) return;
 
             MoveStrategy?.UpdatePath();
-            if ((moveStrategy.data.destination - rb.position).magnitude < moveStrategy.data.DestinationOffset)
+            if (Arrived())
             {
+                onArrivedEvent?.Invoke();
                 StopMoving();
             }
+        }
+
+        private bool Arrived()
+        {
+            return (moveStrategy.data.destination - rb.position).magnitude < moveStrategy.data.DestinationOffset;
         }
 
         private void LoadDataToStrategy()

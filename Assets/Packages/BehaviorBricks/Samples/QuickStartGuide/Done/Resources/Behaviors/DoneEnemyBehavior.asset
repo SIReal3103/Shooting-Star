@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
   m_Name: DoneEnemyBehavior
   m_EditorClassIdentifier: 
-  brickName: Assets/Templates/Packages/BehaviorBricks/Samples/QuickStartGuide/Done/Resources/Behaviors/DoneEnemyBehavior.asset
+  brickName: Assets/Packages/BehaviorBricks/Samples/QuickStartGuide/Done/Resources/Behaviors/DoneEnemyBehavior.asset
   xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
     version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
     id=\"0\" guid=\"972a8759c682b4f45a272c752a694d98\" nextId=\"22\">\r\n      <root>\r\n       
@@ -48,9 +48,9 @@ MonoBehaviour:
     type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"wanderArea\"
     />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n     
     <localParams />\r\n    </SubbehaviorNode>\r\n  </runtimeInfo>\r\n  <editorInfo>\r\n   
-    <BehaviorTree id=\"0\" _name=\"QuickStartGuide/DoneEnemyBehavior\" _description=\"Moves
-    towards a particular Game Object if it's close to it, otherwise wanders around
-    an area.\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n        <elem>\r\n         
+    <BehaviorTree id=\"0\" _name=\"DoneEnemyBehavior\" _description=\"Moves towards
+    a particular Game Object if it's close to it, otherwise wanders around an area.\"
+    _removeIfClosed=\"False\">\r\n      <_rootList>\r\n        <elem>\r\n         
     <RepeatDecorator id=\"6\" />\r\n        </elem>\r\n        <elem>\r\n         
     <ConditionEvalNode id=\"19\" />\r\n        </elem>\r\n        <elem>\r\n         
     <ConditionEvalNode id=\"20\" />\r\n        </elem>\r\n      </_rootList>\r\n     
