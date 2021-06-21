@@ -11,6 +11,7 @@ namespace ANTs.Game
 
         public EnemyPool CurrentPool { get; set; }
 
+        //TODO: Enemy not die
         private void Start()
         {
             mover = GetComponent<Mover>();
