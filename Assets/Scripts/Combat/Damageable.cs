@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ANTs.Game
 {
     public class Damageable : MonoBehaviour
     {
+        public event Action<int> onHealthUpdateEvent;
+        public event Action<int> onMaxHealthUpdateEvent;
+
         [SerializeField] int maxHealth = 100;
         [SerializeField] int health = 100;
         [Space]
@@ -11,9 +15,22 @@ namespace ANTs.Game
         [SerializeField] float dodgeChance = 0;
 
         public int MaxHealth { get => maxHealth; }
-        public int Health { get => health; set => health = Mathf.Clamp(value, 0, MaxHealth); }
+        public int Health { 
+            get => health; 
+            set
+            {
+                health = Mathf.Clamp(value, 0, MaxHealth);
+                onHealthUpdateEvent?.Invoke(health);
+            }
+        }
         public int DefenseByValue { get => defenseByValue; }
         public float DodgeChance { get => dodgeChance; }
+
+        private void Start()
+        {
+            onMaxHealthUpdateEvent(maxHealth);
+            onHealthUpdateEvent(health);
+        }
 
         public void TakeDamageFrom(Damager damager)
         {
