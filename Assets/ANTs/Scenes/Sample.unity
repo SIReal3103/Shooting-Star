@@ -254,8 +254,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 671785605}
-  - {fileID: 1013069586}
-  - {fileID: 1012374570}
+  - {fileID: 1268369453}
+  - {fileID: 1019781108}
   m_Father: {fileID: 559993818}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -292,28 +292,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &668624762
+--- !u!1001 &610055106
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 559205349}
     m_Modifications:
-    - target: {fileID: 199595670063094358, guid: f632e97329d23334ba582429bc989481,
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199595670063094358, guid: f632e97329d23334ba582429bc989481,
-        type: 3}
-      propertyPath: gizmoViewMode
+      propertyPath: pauseWhenDisabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 199595670063094358, guid: f632e97329d23334ba582429bc989481,
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
         type: 3}
-      propertyPath: mBehaviorSource.behaviorName
-      value: Behavior
+      propertyPath: mBehaviorSource.mTaskData.JSONSerialization
+      value: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(410.4444,14.444458)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.444396973,124.444458)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"GeneratePreparePosition","NodeData":{"Offset":"(-149.377487,132.74379)"},"ID":2,"Name":"Generate
+        Prepare Position","Instant":true,"SharedTransformprepareZone_ANTsPolygon":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"PrepareZone
+        ANTsPolygon","IsShared":true,"TransformmValue":0},"SharedVector2preparePosition":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"Vector2mValue":"(0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-1.11093712,132.44899)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(0.204081535,98.88889)"},"ID":4,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-0.8695679,96.6443558)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToPreparePosition","NodeData":{"Offset":"(-268.294037,114.414124)"},"ID":6,"Name":"Move
+        To Prepare Position","Instant":true,"SharedVector2preparePosition":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"Vector2mValue":"(0,0)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-123.972351,108.936829)"},"ID":7,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"ChargeToPlayer","NodeData":{"Offset":"(-0.725338,112.088966)"},"ID":8,"Name":"Charge
+        To Player","Instant":true,"SharedTransformplayer":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Player","IsShared":true,"TransformmValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(120.983238,111.011047)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"MoveToPreparePosition","NodeData":{"Offset":"(263.255859,108.37207)"},"ID":10,"Name":"Move
+        To Prepare Position","Instant":true,"SharedVector2preparePosition":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"Vector2mValue":"(0,0)"}}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"PrepareZone
+        ANTsPolygon","IsShared":true,"TransformmValue":2},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"Player","IsShared":true,"TransformmValue":3},{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"Vector2mValue":"(0,0)"}]}'
       objectReference: {fileID: 0}
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 6896935126317756294}
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 671785605}
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 6896935126317756294}
+    - target: {fileID: 6805191214047507365, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 671785605}
     - target: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_Name
@@ -327,17 +353,17 @@ PrefabInstance:
     - target: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: -4.346893
       objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 0.82425344
       objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 11.983018
       objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
         type: 3}
@@ -382,19 +408,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4890855}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &739322802 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2335941850014008443, guid: f6383b9879a65724fa0b6ae4fb52b164,
-    type: 3}
-  m_PrefabInstance: {fileID: 6896935126317756293}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e8399442418a254c818edcf205fa096, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &858916657
+--- !u!1001 &896700395
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -409,17 +423,17 @@ PrefabInstance:
     - target: {fileID: 1573975368069207864, guid: 80875467e516c414daab0052a79c99a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.29
+      value: -1.070293
       objectReference: {fileID: 0}
     - target: {fileID: 1573975368069207864, guid: 80875467e516c414daab0052a79c99a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.08
+      value: 1.6884317
       objectReference: {fileID: 0}
     - target: {fileID: 1573975368069207864, guid: 80875467e516c414daab0052a79c99a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 11.983018
       objectReference: {fileID: 0}
     - target: {fileID: 1573975368069207864, guid: 80875467e516c414daab0052a79c99a9,
         type: 3}
@@ -461,82 +475,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyShooter
       objectReference: {fileID: 0}
-    - target: {fileID: 8771419181170504296, guid: 80875467e516c414daab0052a79c99a9,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8771419181170504296, guid: 80875467e516c414daab0052a79c99a9,
-        type: 3}
-      propertyPath: gizmoViewMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80875467e516c414daab0052a79c99a9, type: 3}
---- !u!1 &1012374569 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
+--- !u!114 &1019781100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3166627256412620700, guid: f632e97329d23334ba582429bc989481,
     type: 3}
-  m_PrefabInstance: {fileID: 668624762}
+  m_PrefabInstance: {fileID: 610055106}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1012374570 stripped
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdfca774173b5f4cb6834978a08f482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1019781108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
     type: 3}
-  m_PrefabInstance: {fileID: 668624762}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1012374572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012374569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 0
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 0}
-  mBehaviorSource:
-    behaviorName: Behavior
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(410.4444,14.444458)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0.444396973,124.444458)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"GeneratePreparePosition","NodeData":{"Offset":"(-149.377487,132.74379)"},"ID":2,"Name":"Generate
-        Prepare Position","Instant":true,"ANTsPolygonprepareZone":0,"SharedVector2preparePosition":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"IsGlobal":true,"Vector2mValue":"(0.865756035,2.99426746)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-1.11093712,132.44899)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(0.204081535,98.88889)"},"ID":4,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-0.8695679,96.6443558)"},"ID":5,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveToPrepareZone","NodeData":{"Offset":"(-257.750336,111.011047)"},"ID":6,"Name":"Move
-        To Prepare Zone","Instant":true,"SharedVector2preparePosition":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"IsGlobal":true,"Vector2mValue":"(0.865756035,2.99426746)"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-123.972351,108.936829)"},"ID":7,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"ChargeToPlayer","NodeData":{"Offset":"(-0.725338,112.088966)"},"ID":8,"Name":"Charge
-        To Player","Instant":true,"SharedTransformplayer":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"PlayerTransform","IsShared":true,"TransformmValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(132.888,111.011047)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"MoveToPrepareZone","NodeData":{"Offset":"(266.665955,108.936829)"},"ID":10,"Name":"Move
-        To Prepare Zone","Instant":true,"SharedVector2preparePosition":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":"preparePosition","IsShared":true,"IsGlobal":true,"Vector2mValue":"(0.865756035,2.99426746)"}}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"PlayerTransform","IsShared":true,"TransformmValue":2}]}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects:
-        - {fileID: 739322802}
-        - {fileID: 671785605}
-        - {fileID: 671785605}
-        byteData: 
-        byteDataArray: 
-      Version: 1.6.8
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
---- !u!4 &1013069586 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1573975368069207864, guid: 80875467e516c414daab0052a79c99a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 858916657}
+  m_PrefabInstance: {fileID: 610055106}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1207042585
 GameObject:
@@ -621,6 +578,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1268369453 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1573975368069207864, guid: 80875467e516c414daab0052a79c99a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 896700395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1638825233
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +903,7 @@ PrefabInstance:
     - target: {fileID: 185504886, guid: 3790ae7b3b5db934ea9edb138c516bb5, type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1019781100}
     - target: {fileID: 2521491159427168576, guid: 3790ae7b3b5db934ea9edb138c516bb5,
         type: 3}
       propertyPath: m_Name
@@ -1005,6 +968,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783020792903052964, guid: 3790ae7b3b5db934ea9edb138c516bb5,
+        type: 3}
+      propertyPath: spawnRate
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3790ae7b3b5db934ea9edb138c516bb5, type: 3}

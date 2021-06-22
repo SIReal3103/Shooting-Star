@@ -5,7 +5,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEditor;
 
-public class MoveToPrepareZone : Action
+public class MoveToPreparePosition : Action
 {    
     [SerializeField] SharedVector2 preparePosition;
 

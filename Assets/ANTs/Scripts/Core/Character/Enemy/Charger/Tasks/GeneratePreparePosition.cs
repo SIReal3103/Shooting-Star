@@ -5,8 +5,15 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class GeneratePreparePosition : Action
 {
-    [SerializeField] ANTsPolygon prepareZone;
+    [SerializeField] SharedTransform prepareZone_ANTsPolygon;
     [SerializeField] SharedVector2 preparePosition;
+
+    private ANTsPolygon prepareZone;
+
+    public override void OnAwake()
+    {
+        prepareZone = prepareZone_ANTsPolygon.Value.GetComponent<ANTsPolygon>();
+    }
 
     public override void OnStart()
     {
