@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(Gunner))]

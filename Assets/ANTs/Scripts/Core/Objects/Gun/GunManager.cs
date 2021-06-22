@@ -1,7 +1,7 @@
 ﻿using ANTs.Template;
 using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     public class GunManager : Singleton<GunManager>
     {

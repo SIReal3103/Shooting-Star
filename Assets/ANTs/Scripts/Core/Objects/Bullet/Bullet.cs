@@ -2,7 +2,7 @@
 
 using ANTs.Template;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     [RequireComponent(typeof(CapsuleCollider2D))]
     [RequireComponent(typeof(Damager))]
@@ -34,7 +34,7 @@ namespace ANTs.Game
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.transform.CompareTag(Source.tag))
+            if (!collision.transform.CompareTag(source.tag))
             {
                 Damageable damageable;
                 if (!collision.transform.TryGetComponent(out damageable))
@@ -60,7 +60,7 @@ namespace ANTs.Game
 
             transform.position = data.origin;
             SetDirection(data.moveDirection);
-            Source = data.source;
+            source = data.source;
         }
 
         public void Sleep()

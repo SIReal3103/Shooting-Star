@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     public enum MovementType
     {
@@ -12,7 +12,7 @@ namespace ANTs.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
-        public event Action onArrivedEvent;
+        public event Action OnArrivedEvent;
 
         [SerializeField] MoveData initialData;
 
@@ -20,11 +20,10 @@ namespace ANTs.Game
         private MoveStrategy moveStrategy;
         private bool isStop = true;
 
-
         public MoveStrategy MoveStrategy
         {
             get => moveStrategy;
-            set { moveStrategy = value; LoadDataToStrategy(); }
+            set { moveStrategy = value; LoadMoveData(initialData); }
         }
 
         private void Start()
@@ -38,21 +37,22 @@ namespace ANTs.Game
             if (isStop) return;
 
             MoveStrategy?.UpdatePath();
-            if (Arrived())
+            if (IsArrived())
             {
-                onArrivedEvent?.Invoke();
+                OnArrivedEvent?.Invoke();
                 StopMoving();
             }
         }
 
-        private bool Arrived()
+        private bool IsArrived()
         {
             return (moveStrategy.data.destination - rb.position).magnitude < moveStrategy.data.DestinationOffset;
         }
 
-        private void LoadDataToStrategy()
+        public void LoadMoveData(MoveData data)
         {
-            moveStrategy.data = initialData;
+            moveStrategy.data = data;
+            moveStrategy.data.rb = this.rb;
         }
 
         public void StopMoving()

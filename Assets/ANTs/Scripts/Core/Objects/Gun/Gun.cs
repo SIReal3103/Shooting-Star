@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     public class Gun : MonoBehaviour
     {
@@ -27,7 +27,7 @@ namespace ANTs.Game
                 float rotationAngle = gunHolder.transform.rotation.eulerAngles.z;
                 Vector2 bulletDirection = Quaternion.AngleAxis(rotationAngle, Vector3.forward) * bulletDirections[i];
 
-                BulletData bulletData = new BulletData(gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirection);
+                BulletData bulletData = new BulletData(gunHolder.gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirection);
                 currentBulletPool.Pop(bulletData);
             }
         }

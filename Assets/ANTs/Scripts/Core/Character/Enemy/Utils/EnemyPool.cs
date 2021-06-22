@@ -2,9 +2,9 @@
 
 using ANTs.Template;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
-    public class EnemyPool : ANTsPool<EnemyPool, EnemyControlFacade>
+    public class EnemyPool : ANTsPool<EnemyPool, EnemyFacade>
     {
 
     }

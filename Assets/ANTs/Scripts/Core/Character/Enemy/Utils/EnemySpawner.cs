@@ -3,7 +3,7 @@ using UnityEngine;
 
 using ANTs.Template;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     [RequireComponent(typeof(EnemyPool))]
     public class EnemySpawner : MonoBehaviour

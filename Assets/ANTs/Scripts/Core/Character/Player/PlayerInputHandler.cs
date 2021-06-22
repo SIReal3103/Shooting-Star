@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     [RequireComponent(typeof(PlayerControlFacade))]
     public class PlayerInputHandler : MonoBehaviour

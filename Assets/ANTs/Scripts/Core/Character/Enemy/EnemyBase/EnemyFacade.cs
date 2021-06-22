@@ -3,73 +3,62 @@ using UnityEngine;
 
 using ANTs.Template;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
+    //TODO: Enemy not die
+
     [RequireComponent(typeof(Mover))]
-    public class EnemyControlFacade : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyControlFacade>
+    public class EnemyFacade : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyFacade>
     {
-        public event Action onMoverArrivedEvent;
+        public event Action OnArrivedEvent
+        {
+            add { mover.OnArrivedEvent += value; }
+            remove { mover.OnArrivedEvent -= value; }
+        }
 
         private Mover mover;
 
         public EnemyPool CurrentPool { get; set; }
-
-        //TODO: Enemy not die
-
+        
         private void Awake()
         {
             mover = GetComponent<Mover>();
         }
-
-        private void OnEnable()
-        {
-            mover.onArrivedEvent += OnMoverArrive;
-        }
-
-        private void OnDisable()
-        {
-            mover.onArrivedEvent -= OnMoverArrive;
-        }
-
         private void Start()
         {
             mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
-        }
-
-        private void OnMoverArrive()
-        {
-            onMoverArrivedEvent?.Invoke();
         }
 
         public void StartMovingTo(Vector2 destination)
         {
             mover.StartMovingTo(destination);
         }
-
         public void StopMoving()
         {
             mover.StopMoving();
         }
-
         public void Dead()
         {
             ReturnToPool();
         }
 
-        private void ReturnToPool()
+        public void LoadMoveData(MoveData data)
         {
-            CurrentPool.ReturnToPool(this);
+            mover.LoadMoveData(data);
         }
 
         // IANTsPoolObject implementation
 
+        private void ReturnToPool()
+        {
+            CurrentPool.ReturnToPool(this);
+        }
         public void WakeUp(object args)
         {
             EnemyData data = args as EnemyData;
             gameObject.SetActive(true);
             transform.position = data.spawnPosition;
         }
-
         public void Sleep()
         {
             gameObject.SetActive(false);

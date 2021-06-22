@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
-    [RequireComponent(typeof(BulletPool))]
     public class Gunner : MonoBehaviour
     {
         private static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";

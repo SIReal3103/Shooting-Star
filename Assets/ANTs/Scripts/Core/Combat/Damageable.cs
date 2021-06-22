@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     public class Damageable : MonoBehaviour
     {

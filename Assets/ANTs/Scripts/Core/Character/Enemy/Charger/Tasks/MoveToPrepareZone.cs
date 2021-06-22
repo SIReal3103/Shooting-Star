@@ -1,4 +1,4 @@
-using ANTs.Game;
+using ANTs.Core;
 using ANTs.Template;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
@@ -9,26 +9,24 @@ public class MoveToPrepareZone : Action
 {    
     [SerializeField] SharedVector2 preparePosition;
 
-    private EnemyControlFacade control;
+    private EnemyChargerBehaviour charger;
     private bool isArrive;
 
     public override void OnAwake()
     {
-        control = GetComponent<EnemyControlFacade>();
+        charger = GetComponent<EnemyChargerBehaviour>();
     }
 
     public override void OnStart()
 	{
-        control.onMoverArrivedEvent += OnMoverArrived;
+        charger.OnArrivedEvent += OnMoverArrived;
 
         isArrive = false;
-        Debug.Log(preparePosition.Value);
-        control.StartMovingTo(preparePosition.Value);
+        charger.MoveTo(preparePosition.Value);
 	}
-
     public override void OnEnd()
     {
-        control.onMoverArrivedEvent -= OnMoverArrived;
+        charger.OnArrivedEvent -= OnMoverArrived;
     }
 
     public override TaskStatus OnUpdate()

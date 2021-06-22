@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     [RequireComponent(typeof(Mover))]
     public abstract class Projectile : MonoBehaviour
     {
-        private Mover mover;
+        public GameObject source;
 
-        public GameObject Source { get; set; }
+        private Mover mover;
 
         private void OnEnable()
         {

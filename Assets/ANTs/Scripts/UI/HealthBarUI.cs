@@ -1,5 +1,5 @@
 ﻿using System;
-using ANTs.Game;
+using ANTs.Core;
 using UnityEngine;
 
 namespace ANTs.UI

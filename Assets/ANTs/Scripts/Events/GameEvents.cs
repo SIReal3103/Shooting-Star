@@ -1,6 +1,6 @@
 ﻿using ANTs.Template;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     public struct ChangeGunEvent
     {

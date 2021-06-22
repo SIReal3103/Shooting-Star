@@ -2,7 +2,7 @@
 
 using ANTs.Template;
 
-namespace ANTs.Game
+namespace ANTs.Core
 {
     public class BulletPool : ANTsPool<BulletPool, Bullet>
     {
