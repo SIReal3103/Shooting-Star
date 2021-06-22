@@ -4,9 +4,7 @@ using ANTs.Template;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(CapsuleCollider2D))]
     [RequireComponent(typeof(Damager))]
-
     public class Bullet : Projectile, IANTsPoolObject<BulletPool, Bullet>
     {
         [Tooltip("Decide whether if the bullet will be destroyed when out of player view")]
@@ -16,12 +14,29 @@ namespace ANTs.Core
 
         public BulletPool CurrentPool { get; set; }
 
+        private TouchDamager touchDamager;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            touchDamager = GetComponent<TouchDamager>();
+        }
+
         private void Update()
         {
             if (destroyWhenOutOfScreen && CheckIsOutOfScreen())
             {
                 ReturnToPool();
             }
+        }
+
+        private void OnEnable()
+        {
+            touchDamager.OnHitEvent += OnHit;
+        }
+        private void OnDisable()
+        {
+            touchDamager.OnHitEvent -= OnHit;
         }
 
         private bool CheckIsOutOfScreen()
@@ -32,19 +47,9 @@ namespace ANTs.Core
                 screenPosition.y < -outScreenOffSet.y || screenPosition.y > 1f + outScreenOffSet.y;
         }
 
-        void OnCollisionEnter2D(Collision2D collision)
+        void OnHit()
         {
-            if (!collision.transform.CompareTag(source.tag))
-            {
-                Damageable damageable;
-                if (!collision.transform.TryGetComponent(out damageable))
-                {
-                    return;
-                }
-
-                damageable.TakeDamageFrom(GetComponent<Damager>());
-                ReturnToPool();
-            }
+            ReturnToPool();
         }
 
         private void ReturnToPool()
@@ -61,12 +66,13 @@ namespace ANTs.Core
             transform.position = data.origin;
             SetDirection(data.moveDirection);
             source = data.source;
+
+            touchDamager.source = data.source;
         }
 
         public void Sleep()
         {
             gameObject.SetActive(false);
         }
-
     }
 }

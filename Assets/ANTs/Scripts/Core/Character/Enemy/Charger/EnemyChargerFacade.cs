@@ -20,6 +20,7 @@ namespace ANTs.Core
         private void Awake()
         {
             control = GetComponent<EnemyFacade>();
+            GetComponent<TouchDamager>().source = gameObject;
         }
 
         public void MoveTo(Vector2 destination)

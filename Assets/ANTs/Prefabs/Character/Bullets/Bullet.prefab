@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 409123565710036420}
   - component: {fileID: 4385843058339546094}
   - component: {fileID: 1130381535657301370}
+  - component: {fileID: -6507884906140856681}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -72,6 +73,7 @@ MonoBehaviour:
   initialData:
     speed: 10
     tiltSpeed: 0
+    destinationOffset: 0.1
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
 --- !u!70 &409123565710036420
@@ -120,6 +122,19 @@ MonoBehaviour:
   source: {fileID: 0}
   destroyWhenOutOfScreen: 1
   outScreenOffSet: {x: 0, y: 0}
+--- !u!114 &-6507884906140856681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2465691811505759138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f852a43069ddb48a0bb5d888148f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
 --- !u!1 &2465691812362409213
 GameObject:
   m_ObjectHideFlags: 0

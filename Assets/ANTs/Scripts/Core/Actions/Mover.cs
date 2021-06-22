@@ -20,10 +20,10 @@ namespace ANTs.Core
         private MoveStrategy moveStrategy;
         private bool isStop = true;
 
-        public MoveStrategy MoveStrategy
+        public void SetMoveStrategy(MoveStrategy moveStrategy)
         {
-            get => moveStrategy;
-            set { moveStrategy = value; LoadMoveData(initialData); }
+            this.moveStrategy = moveStrategy;
+            LoadMoveData(initialData);
         }
 
         private void Start()
@@ -36,7 +36,7 @@ namespace ANTs.Core
         {
             if (isStop) return;
 
-            MoveStrategy?.UpdatePath();
+            moveStrategy?.UpdatePath();
             if (IsArrived())
             {
                 OnArrivedEvent?.Invoke();

@@ -14,7 +14,7 @@ namespace ANTs.Core
             mover = GetComponent<Mover>();
             gunner = GetComponent<Gunner>();
 
-            mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Lerp);
+            mover.SetMoveStrategy(MoveFactory.CreateMove(MovementType.Lerp));
         }
 
         public void StartMovingTo(Vector2 position)

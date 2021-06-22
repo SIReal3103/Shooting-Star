@@ -26,7 +26,7 @@ namespace ANTs.Core
         }
         private void Start()
         {
-            mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
+            mover.SetMoveStrategy(MoveFactory.CreateMove(MovementType.Linearity));
         }
 
         public void StartMovingTo(Vector2 destination)

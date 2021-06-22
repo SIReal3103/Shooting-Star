@@ -8,19 +8,15 @@ namespace ANTs.Core
         public GameObject source;
 
         private Mover mover;
-
-        private void OnEnable()
+        protected virtual void Awake()
         {
+            mover = GetComponent<Mover>();
             LoadMoverStrategy();
         }
 
         private void LoadMoverStrategy()
         {
-            if (mover == null)
-            {
-                mover = GetComponent<Mover>();
-                mover.MoveStrategy = MoveFactory.CreateMove(MovementType.Linearity);
-            }
+            mover.SetMoveStrategy(MoveFactory.CreateMove(MovementType.Linearity));
         }
 
         public void SetDirection(Vector2 direction)
