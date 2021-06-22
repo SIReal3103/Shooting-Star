@@ -12,8 +12,8 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent
         {
-            add { mover.OnArrivedEvent += value; }
-            remove { mover.OnArrivedEvent -= value; }
+            add { GetComponent<Mover>().OnArrivedEvent += value; }
+            remove { GetComponent<Mover>().OnArrivedEvent -= value; }
         }
 
         private Mover mover;

@@ -4,12 +4,12 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(EnemyFacade))]
-    public class EnemyChargerBehaviour : MonoBehaviour
+    public class EnemyChargerFacade : MonoBehaviour
     {
         public event Action OnArrivedEvent
         {
-            add { control.OnArrivedEvent += value; }
-            remove { control.OnArrivedEvent -= value; }
+            add { GetComponent<EnemyFacade>().OnArrivedEvent += value; }
+            remove { GetComponent<EnemyFacade>().OnArrivedEvent -= value; }
         }
 
         [SerializeField] MoveData moveSpeed;
