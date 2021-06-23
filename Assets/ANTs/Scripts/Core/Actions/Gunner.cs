@@ -18,9 +18,11 @@ namespace ANTs.Core
         #region Variables
         private Gun currentGun;
         private BulletPool currentBulletPool;
-        #endregion
 
         private float timeSinceLastFire = Mathf.Infinity;
+        #endregion
+
+
 
         #region Unity Events
         private void Start()
@@ -28,7 +30,7 @@ namespace ANTs.Core
             Gun gunPrefabToLoad = initialGunPrefab ? initialGunPrefab : GunManager.Instance.GetDefaultGunPrefab();
             LoadNewGunAndDestroyCurrent(gunPrefabToLoad);
 
-            BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultBulletPool();
+            BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultBulletPoolPrefab();
             SetBulletPoolForCurrentGun(bulletPoolToLoad);
         }
 
@@ -39,6 +41,7 @@ namespace ANTs.Core
         }
         #endregion
 
+        #region Behaviours
         public void Fire()
         {
             if (timeSinceLastFire > timeBetweenFire)
@@ -56,7 +59,7 @@ namespace ANTs.Core
         public void ChangeStrongerBullet()
         {
             SetBulletPoolForCurrentGun(
-                BulletPoolManager.Instance.GetNextBulletPool(initialBulletPool)
+                BulletPoolManager.Instance.GetNextBulletPoolPrefab(currentBulletPool)
                 );
         }
 
@@ -90,4 +93,5 @@ namespace ANTs.Core
             timeSinceLastFire += Time.deltaTime;
         }
     }
+    #endregion
 }

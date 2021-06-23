@@ -122,6 +122,8 @@ MonoBehaviour:
   source: {fileID: 0}
   destroyWhenOutOfScreen: 1
   outScreenOffSet: {x: 0, y: 0}
+  bulletId: 0
+  nextBulletId: 1
 --- !u!114 &-6507884906140856681
 MonoBehaviour:
   m_ObjectHideFlags: 0

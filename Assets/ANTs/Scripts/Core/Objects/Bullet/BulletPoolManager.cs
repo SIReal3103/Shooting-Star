@@ -1,36 +1,51 @@
 ﻿using UnityEngine;
 
 using ANTs.Template;
+using System.Collections.Generic;
 
 namespace ANTs.Core
 {
     public class BulletPoolManager : Singleton<BulletPoolManager>
     {
-        [Tooltip("The default bullet to load when other gunner need")]
-        [SerializeField] BulletPool defaulBulletPool;
+        [SerializeField] Bullet.BulletIdentifier defaultId;
 
-        private ExpandedDictionary<BulletPool> bulletPools;
+        public BulletPool GetNextBulletPoolPrefab(BulletPool bulletPool)
+        {
+            BulletPool result;
+            if(bulletPools.TryGetValue(bulletPool.NextId, out result))
+            {
+                return result;
+            }
+            Debug.Log("Bullet level max");
+            return bulletPool;
+        }
+        public BulletPool GetDefaultBulletPoolPrefab()
+        {
+            return bulletPools[defaultId];
+        }
+
+        [SerializeField] List<Bullet> bulletPrefabs;
+
+        private Dictionary<Bullet.BulletIdentifier, BulletPool> bulletPools = 
+            new Dictionary<Bullet.BulletIdentifier, BulletPool>();
 
         protected BulletPoolManager() { }
 
         private void Start()
         {
-            bulletPools = new ExpandedDictionary<BulletPool>(gameObject);
+            foreach(Bullet bulletPrefab in bulletPrefabs)
+            {
+                BulletPool bulletPool = CreateBulletPool(bulletPrefab);
+                bulletPool.Prefab = bulletPrefab;
+                bulletPools.Add(bulletPool.Id, bulletPool);
+            }
         }
 
-        public BulletPool GetNextBulletPool(BulletPool bulletPool)
+        private BulletPool CreateBulletPool(Bullet bullet)
         {
-            return bulletPools.GetNextItem(bulletPool);
-        }
-
-        public BulletPool GetBulletPool(string key)
-        {
-            return bulletPools.GetValueFrom(key);
-        }
-
-        public BulletPool GetDefaultBulletPool()
-        {
-            return defaulBulletPool;
+            GameObject go = new GameObject(bullet.name + "_pool");
+            go.transform.SetParent(transform);
+            return go.AddComponent<BulletPool>();
         }
     }
 }

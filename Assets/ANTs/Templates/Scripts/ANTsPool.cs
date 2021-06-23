@@ -12,6 +12,8 @@ namespace ANTs.Template
 
         private Queue<TObject> objects;
 
+        public TObject Prefab { get => prefab; set => prefab = value; }
+
         private void Start()
         {
             objects = new Queue<TObject>();
@@ -42,7 +44,7 @@ namespace ANTs.Template
 
         private TObject CreateNewPoolObject()
         {
-            TObject obj = Instantiate(prefab, transform);
+            TObject obj = Instantiate(Prefab, transform);
             obj.CurrentPool = this as TPool;
             Push(obj);
             return obj;

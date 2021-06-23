@@ -4,8 +4,21 @@ namespace ANTs.Core
 {
     public class Gun : MonoBehaviour
     {
+        [System.Serializable]
+        enum GunIdentifier
+        {
+            GunLevel1,
+            GunLevel2,
+            GunLevel3,
+            GunLevel4,
+            None
+        }
+
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Vector2[] bulletDirections;
+        [Space]
+        [SerializeField] GunIdentifier gunId;
+        [SerializeField] GunIdentifier nextGunId;
 
         private Gunner gunHolder;
         private BulletPool currentBulletPool;

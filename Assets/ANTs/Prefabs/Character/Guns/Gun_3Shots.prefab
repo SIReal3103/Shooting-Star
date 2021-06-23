@@ -84,6 +84,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
         type: 3}
+      propertyPath: gunId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: nextGunId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: nextStrongerGunId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
       propertyPath: bulletDirections.Array.size
       value: 3
       objectReference: {fileID: 0}

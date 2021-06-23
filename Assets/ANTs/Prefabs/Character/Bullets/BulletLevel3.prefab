@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1130381535657301370, guid: 1b8b737626a42dd4f86e7de802f71d6d,
+        type: 3}
+      propertyPath: bulletId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130381535657301370, guid: 1b8b737626a42dd4f86e7de802f71d6d,
+        type: 3}
+      propertyPath: nextBulletId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2465691811505759138, guid: 1b8b737626a42dd4f86e7de802f71d6d,
         type: 3}
       propertyPath: m_Name
