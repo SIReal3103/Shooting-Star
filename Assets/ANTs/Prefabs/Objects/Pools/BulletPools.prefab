@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultId: 0
-  bulletPrefabs:
+  prefabs:
   - {fileID: 1151250945646034363, guid: 149311a30b02d9d468acf5a34278a8db, type: 3}
   - {fileID: 28554062510686846, guid: 9805837e282251444adf7e7b6119cc7e, type: 3}
   - {fileID: 6397073948560994783, guid: 96d72ea3ef0260147ab31f12969479f4, type: 3}

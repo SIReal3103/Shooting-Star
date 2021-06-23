@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ANTs.Template
 {
     public abstract class ANTsPool<TPool, TObject> : MonoBehaviour
-        where TObject : MonoBehaviour, IANTsPoolObject<TPool, TObject>
+        where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>
         where TPool : ANTsPool<TPool, TObject>
     {
         [SerializeField] private TObject prefab;
@@ -57,8 +57,8 @@ namespace ANTs.Template
         }
     }
 
-    public interface IANTsPoolObject<TPool, TObject>
-        where TObject : MonoBehaviour, IANTsPoolObject<TPool, TObject>
+    public interface IANTsPoolable<TPool, TObject>
+        where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>
         where TPool : ANTsPool<TPool, TObject>
     {
         TPool CurrentPool { get; set; }

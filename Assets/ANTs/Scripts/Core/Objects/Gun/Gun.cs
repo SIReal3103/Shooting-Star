@@ -33,7 +33,7 @@ namespace ANTs.Core
         public void Fire()
         {
             if(currentBulletPool == null)
-                throw new UnityException("CurrentBulletPool can't be null");
+                throw new UnityException("CurrentBulletPool can't be null, (BulletPoolManager might be empty?)");
 
             for (int i = 0; i < bulletDirections.Length; i++)
             {

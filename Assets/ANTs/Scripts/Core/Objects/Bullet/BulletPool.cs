@@ -6,8 +6,6 @@ namespace ANTs.Core
 {
     public class BulletPool : ANTsPool<BulletPool, Bullet>
     {
-        public Bullet.BulletIdentifier Id { get => Prefab.BulletId; }
-        public Bullet.BulletIdentifier NextId { get => Prefab.NextBulletId; }
     }
 
     public class BulletData

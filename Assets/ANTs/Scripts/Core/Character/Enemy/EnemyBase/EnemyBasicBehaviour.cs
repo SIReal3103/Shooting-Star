@@ -8,7 +8,7 @@ namespace ANTs.Core
     //TODO: Enemy not die
 
     [RequireComponent(typeof(Mover))]
-    public class EnemyBasicBehaviour : MonoBehaviour, IANTsPoolObject<EnemyPool, EnemyBasicBehaviour>
+    public class EnemyBasicBehaviour : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyBasicBehaviour>
     {
         public event Action OnArrivedEvent
         {

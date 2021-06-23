@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using ANTs.Template;
 using UnityEngine;
 
 namespace ANTs.Template

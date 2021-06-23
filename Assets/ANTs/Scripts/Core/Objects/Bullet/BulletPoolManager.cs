@@ -1,27 +1,9 @@
-﻿using UnityEngine;
-
-using ANTs.Template;
-using System.Collections.Generic;
+﻿using ANTs.Template;
 
 namespace ANTs.Core
 {
-    public class BulletPoolManager : PoolManager<BulletPoolManager>
+    public class BulletPoolManager : ProgressablePoolManager<BulletPoolManager, BulletPool, Bullet>
     {
-        [SerializeField] Bullet.BulletIdentifier defaultId;
 
-        public BulletPool GetNextBulletPoolPrefab(BulletPool bulletPool)
-        {
-            BulletPool result;
-            if(bulletPools.TryGetValue(bulletPool.NextId, out result))
-            {
-                return result;
-            }
-            Debug.Log("Bullet level max");
-            return bulletPool;
-        }
-        public BulletPool GetDefaultBulletPoolPrefab()
-        {
-            return bulletPools[defaultId];
-        }
     }
 }

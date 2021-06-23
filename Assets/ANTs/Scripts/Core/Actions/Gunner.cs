@@ -30,7 +30,7 @@ namespace ANTs.Core
             Gun gunPrefabToLoad = initialGunPrefab ? initialGunPrefab : GunManager.Instance.GetDefaultGunPrefab();
             LoadNewGunAndDestroyCurrent(gunPrefabToLoad);
 
-            BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultBulletPoolPrefab();
+            BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultPool();
             SetBulletPoolForCurrentGun(bulletPoolToLoad);
         }
 
@@ -59,7 +59,7 @@ namespace ANTs.Core
         public void ChangeStrongerBullet()
         {
             SetBulletPoolForCurrentGun(
-                BulletPoolManager.Instance.GetNextBulletPoolPrefab(currentBulletPool)
+                BulletPoolManager.Instance.ProgressNextPool(currentBulletPool)
                 );
         }
 
