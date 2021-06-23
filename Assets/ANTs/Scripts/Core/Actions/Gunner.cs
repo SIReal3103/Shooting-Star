@@ -4,34 +4,35 @@ namespace ANTs.Core
 {
     public class Gunner : MonoBehaviour
     {
-        #region SerializeField
+        #region =================================================SERIALIZE_FIELD
         [SerializeField] Transform bulletSpawnPosition;
         [Space]
         [SerializeField] float timeBetweenFire = 0.5f;
         [Space]
         [Tooltip("Initial gun type for gunner")]
-        [SerializeField] Gun initialGunPrefab;
+        [SerializeField] GunPool initialGunPool;
         [Tooltip("Initial bullet type for gunner")]
         [SerializeField] BulletPool initialBulletPool;
         #endregion
 
-        #region Variables
-        private Gun currentGun;
+
+        #region =================================================VARIABLES
+        private GunPool currentGunPool;
         private BulletPool currentBulletPool;
 
+        private Gun currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
         #endregion
 
 
-
-        #region Unity Events
+        #region =================================================UNITY_EVENTS
         private void Start()
         {
-            Gun gunPrefabToLoad = initialGunPrefab ? initialGunPrefab : GunManager.Instance.GetDefaultGunPrefab();
-            LoadNewGunAndDestroyCurrent(gunPrefabToLoad);
+            currentGunPool = initialGunPool ? initialGunPool : GunPoolManager.Instance.GetDefaultPool();
+            LoadCurrenGun();
 
-            BulletPool bulletPoolToLoad = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultPool();
-            SetBulletPoolForCurrentGun(bulletPoolToLoad);
+            currentBulletPool = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultPool();
+            LoadCurrentBullet();
         }
 
         private void Update()
@@ -41,7 +42,8 @@ namespace ANTs.Core
         }
         #endregion
 
-        #region Behaviours
+
+        #region =================================================BEHAVIOURS
         public void Fire()
         {
             if (timeSinceLastFire > timeBetweenFire)
@@ -53,32 +55,27 @@ namespace ANTs.Core
 
         public void ChangeStrongerGun()
         {
-            LoadNewGunAndDestroyCurrent(GunManager.Instance.GetNextGun(currentGun));
+            if(GunPoolManager.Instance.ProgressNextPool(ref currentGunPool))
+            {
+                LoadCurrenGun();
+            }
         }
 
         public void ChangeStrongerBullet()
         {
-            SetBulletPoolForCurrentGun(
-                BulletPoolManager.Instance.ProgressNextPool(currentBulletPool)
-                );
+            if(BulletPoolManager.Instance.ProgressNextPool(ref currentBulletPool))
+            {
+                LoadCurrentBullet();
+            }
         }
 
-        private void LoadNewGunAndDestroyCurrent(Gun gunPrefab)
+        private void LoadCurrenGun()
         {
-            if (currentGun != null) Destroy(currentGun);
-
-            currentGun = Instantiate(gunPrefab, transform);
-
-            // Remove trailing (Clone) 
-            currentGun.name = gunPrefab.name;
-
-            currentGun.Init(this);
-            SetBulletPoolForCurrentGun(currentBulletPool);
+            currentGun = currentGunPool.Pop(new GunData(transform, this, currentBulletPool));
         }
 
-        private void SetBulletPoolForCurrentGun(BulletPool bulletPoolToLoad)
+        private void LoadCurrentBullet()
         {
-            currentBulletPool = bulletPoolToLoad;
             currentGun.SetBulletPool(currentBulletPool);
         }
 

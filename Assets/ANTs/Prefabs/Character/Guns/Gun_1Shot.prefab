@@ -89,6 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
         type: 3}
+      propertyPath: nextLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
       propertyPath: nextStrongerGunId
       value: 1
       objectReference: {fileID: 0}

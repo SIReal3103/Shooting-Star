@@ -12,12 +12,23 @@ namespace ANTs.Template
 
         private Queue<TObject> objects;
 
-        public TObject Prefab { get => prefab; set => prefab = value; }
+        public TObject Prefab { get => prefab; }
 
-        private void Start()
+        public void ReloadPrefab(TObject prefab)
+        {
+            this.prefab = prefab; 
+            ResetPool(); 
+            Init();
+        }
+
+        private void Awake()
+        {
+            if (prefab != null) Init();
+        }
+
+        private void Init()
         {
             objects = new Queue<TObject>();
-
             for (int i = 0; i < initialPoolSize; i++)
             {
                 CreateNewPoolObject();
@@ -39,6 +50,7 @@ namespace ANTs.Template
 
         public void ReturnToPool(TObject @object)
         {
+            @object.transform.SetParent(transform);
             Push(@object);
         }
 
@@ -55,6 +67,16 @@ namespace ANTs.Template
             objects.Enqueue(obj);
             obj.Sleep();
         }
+
+        private void ResetPool()
+        {
+            if (objects == null) return;
+            while(objects.Count > 0)
+            {
+                Destroy(objects.Dequeue());
+            }
+            objects = null;
+        }
     }
 
     public interface IANTsPoolable<TPool, TObject>
@@ -62,6 +84,7 @@ namespace ANTs.Template
         where TPool : ANTsPool<TPool, TObject>
     {
         TPool CurrentPool { get; set; }
+        void ReturnToPool();
         void WakeUp(System.Object args);
         void Sleep();
     }

@@ -3,7 +3,7 @@ using ANTs.Template;
 
 namespace ANTs.Core
 {
-    public class Gun : MonoBehaviour, IProgressable
+    public class Gun : MonoBehaviour, IANTsPoolable<GunPool, Gun>, IProgressable
     {
 
         [Tooltip("The direction which bullet start firing")]
@@ -17,6 +17,7 @@ namespace ANTs.Core
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
+        public GunPool CurrentPool { get ; set; } // IANTsPoolable Implementation
 
         public void SetBulletPool(BulletPool pool) => currentBulletPool = pool;
 
@@ -38,6 +39,26 @@ namespace ANTs.Core
                 BulletData bulletData = new BulletData(gunHolder.gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirection);
                 currentBulletPool.Pop(bulletData);
             }
+        }
+
+        public void ReturnToPool() // IANTsPoolable Implementation
+        {
+            CurrentPool.ReturnToPool(this);
+        }
+
+        public void WakeUp(object args) // IANTsPoolable Implementation
+        {
+            gameObject.SetActive(true);
+
+            GunData data = args as GunData;
+            transform.SetParent(data.transform);
+            gunHolder = data.gunHolder;
+            currentBulletPool = data.bulletPool;
+        }
+
+        public void Sleep() // IANTsPoolable Implementation
+        {
+            gameObject.SetActive(false);
         }
     }
 }

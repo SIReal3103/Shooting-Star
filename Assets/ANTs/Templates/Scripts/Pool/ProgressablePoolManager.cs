@@ -29,20 +29,20 @@ namespace ANTs.Template
             foreach (TObject prefab in prefabs)
             {
                 TPool pool = CreatePool(prefab);
-                pool.Prefab = prefab;
+                pool.ReloadPrefab(prefab);
                 pools.Add(pool.Prefab.CurrentLevel, pool);
             }
         }
 
-        public TPool ProgressNextPool(TPool pool)
+        public bool ProgressNextPool(ref TPool pool)
         {
-            TPool result;
-            if(pools.TryGetValue(pool.Prefab.NextLevel, out result))
+            if (pools.TryGetValue(pool.Prefab.NextLevel, out TPool result))
             {
-                return result;
+                pool = result;
+                return true;
             }
-            Debug.Log("Item level max!");
-            return pool;
+            Debug.Log("Can't get next of item level max.");
+            return false;
         }
 
         public TPool GetDefaultPool()

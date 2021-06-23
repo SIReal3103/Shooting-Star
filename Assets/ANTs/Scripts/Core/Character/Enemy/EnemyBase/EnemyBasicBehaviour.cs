@@ -49,7 +49,7 @@ namespace ANTs.Core
 
         // IANTsPoolObject implementation
 
-        private void ReturnToPool()
+        public void ReturnToPool()
         {
             CurrentPool.ReturnToPool(this);
         }
