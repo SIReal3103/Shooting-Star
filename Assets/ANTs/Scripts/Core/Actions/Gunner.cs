@@ -4,25 +4,27 @@ namespace ANTs.Core
 {
     public class Gunner : MonoBehaviour
     {
-        private static string BULLET_SPAWN_POINT_PATH = "BulletSpawnPoint";
-
+        #region SerializeField
+        [SerializeField] Transform bulletSpawnPosition;
+        [Space]
         [SerializeField] float timeBetweenFire = 0.5f;
         [Space]
         [Tooltip("Initial gun type for gunner")]
         [SerializeField] Gun initialGunPrefab;
         [Tooltip("Initial bullet type for gunner")]
         [SerializeField] BulletPool initialBulletPool;
+        #endregion
 
+        #region Variables
         private Gun currentGun;
         private BulletPool currentBulletPool;
-        private Transform bulletSpawnPoint;
+        #endregion
 
         private float timeSinceLastFire = Mathf.Infinity;
 
+        #region Unity Events
         private void Start()
         {
-            bulletSpawnPoint = transform.Find(BULLET_SPAWN_POINT_PATH);
-
             Gun gunPrefabToLoad = initialGunPrefab ? initialGunPrefab : GunManager.Instance.GetDefaultGunPrefab();
             LoadNewGunAndDestroyCurrent(gunPrefabToLoad);
 
@@ -35,6 +37,7 @@ namespace ANTs.Core
             Fire();
             UpdateTimer();
         }
+        #endregion
 
         public void Fire()
         {
@@ -57,7 +60,6 @@ namespace ANTs.Core
                 );
         }
 
-
         private void LoadNewGunAndDestroyCurrent(Gun gunPrefab)
         {
             if (currentGun != null) Destroy(currentGun);
@@ -79,7 +81,7 @@ namespace ANTs.Core
 
         public Vector2 GetBulletSpawnPosition()
         {
-            var position = bulletSpawnPoint.position;
+            var position = bulletSpawnPosition.position;
             return new Vector2(position.x, position.y);
         }
 

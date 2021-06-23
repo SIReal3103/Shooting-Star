@@ -24,6 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6177dfb3deec0e8429e39f065acecbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpawnPosition: {fileID: 4919006090727493105}
   timeBetweenFire: 0.5
   initialGunPrefab: {fileID: 0}
   initialBulletPool: {fileID: 0}
@@ -39,6 +40,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09a38eb3423ae64fa532a6f0d40894a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5537650978683414083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407f6d78eb9aceb44bef14069938323d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7414760656712971520}
+  model: {fileID: 4919006091832826130}
 --- !u!1001 &8643572601143051829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,6 +61,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 94069525069965811, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 51f15dedb4ac9d3408b10cc020cdfc5f, type: 2}
+    - target: {fileID: 756007685803202417, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 51f15dedb4ac9d3408b10cc020cdfc5f, type: 2}
+    - target: {fileID: 1230229215337870133, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 51f15dedb4ac9d3408b10cc020cdfc5f, type: 2}
     - target: {fileID: 3726713874072087784, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_Name
@@ -111,18 +141,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3726713874224106435, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Name
+      value: BulletSpawnPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726713875333373752, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726713875333373752, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726713875333373752, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6049050129777463939, guid: 35dc1aa90f5df774ebb8cfb164eafbf4,
+        type: 3}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: initialData.tiltSpeed
       value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7944987900879760466, guid: f1188bb4d42b505469f668b121697e34, type: 3}
-    - {fileID: 6942720147483577663, guid: f1188bb4d42b505469f668b121697e34, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1188bb4d42b505469f668b121697e34, type: 3}
 --- !u!1 &4919006090545883869 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3726713874072087784, guid: f1188bb4d42b505469f668b121697e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 8643572601143051829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4919006091832826130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3726713875333373735, guid: f1188bb4d42b505469f668b121697e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 8643572601143051829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7414760656712971520 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1230229215337870133, guid: f1188bb4d42b505469f668b121697e34,
+    type: 3}
+  m_PrefabInstance: {fileID: 8643572601143051829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4919006090727493105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3726713874224106436, guid: f1188bb4d42b505469f668b121697e34,
     type: 3}
   m_PrefabInstance: {fileID: 8643572601143051829}
   m_PrefabAsset: {fileID: 0}

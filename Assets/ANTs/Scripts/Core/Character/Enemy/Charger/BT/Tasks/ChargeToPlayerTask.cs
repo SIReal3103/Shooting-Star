@@ -7,13 +7,13 @@ namespace ANTs.Core
     {
         [SerializeField] Transform player;
 
-        private EnemyChargeBehaviour charger;
+        private EnemyChargerBehaviour charger;
 
         private bool isArrive;
 
         private void Awake()
         {
-            charger = GetComponent<EnemyChargeBehaviour>();
+            charger = GetComponent<EnemyChargerBehaviour>();
         }
 
         private void OnEnable()

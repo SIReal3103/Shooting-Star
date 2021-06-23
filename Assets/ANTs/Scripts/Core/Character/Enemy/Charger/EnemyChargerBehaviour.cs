@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(EnemyBasicBehaviour))]
-    public class EnemyChargeBehaviour : MonoBehaviour
+    public class EnemyChargerBehaviour : MonoBehaviour
     {
         public event Action OnArrivedEvent
         {

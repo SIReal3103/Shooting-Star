@@ -26,6 +26,16 @@ namespace ANTs.Core
             LoadMoveData(initialData);
         }
 
+        public bool IsMoving()
+        {
+            return !isStop;
+        }
+
+        public Vector2 GetMoveDirection()
+        {
+            return moveStrategy.data.GetMoveDirection();
+        }
+
         private void Start()
         {
             this.rb = GetComponent<Rigidbody2D>();
@@ -122,5 +132,10 @@ namespace ANTs.Core
         public float Speed { get => speed; }
         public float TiltSpeed { get => tiltSpeed; }
         public float DestinationOffset { get => destinationOffset; }
+
+        public Vector2 GetMoveDirection()
+        {
+            return (destination - rb.position).normalized;
+        }
     }
 }

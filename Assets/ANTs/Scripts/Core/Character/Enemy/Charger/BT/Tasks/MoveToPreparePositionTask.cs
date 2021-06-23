@@ -9,12 +9,12 @@ namespace ANTs.Core
         [SerializeField] ANTsPolygon prepareZone;
 
         private Vector2 preparePosition;
-        private EnemyChargeBehaviour charger;
+        private EnemyChargerBehaviour charger;
         private bool isArrived;
 
         public void Awake()
         {
-            charger = GetComponent<EnemyChargeBehaviour>();
+            charger = GetComponent<EnemyChargerBehaviour>();
         }
 
         public void OnEnable()
