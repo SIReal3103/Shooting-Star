@@ -9,11 +9,11 @@ namespace ANTs.Template
         where TPool : ANTsPool<TPool, TObject>
         where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>, IProgressable
     {
-        [SerializeField] ProgressId defaultId;
+        [SerializeField] ProgressIdentifier defaultId;
         [SerializeField] List<TObject> prefabs;
 
-        private Dictionary<ProgressId, TPool> pools =
-            new Dictionary<ProgressId, TPool>();
+        private Dictionary<ProgressIdentifier, TPool> pools =
+            new Dictionary<ProgressIdentifier, TPool>();
 
         private TPool CreatePool(TObject poolObject)
         {

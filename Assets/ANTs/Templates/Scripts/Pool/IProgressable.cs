@@ -1,7 +1,7 @@
 ﻿namespace ANTs.Template
 {
     [System.Serializable]
-    public enum ProgressId
+    public enum ProgressIdentifier
     {
         Level1,
         Level2,
@@ -14,7 +14,7 @@
     }
     public interface IProgressable
     {
-        ProgressId CurrentLevel { get; set; }
-        ProgressId NextLevel { get; set; }
+        ProgressIdentifier CurrentLevel { get; }
+        ProgressIdentifier NextLevel { get; }
     }
 }

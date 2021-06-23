@@ -1,27 +1,22 @@
 ﻿using UnityEngine;
+using ANTs.Template;
 
 namespace ANTs.Core
 {
-    public class Gun : MonoBehaviour
+    public class Gun : MonoBehaviour, IProgressable
     {
-        [System.Serializable]
-        enum GunIdentifier
-        {
-            GunLevel1,
-            GunLevel2,
-            GunLevel3,
-            GunLevel4,
-            None
-        }
 
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Vector2[] bulletDirections;
         [Space]
-        [SerializeField] GunIdentifier gunId;
-        [SerializeField] GunIdentifier nextGunId;
+        [SerializeField] ProgressIdentifier currentLevel;
+        [SerializeField] ProgressIdentifier nextLevel;
 
         private Gunner gunHolder;
         private BulletPool currentBulletPool;
+
+        public ProgressIdentifier CurrentLevel { get => currentLevel; }
+        public ProgressIdentifier NextLevel { get => nextLevel; }
 
         public void SetBulletPool(BulletPool pool) => currentBulletPool = pool;
 

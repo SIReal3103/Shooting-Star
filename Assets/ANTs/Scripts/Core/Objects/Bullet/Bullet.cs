@@ -13,12 +13,12 @@ namespace ANTs.Core
         [Tooltip("The boundaries of which the bullet will be destroyed")]
         [SerializeField] Vector2 outScreenOffSet = Vector2.zero;
         [Space]
-        [SerializeField] ProgressId currentLevel;
-        [SerializeField] ProgressId nextBulletId;
+        [SerializeField] ProgressIdentifier currentLevel;
+        [SerializeField] ProgressIdentifier nextBulletId;
 
         public BulletPool CurrentPool { get; set; }
-        public ProgressId CurrentLevel { get => currentLevel; set => currentLevel = value; }
-        public ProgressId NextLevel { get => nextBulletId; set => nextBulletId = value; }
+        public ProgressIdentifier CurrentLevel { get => currentLevel; }
+        public ProgressIdentifier NextLevel { get => nextBulletId; }
 
         private TouchDamager touchDamager;
 
