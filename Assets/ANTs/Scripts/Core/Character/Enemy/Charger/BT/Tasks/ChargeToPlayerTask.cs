@@ -1,54 +1,56 @@
 using UnityEngine;
-using ANTs.Core;
 using Panda;
 
-public class ChargeToPlayerTask : MonoBehaviour
+namespace ANTs.Core
 {
-    [SerializeField] Transform player;
-
-    private EnemyChargerFacade charger;
-
-    private bool isArrive;
-
-    private void Awake()
+    public class ChargeToPlayerTask : MonoBehaviour
     {
-        charger = GetComponent<EnemyChargerFacade>();
-    }
+        [SerializeField] Transform player;
 
-    private void OnEnable()
-    {
-        charger.OnArrivedEvent += OnMoverArrived;
-    }
+        private EnemyChargeBehaviour charger;
 
-    private void OnDisable()
-    {
-        charger.OnArrivedEvent -= OnMoverArrived;
-    }
+        private bool isArrive;
 
-    [Task]
-    public void ChargeToPlayer()
-    {
-        if(Task.current.isStarting)
+        private void Awake()
         {
-            Revaluate();
+            charger = GetComponent<EnemyChargeBehaviour>();
         }
 
-        if (isArrive)
+        private void OnEnable()
         {
-            Task.current.Succeed();
+            charger.OnArrivedEvent += OnMoverArrived;
         }
-        Task.current.debugInfo = Task.current.status.ToString();
-    }
 
-    private void Revaluate()
-    {
-        isArrive = false;
-        Vector2 playerPosition = player.position;
-        charger.ChargeTo(playerPosition);
-    }
+        private void OnDisable()
+        {
+            charger.OnArrivedEvent -= OnMoverArrived;
+        }
 
-    public void OnMoverArrived()
-    {
-        isArrive = true;
+        [Task]
+        public void ChargeToPlayer()
+        {
+            if (Task.current.isStarting)
+            {
+                Revaluate();
+            }
+
+            if (isArrive)
+            {
+                Task.current.Succeed();
+            }
+            Task.current.debugInfo = Task.current.status.ToString();
+        }
+
+        private void Revaluate()
+        {
+            isArrive = false;
+            Vector2 playerPosition = player.position;
+            charger.ChargeTo(playerPosition);
+        }
+
+        public void OnMoverArrived()
+        {
+            isArrive = true;
+        }
     }
 }

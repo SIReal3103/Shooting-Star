@@ -63,8 +63,10 @@ namespace ANTs.Core
             if (currentGun != null) Destroy(currentGun);
 
             currentGun = Instantiate(gunPrefab, transform);
+
             // Remove trailing (Clone) 
             currentGun.name = gunPrefab.name;
+
             currentGun.Init(this);
             SetBulletPoolForCurrentGun(currentBulletPool);
         }

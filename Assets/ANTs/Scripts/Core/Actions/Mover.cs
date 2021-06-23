@@ -80,7 +80,7 @@ namespace ANTs.Core
                 case MovementType.Lerp:
                     return new LerpMovement();
                 default:
-                    throw new UnityException("Invalid move strategy");
+                    throw new UnityException("Invalid moveStrategy");
             }
         }
     }
