@@ -14,29 +14,29 @@ namespace ANTs.Core
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent += OnActorAtack;
             GetComponent<Mover>().OnStartMovingEvent += OnStartMoving;
-            GetComponent<Mover>().OnStartMovingEvent += OnStopMoving;
+            GetComponent<Mover>().OnStopMovingEvent += OnStopMoving;
         }
 
         private void OnDisable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent -= OnActorAtack;
             GetComponent<Mover>().OnStartMovingEvent -= OnStartMoving;
-            GetComponent<Mover>().OnStartMovingEvent -= OnStopMoving;
+            GetComponent<Mover>().OnStopMovingEvent -= OnStopMoving;
         }
 
         private void OnActorAtack()
         {
-            animator.SetTrigger(Triggers.StartAttacking);
+            animator.SetTrigger(ANTsTransition.StartAttacking);
         }
 
         private void OnStartMoving()
         {
-            animator.SetTrigger(Triggers.StartMoving);
+            animator.SetBool(ANTsTransition.IsMoving, true);
         }
 
         private void OnStopMoving()
         {
-            animator.SetTrigger(Triggers.StopMoving);
+            animator.SetBool(ANTsTransition.IsMoving, false);
         }
     }
 }

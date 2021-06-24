@@ -10,22 +10,50 @@ namespace ANTs.Core
         /// When touch damager hit a dammageble enemy
         /// </summary>
         public event Action OnHitEvent;
+        [Tooltip("The source of the attacker, use to compare tag")]
+        [SerializeField] GameObject source;
+        [Tooltip("If the enemy stay in the collider, how long between dammages occur")]
+        [SerializeField] float timeBetweenHits = 0.5f;
 
-        [HideInInspector]
-        public GameObject source;
+        public GameObject Source { get => source; set => source = value; }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private float timeSinceLastHit;
+
+        private void OnEnable()
         {
-            if (!collision.transform.CompareTag(source.tag))
+            timeSinceLastHit = Mathf.Infinity;
+        }
+
+        private void Update()
+        {
+            timeSinceLastHit += Time.deltaTime;
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            if (isEnemy(collision))
             {
                 if (!collision.transform.TryGetComponent(out Damageable damageable))
                 {
                     return;
                 }
 
-                damageable.TakeDamageFrom(GetComponent<Damager>());
-                OnHitEvent?.Invoke();
+                Attack(damageable);
             }
+        }
+
+        private bool isEnemy(Collision2D collision)
+        {
+            return !collision.transform.CompareTag(Source.tag);
+        }
+
+        private void Attack(Damageable damageable)
+        {
+            if (timeSinceLastHit < timeBetweenHits) return;
+            timeSinceLastHit = 0;
+
+            damageable.TakeDamageFrom(GetComponent<Damager>());
+            OnHitEvent?.Invoke();
         }
     }
 }

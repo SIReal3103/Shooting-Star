@@ -78,7 +78,7 @@ namespace ANTs.Core
             SetDirection(data.moveDirection);
             source = data.source;
 
-            touchDamager.source = data.source;
+            touchDamager.Source = data.source;
         }
 
         public void Sleep() // IANTsPoolable Implementation

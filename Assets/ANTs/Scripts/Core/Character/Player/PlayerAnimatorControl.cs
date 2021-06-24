@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ANTs.Template;
 
 namespace ANTs.Core
 {
@@ -16,7 +17,7 @@ namespace ANTs.Core
 
         private void Update()
         {
-            animator.SetBool("IsMoving", mover.IsMoving());
+            animator.SetBool(ANTsTransition.IsMoving, mover.IsMoving());
         }
     }
 }

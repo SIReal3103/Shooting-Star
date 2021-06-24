@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5795937482615585853}
-  - component: {fileID: 7456920437463718417}
   - component: {fileID: 289293652863435937}
   m_Layer: 0
-  m_Name: AttackArea
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,36 +27,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5411267406665875466}
   m_Father: {fileID: 7973814677124222154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7456920437463718417
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7434751973952162532}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.07348853, y: -0.3025993}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
-    newSize: {x: 8, y: 8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.8934073, y: 0.39480138}
-  m_EdgeRadius: 0
 --- !u!212 &289293652863435937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -125,10 +99,10 @@ MonoBehaviour:
   autoReset: 1
   tickOn: 0
   sourceInfos:
-  - isFoldout: 1
+  - isFoldout: 0
     breakPoints: 
     breakPointStatuses: 
-    collapsedLines: 0200000003000000
+    collapsedLines: 
     btScript: 
 --- !u!114 &5656746761104921685
 MonoBehaviour:
@@ -189,26 +163,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5480311482494197976}
---- !u!114 &7931857839549047341
+--- !u!1 &8846833554196541729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5411267406665875466}
+  - component: {fileID: 1033395105628884621}
+  - component: {fileID: 1859313294548082932}
+  - component: {fileID: 3137335475607611748}
+  m_Layer: 0
+  m_Name: AttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5411267406665875466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846833554196541729}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5795937482615585853}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1033395105628884621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973814678278962949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f852a43069ddb48a0bb5d888148f33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
---- !u!114 &9100019795899645994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973814678278962949}
+  m_GameObject: {fileID: 8846833554196541729}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
@@ -217,6 +211,46 @@ MonoBehaviour:
   initialDamage: 10
   criticalChance: 0
   critEfficent: 0
+--- !u!114 &1859313294548082932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846833554196541729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f852a43069ddb48a0bb5d888148f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 7973814678278962949}
+  timeBetweenHits: 0.5
+--- !u!61 &3137335475607611748
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846833554196541729}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07348853, y: -0.3025993}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 8}
+    newSize: {x: 8, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8934073, y: 0.39480138}
+  m_EdgeRadius: 0
 --- !u!1001 &7520664811280319784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,17 +317,17 @@ PrefabInstance:
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.346893
       objectReference: {fileID: 0}
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.82425344
       objectReference: {fileID: 0}
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 11.983018
       objectReference: {fileID: 0}
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
@@ -335,6 +369,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c4181ab4604f9704193e93ea2e20204b, type: 2}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: movement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7681979849479937918, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: gizmoViewMode

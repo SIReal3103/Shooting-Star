@@ -21,7 +21,6 @@ namespace ANTs.Core
 
         private void Awake()
         {
-            GetComponent<TouchDamager>().source = gameObject;
             mover = GetComponent<Mover>();
         }
 
