@@ -6,6 +6,9 @@ namespace ANTs.Core
     [RequireComponent(typeof(Damager))]
     public class TouchDamager : MonoBehaviour
     {
+        /// <summary>
+        /// When touch damager hit a dammageble enemy
+        /// </summary>
         public event Action OnHitEvent;
 
         [HideInInspector]
@@ -15,8 +18,7 @@ namespace ANTs.Core
         {
             if (!collision.transform.CompareTag(source.tag))
             {
-                Damageable damageable;
-                if (!collision.transform.TryGetComponent(out damageable))
+                if (!collision.transform.TryGetComponent(out Damageable damageable))
                 {
                     return;
                 }

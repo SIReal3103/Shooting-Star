@@ -5,31 +5,35 @@ namespace ANTs.Core
 {
     public class Damageable : MonoBehaviour
     {
-        public event Action<int> onHealthUpdateEvent;
-        public event Action<int> onMaxHealthUpdateEvent;
+        public event Action<int> OnHealthUpdateEvent;
+        public event Action<int> OnMaxHealthUpdateEvent;
 
+        #region ===============================SERIALIZEFIELD
         [SerializeField] int maxHealth = 100;
         [SerializeField] int health = 100;
         [Space]
         [SerializeField] int defenseByValue = 0;
         [SerializeField] float dodgeChance = 0;
+        #endregion
 
+        #region ===============================ACCESSORS
         public int MaxHealth { get => maxHealth; }
         public int Health { 
             get => health; 
             set
             {
                 health = Mathf.Clamp(value, 0, MaxHealth);
-                onHealthUpdateEvent?.Invoke(health);
+                OnHealthUpdateEvent?.Invoke(health);
             }
         }
         public int DefenseByValue { get => defenseByValue; }
         public float DodgeChance { get => dodgeChance; }
+        #endregion
 
         private void Start()
         {
-            onMaxHealthUpdateEvent(maxHealth);
-            onHealthUpdateEvent(health);
+            OnMaxHealthUpdateEvent?.Invoke(maxHealth);
+            OnHealthUpdateEvent?.Invoke(health);
         }
 
         public void TakeDamageFrom(Damager damager)
@@ -38,7 +42,7 @@ namespace ANTs.Core
             DrawHealth(calculator.GetDamageDealt());
         }
 
-        public void DrawHealth(int health)
+        private void DrawHealth(int health)
         {
             this.Health -= health;
         }

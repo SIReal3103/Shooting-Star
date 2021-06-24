@@ -8,27 +8,33 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent
         {
-            add { GetComponent<EnemyFacade>().OnArrivedEvent += value; }
-            remove { GetComponent<EnemyFacade>().OnArrivedEvent -= value; }
+            add { GetComponent<Mover>().OnArrivedEvent += value; }
+            remove { GetComponent<Mover>().OnArrivedEvent -= value; }
         }
 
-        [SerializeField] MoveData moveSpeed;
-        [SerializeField] MoveData runSpeed;
+        [Tooltip("The speed which Charger normally move")]
+        [SerializeField] MoveData normalSpeed;
+        [Tooltip("The speed which charger run to target (or player)")]
+        [SerializeField] MoveData chargeSpeed;
 
-        private EnemyFacade control;
+        private Mover mover;
 
         private void Awake()
         {
-            control = GetComponent<EnemyFacade>();
             GetComponent<TouchDamager>().source = gameObject;
+            mover = GetComponent<Mover>();
         }
 
         public void MoveTo(Vector2 destination)
         {
+            mover.SetMoveData(normalSpeed);
+            mover.StartMovingTo(destination);
         }
 
         public void ChargeTo(Vector2 destination)
         {
+            mover.SetMoveData(chargeSpeed);
+            mover.StartMovingTo(destination);
         }
     }
 }

@@ -7,6 +7,8 @@ namespace ANTs.Core
     [RequireComponent(typeof(Damager))]
     public class Bullet : Projectile, IANTsPoolable<BulletPool, Bullet>, IProgressable
     {
+        #region ==================================SerializeField
+
         [Tooltip("Decide whether if the bullet will be destroyed when out of player view")]
         [SerializeField] bool destroyWhenOutOfScreen = true;
         [Tooltip("The boundaries of which the bullet will be destroyed")]
@@ -14,6 +16,8 @@ namespace ANTs.Core
         [Space]
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextBulletId;
+
+        #endregion
 
         public BulletPool CurrentPool { get; set; }
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
@@ -29,7 +33,7 @@ namespace ANTs.Core
 
         private void Update()
         {
-            if (destroyWhenOutOfScreen && CheckIsOutOfScreen())
+            if (destroyWhenOutOfScreen && IsOutOfScreen())
             {
                 ReturnToPool();
             }
@@ -44,7 +48,7 @@ namespace ANTs.Core
             touchDamager.OnHitEvent -= OnHit;
         }
 
-        private bool CheckIsOutOfScreen()
+        private bool IsOutOfScreen()
         {
             Vector2 screenPosition = Camera.main.WorldToViewportPoint(transform.position);
             return
@@ -56,6 +60,8 @@ namespace ANTs.Core
         {
             ReturnToPool();
         }
+
+        #region ===============================IANTsPoolable Implementation
 
         public void ReturnToPool() // IANTsPoolable Implementation
         {
@@ -79,5 +85,7 @@ namespace ANTs.Core
         {
             gameObject.SetActive(false);
         }
+
+        #endregion
     }
 }

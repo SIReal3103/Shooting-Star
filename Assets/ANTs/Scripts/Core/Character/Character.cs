@@ -33,7 +33,7 @@ namespace ANTs.Core
 
         public void LoadMoveData(MoveData data)
         {
-            mover.LoadMoveData(data);
+            mover.SetMoveData(data);
         }
 
         private bool IsFacingLeft()

@@ -68,7 +68,7 @@ namespace ANTs.Core
         private void LoadMoveStrategy(MoveStrategy moveStrategy)
         {
             this.moveStrategy = moveStrategy;
-            LoadMoveData(initialMoveData);
+            SetMoveData(initialMoveData);
         }
 
         private bool IsArrived()
@@ -76,7 +76,7 @@ namespace ANTs.Core
             return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
 
-        public void LoadMoveData(MoveData data)
+        public void SetMoveData(MoveData data)
         {
             currentMoveData = data;
 

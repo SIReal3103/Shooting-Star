@@ -17,14 +17,14 @@ namespace ANTs.UI
 
         private void OnEnable()
         {
-            observer.onHealthUpdateEvent += OnHealthUpdate;
-            observer.onMaxHealthUpdateEvent += OnMaxHealthUpdate;
+            observer.OnHealthUpdateEvent += OnHealthUpdate;
+            observer.OnMaxHealthUpdateEvent += OnMaxHealthUpdate;
         }
 
         private void OnDisable()
         {
-            observer.onHealthUpdateEvent -= OnHealthUpdate;
-            observer.onMaxHealthUpdateEvent -= OnMaxHealthUpdate;
+            observer.OnHealthUpdateEvent -= OnHealthUpdate;
+            observer.OnMaxHealthUpdateEvent -= OnMaxHealthUpdate;
         }
 
         private void Start()
