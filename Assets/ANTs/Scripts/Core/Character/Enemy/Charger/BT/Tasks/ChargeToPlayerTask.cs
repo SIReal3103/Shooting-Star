@@ -5,6 +5,8 @@ namespace ANTs.Core
 {
     public class ChargeToPlayerTask : MonoBehaviour
     {
+        public event System.Action OnActorAttackEvent;
+
         [SerializeField] Transform player;
 
         private EnemyChargerBehaviour charger;
@@ -37,6 +39,7 @@ namespace ANTs.Core
             if (isArrive)
             {
                 Task.current.Succeed();
+                OnActorAttackEvent?.Invoke();
             }
             Task.current.debugInfo = Task.current.status.ToString();
         }

@@ -2,6 +2,6 @@ tree("Root")
 	repeat
 		sequence
 			MoveToPreparePosition
-			Wait 1.0
+			Wait 2.0
 			ChargeToPlayer
-			Wait 1.0
+			Wait 2.0

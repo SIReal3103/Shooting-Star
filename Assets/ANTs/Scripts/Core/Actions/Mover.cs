@@ -13,6 +13,8 @@ namespace ANTs.Core
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : MonoBehaviour
     {
+        public event Action OnStartMovingEvent;
+        public event Action OnStopMovingEvent;
         public event Action OnArrivedEvent;
 
         [SerializeField] MovementType movement;
@@ -37,11 +39,15 @@ namespace ANTs.Core
 
         public void StopMoving()
         {
+            OnStopMovingEvent?.Invoke();
+
             isStop = true;
         }
 
         public void StartMovingTo(Vector2 destination)
         {
+            OnStartMovingEvent?.Invoke();
+
             isStop = false;
             moveStrategy.data.destination = destination;
         }
