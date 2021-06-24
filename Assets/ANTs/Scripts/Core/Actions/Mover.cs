@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
-
+using ANTs.Template;
+using MoreMountains.Tools;
 namespace ANTs.Core
 {
     public enum MovementType
@@ -15,14 +16,15 @@ namespace ANTs.Core
         public event Action OnArrivedEvent;
 
         [SerializeField] MovementType movement;
-        [SerializeField] MoveData moveData;
+        [SerializeField] MoveData initialMoveData;
         [SerializeField] float destinationOffset = 0.1f;
 
+        private MoveData currentMoveData;
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
         private bool isStop = true;
 
-        #region ACCESSOR
+        #region ACCESSORS
         public bool IsMoving()
         {
             return !isStop;
@@ -66,7 +68,7 @@ namespace ANTs.Core
         private void LoadMoveStrategy(MoveStrategy moveStrategy)
         {
             this.moveStrategy = moveStrategy;
-            LoadMoveData(moveData);
+            LoadMoveData(initialMoveData);
         }
 
         private bool IsArrived()
@@ -76,6 +78,8 @@ namespace ANTs.Core
 
         public void LoadMoveData(MoveData data)
         {
+            currentMoveData = data;
+
             moveStrategy.data = data;
             moveStrategy.data.rb = this.rb;
         }

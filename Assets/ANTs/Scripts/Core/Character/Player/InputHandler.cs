@@ -2,14 +2,14 @@
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(PlayerFacadel))]
-    public class PlayerInputHandler : MonoBehaviour
+    [RequireComponent(typeof(PlayerFacade))]
+    public class InputHandler : MonoBehaviour
     {
-        private PlayerFacadel player;
+        private PlayerFacade player;
 
         private void Start()
         {
-            player = GetComponent<PlayerFacadel>();
+            player = GetComponent<PlayerFacade>();
         }
 
         private void Update()

@@ -4,7 +4,7 @@ namespace ANTs.Core
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(Gunner))]
-    public class PlayerFacadel : MonoBehaviour
+    public class PlayerFacade : MonoBehaviour
     {
         private Mover mover;
         private Gunner gunner;

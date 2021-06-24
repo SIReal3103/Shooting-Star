@@ -62,14 +62,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed:
     speed: 10
-    tiltSpeed: 0
-    destinationOffset: 0.1
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
   runSpeed:
     speed: 30
-    tiltSpeed: 0
-    destinationOffset: 0.1
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
 --- !u!114 &7931857839549047341

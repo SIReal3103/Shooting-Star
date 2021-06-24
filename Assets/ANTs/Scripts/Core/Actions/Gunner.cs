@@ -9,9 +9,9 @@ namespace ANTs.Core
         [Space]
         [SerializeField] float timeBetweenFire = 0.5f;
         [Space]
-        [Tooltip("Initial gun type for gunner")]
+        [Tooltip("Initial gun type for gunner, default gun if null")]
         [SerializeField] GunPool initialGunPool;
-        [Tooltip("Initial bullet type for gunner")]
+        [Tooltip("Initial bullet type for gunner, default bullet if null")]
         [SerializeField] BulletPool initialBulletPool;
         #endregion
 

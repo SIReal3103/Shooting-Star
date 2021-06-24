@@ -8,7 +8,7 @@ namespace ANTs.Core
     //TODO: Enemy not die
 
     [RequireComponent(typeof(Mover))]
-    public class EnemyFacde : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyFacde>
+    public class EnemyFacade : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyFacade>
     {
         public event Action OnArrivedEvent
         {
@@ -26,21 +26,10 @@ namespace ANTs.Core
         }
 
         #region BEHAVIOURS
-        public void StartMovingTo(Vector2 destination)
-        {
-            mover.StartMovingTo(destination);
-        }
-        public void StopMoving()
-        {
-            mover.StopMoving();
-        }
         public void Dead()
         {
+            if (CurrentPool == null) Destroy(this); // if gameObject is created directly on scene
             ReturnToPool();
-        }
-        public void LoadMoveData(MoveData data)
-        {
-            mover.LoadMoveData(data);
         }
         #endregion
 
