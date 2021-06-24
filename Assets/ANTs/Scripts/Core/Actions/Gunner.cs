@@ -71,6 +71,7 @@ namespace ANTs.Core
 
         private void LoadCurrenGun()
         {
+            if(currentGun != null) currentGun.ReturnToPool();
             currentGun = currentGunPool.Pop(new GunData(transform, this, currentBulletPool));
         }
 

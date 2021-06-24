@@ -26,7 +26,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPosition: {fileID: 4919006090727493105}
   timeBetweenFire: 0.5
-  initialGunPrefab: {fileID: 0}
+  initialGunPool: {fileID: 0}
   initialBulletPool: {fileID: 0}
 --- !u!114 &5365085402913456819
 MonoBehaviour:
@@ -90,21 +90,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.5590456
-      objectReference: {fileID: 0}
-    - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.8922641
-      objectReference: {fileID: 0}
-    - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.983018
       objectReference: {fileID: 0}
     - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}

@@ -41,12 +41,13 @@ namespace ANTs.Core
             }
         }
 
-        public void ReturnToPool() // IANTsPoolable Implementation
+        #region IANTsPoolable IMPLEMENTATION
+        public void ReturnToPool()
         {
             CurrentPool.ReturnToPool(this);
         }
 
-        public void WakeUp(object args) // IANTsPoolable Implementation
+        public void WakeUp(object args)
         {
             gameObject.SetActive(true);
 
@@ -54,11 +55,14 @@ namespace ANTs.Core
             transform.SetParent(data.transform);
             gunHolder = data.gunHolder;
             currentBulletPool = data.bulletPool;
+
+            transform.localPosition = Vector3.zero;
         }
 
-        public void Sleep() // IANTsPoolable Implementation
+        public void Sleep()
         {
             gameObject.SetActive(false);
         }
+        #endregion
     }
 }

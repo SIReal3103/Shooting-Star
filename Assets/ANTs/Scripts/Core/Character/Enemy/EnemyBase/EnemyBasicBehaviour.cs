@@ -29,6 +29,7 @@ namespace ANTs.Core
             mover.SetMoveStrategy(MoveFactory.CreateMove(MovementType.Linearity));
         }
 
+        #region BEHAVIOURS
         public void StartMovingTo(Vector2 destination)
         {
             mover.StartMovingTo(destination);
@@ -41,14 +42,13 @@ namespace ANTs.Core
         {
             ReturnToPool();
         }
-
         public void LoadMoveData(MoveData data)
         {
             mover.LoadMoveData(data);
         }
+        #endregion
 
-        // IANTsPoolObject implementation
-
+        #region IANTsPoolObject IMPLEMENTATION
         public void ReturnToPool()
         {
             CurrentPool.ReturnToPool(this);
@@ -63,6 +63,7 @@ namespace ANTs.Core
         {
             gameObject.SetActive(false);
         }
+        #endregion
     }
 }
 
