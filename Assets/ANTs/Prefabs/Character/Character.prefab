@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7604222906058201490}
   - component: {fileID: 7222730965000918530}
   - component: {fileID: 8336205361287467119}
+  - component: {fileID: 8306164006649178684}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -132,12 +133,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d0a4466cd32ae4aad2ba0a9e6ef645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialData:
+  movement: 0
+  moveData:
     speed: 10
-    tiltSpeed: 0
-    destinationOffset: 0.1
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
+  destinationOffset: 0.1
+--- !u!114 &8306164006649178684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726713874072087784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0af39432885c4443980f7a4f5090dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 3726713875333373735}
 --- !u!1 &3726713874224106435
 GameObject:
   m_ObjectHideFlags: 0

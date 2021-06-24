@@ -298,6 +298,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 559205349}
     m_Modifications:
+    - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: movement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5414274874121336222, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: sourceInfos.Array.data[0].isFoldout
@@ -427,18 +432,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4890855}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1019781100 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3166627256412620700, guid: f632e97329d23334ba582429bc989481,
-    type: 3}
-  m_PrefabInstance: {fileID: 610055106}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdfca774173b5f4cb6834978a08f482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1019781108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
@@ -838,7 +831,7 @@ PrefabInstance:
     - target: {fileID: 185504886, guid: 3790ae7b3b5db934ea9edb138c516bb5, type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 1019781100}
+      objectReference: {fileID: 0}
     - target: {fileID: 2521491159427168576, guid: 3790ae7b3b5db934ea9edb138c516bb5,
         type: 3}
       propertyPath: m_Name

@@ -4,7 +4,7 @@ using ANTs.Template;
 
 namespace ANTs.Core
 {
-    public class EnemyPool : ANTsPool<EnemyPool, EnemyBasicBehaviour>
+    public class EnemyPool : ANTsPool<EnemyPool, EnemyFacde>
     {
 
     }

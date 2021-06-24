@@ -14,18 +14,15 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent;
 
-        [SerializeField] MoveData initialData;
+        [SerializeField] MovementType movement;
+        [SerializeField] MoveData moveData;
+        [SerializeField] float destinationOffset = 0.1f;
 
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
         private bool isStop = true;
 
-        public void SetMoveStrategy(MoveStrategy moveStrategy)
-        {
-            this.moveStrategy = moveStrategy;
-            LoadMoveData(initialData);
-        }
-
+        #region ACCESSOR
         public bool IsMoving()
         {
             return !isStop;
@@ -36,10 +33,22 @@ namespace ANTs.Core
             return moveStrategy.data.GetMoveDirection();
         }
 
-        private void Start()
+        public void StopMoving()
         {
-            this.rb = GetComponent<Rigidbody2D>();
-            initialData.rb = this.rb;
+            isStop = true;
+        }
+
+        public void StartMovingTo(Vector2 destination)
+        {
+            isStop = false;
+            moveStrategy.data.destination = destination;
+        }
+        #endregion
+
+        private void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            LoadMoveStrategy(MoveFactory.CreateMove(movement));
         }
 
         private void Update()
@@ -54,26 +63,21 @@ namespace ANTs.Core
             }
         }
 
+        private void LoadMoveStrategy(MoveStrategy moveStrategy)
+        {
+            this.moveStrategy = moveStrategy;
+            LoadMoveData(moveData);
+        }
+
         private bool IsArrived()
         {
-            return (moveStrategy.data.destination - rb.position).magnitude < moveStrategy.data.DestinationOffset;
+            return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
 
         public void LoadMoveData(MoveData data)
         {
             moveStrategy.data = data;
             moveStrategy.data.rb = this.rb;
-        }
-
-        public void StopMoving()
-        {
-            isStop = true;
-        }
-
-        public void StartMovingTo(Vector2 destination)
-        {
-            isStop = false;
-            moveStrategy.data.destination = destination;
         }
     }
 
@@ -114,7 +118,7 @@ namespace ANTs.Core
     {
         public override void UpdatePath()
         {
-            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
+            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.Speed * Time.deltaTime));
         }
     }
 
@@ -122,16 +126,13 @@ namespace ANTs.Core
     public class MoveData
     {
         [SerializeField] float speed = 10f;
-        [SerializeField] float tiltSpeed = 0f;
-        [SerializeField] float destinationOffset = 0.1f;
 
         [HideInInspector]
         public Vector2 destination;
         [HideInInspector]
         public Rigidbody2D rb;
+
         public float Speed { get => speed; }
-        public float TiltSpeed { get => tiltSpeed; }
-        public float DestinationOffset { get => destinationOffset; }
 
         public Vector2 GetMoveDirection()
         {

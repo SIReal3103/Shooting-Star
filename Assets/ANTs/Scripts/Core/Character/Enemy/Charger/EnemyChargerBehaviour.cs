@@ -3,23 +3,23 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(EnemyBasicBehaviour))]
+    [RequireComponent(typeof(EnemyFacde))]
     public class EnemyChargerBehaviour : MonoBehaviour
     {
         public event Action OnArrivedEvent
         {
-            add { GetComponent<EnemyBasicBehaviour>().OnArrivedEvent += value; }
-            remove { GetComponent<EnemyBasicBehaviour>().OnArrivedEvent -= value; }
+            add { GetComponent<EnemyFacde>().OnArrivedEvent += value; }
+            remove { GetComponent<EnemyFacde>().OnArrivedEvent -= value; }
         }
 
         [SerializeField] MoveData moveSpeed;
         [SerializeField] MoveData runSpeed;
 
-        private EnemyBasicBehaviour control;
+        private EnemyFacde control;
 
         private void Awake()
         {
-            control = GetComponent<EnemyBasicBehaviour>();
+            control = GetComponent<EnemyFacde>();
             GetComponent<TouchDamager>().source = gameObject;
         }
 

@@ -4,7 +4,7 @@ namespace ANTs.Core
 {
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(Gunner))]
-    public class PlayerControlFacade : MonoBehaviour
+    public class PlayerFacadel : MonoBehaviour
     {
         private Mover mover;
         private Gunner gunner;
@@ -13,8 +13,6 @@ namespace ANTs.Core
         {
             mover = GetComponent<Mover>();
             gunner = GetComponent<Gunner>();
-
-            mover.SetMoveStrategy(MoveFactory.CreateMove(MovementType.Lerp));
         }
 
         public void StartMovingTo(Vector2 position)

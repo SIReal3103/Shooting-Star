@@ -8,7 +8,7 @@ namespace ANTs.Core
     //TODO: Enemy not die
 
     [RequireComponent(typeof(Mover))]
-    public class EnemyBasicBehaviour : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyBasicBehaviour>
+    public class EnemyFacde : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyFacde>
     {
         public event Action OnArrivedEvent
         {
@@ -23,10 +23,6 @@ namespace ANTs.Core
         private void Awake()
         {
             mover = GetComponent<Mover>();
-        }
-        private void Start()
-        {
-            mover.SetMoveStrategy(MoveFactory.CreateMove(MovementType.Linearity));
         }
 
         #region BEHAVIOURS
