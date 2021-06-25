@@ -11,30 +11,39 @@ namespace ANTs.Core
         [SerializeField] Animator animator;
 
         private Mover mover;
+        private EnemyFacade enemy;
 
         private void Awake()
         {
             mover = GetComponent<Mover>();
+            enemy = GetComponent<EnemyFacade>();
         }
 
         private void OnEnable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent += OnActorAtack;
+            GetComponent<EnemyFacade>().OnEnemyDeadEvent += OnEnemyDead;
         }
 
         private void OnDisable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent -= OnActorAtack;
+            GetComponent<EnemyFacade>().OnEnemyDeadEvent -= OnEnemyDead;
         }
 
         private void Update()
         {
-            animator.SetBool(ANTsTransition.IsMoving, mover.IsMoving());
+            animator.SetBool(ANTsGameState.IsMoving, mover.IsMoving());
         }
 
         private void OnActorAtack()
         {
-            animator.SetTrigger(ANTsTransition.StartAttacking);
+            animator.SetTrigger(ANTsGameState.StartAttacking);
+        }
+
+        private void OnEnemyDead()
+        {
+            animator.SetTrigger(ANTsGameState.StartDying);
         }
     }
 }

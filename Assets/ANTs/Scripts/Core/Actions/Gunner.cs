@@ -2,7 +2,7 @@
 
 namespace ANTs.Core
 {
-    public class Gunner : MonoBehaviour
+    public class Gunner : MonoBehaviour, IAction
     {
         #region =================================================SERIALIZE_FIELD
         [SerializeField] Transform bulletSpawnPosition;
@@ -20,11 +20,11 @@ namespace ANTs.Core
         #region =================================================VARIABLES
         private GunPool currentGunPool;
         private BulletPool currentBulletPool;
-
         private Gun currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
-        #endregion
 
+        public bool IsActionStart { get; set; } = true;
+        #endregion
 
         #region =================================================UNITY_EVENTS
         private void Start()
@@ -38,14 +38,15 @@ namespace ANTs.Core
 
         private void Update()
         {
-            Fire();
+            if (!IsActionStart) return;
+            FireBehaviour();
             UpdateTimer();
         }
         #endregion
 
 
         #region =================================================BEHAVIOURS
-        public void Fire()
+        private void FireBehaviour()
         {
             if (timeSinceLastFire > timeBetweenFire)
             {
@@ -91,6 +92,21 @@ namespace ANTs.Core
         {
             timeSinceLastFire += Time.deltaTime;
         }
+        #endregion
+
+
+        #region =======================================IAction Implementation
+        public void ActionStart()
+        {
+            IsActionStart = true;
+        }
+
+        public void ActionCancel()
+        {
+            IsActionStart = false;
+        }
+        #endregion
     }
-    #endregion
+
+
 }

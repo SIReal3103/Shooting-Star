@@ -17,7 +17,7 @@ namespace ANTs.Core
 
         private void Update()
         {
-            animator.SetBool(ANTsTransition.IsMoving, mover.IsMoving());
+            animator.SetBool(ANTsGameState.IsMoving, mover.IsMoving());
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ANTs.Core
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IAction
     {
         public event Action OnStartMovingEvent;
         public event Action OnStopMovingEvent;
@@ -21,34 +21,10 @@ namespace ANTs.Core
 
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
-        private bool isStop = true;
 
-        #region ACCESSORS
-        public bool IsMoving()
-        {
-            return !isStop;
-        }
+        public bool IsActionStart { get; set; } = false;
 
-        public Vector2 GetMoveDirection()
-        {
-            return moveStrategy.data.GetMoveDirection();
-        }
-
-        public void StopMoving()
-        {
-            OnStopMovingEvent?.Invoke();
-            isStop = true;
-        }
-
-        public void StartMovingTo(Vector2 destination)
-        {
-            OnStartMovingEvent?.Invoke();
-
-            isStop = false;
-            moveStrategy.data.destination = destination;
-        }
-        #endregion
-
+        #region ============================================Unity Events
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -57,7 +33,7 @@ namespace ANTs.Core
 
         private void Update()
         {
-            if (isStop) return;
+            if (!IsActionStart) return;
 
             moveStrategy?.UpdatePath();
             if (IsArrived())
@@ -65,6 +41,22 @@ namespace ANTs.Core
                 OnStopMovingEvent?.Invoke();
                 StopMoving();
             }
+        }
+        #endregion
+
+        #region ===========================================Behaviours
+        public void StopMoving()
+        {
+            OnStopMovingEvent?.Invoke();
+            IsActionStart = false;
+        }
+
+        public void StartMovingTo(Vector2 destination)
+        {
+            OnStartMovingEvent?.Invoke();
+
+            IsActionStart = true;
+            moveStrategy.data.destination = destination;
         }
 
         private void LoadMoveStrategy(MoveStrategy moveStrategy)
@@ -78,11 +70,34 @@ namespace ANTs.Core
             return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
 
+        public bool IsMoving()
+        {
+            return IsActionStart;
+        }
+
+        public Vector2 GetMoveDirection()
+        {
+            return moveStrategy.data.GetMoveDirection();
+        }
+
         public void SetMoveData(MoveData data)
         {
             moveStrategy.data = data;
             moveStrategy.data.rb = rb;
         }
+        #endregion
+
+        #region ============================================IAction Implementation
+        public void ActionStart()
+        {
+            IsActionStart = true;
+        }
+
+        public void ActionCancel()
+        {
+            IsActionStart = false;
+        }
+        #endregion
     }
 
     public abstract class MoveFactory

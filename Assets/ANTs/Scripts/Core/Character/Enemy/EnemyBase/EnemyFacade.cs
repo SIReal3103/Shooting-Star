@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 using ANTs.Template;
 
@@ -9,6 +8,8 @@ namespace ANTs.Core
     [RequireComponent(typeof(Damageable))]
     public class EnemyFacade : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyFacade>
     {
+        public event System.Action OnEnemyDeadEvent;
+
         [Tooltip("How long the enemy stay dead before return to pool")]
         [SerializeField] float durationReturnToPool;
 
@@ -34,6 +35,7 @@ namespace ANTs.Core
         #region =======================================BEHAVIOURS
         public void Dead()
         {
+            OnEnemyDeadEvent?.Invoke();
             Invoke(nameof(ReturnToPool), durationReturnToPool);
         }
         #endregion
