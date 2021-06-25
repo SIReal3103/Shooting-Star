@@ -17,7 +17,7 @@ namespace ANTs.Core
 
         public void StartMovingTo(Vector2 position)
         {
-            mover.StartMovingTo(position);
+            mover.SetDestination(position);
         }
 
         public void ChangeStrongerGun()

@@ -15,7 +15,7 @@ namespace ANTs.Core
 
         public void SetDirection(Vector2 direction)
         {
-            mover.StartMovingTo(direction * 1000);
+            mover.SetDestination(direction * 1000);
         }
     }
 }

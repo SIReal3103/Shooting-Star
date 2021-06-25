@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class Gunner : MonoBehaviour, IAction
+    public class Gunner : ActionBase
     {
         #region =================================================SERIALIZE_FIELD
         [SerializeField] Transform bulletSpawnPosition;
@@ -22,8 +23,6 @@ namespace ANTs.Core
         private BulletPool currentBulletPool;
         private Gun currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
-
-        public bool IsActionStart { get; set; } = true;
         #endregion
 
         #region =================================================UNITY_EVENTS
@@ -35,15 +34,15 @@ namespace ANTs.Core
             currentBulletPool = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultPool();
             LoadCurrentBullet();
         }
+        #endregion
 
-        private void Update()
+        #region =======================================IAction Implementation
+        public override void ActionUpdate()
         {
-            if (!IsActionStart) return;
             FireBehaviour();
             UpdateTimer();
         }
         #endregion
-
 
         #region =================================================BEHAVIOURS
         private void FireBehaviour()
@@ -94,19 +93,5 @@ namespace ANTs.Core
         }
         #endregion
 
-
-        #region =======================================IAction Implementation
-        public void ActionStart()
-        {
-            IsActionStart = true;
-        }
-
-        public void ActionCancel()
-        {
-            IsActionStart = false;
-        }
-        #endregion
     }
-
-
 }

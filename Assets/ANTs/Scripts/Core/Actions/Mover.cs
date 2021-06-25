@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ANTs.Template;
+using System;
 using UnityEngine;
-using ANTs.Template;
 namespace ANTs.Core
 {
     public enum MovementType
@@ -10,7 +10,7 @@ namespace ANTs.Core
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : ActionBase
     {
         public event Action OnStartMovingEvent;
         public event Action OnStopMovingEvent;
@@ -22,41 +22,24 @@ namespace ANTs.Core
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
 
-        public bool IsActionStart { get; set; } = false;
-
-        #region ============================================Unity Events
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             LoadMoveStrategy(MoveFactory.CreateMove(movement));
         }
 
-        private void Update()
-        {
-            if (!IsActionStart) return;
-
-            moveStrategy?.UpdatePath();
-            if (IsArrived())
-            {
-                OnStopMovingEvent?.Invoke();
-                StopMoving();
-            }
-        }
-        #endregion
-
         #region ===========================================Behaviours
+        public void SetDestination(Vector2 destination)
+        {
+            OnStartMovingEvent?.Invoke();
+            ActionStart();
+            moveStrategy.data.destination = destination;
+        }
+
         public void StopMoving()
         {
             OnStopMovingEvent?.Invoke();
-            IsActionStart = false;
-        }
-
-        public void StartMovingTo(Vector2 destination)
-        {
-            OnStartMovingEvent?.Invoke();
-
-            IsActionStart = true;
-            moveStrategy.data.destination = destination;
+            ActionStop();
         }
 
         private void LoadMoveStrategy(MoveStrategy moveStrategy)
@@ -72,7 +55,7 @@ namespace ANTs.Core
 
         public bool IsMoving()
         {
-            return IsActionStart;
+            return isActionStart;
         }
 
         public Vector2 GetMoveDirection()
@@ -88,14 +71,14 @@ namespace ANTs.Core
         #endregion
 
         #region ============================================IAction Implementation
-        public void ActionStart()
+        public override void ActionUpdate()
         {
-            IsActionStart = true;
-        }
-
-        public void ActionCancel()
-        {
-            IsActionStart = false;
+            moveStrategy?.UpdatePath();
+            if (IsArrived())
+            {
+                OnStopMovingEvent?.Invoke();
+                StopMoving();
+            }
         }
         #endregion
     }

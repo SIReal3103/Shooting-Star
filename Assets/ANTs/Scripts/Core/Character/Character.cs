@@ -23,7 +23,7 @@ namespace ANTs.Core
 
         public void StartMovingTo(Vector2 destination)
         {
-            mover.StartMovingTo(destination);
+            mover.SetDestination(destination);
         }
 
         public void StopMoving()

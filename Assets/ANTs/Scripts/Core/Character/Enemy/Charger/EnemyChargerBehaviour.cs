@@ -27,13 +27,13 @@ namespace ANTs.Core
         public void MoveTo(Vector2 destination)
         {
             mover.SetMoveData(normalSpeed);
-            mover.StartMovingTo(destination);
+            mover.SetDestination(destination);
         }
 
         public void ChargeTo(Vector2 destination)
         {
             mover.SetMoveData(chargeSpeed);
-            mover.StartMovingTo(destination);
+            mover.SetDestination(destination);
         }
     }
 }
