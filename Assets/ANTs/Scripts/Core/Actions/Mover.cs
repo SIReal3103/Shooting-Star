@@ -14,7 +14,6 @@ namespace ANTs.Core
     {
         public event Action OnStartMovingEvent;
         public event Action OnStopMovingEvent;
-        public event Action OnArrivedEvent;
 
         [SerializeField] MovementType movement;
         [SerializeField] MoveData initialMoveData;
@@ -38,7 +37,6 @@ namespace ANTs.Core
         public void StopMoving()
         {
             OnStopMovingEvent?.Invoke();
-
             isStop = true;
         }
 
@@ -64,7 +62,7 @@ namespace ANTs.Core
             moveStrategy?.UpdatePath();
             if (IsArrived())
             {
-                OnArrivedEvent?.Invoke();
+                OnStopMovingEvent?.Invoke();
                 StopMoving();
             }
         }

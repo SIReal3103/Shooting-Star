@@ -15,13 +15,6 @@ namespace ANTs.Template
         private Dictionary<ProgressIdentifier, TPool> pools =
             new Dictionary<ProgressIdentifier, TPool>();
 
-        private TPool CreatePool(TObject poolObject)
-        {
-            GameObject go = new GameObject(poolObject.name + "_pool");
-            go.transform.SetParent(transform);
-            return go.AddComponent<TPool>();
-        }
-
         protected ProgressablePoolManager() { }
 
         private void Start()
@@ -32,6 +25,13 @@ namespace ANTs.Template
                 pool.ReloadPrefab(prefab);
                 pools.Add(pool.Prefab.CurrentLevel, pool);
             }
+        }
+
+        private TPool CreatePool(TObject poolObject)
+        {
+            GameObject go = new GameObject(poolObject.name + "_pool");
+            go.transform.SetParent(transform);
+            return go.AddComponent<TPool>();
         }
 
         public bool ProgressNextPool(ref TPool pool)
