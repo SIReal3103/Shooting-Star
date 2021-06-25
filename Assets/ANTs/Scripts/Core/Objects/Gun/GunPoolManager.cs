@@ -17,10 +17,10 @@ namespace ANTs.Core
     public class GunData
     {
         public Transform transform;
-        public Gunner gunHolder;
+        public GunnerAction gunHolder;
         public BulletPool bulletPool;
 
-        public GunData(Transform transform, Gunner gunHolder, BulletPool bullet)
+        public GunData(Transform transform, GunnerAction gunHolder, BulletPool bullet)
         {
             this.transform = transform;
             this.gunHolder = gunHolder;

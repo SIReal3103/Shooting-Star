@@ -12,7 +12,7 @@ namespace ANTs.Core
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
-        private Gunner gunHolder;
+        private GunnerAction gunHolder;
         private BulletPool currentBulletPool;
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
@@ -21,7 +21,7 @@ namespace ANTs.Core
 
         public void SetBulletPool(BulletPool pool) => currentBulletPool = pool;
 
-        public void Init(Gunner gunHolder)
+        public void Init(GunnerAction gunHolder)
         {
             this.gunHolder = gunHolder;
         }

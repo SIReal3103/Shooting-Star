@@ -3,16 +3,16 @@ using ANTs.Template;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(MoverAction))]
     public class PlayerAnimatorControl : MonoBehaviour
     {
         [SerializeField] Animator animator;
 
-        private Mover mover;
+        private MoverAction mover;
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
+            mover = GetComponent<MoverAction>();
         }
 
         private void Update()

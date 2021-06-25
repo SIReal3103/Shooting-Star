@@ -8,8 +8,8 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent
         {
-            add { GetComponent<Mover>().OnArrivedEvent += value; }
-            remove { GetComponent<Mover>().OnArrivedEvent -= value; }
+            add { GetComponent<MoverAction>().OnArrivedEvent += value; }
+            remove { GetComponent<MoverAction>().OnArrivedEvent -= value; }
         }
 
         [Tooltip("The speed which Charger normally move")]
@@ -17,11 +17,11 @@ namespace ANTs.Core
         [Tooltip("The speed which charger run to target (or player)")]
         [SerializeField] MoveData chargeSpeed;
 
-        private Mover mover;
+        private MoverAction mover;
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
+            mover = GetComponent<MoverAction>();
         }
 
         public void MoveTo(Vector2 destination)

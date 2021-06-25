@@ -5,30 +5,30 @@ using System;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(ChargeToPlayerTask))]
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(MoverAction))]
     public class EnemyChargerAnimator : MonoBehaviour
     {
         [SerializeField] Animator animator;
 
-        private Mover mover;
+        private MoverAction mover;
         private EnemyFacade enemy;
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
+            mover = GetComponent<MoverAction>();
             enemy = GetComponent<EnemyFacade>();
         }
 
         private void OnEnable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent += OnActorAtack;
-            GetComponent<Dead>().OnActionStart += OnEnemyDead;
+            GetComponent<DieAction>().OnActionStart += OnEnemyDead;
         }
 
         private void OnDisable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent -= OnActorAtack;
-            GetComponent<Dead>().OnActionStart -= OnEnemyDead;
+            GetComponent<DieAction>().OnActionStart -= OnEnemyDead;
         }
 
         private void Update()

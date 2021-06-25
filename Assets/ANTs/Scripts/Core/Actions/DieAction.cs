@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class Dead : ActionBase, IANTsPoolable<EnemyPool, Dead>
+    public class DieAction : ActionBase, IANTsPoolable<EnemyPool, DieAction>
     {
         [Tooltip("How long before the return to pool")]
         [SerializeField] float durationReturnToPool = 1f;

@@ -2,17 +2,17 @@
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(Mover))]
-    [RequireComponent(typeof(Gunner))]
+    [RequireComponent(typeof(MoverAction))]
+    [RequireComponent(typeof(GunnerAction))]
     public class PlayerFacade : MonoBehaviour
     {
-        private Mover mover;
-        private Gunner gunner;
+        private MoverAction mover;
+        private GunnerAction gunner;
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
-            gunner = GetComponent<Gunner>();
+            mover = GetComponent<MoverAction>();
+            gunner = GetComponent<GunnerAction>();
         }
 
         public void StartMovingTo(Vector2 position)

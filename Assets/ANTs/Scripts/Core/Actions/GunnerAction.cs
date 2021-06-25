@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class Gunner : ActionBase
+    public class GunnerAction : ActionBase
     {
         #region =================================================SERIALIZE_FIELD
         [SerializeField] Transform bulletSpawnPosition;

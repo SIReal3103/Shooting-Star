@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ANTs.Template
 {
     public abstract class ActionBase : MonoBehaviour
     {
-        public event System.Action OnActionStart;
-        public event System.Action OnActionStop;
+        public event Action OnActionStart;
+        public event Action OnActionStop;
 
         [Header("ActionBase")]
         [SerializeField] bool actionStartOnPlay = false;

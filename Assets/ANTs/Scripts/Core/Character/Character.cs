@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(MoverAction))]
     public class Character : MonoBehaviour
     {
         [SerializeField] Transform model;
 
-        private Mover mover;
+        private MoverAction mover;
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
+            mover = GetComponent<MoverAction>();
         }
 
         private void Start()

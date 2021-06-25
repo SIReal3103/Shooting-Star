@@ -10,7 +10,7 @@ namespace ANTs.Core
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Mover : ActionBase
+    public class MoverAction : ActionBase
     {
         public event Action OnArrivedEvent;
 
