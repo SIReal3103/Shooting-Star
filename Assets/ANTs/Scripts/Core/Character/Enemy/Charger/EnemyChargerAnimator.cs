@@ -10,33 +10,31 @@ namespace ANTs.Core
     {
         [SerializeField] Animator animator;
 
+        private Mover mover;
+
+        private void Awake()
+        {
+            mover = GetComponent<Mover>();
+        }
+
         private void OnEnable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent += OnActorAtack;
-            GetComponent<Mover>().OnStartMovingEvent += OnStartMoving;
-            GetComponent<Mover>().OnStopMovingEvent += OnStopMoving;
         }
 
         private void OnDisable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent -= OnActorAtack;
-            GetComponent<Mover>().OnStartMovingEvent -= OnStartMoving;
-            GetComponent<Mover>().OnStopMovingEvent -= OnStopMoving;
+        }
+
+        private void Update()
+        {
+            animator.SetBool(ANTsTransition.IsMoving, mover.IsMoving());
         }
 
         private void OnActorAtack()
         {
             animator.SetTrigger(ANTsTransition.StartAttacking);
-        }
-
-        private void OnStartMoving()
-        {
-            animator.SetBool(ANTsTransition.IsMoving, true);
-        }
-
-        private void OnStopMoving()
-        {
-            animator.SetBool(ANTsTransition.IsMoving, false);
         }
     }
 }

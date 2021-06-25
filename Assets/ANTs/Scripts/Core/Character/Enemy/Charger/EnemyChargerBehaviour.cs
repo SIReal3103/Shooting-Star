@@ -8,8 +8,8 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent
         {
-            add { GetComponent<Mover>().OnArrivedEvent += value; }
-            remove { GetComponent<Mover>().OnArrivedEvent -= value; }
+            add { GetComponent<Mover>().OnStopMovingEvent += value; }
+            remove { GetComponent<Mover>().OnStopMovingEvent -= value; }
         }
 
         [Tooltip("The speed which Charger normally move")]

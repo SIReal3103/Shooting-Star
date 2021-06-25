@@ -303,6 +303,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 559205349}
     m_Modifications:
+    - target: {fileID: 3166627256412620700, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: durationReturnToPool
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: destinationOffset
@@ -326,7 +331,7 @@ PrefabInstance:
     - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: chargeSpeed.speed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
         type: 3}
@@ -396,7 +401,7 @@ PrefabInstance:
     - target: {fileID: 8846833554196541729, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f632e97329d23334ba582429bc989481, type: 3}

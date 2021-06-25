@@ -15,6 +15,11 @@ namespace ANTs.UI
 
         private Transform healthBar;
 
+        private void Awake()
+        {
+            healthBar = transform.Find(HEALTH_BAR_PATH);
+        }
+
         private void OnEnable()
         {
             observer.OnHealthUpdateEvent += OnHealthUpdate;
@@ -27,30 +32,15 @@ namespace ANTs.UI
             observer.OnMaxHealthUpdateEvent -= OnMaxHealthUpdate;
         }
 
-        private void Start()
+        private void OnHealthUpdate(int currentHealth)
         {
-            healthBar = transform.Find(HEALTH_BAR_PATH);
-        }
-
-        private void OnHealthUpdate(int health)
-        {
-            UpdateHealth(health);
-        }
-
-        private void OnMaxHealthUpdate(int health)
-        {
-            UpdateMaxHealth(health);
-        }
-
-        public void UpdateMaxHealth(int maxHealth)
-        {
-            this.maxHealth = maxHealth;
+            this.currentHealth = currentHealth;
             UpdateHealthBar();
         }
 
-        public void UpdateHealth(int currentHealth)
+        private void OnMaxHealthUpdate(int maxHealth)
         {
-            this.currentHealth = currentHealth;
+            this.maxHealth = maxHealth;
             UpdateHealthBar();
         }
 
