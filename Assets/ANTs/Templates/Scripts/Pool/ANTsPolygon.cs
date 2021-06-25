@@ -1,5 +1,4 @@
-﻿using BehaviorDesigner.Runtime;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ANTs.Template
 {
