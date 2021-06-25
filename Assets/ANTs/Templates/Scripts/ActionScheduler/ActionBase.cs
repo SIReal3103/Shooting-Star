@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Template
 {
+    [RequireComponent(typeof(ActionScheduler))]
     public abstract class ActionBase : MonoBehaviour
     {
         public event Action OnActionStart;
@@ -27,6 +28,7 @@ namespace ANTs.Template
         {
             OnActionStart?.Invoke();
             actionStartOnPlay = true;
+            GetComponent<ActionScheduler>().Trigger(this);
         }
         public virtual void ActionStop()
         {
