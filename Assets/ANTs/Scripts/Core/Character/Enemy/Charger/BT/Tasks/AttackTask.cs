@@ -5,7 +5,7 @@ using ANTs.Core;
 
 namespace Assets.ANTs.Scripts.Core.Character.Enemy.Charger.BT.Tasks
 {
-    public class AttackPlayerTask : MonoBehaviour
+    public class AttackTask : MonoBehaviour
     {
         [SerializeField] AttackArea attackArea;
         [SerializeField] ANTsAnimationEvents events;
