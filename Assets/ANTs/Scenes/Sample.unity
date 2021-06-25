@@ -303,6 +303,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 559205349}
     m_Modifications:
+    - target: {fileID: 289293652863435937, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 289293652863435937, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3166627256412620700, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: durationReturnToPool
@@ -553,6 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697429815}
   - component: {fileID: 1697429816}
+  - component: {fileID: 1697429817}
   m_Layer: 0
   m_Name: test
   m_TagString: Untagged
@@ -587,6 +598,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+--- !u!114 &1697429817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697429814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1dd39c15c61884fa16f6ad9308a579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6896935126317756293
 PrefabInstance:
   m_ObjectHideFlags: 0

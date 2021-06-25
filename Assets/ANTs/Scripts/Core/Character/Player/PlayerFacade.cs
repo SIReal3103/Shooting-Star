@@ -9,7 +9,7 @@ namespace ANTs.Core
         private Mover mover;
         private Gunner gunner;
 
-        private void Start()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             gunner = GetComponent<Gunner>();

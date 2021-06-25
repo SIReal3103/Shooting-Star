@@ -12,8 +12,7 @@ namespace ANTs.Core
     [RequireComponent(typeof(Rigidbody2D))]
     public class Mover : ActionBase
     {
-        public event Action OnStartMovingEvent;
-        public event Action OnStopMovingEvent;
+        public event Action OnArrivedEvent;
 
         [SerializeField] MovementType movement;
         [SerializeField] MoveData initialMoveData;
@@ -29,17 +28,22 @@ namespace ANTs.Core
         }
 
         #region ===========================================Behaviours
+        public bool IsMoving()
+        {
+            return IsActionStart && !IsArrived();
+        }
+        public Vector2 GetMoveDirection()
+        {
+            return moveStrategy.data.GetMoveDirection();
+        }
+        public void SetMoveData(MoveData data)
+        {
+            moveStrategy.data = data;
+            moveStrategy.data.rb = rb;
+        }
         public void SetDestination(Vector2 destination)
         {
-            OnStartMovingEvent?.Invoke();
-            ActionStart();
             moveStrategy.data.destination = destination;
-        }
-
-        public void StopMoving()
-        {
-            OnStopMovingEvent?.Invoke();
-            ActionStop();
         }
 
         private void LoadMoveStrategy(MoveStrategy moveStrategy)
@@ -47,38 +51,21 @@ namespace ANTs.Core
             this.moveStrategy = moveStrategy;
             SetMoveData(initialMoveData);
         }
-
         private bool IsArrived()
         {
             return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
-
-        public bool IsMoving()
-        {
-            return isActionStart;
-        }
-
-        public Vector2 GetMoveDirection()
-        {
-            return moveStrategy.data.GetMoveDirection();
-        }
-
-        public void SetMoveData(MoveData data)
-        {
-            moveStrategy.data = data;
-            moveStrategy.data.rb = rb;
-        }
         #endregion
 
-        #region ============================================IAction Implementation
-        public override void ActionUpdate()
+        #region ============================================ActionBase Implementation
+        protected override void ActionUpdate()
         {
-            moveStrategy?.UpdatePath();
             if (IsArrived())
             {
-                OnStopMovingEvent?.Invoke();
-                StopMoving();
+                OnArrivedEvent?.Invoke();
+                return;
             }
+            moveStrategy?.UpdatePath();
         }
         #endregion
     }

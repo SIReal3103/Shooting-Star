@@ -16,24 +16,13 @@ namespace ANTs.Core
             mover = GetComponent<Mover>();
         }
 
+        private void Start()
+        {
+        }
+
         private void Update()
         {
             model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
-        }
-
-        public void StartMovingTo(Vector2 destination)
-        {
-            mover.SetDestination(destination);
-        }
-
-        public void StopMoving()
-        {
-            mover.StopMoving();
-        }
-
-        public void LoadMoveData(MoveData data)
-        {
-            mover.SetMoveData(data);
         }
 
         private bool IsFacingLeft()

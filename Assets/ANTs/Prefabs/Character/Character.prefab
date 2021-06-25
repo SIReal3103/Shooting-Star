@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d0a4466cd32ae4aad2ba0a9e6ef645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionStartOnPlay: 1
   movement: 0
   initialMoveData:
     speed: 10

@@ -70,12 +70,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d0a4466cd32ae4aad2ba0a9e6ef645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialData:
+  actionStartOnPlay: 1
+  movement: 0
+  initialMoveData:
     speed: 10
-    tiltSpeed: 0
-    destinationOffset: 0.1
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
+  destinationOffset: 0.1
 --- !u!70 &409123565710036420
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ MonoBehaviour:
   source: {fileID: 0}
   destroyWhenOutOfScreen: 1
   outScreenOffSet: {x: 0, y: 0}
-  bulletId: 0
+  currentLevel: 0
   nextBulletId: 1
 --- !u!114 &-6507884906140856681
 MonoBehaviour:
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  timeBetweenHits: 0.5
 --- !u!1 &2465691812362409213
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,25 +4,33 @@ namespace ANTs.Template
 {
     public abstract class ActionBase : MonoBehaviour
     {
-        protected bool isActionStart = true;
+        public event System.Action OnActionStart;
+        public event System.Action OnActionStop;
+
+        [Header("ActionBase")]
+        [SerializeField] bool actionStartOnPlay = false;
+
+        protected bool IsActionStart { get => actionStartOnPlay; }
 
         protected void Update()
         {
-            if(isActionStart == true)
+            if(IsActionStart == true)
             {
                 ActionUpdate();
             }
         }
 
-        public abstract void ActionUpdate();
+        protected abstract void ActionUpdate();
 
         public virtual void ActionStart()
         {
-            isActionStart = true;
+            OnActionStart?.Invoke();
+            actionStartOnPlay = true;
         }
         public virtual void ActionStop()
         {
-            isActionStart = false;
+            OnActionStop?.Invoke();
+            actionStartOnPlay = false;
         }
     }
 }

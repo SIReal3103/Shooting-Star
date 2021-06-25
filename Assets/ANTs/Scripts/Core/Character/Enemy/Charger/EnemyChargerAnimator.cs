@@ -22,13 +22,13 @@ namespace ANTs.Core
         private void OnEnable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent += OnActorAtack;
-            GetComponent<EnemyFacade>().OnEnemyDeadEvent += OnEnemyDead;
+            GetComponent<Dead>().OnActionStart += OnEnemyDead;
         }
 
         private void OnDisable()
         {
             GetComponent<ChargeToPlayerTask>().OnActorAttackEvent -= OnActorAtack;
-            GetComponent<EnemyFacade>().OnEnemyDeadEvent -= OnEnemyDead;
+            GetComponent<Dead>().OnActionStart -= OnEnemyDead;
         }
 
         private void Update()

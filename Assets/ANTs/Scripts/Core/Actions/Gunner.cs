@@ -37,7 +37,7 @@ namespace ANTs.Core
         #endregion
 
         #region =======================================IAction Implementation
-        public override void ActionUpdate()
+        protected override void ActionUpdate()
         {
             FireBehaviour();
             UpdateTimer();

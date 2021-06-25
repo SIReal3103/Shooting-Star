@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6177dfb3deec0e8429e39f065acecbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionStartOnPlay: 1
   bulletSpawnPosition: {fileID: 2648071465191318721}
   timeBetweenFire: 0.5
   initialGunPool: {fileID: 0}
@@ -99,6 +100,20 @@ MonoBehaviour:
   health: 100
   defenseByValue: 0
   dodgeChance: 0
+--- !u!114 &3318241499830329420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionStartOnPlay: 0
+  durationReturnToPool: 1
 --- !u!1001 &8643572601143051829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,6 +210,11 @@ PrefabInstance:
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: movement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: actionStartOnPlay
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
