@@ -11,7 +11,7 @@ namespace ANTs.Core
 
         public GameObject Source { get => source; set => source = value; }
 
-        private HashSet<Damageable> damageables;
+        private HashSet<Damageable> damageables = new HashSet<Damageable>();
         private Damager damager;
 
 
