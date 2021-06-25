@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 3726713874072087787}
   - component: {fileID: 3726713874072087786}
   - component: {fileID: 7604222906058201490}
-  - component: {fileID: 7222730965000918530}
   - component: {fileID: 8336205361287467119}
   - component: {fileID: 8306164006649178684}
+  - component: {fileID: 3900950865971724827}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -105,22 +105,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.9685315, y: 1}
   m_Direction: 0
---- !u!114 &7222730965000918530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3726713874072087784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a1093ea441e5743a800b4f24791c78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
-  defenseByValue: 0
-  dodgeChance: 0
 --- !u!114 &8336205361287467119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +136,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 3726713875333373735}
+--- !u!114 &3900950865971724827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726713874072087784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a1093ea441e5743a800b4f24791c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
+  defenseByValue: 0
+  dodgeChance: 0
 --- !u!1 &3726713875333373734
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3eb704835276b4ba9d25e9bcbb1423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  observer: {fileID: 7222730965000918530}
+  observer: {fileID: 3900950865971724827}
 --- !u!1 &7667351235009827674
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,23 +6,46 @@ using ANTs.Template;
 namespace ANTs.Core
 {
     //TODO: Enemy not die
-
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(Damageable))]
     public class EnemyFacade : MonoBehaviour, IANTsPoolable<EnemyPool, EnemyFacade>
     {
+        [Tooltip("How long the enemy stay dead before return to pool")]
+        [SerializeField] float durationReturnToPool;
+
         public EnemyPool CurrentPool { get; set; }
+
+        private Damageable damageable;
+
+        #region ========================================Unity Events
+        private void Awake()
+        {
+            damageable = GetComponent<Damageable>();
+        }
+
+        private void Update()
+        {
+            if(damageable.IsDead())
+            {
+                Dead();
+            }
+        }
+        #endregion
 
         #region =======================================BEHAVIOURS
         public void Dead()
         {
-            if (CurrentPool == null) Destroy(this); // if gameObject is created directly on scene
-            ReturnToPool();
+            Invoke(nameof(ReturnToPool), durationReturnToPool);
         }
         #endregion
 
         #region =======================================IANTsPoolObject IMPLEMENTATION
         public void ReturnToPool()
         {
+            if (CurrentPool == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
             CurrentPool.ReturnToPool(this);
         }
 
