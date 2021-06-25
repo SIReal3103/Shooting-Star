@@ -8,6 +8,7 @@ namespace ANTs.Template
         public event Action OnActorAttackEvent;
         public void OnActorAttack() {
             OnActorAttackEvent?.Invoke();
+            Debug.Log("Yay");
         }
     }
 }
