@@ -173,8 +173,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5411267406665875466}
   - component: {fileID: 1033395105628884621}
-  - component: {fileID: 1859313294548082932}
   - component: {fileID: 3137335475607611748}
+  - component: {fileID: 8944774670685677394}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -211,20 +211,6 @@ MonoBehaviour:
   initialDamage: 10
   criticalChance: 0
   critEfficent: 0
---- !u!114 &1859313294548082932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8846833554196541729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f852a43069ddb48a0bb5d888148f33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 7973814678278962949}
-  timeBetweenHits: 0.5
 --- !u!61 &3137335475607611748
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -251,6 +237,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8934073, y: 0.39480138}
   m_EdgeRadius: 0
+--- !u!114 &8944774670685677394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846833554196541729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be0b6bdeca9d1b4eb02a67e083369aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 7973814678278962949}
 --- !u!1001 &7520664811280319784
 PrefabInstance:
   m_ObjectHideFlags: 0

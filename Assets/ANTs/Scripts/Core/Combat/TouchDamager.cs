@@ -31,7 +31,7 @@ namespace ANTs.Core
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (isEnemy(collision))
+            if (IsEnemy(collision))
             {
                 if (!collision.transform.TryGetComponent(out Damageable damageable))
                 {
@@ -42,7 +42,7 @@ namespace ANTs.Core
             }
         }
 
-        private bool isEnemy(Collision2D collision)
+        private bool IsEnemy(Collision2D collision)
         {
             return !collision.transform.CompareTag(Source.tag);
         }
