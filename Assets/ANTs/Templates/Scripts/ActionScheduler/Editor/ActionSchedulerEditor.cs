@@ -7,47 +7,52 @@ namespace ANTs.Template
     [CustomEditor(typeof(ActionScheduler))]
     public class ActionSchedulerEditor : Editor
     {
-        public const int MAX_MASK = 5;
         private const float VERTICAL_DISTANCE = 10f;
         private const float HORIZONTAL_DISTANCE = 300f;
         private const float TOGGLES_DISTANCE = 16f;
         private const float HORIZONTAL_TEXT_OFFSET = 20f;
 
-        private SerializableMask mask;
-        private SerializedProperty property;
+        private SerializedProperty mask;
+        private int numLabel;
         private string[] labelNames;
 
         private void OnEnable()
         {
-            property = serializedObject.FindProperty("maskTable");
-            mask = property.objectReferenceValue as SerializableMask;
-            if (mask == null)
-            {
-                mask = SerializableMask.CreateNew(Vector2Int.one * MAX_MASK);
-                property.objectReferenceValue = mask;
-            }
-
+            mask = serializedObject.FindProperty("maskTable");
             labelNames = GetLabelNames();
+            numLabel = labelNames.Length;
+            mask.arraySize = numLabel * numLabel;
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
-            base.OnInspectorGUI();
+            DisplayDefaultScriptLine();
 
-            WriteVerticalText(GetVertcalArea());
-            WriteHorizontalText();
+            if (numLabel > 1)
+            {
+                WriteVerticalText(GetVertcalArea());
+                WriteHorizontalText();
+            }
 
             serializedObject.ApplyModifiedProperties();
         }
 
+        private void DisplayDefaultScriptLine()
+        {
+            using (new EditorGUI.DisabledScope(true))
+                EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((MonoBehaviour)target), GetType(), false);
+        }
+
         private void WriteHorizontalText()
         {
-            for (int i = 0; i < labelNames.Length; i++)
+            for (int i = 0; i < numLabel; i++)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(labelNames[i], GUILayout.Width(HORIZONTAL_DISTANCE));
-                for (int j = 0; j < labelNames.Length; j++)
+                for (int j = 0; j < numLabel; j++)
                 {
                     if (i == j)
                     {
@@ -55,7 +60,9 @@ namespace ANTs.Template
                     }
                     else
                     {
-                        mask[i, j] = EditorGUILayout.Toggle(mask[i, j], GUILayout.Width(TOGGLES_DISTANCE));
+                        mask.GetArrayElementAtIndex(i * numLabel + j).boolValue = 
+                            EditorGUILayout.Toggle(mask.GetArrayElementAtIndex(i * numLabel + j).boolValue,
+                                GUILayout.Width(TOGGLES_DISTANCE));
                     }
                 }
                 EditorGUILayout.EndHorizontal();
@@ -86,16 +93,16 @@ namespace ANTs.Template
             return rect;
         }
 
+        Vector2 GetTextSize(string text)
+        {
+            return GUI.skin.label.CalcSize(new GUIContent(text + "_"));
+        }
+
         private string[] GetLabelNames()
         {
             GameObject go = Selection.activeGameObject;
             ActionBase[] actions = go.GetComponents<ActionBase>();
             return actions.Select(action => action.GetType().Name).ToArray();
-        }
-
-        Vector2 GetTextSize(string text)
-        {
-            return GUI.skin.label.CalcSize(new GUIContent(text + "_"));
         }
     }
 }

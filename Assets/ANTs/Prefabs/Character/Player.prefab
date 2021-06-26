@@ -55,10 +55,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionStartOnPlay: 1
+  isActionStart: 0
   bulletSpawnPosition: {fileID: 2648071465191318721}
   timeBetweenFire: 0.5
   initialGunPool: {fileID: 0}
   initialBulletPool: {fileID: 0}
+--- !u!114 &3318241499830329420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionStartOnPlay: 0
+  isActionStart: 0
+  durationReturnToPool: 1
 --- !u!114 &5365085402913456819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,20 +116,6 @@ MonoBehaviour:
   health: 100
   defenseByValue: 0
   dodgeChance: 0
---- !u!114 &3318241499830329420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919006090545883869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionStartOnPlay: 0
-  durationReturnToPool: 1
 --- !u!1001 &8643572601143051829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,6 +152,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5590456
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8922641
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.983018
       objectReference: {fileID: 0}
     - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}

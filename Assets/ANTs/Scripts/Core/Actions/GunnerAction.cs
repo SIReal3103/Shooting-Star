@@ -28,6 +28,8 @@ namespace ANTs.Core
         #region =================================================UNITY_EVENTS
         protected override void Start()
         {
+            base.Start();
+
             currentGunPool = initialGunPool ? initialGunPool : GunPoolManager.Instance.GetDefaultPool();
             LoadCurrenGun();
 
@@ -35,6 +37,8 @@ namespace ANTs.Core
             LoadCurrentBullet();
         }
         #endregion
+
+
 
         #region =======================================IAction Implementation
         protected override void ActionUpdate()

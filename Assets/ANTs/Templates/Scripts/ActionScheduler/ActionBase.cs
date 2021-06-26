@@ -11,14 +11,14 @@ namespace ANTs.Template
 
         [Header("ActionBase")]
         [SerializeField] bool actionStartOnPlay = false;
-        private bool isActionStart = false;
+        [ReadOnly] 
+        [SerializeField] bool isActionStart = false;
 
         protected virtual void Start()
         {
             if (actionStartOnPlay)
                 ActionStart();
         }
-
 
         protected bool IsActionStart { get => isActionStart; }
 
@@ -40,7 +40,6 @@ namespace ANTs.Template
         }
         public virtual void ActionStop()
         {
-            Debug.Log(GetType().Name);
             OnActionStop?.Invoke();
             isActionStart = false;
         }
