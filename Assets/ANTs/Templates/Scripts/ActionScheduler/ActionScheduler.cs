@@ -7,11 +7,10 @@ namespace ANTs.Template
 
     public class ActionScheduler : MonoBehaviour
     {
-        public const int MAX_ACTIONS_IN_INSPECTOR = 5;
+        [HideInInspector]
+        public SerializableMask maskTable;
 
-        public SerializableMask maskTable = new SerializableMask(Vector2Int.one * MAX_ACTIONS_IN_INSPECTOR);
         private Dictionary<ActionBase, int> getMaskId = new Dictionary<ActionBase, int>();
-
         private ActionBase[] actions;
 
         private void Awake()

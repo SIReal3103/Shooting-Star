@@ -1,21 +1,24 @@
-﻿using System.Runtime.Serialization;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ANTs.Template
 {
     [System.Serializable]
-    public class SerializableMask
+    public class SerializableMask : ScriptableObject
     {
-        [SerializeField]
-        bool[] table;
+        [SerializeField] bool[] table;
+        [SerializeField] Vector2Int size;
 
-        [SerializeField]
-        Vector2Int size;
-
-        public SerializableMask(Vector2Int size)
+        static public SerializableMask CreateNew(Vector2Int size)
         {
-            this.size = size;
+            SerializableMask instance = CreateInstance<SerializableMask>();
+            instance.Init(size);
+            return instance;
+        }
+
+        public void Init(Vector2Int size)
+        {
             table = new bool[size.x * size.y];
+            this.size = size;
         }
 
         public bool this[int i, int j]

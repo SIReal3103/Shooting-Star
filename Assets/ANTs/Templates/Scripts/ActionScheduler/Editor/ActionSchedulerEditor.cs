@@ -7,37 +7,38 @@ namespace ANTs.Template
     [CustomEditor(typeof(ActionScheduler))]
     public class ActionSchedulerEditor : Editor
     {
+        public const int MAX_MASK = 5;
         private const float VERTICAL_DISTANCE = 10f;
         private const float HORIZONTAL_DISTANCE = 300f;
         private const float TOGGLES_DISTANCE = 16f;
         private const float HORIZONTAL_TEXT_OFFSET = 20f;
 
-        private ActionScheduler scheduler;
         private SerializableMask mask;
+        private SerializedProperty property;
         private string[] labelNames;
 
         private void OnEnable()
         {
-            mask = serializedObject.FindProperty("maskTable").objectReferenceValue as System.Object as SerializableMask;
+            property = serializedObject.FindProperty("maskTable");
+            mask = property.objectReferenceValue as SerializableMask;
+            if (mask == null)
+            {
+                mask = SerializableMask.CreateNew(Vector2Int.one * MAX_MASK);
+                property.objectReferenceValue = mask;
+            }
+
+            labelNames = GetLabelNames();
         }
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
             serializedObject.Update();
+            base.OnInspectorGUI();
 
-            InitializeValues();
             WriteVerticalText(GetVertcalArea());
             WriteHorizontalText();
 
             serializedObject.ApplyModifiedProperties();
-        }
-
-        public void InitializeValues()
-        {
-            scheduler = target as ActionScheduler;
-            mask = scheduler.maskTable;
-            LoadLabelNames();
         }
 
         private void WriteHorizontalText()
@@ -85,11 +86,11 @@ namespace ANTs.Template
             return rect;
         }
 
-        private void LoadLabelNames()
+        private string[] GetLabelNames()
         {
             GameObject go = Selection.activeGameObject;
             ActionBase[] actions = go.GetComponents<ActionBase>();
-            labelNames = actions.Select(action => action.GetType().Name).ToArray();
+            return actions.Select(action => action.GetType().Name).ToArray();
         }
 
         Vector2 GetTextSize(string text)
