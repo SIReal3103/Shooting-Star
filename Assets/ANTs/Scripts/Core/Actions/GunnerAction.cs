@@ -26,7 +26,7 @@ namespace ANTs.Core
         #endregion
 
         #region =================================================UNITY_EVENTS
-        private void Start()
+        protected override void Start()
         {
             currentGunPool = initialGunPool ? initialGunPool : GunPoolManager.Instance.GetDefaultPool();
             LoadCurrenGun();

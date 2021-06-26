@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace ANTs.Template
 {
+
     public class ActionScheduler : MonoBehaviour
     {
-        public bool[,] actionMask = new bool[100, 100];
+        public const int MAX_ACTIONS_IN_INSPECTOR = 5;
 
-        private List<ActionBase>[] cancelActions = new List<ActionBase>[100];
-        private Dictionary<ActionBase, int> getId = new Dictionary<ActionBase, int>();
+        public SerializableMask maskTable = new SerializableMask(Vector2Int.one * MAX_ACTIONS_IN_INSPECTOR);
+        private Dictionary<ActionBase, int> getMaskId = new Dictionary<ActionBase, int>();
+
+        private ActionBase[] actions;
 
         private void Awake()
         {
-            ActionBase[] actions = GetComponents<ActionBase>();
+            actions = GetComponents<ActionBase>();
+            InitializeValues();
+        }
 
-            for(int i = 0; i < actions.Length; i++)
+        private void InitializeValues()
+        {
+            for (int i = 0; i < actions.Length; i++)
             {
-                getId[actions[i]] = i;
-
-                cancelActions[i] = new List<ActionBase>();
-                for(int j = 0; j < actions.Length; j++)
-                {
-                    if(actionMask[i, j])
-                        cancelActions[i].Add(actions[j]);
-                }
+                getMaskId.Add(actions[i], i);
             }
         }
 
-        internal void Trigger(ActionBase actionBase)
+        public void Trigger(ActionBase actionBase)
         {
-            foreach(ActionBase action in cancelActions[getId[actionBase]])
+            int startAction = getMaskId[actionBase];
+            for(int stopAction = 0; stopAction < actions.Length; stopAction++)
             {
-                Debug.Log(action.GetType().Name);
+                if (maskTable[startAction, stopAction]) actions[stopAction].ActionStop();
             }
         }
     }

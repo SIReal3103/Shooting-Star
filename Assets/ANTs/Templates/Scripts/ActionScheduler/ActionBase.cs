@@ -11,8 +11,16 @@ namespace ANTs.Template
 
         [Header("ActionBase")]
         [SerializeField] bool actionStartOnPlay = false;
+        private bool isActionStart = false;
 
-        protected bool IsActionStart { get => actionStartOnPlay; }
+        protected virtual void Start()
+        {
+            if (actionStartOnPlay)
+                ActionStart();
+        }
+
+
+        protected bool IsActionStart { get => isActionStart; }
 
         protected void Update()
         {
@@ -27,13 +35,13 @@ namespace ANTs.Template
         public virtual void ActionStart()
         {
             OnActionStart?.Invoke();
-            actionStartOnPlay = true;
+            isActionStart = true;
             GetComponent<ActionScheduler>().Trigger(this);
         }
         public virtual void ActionStop()
         {
             OnActionStop?.Invoke();
-            actionStartOnPlay = false;
+            isActionStart = false;
         }
     }
 }

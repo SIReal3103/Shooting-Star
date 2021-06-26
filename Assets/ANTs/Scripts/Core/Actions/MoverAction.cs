@@ -21,7 +21,7 @@ namespace ANTs.Core
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
 
-        private void Awake()
+        private  void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             LoadMoveStrategy(MoveFactory.CreateMove(movement));
