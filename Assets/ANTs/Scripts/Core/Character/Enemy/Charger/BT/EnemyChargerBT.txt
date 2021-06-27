@@ -1,8 +1,0 @@
-tree("Root")
-	repeat
-		sequence
-			MoveToPreparePosition
-			Wait 2.0
-			ChargeToPlayer
-			AttackPlayer
-			Wait 2.0

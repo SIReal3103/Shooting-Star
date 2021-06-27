@@ -2,15 +2,15 @@
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(MoverAction))]
+    [RequireComponent(typeof(MoveAction))]
     public abstract class Projectile : MonoBehaviour
     {
         public GameObject source;
 
-        private MoverAction mover;
+        private MoveAction mover;
         protected virtual void Awake()
         {
-            mover = GetComponent<MoverAction>();
+            mover = GetComponent<MoveAction>();
         }
 
         public void SetDirection(Vector2 direction)

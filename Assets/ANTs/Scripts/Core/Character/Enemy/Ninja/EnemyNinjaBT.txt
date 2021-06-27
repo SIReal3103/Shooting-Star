@@ -1,0 +1,8 @@
+tree("Root")
+	repeat
+		sequence
+			MoveToPreparePosition
+			Wait 2.0
+			ApproachPlayer
+			AttackPlayer
+			Wait 2.0
