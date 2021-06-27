@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace ANTs.Template
 {
@@ -9,21 +10,33 @@ namespace ANTs.Template
         public event Action OnActionStartEvent;
         public event Action OnActionStopEvent;
 
-        [Header("ActionBase")]
+        [Serializable]
+        enum TransitionMode {
+            Trigger,
+            Boolean,
+            Default
+        }        
+
         [SerializeField] bool actionStartOnPlay = false;
         [ReadOnly]
         [SerializeField] bool isActionStart = false;
+        [SerializeField] TransitionMode transitionMode = TransitionMode.Default;
 
         [HideInInspector]
-        private Animator animator;
+        protected AnimatorEvents animatorEvents;
+        protected Animator animator;
         private ActionScheduler scheduler;
 
         public bool IsActionStart { get => isActionStart; }
-
+       
         protected virtual void Awake()
         {
             animator = GetComponentInChildren<Animator>();
+            animatorEvents = GetComponentInChildren<AnimatorEvents>();
             scheduler = GetComponent<ActionScheduler>();
+
+            if (transitionMode == TransitionMode.Default)
+                transitionMode = GetDefaultTriggerMode(GetType().Name);
         }
 
         protected virtual void Start()
@@ -40,7 +53,16 @@ namespace ANTs.Template
             }
         }
 
-        protected virtual void ActionUpdate() { }
+        private TransitionMode GetDefaultTriggerMode(string name)
+        {
+            switch (name)
+            {
+                case "MoveAction":
+                    return TransitionMode.Boolean;
+                default:
+                    return TransitionMode.Trigger;
+            }
+        }        
 
         public virtual void ActionStart()
         {
@@ -48,7 +70,8 @@ namespace ANTs.Template
 
             isActionStart = true;
             OnActionStartEvent?.Invoke();
-            SetTriggerStart();
+
+            if(transitionMode == TransitionMode.Trigger) SetTrigger();
 
             scheduler.StopActionRelavetiveTo(this);
         }
@@ -57,23 +80,21 @@ namespace ANTs.Template
         {
             isActionStart = false;
             OnActionStopEvent?.Invoke();
-            SetTriggerStop();
         }
+
+        protected virtual void ActionUpdate() { }
 
         #region ===================================Animator control
         protected void SetAnimationBool(bool value)
         {
+            Assert.AreEqual(transitionMode, TransitionMode.Boolean);
             if (animator) animator.SetBool("Is" + GetType().Name, value);
         }
 
-        private void SetTriggerStart()
+        private void SetTrigger()
         {
-            if (animator) animator.SetTrigger("Start" + GetType().Name);
-        }
-
-        private void SetTriggerStop()
-        {
-            if (animator) animator.SetTrigger("Stop" + GetType().Name);
+            Assert.AreEqual(transitionMode, TransitionMode.Trigger);
+            if (animator) animator.SetTrigger(GetType().Name);
         }
         #endregion
     }

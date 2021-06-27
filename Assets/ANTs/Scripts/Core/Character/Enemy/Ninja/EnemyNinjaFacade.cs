@@ -39,7 +39,7 @@ namespace ANTs.Core
 
         public void Attack()
         {
-            attack.Attack();
+            attack.ActionStart();
         }
     }
 }

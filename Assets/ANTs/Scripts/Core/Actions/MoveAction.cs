@@ -78,6 +78,7 @@ namespace ANTs.Core
             if (IsArrived())
             {
                 OnArrivedEvent?.Invoke();
+                ActionStop();
                 return;
             }
             moveStrategy?.UpdatePath();

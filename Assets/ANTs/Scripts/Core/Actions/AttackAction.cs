@@ -9,9 +9,16 @@ namespace ANTs.Core
         [Space(10)]
         [SerializeField] AttackArea area;
 
-        public void Attack()
+        public override void ActionStart()
         {
-            area.Attack();
+            base.ActionStart();
+            animatorEvents.OnActorAttackEvent += area.Attack;
+        }
+
+        public override void ActionStop()
+        {
+            base.ActionStop();
+            animatorEvents.OnActorAttackEvent -= area.Attack;
         }
     }
 }
