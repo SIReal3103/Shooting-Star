@@ -14,6 +14,9 @@ namespace ANTs.Template
         [ReadOnly]
         [SerializeField] bool isActionStart = false;
 
+        [HideInInspector]
+        public Animator animator;
+
         protected virtual void Start()
         {
             if (actionStartOnPlay)

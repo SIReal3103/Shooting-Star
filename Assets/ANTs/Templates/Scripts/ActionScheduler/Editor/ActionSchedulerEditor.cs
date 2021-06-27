@@ -14,12 +14,14 @@ namespace ANTs.Template
         private const float TOGGLES_DISTANCE = 16f;
         private const float HORIZONTAL_TEXT_OFFSET = 20f;
 
+        private SerializedProperty animator;
         private SerializedProperty mask;
         private int numLabel;
         private string[] labelNames;
 
         private void OnEnable()
         {
+            animator = serializedObject.FindProperty("animator");
             mask = serializedObject.FindProperty("maskTable");
             labelNames = GetLabelNames();
             numLabel = labelNames.Length;
@@ -31,7 +33,9 @@ namespace ANTs.Template
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
+
             DisplayDefaultScriptLine();
+            EditorGUILayout.PropertyField(animator);
 
             if (numLabel > 1)
             {

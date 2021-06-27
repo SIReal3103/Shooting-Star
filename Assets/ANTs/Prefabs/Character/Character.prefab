@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionStartOnPlay: 1
   isActionStart: 0
+  animator: {fileID: 0}
   model: {fileID: 3726713875333373735}
   FacingWithDirection: 1
   movement: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskTable: 00
+  animator: {fileID: 1230229215337870133}
 --- !u!1 &3726713875333373734
 GameObject:
   m_ObjectHideFlags: 0
