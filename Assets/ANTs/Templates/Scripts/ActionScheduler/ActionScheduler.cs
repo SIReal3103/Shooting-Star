@@ -9,6 +9,7 @@ namespace ANTs.Template
         public const int MAX_MASK = 100;
 
         [SerializeField] bool[] maskTable;
+        [Tooltip("Default animator (in model) if null")]
         [SerializeField] Animator animator;
 
         private Dictionary<ActionBase, int> getMaskId = new Dictionary<ActionBase, int>();
@@ -17,6 +18,8 @@ namespace ANTs.Template
         private void Awake()
         {
             actions = GetComponents<ActionBase>();
+            animator = GetComponentInChildren<Animator>();
+
             foreach (ActionBase action in actions)
                 action.animator = animator;
 

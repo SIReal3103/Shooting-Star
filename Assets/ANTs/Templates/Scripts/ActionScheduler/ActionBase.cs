@@ -15,7 +15,12 @@ namespace ANTs.Template
         [SerializeField] bool isActionStart = false;
 
         [HideInInspector]
-        public Animator animator;
+        public  Animator animator;
+
+        protected virtual void Awake()
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
 
         protected virtual void Start()
         {
