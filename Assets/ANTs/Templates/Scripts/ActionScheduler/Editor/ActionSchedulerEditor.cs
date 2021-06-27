@@ -23,6 +23,7 @@ namespace ANTs.Template
         {
             animator = serializedObject.FindProperty("animator");
             mask = serializedObject.FindProperty("maskTable");
+
             labelNames = GetLabelNames();
             numLabel = labelNames.Length;
             mask.arraySize = numLabel * numLabel;
@@ -36,14 +37,18 @@ namespace ANTs.Template
 
             DisplayDefaultScriptLine();
             EditorGUILayout.PropertyField(animator);
+            DisplayMaskPropertyField();
 
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DisplayMaskPropertyField()
+        {
             if (numLabel > 1)
             {
                 WriteVerticalText(GetVertcalArea());
                 WriteHorizontalText();
             }
-
-            serializedObject.ApplyModifiedProperties();
         }
 
         private void DisplayDefaultScriptLine()
