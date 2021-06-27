@@ -15,7 +15,7 @@ namespace ANTs.Template
         [SerializeField] bool isActionStart = false;
 
         [HideInInspector]
-        protected Animator animator;
+        private Animator animator;
         private ActionScheduler scheduler;
 
         public bool IsActionStart { get => isActionStart; }
@@ -40,7 +40,7 @@ namespace ANTs.Template
             }
         }
 
-        protected abstract void ActionUpdate();
+        protected virtual void ActionUpdate() { }
 
         public virtual void ActionStart()
         {
@@ -60,6 +60,7 @@ namespace ANTs.Template
             SetTriggerStop();
         }
 
+        #region ===================================Animator control
         protected void SetAnimationBool(bool value)
         {
             if (animator) animator.SetBool("Is" + GetType().Name, value);
@@ -67,12 +68,13 @@ namespace ANTs.Template
 
         private void SetTriggerStart()
         {
-            if (animator) animator.SetTrigger(GetType().Name + "Start");
+            if (animator) animator.SetTrigger("Start" + GetType().Name);
         }
 
         private void SetTriggerStop()
         {
-            if (animator) animator.SetTrigger(GetType().Name + "Stop");
+            if (animator) animator.SetTrigger("Stop" + GetType().Name);
         }
+        #endregion
     }
 }

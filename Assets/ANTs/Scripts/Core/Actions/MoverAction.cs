@@ -73,13 +73,13 @@ namespace ANTs.Core
             if (FacingWithDirection)
                 model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
 
+            SetAnimationBool(IsMoving());
+
             if (IsArrived())
             {
                 OnArrivedEvent?.Invoke();
                 return;
             }
-
-            SetAnimationBool(IsMoving());
             moveStrategy?.UpdatePath();
         }
 

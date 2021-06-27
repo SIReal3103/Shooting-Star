@@ -12,16 +12,9 @@ namespace ANTs.Core
 
         public EnemyPool CurrentPool { get; set; }
 
-        protected override void ActionUpdate()
-        {
-
-        }
-
         public override void ActionStart()
         {
             base.ActionStart();
-
-            animator.SetTrigger(ANTsGameState.StartDying);
             Invoke(nameof(ReturnToPool), durationReturnToPool);
         }
 

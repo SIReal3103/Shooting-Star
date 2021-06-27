@@ -9,13 +9,6 @@ namespace ANTs.Core
     {
         [SerializeField] Animator animator;
 
-        private MoverAction mover;
-
-        private void Awake()
-        {
-            mover = GetComponent<MoverAction>();
-        }
-
         private void OnEnable()
         {
             GetComponent<ApproachPlayerTask>().OnActorAttackEvent += OnActorAtack;
