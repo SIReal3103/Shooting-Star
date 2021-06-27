@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1852e681f3d327d4c9ba77f8eb50c60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 4919006090545883870, guid: 445e380a067a260448138bd6e7ce26c4, type: 3}
 --- !u!114 &6328977718231253464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
   chargeSpeed:
-    speed: 10
+    speed: 20
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
 --- !u!114 &7795925433630217009
@@ -330,17 +330,17 @@ PrefabInstance:
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.346893
+      value: 0.7040967
       objectReference: {fileID: 0}
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.82425344
+      value: 0.13818908
       objectReference: {fileID: 0}
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.983018
+      value: 11.983019
       objectReference: {fileID: 0}
     - target: {fileID: 501706053503171118, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
@@ -386,6 +386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: movement
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: maskTable.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7681979849479937918, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}

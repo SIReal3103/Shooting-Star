@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿#if UNITY_EDITOR
+
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
@@ -100,9 +102,17 @@ namespace ANTs.Template
 
         private string[] GetLabelNames()
         {
-            GameObject go = Selection.activeGameObject;
-            ActionBase[] actions = go.GetComponents<ActionBase>();
+            GameObject selected = Selection.activeGameObject;
+            if (selected == null)
+            {
+                Debug.Log("Seceted empty");
+                return new string[] { }; //HACK: Protential bug
+            }
+
+            ActionBase[] actions = selected.GetComponents<ActionBase>();
             return actions.Select(action => action.GetType().Name).ToArray();
         }
     }
 }
+
+#endif

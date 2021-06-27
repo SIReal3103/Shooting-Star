@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &487914377970973947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501706053503171117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionStartOnPlay: 0
+  isActionStart: 0
+  durationReturnToPool: 1
 --- !u!114 &4876512717909754548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,19 +43,6 @@ MonoBehaviour:
   health: 100
   defenseByValue: 0
   dodgeChance: 0
---- !u!114 &487914377970973947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501706053503171117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  durationReturnToPool: 1
 --- !u!1001 &3837516004551694021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StateMachines
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: maskTable.Array.size
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1188bb4d42b505469f668b121697e34, type: 3}

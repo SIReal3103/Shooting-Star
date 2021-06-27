@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionStartOnPlay: 1
+  isActionStart: 0
   movement: 0
   initialMoveData:
     speed: 10
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1dd39c15c61884fa16f6ad9308a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maskTable: 00
 --- !u!1 &3726713875333373734
 GameObject:
   m_ObjectHideFlags: 0

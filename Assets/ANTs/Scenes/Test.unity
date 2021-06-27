@@ -310,6 +310,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 619204247476550354, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: maskTable.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 619204247476550354, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: maskTable.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6328977718231253464, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: prepareZone
@@ -495,6 +505,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: maskTable.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: maskTable.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: maskTable.Array.data[5]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name

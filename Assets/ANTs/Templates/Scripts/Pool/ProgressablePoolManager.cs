@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ANTs.Template
 {
-    public class ProgressablePoolManager<TManager, TPool, TObject> : Singleton<TManager>
+    public abstract class ProgressablePoolManager<TManager, TPool, TObject> : Singleton<TManager>
         where TManager : Component
         where TPool : ANTsPool<TPool, TObject>
         where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>, IProgressable
@@ -17,7 +17,7 @@ namespace ANTs.Template
 
         protected ProgressablePoolManager() { }
 
-        private void Start()
+        protected override void Awake()
         {
             foreach (TObject prefab in prefabs)
             {
@@ -47,7 +47,12 @@ namespace ANTs.Template
 
         public TPool GetDefaultPool()
         {
-            return pools[defaultId];
+            TPool result;
+            if(pools.TryGetValue(defaultId, out result))
+            {
+                return result;
+            }
+            throw new UnityException("Invalid default Id");
         }
     }
 }

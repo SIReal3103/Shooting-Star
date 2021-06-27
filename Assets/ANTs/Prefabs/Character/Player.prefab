@@ -224,6 +224,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6049050129777463939, guid: 35dc1aa90f5df774ebb8cfb164eafbf4,
         type: 3}
+    - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: maskTable.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: movement

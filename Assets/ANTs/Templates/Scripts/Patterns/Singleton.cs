@@ -24,7 +24,7 @@ namespace ANTs.Template
             }
         }
 
-        public virtual void Awake()
+        protected virtual void Awake()
         {
             if (instance == null)
             {

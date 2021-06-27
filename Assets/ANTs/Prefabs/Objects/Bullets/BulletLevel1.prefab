@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1130381535657301370, guid: 1b8b737626a42dd4f86e7de802f71d6d,
         type: 3}
+      propertyPath: currentLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130381535657301370, guid: 1b8b737626a42dd4f86e7de802f71d6d,
+        type: 3}
       propertyPath: nextBulletId
       value: 1
       objectReference: {fileID: 0}

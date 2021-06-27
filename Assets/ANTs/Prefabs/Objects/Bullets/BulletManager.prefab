@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7573822122396029525}
   - component: {fileID: 165952485}
   m_Layer: 0
-  m_Name: BulletPools
+  m_Name: BulletManager
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
