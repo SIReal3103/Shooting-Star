@@ -151,8 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191b83af7abdbc34b9c60b8a392c8d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionStartOnPlay: 1
+  actionStartOnPlay: 0
   isActionStart: 0
+  transitionMode: 2
+  SyncWithAnimation: 1
   area: {fileID: 8944774670685677394}
 --- !u!1 &8846833554196541729
 GameObject:
@@ -363,7 +365,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c4181ab4604f9704193e93ea2e20204b, type: 2}
+      objectReference: {fileID: 22100000, guid: 5e6fb03a513d5a341be8b9e6d765b251,
+        type: 2}
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: movement

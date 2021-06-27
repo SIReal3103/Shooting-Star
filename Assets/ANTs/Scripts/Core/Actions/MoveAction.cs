@@ -63,7 +63,7 @@ namespace ANTs.Core
             SetMoveData(initialMoveData);
         }
 
-        
+
         #endregion
 
 
@@ -78,7 +78,6 @@ namespace ANTs.Core
             if (IsArrived())
             {
                 OnArrivedEvent?.Invoke();
-                ActionStop();
                 return;
             }
             moveStrategy?.UpdatePath();

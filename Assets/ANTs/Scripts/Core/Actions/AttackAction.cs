@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using ANTs.Template;
+﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Core
 {

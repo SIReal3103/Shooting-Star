@@ -1,12 +1,11 @@
 ﻿using ANTs.Template;
-using UnityEngine;
 using Panda;
+using UnityEngine;
 
 namespace ANTs.Core
 {
     public class EnemyNinjaTasks : MonoBehaviour
     {
-        public event System.Action OnActorAttackEvent;
 
         [SerializeField] Transform player;
         [SerializeField] ANTsPolygon prepareZone;
@@ -21,17 +20,18 @@ namespace ANTs.Core
         public void Awake()
         {
             enemy = GetComponent<EnemyNinjaFacade>();
+            preparePosition = prepareZone.GetRandomPointOnSurface();
         }
 
         public void OnEnable()
         {
-            enemy.OnArrivedEvent += OnMoverArrived;
+            enemy.OnActorArrivedEvent += OnActorArrived;
             animationEvent.OnActorAttackEvent += OnActorAttack;
         }
 
         private void OnDisable()
         {
-            enemy.OnArrivedEvent -= OnMoverArrived;
+            enemy.OnActorArrivedEvent -= OnActorArrived;
             animationEvent.OnActorAttackEvent -= OnActorAttack;
         }
         #endregion
@@ -53,7 +53,6 @@ namespace ANTs.Core
             if (isArrived)
             {
                 Task.current.Succeed();
-                OnActorAttackEvent?.Invoke();
             }
             Task.current.debugInfo = Task.current.status.ToString();
         }
@@ -76,12 +75,13 @@ namespace ANTs.Core
             if (Task.current.isStarting)
             {
                 isAttackDone = false;
+                enemy.Attack();
             }
 
             if (isAttackDone) Task.current.Succeed();
         }
 
-        public void OnMoverArrived()
+        public void OnActorArrived()
         {
             isArrived = true;
         }

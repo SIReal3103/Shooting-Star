@@ -6,10 +6,16 @@ namespace ANTs.Core
     [RequireComponent(typeof(EnemyFacade))]
     public class EnemyNinjaFacade : MonoBehaviour
     {
-        public event Action OnArrivedEvent
+        public event Action OnActorArrivedEvent
         {
             add { GetComponent<MoveAction>().OnArrivedEvent += value; }
             remove { GetComponent<MoveAction>().OnArrivedEvent -= value; }
+        }
+
+        public event Action OnActorAttackDone
+        {
+            add { GetComponent<AttackAction>().OnActionStopEvent += value; }
+            remove { GetComponent<AttackAction>().OnActionStopEvent -= value; }
         }
 
         [Tooltip("The speed which Charger normally move")]
@@ -23,6 +29,7 @@ namespace ANTs.Core
         private void Awake()
         {
             move = GetComponent<MoveAction>();
+            attack = GetComponent<AttackAction>();
         }
 
         public void MoveTo(Vector2 destination)
