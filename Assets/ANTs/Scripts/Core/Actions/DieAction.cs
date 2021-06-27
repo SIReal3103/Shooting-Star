@@ -5,6 +5,8 @@ namespace ANTs.Core
 {
     public class DieAction : ActionBase, IANTsPoolable<EnemyPool, DieAction>
     {
+        [Header("Die Action")]
+        [Space(10)]
         [Tooltip("How long before the return to pool")]
         [SerializeField] float durationReturnToPool = 1f;
 

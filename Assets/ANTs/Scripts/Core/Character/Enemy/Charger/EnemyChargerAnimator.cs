@@ -11,12 +11,10 @@ namespace ANTs.Core
         [SerializeField] Animator animator;
 
         private MoverAction mover;
-        private EnemyFacade enemy;
 
         private void Awake()
         {
             mover = GetComponent<MoverAction>();
-            enemy = GetComponent<EnemyFacade>();
         }
 
         private void OnEnable()

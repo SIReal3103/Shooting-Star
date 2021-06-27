@@ -105,7 +105,6 @@ namespace ANTs.Template
             GameObject selected = Selection.activeGameObject;
             if (selected == null)
             {
-                Debug.Log("Seceted empty");
                 return new string[] { }; //HACK: Protential bug
             }
 

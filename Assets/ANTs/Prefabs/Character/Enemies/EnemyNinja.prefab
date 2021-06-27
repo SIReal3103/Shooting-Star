@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1852e681f3d327d4c9ba77f8eb50c60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4919006090545883870, guid: 445e380a067a260448138bd6e7ce26c4, type: 3}
+  player: {fileID: 0}
 --- !u!114 &6328977718231253464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +271,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487914377970973947, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: durationReturnToPool
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 501706052248390141, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_Sprite

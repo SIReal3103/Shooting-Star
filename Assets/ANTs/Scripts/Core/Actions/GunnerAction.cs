@@ -6,10 +6,10 @@ namespace ANTs.Core
     public class GunnerAction : ActionBase
     {
         #region =================================================SERIALIZE_FIELD
+        [Header("Gunner Action")]
+        [Space(10)]
         [SerializeField] Transform bulletSpawnPosition;
-        [Space]
         [SerializeField] float timeBetweenFire = 0.5f;
-        [Space]
         [Tooltip("Initial gun type for gunner, default gun if null")]
         [SerializeField] GunPool initialGunPool;
         [Tooltip("Initial bullet type for gunner, default bullet if null")]

@@ -22,12 +22,9 @@ namespace ANTs.Core
 
         private void Update()
         {
-            model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
+            
         }
 
-        private bool IsFacingLeft()
-        {
-            return mover.GetMoveDirection().x < 0f;
-        }
+        
     }
 }

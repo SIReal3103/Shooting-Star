@@ -14,6 +14,13 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent;
 
+        [Header("Facing")]
+        [Space(10)]
+        [Tooltip("To control actor's facing direction")]
+        [SerializeField] Transform model;
+        [SerializeField] bool FacingWithDirection;
+        [Header("Movement Data")]
+        [Space(10)]
         [SerializeField] MovementType movement;
         [SerializeField] MoveData initialMoveData;
         [SerializeField] float destinationOffset = 0.1f;
@@ -32,10 +39,17 @@ namespace ANTs.Core
         {
             return IsActionStart && !IsArrived();
         }
+
+        private bool IsFacingLeft()
+        {
+            return GetMoveDirection().x < 0f;
+        }
+
         public Vector2 GetMoveDirection()
         {
             return moveStrategy.data.GetMoveDirection();
         }
+
         public void SetMoveData(MoveData data)
         {
             moveStrategy.data = data;
@@ -60,6 +74,9 @@ namespace ANTs.Core
         #region ============================================ActionBase Implementation
         protected override void ActionUpdate()
         {
+            if(FacingWithDirection)
+                model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
+
             if (IsArrived())
             {
                 OnArrivedEvent?.Invoke();

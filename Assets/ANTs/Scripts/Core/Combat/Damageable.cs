@@ -7,6 +7,7 @@ namespace ANTs.Core
     {
         public event Action<int> OnHealthUpdateEvent;
         public event Action<int> OnMaxHealthUpdateEvent;
+        public event Action OnHealthReachZeroEvent;
 
         #region ===============================SERIALIZEFIELD
         [SerializeField] int maxHealth = 100;
@@ -24,6 +25,7 @@ namespace ANTs.Core
             {
                 health = Mathf.Clamp(value, 0, MaxHealth);
                 OnHealthUpdateEvent?.Invoke(health);
+                if (health == 0) OnHealthReachZeroEvent?.Invoke();
             }
         }
         public int DefenseByValue { get => defenseByValue; }
@@ -50,11 +52,6 @@ namespace ANTs.Core
         public void GainHealth(int health)
         {
             this.Health += health;
-        }
-
-        public bool IsDead()
-        {
-            return this.Health == 0;
         }
     }
 }

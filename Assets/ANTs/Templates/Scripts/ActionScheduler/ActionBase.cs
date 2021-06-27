@@ -40,7 +40,7 @@ namespace ANTs.Template
         }
         public virtual void ActionStop()
         {
-            Debug.Log(GetType().Name + " Action Stop!");
+            // Debug.Log(GetType().Name + " Action Stop!");
             OnActionStop?.Invoke();
             isActionStart = false;
         }

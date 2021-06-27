@@ -156,17 +156,17 @@ PrefabInstance:
     - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5590456
+      value: 0.62700427
       objectReference: {fileID: 0}
     - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8922641
+      value: -3.889892
       objectReference: {fileID: 0}
     - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.983018
+      value: 11.983019
       objectReference: {fileID: 0}
     - target: {fileID: 3726713874072087787, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
@@ -228,6 +228,16 @@ PrefabInstance:
         type: 3}
       propertyPath: maskTable.Array.size
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: maskTable.Array.data[6]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: maskTable.Array.data[7]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}

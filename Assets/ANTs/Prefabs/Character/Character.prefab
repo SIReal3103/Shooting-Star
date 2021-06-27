@@ -120,6 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionStartOnPlay: 1
   isActionStart: 0
+  model: {fileID: 3726713875333373735}
+  FacingWithDirection: 1
   movement: 0
   initialMoveData:
     speed: 10

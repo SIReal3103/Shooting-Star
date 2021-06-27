@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using ANTs.Template;
+using System;
 
 namespace ANTs.Core
 {
@@ -8,17 +9,19 @@ namespace ANTs.Core
     [RequireComponent(typeof(Damageable))]
     public class EnemyFacade : MonoBehaviour
     {
-        private Damageable damageable;
-        private void Awake()
+        private void OnEnable()
         {
-            damageable = GetComponent<Damageable>();
+            GetComponent<Damageable>().OnHealthReachZeroEvent += DeadBehaviour;
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            if(damageable.IsDead())
-            {
-            }
+            GetComponent<Damageable>().OnHealthReachZeroEvent -= DeadBehaviour;
+        }
+
+        private void DeadBehaviour()
+        {
+            GetComponent<DieAction>().ActionStart();
         }
     }
 }
