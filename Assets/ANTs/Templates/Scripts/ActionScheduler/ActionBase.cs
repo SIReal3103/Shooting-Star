@@ -15,23 +15,15 @@ namespace ANTs.Template
         [SerializeField] bool isActionStart = false;
 
         [HideInInspector]
-        public Animator animator;
+        protected Animator animator;
+        private ActionScheduler scheduler;
 
-        public bool IsActionStart
-        {
-            get => isActionStart;
-            private set
-            {
-                if (isActionStart == value) return;
-                if (value) OnActionStartEvent?.Invoke();
-                else OnActionStopEvent?.Invoke();
-                isActionStart = value;
-            }
-        }
+        public bool IsActionStart { get => isActionStart; }
 
         protected virtual void Awake()
         {
             animator = GetComponentInChildren<Animator>();
+            scheduler = GetComponent<ActionScheduler>();
         }
 
         protected virtual void Start()
@@ -52,14 +44,34 @@ namespace ANTs.Template
 
         public virtual void ActionStart()
         {
-            IsActionStart = true;
-            if (animator) animator.SetTrigger(GetType().Name + "Start");
-            GetComponent<ActionScheduler>().StopActionRelavetiveTo(this);
+            if (scheduler.IsActionPrevent(this)) return;
+
+            isActionStart = true;
+            OnActionStartEvent?.Invoke();
+            SetTriggerStart();
+
+            scheduler.StopActionRelavetiveTo(this);
         }
 
         public virtual void ActionStop()
         {
-            IsActionStart = false;
+            isActionStart = false;
+            OnActionStopEvent?.Invoke();
+            SetTriggerStop();
+        }
+
+        protected void SetAnimationBool(bool value)
+        {
+            if (animator) animator.SetBool("Is" + GetType().Name, value);
+        }
+
+        private void SetTriggerStart()
+        {
+            if (animator) animator.SetTrigger(GetType().Name + "Start");
+        }
+
+        private void SetTriggerStop()
+        {
             if (animator) animator.SetTrigger(GetType().Name + "Stop");
         }
     }

@@ -10,23 +10,23 @@ namespace ANTs.Template
 
         [SerializeField] bool[] maskTable;
         [Tooltip("Default animator (in model) if null")]
-        [SerializeField] Animator animator;
 
-        private Dictionary<IAction, int> getMaskId = new Dictionary<IAction, int>();
+        private Dictionary<IAction, int> getMaskId;
         private IAction[] actions;
 
         private void Awake()
         {
+            getMaskId = new Dictionary<IAction, int>();
             actions = GetComponents<IAction>();
-            animator = GetComponentInChildren<Animator>();
-
-            foreach (ActionBase action in actions)
-                action.animator = animator;
 
             for (int i = 0; i < actions.Length; i++)
                 getMaskId.Add(actions[i], i);
         }
 
+        public bool IsActionPrevent(IAction action)
+        {
+            return false;
+        }
 
         public void StopActionRelavetiveTo(IAction action)
         {

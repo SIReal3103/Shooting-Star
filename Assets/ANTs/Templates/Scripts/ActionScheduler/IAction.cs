@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace ANTs.Template
+﻿namespace ANTs.Template
 {
     public interface IAction
     {

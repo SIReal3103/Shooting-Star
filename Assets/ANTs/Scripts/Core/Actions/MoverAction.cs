@@ -36,12 +36,7 @@ namespace ANTs.Core
             LoadMoveStrategy(MoveFactory.CreateMove(movementType));
         }
 
-        #region ===========================================Behaviours
-        public bool IsMoving()
-        {
-            return IsActionStart && !IsArrived();
-        }
-
+        #region ===========================================Behaviours        
         private bool IsFacingLeft()
         {
             return GetMoveDirection().x < 0f;
@@ -67,11 +62,10 @@ namespace ANTs.Core
             this.moveStrategy = moveStrategy;
             SetMoveData(initialMoveData);
         }
-        private bool IsArrived()
-        {
-            return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
-        }
+
+        
         #endregion
+
 
         #region ============================================ActionBase Implementation
         protected override void ActionUpdate()
@@ -84,7 +78,19 @@ namespace ANTs.Core
                 OnArrivedEvent?.Invoke();
                 return;
             }
+
+            SetAnimationBool(IsMoving());
             moveStrategy?.UpdatePath();
+        }
+
+        private bool IsMoving()
+        {
+            return IsActionStart && !IsArrived();
+        }
+
+        private bool IsArrived()
+        {
+            return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
         #endregion
     }

@@ -26,11 +26,6 @@ namespace ANTs.Core
             GetComponent<ApproachPlayerTask>().OnActorAttackEvent -= OnActorAtack;
         }
 
-        private void Update()
-        {
-            animator.SetBool(ANTsGameState.IsMoving, mover.IsMoving());
-        }
-
         private void OnActorAtack()
         {
             animator.SetTrigger(ANTsGameState.StartAttacking);
