@@ -12,31 +12,25 @@ namespace ANTs.Template
         [Tooltip("Default animator (in model) if null")]
         [SerializeField] Animator animator;
 
-        private Dictionary<ActionBase, int> getMaskId = new Dictionary<ActionBase, int>();
-        private ActionBase[] actions;
+        private Dictionary<IAction, int> getMaskId = new Dictionary<IAction, int>();
+        private IAction[] actions;
 
         private void Awake()
         {
-            actions = GetComponents<ActionBase>();
+            actions = GetComponents<IAction>();
             animator = GetComponentInChildren<Animator>();
 
             foreach (ActionBase action in actions)
                 action.animator = animator;
 
-            InitializeValues();
-        }
-
-        private void InitializeValues()
-        {
             for (int i = 0; i < actions.Length; i++)
-            {
                 getMaskId.Add(actions[i], i);
-            }
         }
 
-        public void StopActionRelavetiveTo(ActionBase actionBase)
+
+        public void StopActionRelavetiveTo(IAction action)
         {
-            int startAction = getMaskId[actionBase];
+            int startAction = getMaskId[action];
             for (int stopAction = 0; stopAction < actions.Length; stopAction++)
             {
                 if (maskTable[startAction * actions.Length + stopAction])

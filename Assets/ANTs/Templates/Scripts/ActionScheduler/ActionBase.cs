@@ -4,10 +4,10 @@ using UnityEngine;
 namespace ANTs.Template
 {
     [RequireComponent(typeof(ActionScheduler))]
-    public abstract class ActionBase : MonoBehaviour
+    public abstract class ActionBase : MonoBehaviour, IAction
     {
-        public event Action OnActionStart;
-        public event Action OnActionStop;
+        public event Action OnActionStartEvent;
+        public event Action OnActionStopEvent;
 
         [Header("ActionBase")]
         [SerializeField] bool actionStartOnPlay = false;
@@ -15,7 +15,19 @@ namespace ANTs.Template
         [SerializeField] bool isActionStart = false;
 
         [HideInInspector]
-        public  Animator animator;
+        public Animator animator;
+
+        public bool IsActionStart
+        {
+            get => isActionStart;
+            private set
+            {
+                if (isActionStart == value) return;
+                if (value) OnActionStartEvent?.Invoke();
+                else OnActionStopEvent?.Invoke();
+                isActionStart = value;
+            }
+        }
 
         protected virtual void Awake()
         {
@@ -27,8 +39,6 @@ namespace ANTs.Template
             if (actionStartOnPlay)
                 ActionStart();
         }
-
-        protected bool IsActionStart { get => isActionStart; }
 
         protected void Update()
         {
@@ -42,22 +52,15 @@ namespace ANTs.Template
 
         public virtual void ActionStart()
         {
-            isActionStart = true;
-
-            OnActionStart?.Invoke();
-
+            IsActionStart = true;
             if (animator) animator.SetTrigger(GetType().Name + "Start");
-
             GetComponent<ActionScheduler>().StopActionRelavetiveTo(this);
         }
 
         public virtual void ActionStop()
         {
-            isActionStart = false;
-
-            if (animator) animator.SetTrigger(GetType().Name + "Start");
-
-            OnActionStop?.Invoke();
+            IsActionStart = false;
+            if (animator) animator.SetTrigger(GetType().Name + "Stop");
         }
     }
 }

@@ -21,17 +21,19 @@ namespace ANTs.Core
         [SerializeField] bool FacingWithDirection;
         [Header("Movement Data")]
         [Space(10)]
-        [SerializeField] MovementType movement;
+        [SerializeField] MovementType movementType;
         [SerializeField] MoveData initialMoveData;
         [SerializeField] float destinationOffset = 0.1f;
 
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
 
-        private  void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             rb = GetComponent<Rigidbody2D>();
-            LoadMoveStrategy(MoveFactory.CreateMove(movement));
+            LoadMoveStrategy(MoveFactory.CreateMove(movementType));
         }
 
         #region ===========================================Behaviours
