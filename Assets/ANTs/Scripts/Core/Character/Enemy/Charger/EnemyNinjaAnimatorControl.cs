@@ -1,12 +1,11 @@
-﻿using UnityEngine;
-using ANTs.Template;
-using System;
+﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(ChargeToPlayerTask))]
+    [RequireComponent(typeof(ApproachPlayerTask))]
     [RequireComponent(typeof(MoverAction))]
-    public class EnemyChargerAnimator : MonoBehaviour
+    public class EnemyNinjaAnimatorControl : MonoBehaviour
     {
         [SerializeField] Animator animator;
 
@@ -19,13 +18,13 @@ namespace ANTs.Core
 
         private void OnEnable()
         {
-            GetComponent<ChargeToPlayerTask>().OnActorAttackEvent += OnActorAtack;
+            GetComponent<ApproachPlayerTask>().OnActorAttackEvent += OnActorAtack;
             GetComponent<DieAction>().OnActionStart += OnEnemyDead;
         }
 
         private void OnDisable()
         {
-            GetComponent<ChargeToPlayerTask>().OnActorAttackEvent -= OnActorAtack;
+            GetComponent<ApproachPlayerTask>().OnActorAttackEvent -= OnActorAtack;
             GetComponent<DieAction>().OnActionStart -= OnEnemyDead;
         }
 

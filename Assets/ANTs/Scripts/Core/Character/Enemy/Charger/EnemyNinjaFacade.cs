@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(EnemyFacade))]
-    public class EnemyChargerBehaviour : MonoBehaviour
+    public class EnemyNinjaFacade : MonoBehaviour
     {
         public event Action OnArrivedEvent
         {
@@ -30,7 +30,7 @@ namespace ANTs.Core
             mover.SetDestination(destination);
         }
 
-        public void ChargeTo(Vector2 destination)
+        public void RunTo(Vector2 destination)
         {
             mover.SetMoveData(chargeSpeed);
             mover.SetDestination(destination);

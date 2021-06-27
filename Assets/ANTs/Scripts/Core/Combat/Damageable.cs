@@ -19,8 +19,9 @@ namespace ANTs.Core
 
         #region ===============================ACCESSORS
         public int MaxHealth { get => maxHealth; }
-        public int Health { 
-            get => health; 
+        public int Health
+        {
+            get => health;
             set
             {
                 health = Mathf.Clamp(value, 0, MaxHealth);

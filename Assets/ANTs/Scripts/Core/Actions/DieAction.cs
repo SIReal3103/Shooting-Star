@@ -14,7 +14,7 @@ namespace ANTs.Core
 
         protected override void ActionUpdate()
         {
-            
+
         }
 
         public override void ActionStart()

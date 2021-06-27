@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
 
 using System.Linq;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace ANTs.Template
 {
@@ -62,7 +62,7 @@ namespace ANTs.Template
                     }
                     else
                     {
-                        mask.GetArrayElementAtIndex(i * numLabel + j).boolValue = 
+                        mask.GetArrayElementAtIndex(i * numLabel + j).boolValue =
                             EditorGUILayout.Toggle(mask.GetArrayElementAtIndex(i * numLabel + j).boolValue,
                                 GUILayout.Width(TOGGLES_DISTANCE));
                     }

@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using ANTs.Template;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ANTs.Template
 {
@@ -48,7 +47,7 @@ namespace ANTs.Template
         public TPool GetDefaultPool()
         {
             TPool result;
-            if(pools.TryGetValue(defaultId, out result))
+            if (pools.TryGetValue(defaultId, out result))
             {
                 return result;
             }

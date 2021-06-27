@@ -11,7 +11,7 @@ namespace ANTs.Template
 
         [Header("ActionBase")]
         [SerializeField] bool actionStartOnPlay = false;
-        [ReadOnly] 
+        [ReadOnly]
         [SerializeField] bool isActionStart = false;
 
         protected virtual void Start()
@@ -24,7 +24,7 @@ namespace ANTs.Template
 
         protected void Update()
         {
-            if(IsActionStart == true)
+            if (IsActionStart == true)
             {
                 ActionUpdate();
             }

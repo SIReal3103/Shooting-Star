@@ -1,6 +1,6 @@
-using UnityEngine;
-using Panda;
 using ANTs.Template;
+using Panda;
+using UnityEngine;
 
 namespace ANTs.Core
 {
@@ -9,12 +9,12 @@ namespace ANTs.Core
         [SerializeField] ANTsPolygon prepareZone;
 
         private Vector2 preparePosition;
-        private EnemyChargerBehaviour charger;
+        private EnemyNinjaFacade charger;
         private bool isArrived;
 
         public void Awake()
         {
-            charger = GetComponent<EnemyChargerBehaviour>();
+            charger = GetComponent<EnemyNinjaFacade>();
         }
 
         public void OnEnable()

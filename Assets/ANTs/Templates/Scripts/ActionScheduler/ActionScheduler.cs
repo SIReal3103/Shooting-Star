@@ -30,7 +30,7 @@ namespace ANTs.Template
         public void Trigger(ActionBase actionBase)
         {
             int startAction = getMaskId[actionBase];
-            for(int stopAction = 0; stopAction < actions.Length; stopAction++)
+            for (int stopAction = 0; stopAction < actions.Length; stopAction++)
             {
                 if (maskTable[startAction * actions.Length + stopAction])
                     actions[stopAction].ActionStop();

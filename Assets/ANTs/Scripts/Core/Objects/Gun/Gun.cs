@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using ANTs.Template;
+﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Core
 {
@@ -17,7 +17,7 @@ namespace ANTs.Core
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
-        public GunPool CurrentPool { get ; set; } // IANTsPoolable Implementation
+        public GunPool CurrentPool { get; set; } // IANTsPoolable Implementation
 
         public void SetBulletPool(BulletPool pool) => currentBulletPool = pool;
 
@@ -28,7 +28,7 @@ namespace ANTs.Core
 
         public void Fire()
         {
-            if(currentBulletPool == null)
+            if (currentBulletPool == null)
                 throw new UnityException("CurrentBulletPool can't be null, (BulletPoolManager might be empty?)");
 
             for (int i = 0; i < bulletDirections.Length; i++)

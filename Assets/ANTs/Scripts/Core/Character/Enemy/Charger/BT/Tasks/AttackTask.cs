@@ -1,31 +1,31 @@
-﻿using UnityEngine;
-using Panda;
+﻿using ANTs.Core;
 using ANTs.Template;
-using ANTs.Core;
+using Panda;
+using UnityEngine;
 
 namespace Assets.ANTs.Scripts.Core.Character.Enemy.Charger.BT.Tasks
 {
     public class AttackTask : MonoBehaviour
     {
         [SerializeField] AttackArea attackArea;
-        [SerializeField] ANTsAnimationEvents events;
+        [SerializeField] ANTsAnimationEvents animationEvent;
 
         private bool isAttackDone;
 
         private void OnEnable()
         {
-            events.OnActorAttackEvent += OnActorAttack;
+            animationEvent.OnActorAttackEvent += OnActorAttack;
         }
 
         private void OnDisable()
         {
-            events.OnActorAttackEvent -= OnActorAttack;
+            animationEvent.OnActorAttackEvent -= OnActorAttack;
         }
 
         [Task]
         public void AttackPlayer()
         {
-            if(Task.current.isStarting)
+            if (Task.current.isStarting)
             {
                 isAttackDone = false;
             }

@@ -55,7 +55,7 @@ namespace ANTs.Core
 
         public void Attack()
         {
-            foreach(Damageable damageable in damageables)
+            foreach (Damageable damageable in damageables)
             {
                 damageable.TakeDamageFrom(damager);
             }

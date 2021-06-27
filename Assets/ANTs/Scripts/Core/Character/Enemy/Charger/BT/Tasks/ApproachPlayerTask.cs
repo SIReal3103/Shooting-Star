@@ -1,21 +1,21 @@
-using UnityEngine;
 using Panda;
+using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class ChargeToPlayerTask : MonoBehaviour
+    public class ApproachPlayerTask : MonoBehaviour
     {
         public event System.Action OnActorAttackEvent;
 
         [SerializeField] Transform player;
 
-        private EnemyChargerBehaviour charger;
+        private EnemyNinjaFacade charger;
 
         private bool isArrive;
 
         private void Awake()
         {
-            charger = GetComponent<EnemyChargerBehaviour>();
+            charger = GetComponent<EnemyNinjaFacade>();
         }
 
         private void OnEnable()
@@ -48,7 +48,7 @@ namespace ANTs.Core
         {
             isArrive = false;
             Vector2 playerPosition = player.position;
-            charger.ChargeTo(playerPosition);
+            charger.RunTo(playerPosition);
         }
 
         public void OnMoverArrived()

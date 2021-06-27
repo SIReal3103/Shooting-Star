@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using ANTs.Template;
 using UnityEngine;
-using ANTs.Template;
 
 namespace ANTs.Core
 {

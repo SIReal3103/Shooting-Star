@@ -1,5 +1,4 @@
-﻿using System;
-using ANTs.Core;
+﻿using ANTs.Core;
 using UnityEngine;
 
 namespace ANTs.UI
@@ -9,7 +8,7 @@ namespace ANTs.UI
         static private string HEALTH_BAR_PATH = "Bar";
 
         [SerializeField] Damageable observer;
-        
+
         private int currentHealth;
         private int maxHealth;
 

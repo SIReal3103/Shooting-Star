@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-using ANTs.Template;
-using System;
-
 namespace ANTs.Core
 {
     //TODO: Enemy not die

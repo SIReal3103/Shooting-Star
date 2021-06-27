@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ANTs.Core
 {
@@ -22,9 +20,9 @@ namespace ANTs.Core
 
         private void Update()
         {
-            
+
         }
 
-        
+
     }
 }

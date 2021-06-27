@@ -28,7 +28,7 @@ namespace ANTs.Core
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
 
-        private  void Awake()
+        private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             LoadMoveStrategy(MoveFactory.CreateMove(movement));
@@ -74,7 +74,7 @@ namespace ANTs.Core
         #region ============================================ActionBase Implementation
         protected override void ActionUpdate()
         {
-            if(FacingWithDirection)
+            if (FacingWithDirection)
                 model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
 
             if (IsArrived())

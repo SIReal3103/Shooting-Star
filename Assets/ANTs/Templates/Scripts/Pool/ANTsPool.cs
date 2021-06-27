@@ -16,8 +16,8 @@ namespace ANTs.Template
 
         public void ReloadPrefab(TObject prefab)
         {
-            this.prefab = prefab; 
-            ResetPool(); 
+            this.prefab = prefab;
+            ResetPool();
             Init();
         }
 
@@ -71,7 +71,7 @@ namespace ANTs.Template
         private void ResetPool()
         {
             if (objects == null) return;
-            while(objects.Count > 0)
+            while (objects.Count > 0)
             {
                 Destroy(objects.Dequeue());
             }

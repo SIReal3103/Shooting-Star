@@ -60,7 +60,7 @@ namespace ANTs.Core
 
         public void ChangeStrongerGun()
         {
-            if(GunPoolManager.Instance.ProgressNextPool(ref currentGunPool))
+            if (GunPoolManager.Instance.ProgressNextPool(ref currentGunPool))
             {
                 LoadCurrenGun();
             }
@@ -68,7 +68,7 @@ namespace ANTs.Core
 
         public void ChangeStrongerBullet()
         {
-            if(BulletPoolManager.Instance.ProgressNextPool(ref currentBulletPool))
+            if (BulletPoolManager.Instance.ProgressNextPool(ref currentBulletPool))
             {
                 LoadCurrentBullet();
             }
@@ -76,7 +76,7 @@ namespace ANTs.Core
 
         private void LoadCurrenGun()
         {
-            if(currentGun != null) currentGun.ReturnToPool();
+            if (currentGun != null) currentGun.ReturnToPool();
             currentGun = currentGunPool.Pop(new GunData(transform, this, currentBulletPool));
         }
 

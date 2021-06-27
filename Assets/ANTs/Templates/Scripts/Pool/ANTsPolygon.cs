@@ -12,7 +12,7 @@ namespace ANTs.Template
 
         public Vector2 GetRandomPointOnSurface()
         {
-            Edge e = new Edge {a = GetRandomPointOnPath(), b = GetCenter()};
+            Edge e = new Edge { a = GetRandomPointOnPath(), b = GetCenter() };
             return GetRandomPointBetween(e);
         }
 
@@ -36,7 +36,7 @@ namespace ANTs.Template
         {
             int a = RandomIntRange(0, transform.childCount);
             int b = GetNextChildIndex(a);
-            return new Edge {a = GetPositionOfChild(a), b = GetPositionOfChild(b)};
+            return new Edge { a = GetPositionOfChild(a), b = GetPositionOfChild(b) };
         }
 
         private Vector2 GetRandomPointBetween(Edge edge)

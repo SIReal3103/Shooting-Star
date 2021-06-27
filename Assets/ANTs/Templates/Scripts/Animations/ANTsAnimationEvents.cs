@@ -6,7 +6,8 @@ namespace ANTs.Template
     public class ANTsAnimationEvents : MonoBehaviour
     {
         public event Action OnActorAttackEvent;
-        public void OnActorAttack() {
+        public void OnActorAttack()
+        {
             OnActorAttackEvent?.Invoke();
         }
     }
