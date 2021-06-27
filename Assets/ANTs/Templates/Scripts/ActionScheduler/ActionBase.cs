@@ -37,15 +37,22 @@ namespace ANTs.Template
 
         public virtual void ActionStart()
         {
-            OnActionStart?.Invoke();
             isActionStart = true;
-            GetComponent<ActionScheduler>().Trigger(this);
+
+            OnActionStart?.Invoke();
+
+            if (animator) animator.SetTrigger(GetType().Name + "Start");
+
+            GetComponent<ActionScheduler>().StopActionRelavetiveTo(this);
         }
+
         public virtual void ActionStop()
         {
-            // Debug.Log(GetType().Name + " Action Stop!");
-            OnActionStop?.Invoke();
             isActionStart = false;
+
+            if (animator) animator.SetTrigger(GetType().Name + "Start");
+
+            OnActionStop?.Invoke();
         }
     }
 }

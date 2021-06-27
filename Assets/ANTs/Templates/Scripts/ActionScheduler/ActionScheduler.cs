@@ -31,7 +31,7 @@ namespace ANTs.Template
             }
         }
 
-        public void Trigger(ActionBase actionBase)
+        public void StopActionRelavetiveTo(ActionBase actionBase)
         {
             int startAction = getMaskId[actionBase];
             for (int stopAction = 0; stopAction < actions.Length; stopAction++)

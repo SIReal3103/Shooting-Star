@@ -19,13 +19,11 @@ namespace ANTs.Core
         private void OnEnable()
         {
             GetComponent<ApproachPlayerTask>().OnActorAttackEvent += OnActorAtack;
-            GetComponent<DieAction>().OnActionStart += OnEnemyDead;
         }
 
         private void OnDisable()
         {
             GetComponent<ApproachPlayerTask>().OnActorAttackEvent -= OnActorAtack;
-            GetComponent<DieAction>().OnActionStart -= OnEnemyDead;
         }
 
         private void Update()
@@ -36,11 +34,6 @@ namespace ANTs.Core
         private void OnActorAtack()
         {
             animator.SetTrigger(ANTsGameState.StartAttacking);
-        }
-
-        private void OnEnemyDead()
-        {
-            animator.SetTrigger(ANTsGameState.StartDying);
         }
     }
 }

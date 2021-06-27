@@ -9,6 +9,7 @@ namespace ANTs.Template
         public static int StartMoving = Animator.StringToHash("StartMoving");
         public static int StopMoving = Animator.StringToHash("StopMoving");
         public static int StartDying = Animator.StringToHash("StartDying");
+        public static int StopDying = Animator.StringToHash("StopDying");
 
         public static int IsMoving = Animator.StringToHash("IsMoving");
     }

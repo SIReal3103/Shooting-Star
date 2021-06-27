@@ -20,6 +20,8 @@ namespace ANTs.Core
         public override void ActionStart()
         {
             base.ActionStart();
+
+            animator.SetTrigger(ANTsGameState.StartDying);
             Invoke(nameof(ReturnToPool), durationReturnToPool);
         }
 
