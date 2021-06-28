@@ -316,12 +316,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5656746761104921685, guid: f632e97329d23334ba582429bc989481,
+    - target: {fileID: 5092417165955709028, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 7399925}
-    - target: {fileID: 6328977718231253464, guid: f632e97329d23334ba582429bc989481,
+    - target: {fileID: 5092417165955709028, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: prepareZone
       value: 

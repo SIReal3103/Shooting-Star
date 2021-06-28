@@ -76,7 +76,7 @@ namespace ANTs.Template
         {
             switch (actionType)
             {
-                case ActionType.SynWithAnimation:
+                case ActionType.TriggerWithSync:
                     isTransitionTrigger.boolValue = true;
                     syncWithAnimation.boolValue = true;
                     actionStartOnPlay.boolValue = false;

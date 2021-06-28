@@ -54,8 +54,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionStartOnPlay: 0
   isActionStart: 0
+  isTransitionTrigger: 1
+  syncWithAnimation: 0
+  actionStartOnPlay: 0
+  typeOfAction: 1
   durationReturnToPool: 1
 --- !u!114 &5365085402913456819
 MonoBehaviour:
@@ -85,6 +88,27 @@ MonoBehaviour:
   health: 100
   defenseByValue: 0
   dodgeChance: 0
+--- !u!114 &1435031981315433058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918de17573490d24387be5c45009808b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActionStart: 0
+  isTransitionTrigger: 0
+  syncWithAnimation: 0
+  actionStartOnPlay: 1
+  typeOfAction: 3
+  bulletSpawnPosition: {fileID: 2648071465191318721}
+  timeBetweenFire: 0.5
+  initialGunPool: {fileID: 0}
+  initialBulletPool: {fileID: 0}
 --- !u!1001 &8643572601143051829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,17 +220,22 @@ PrefabInstance:
     - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: maskTable.Array.size
-      value: 4
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: maskTable.Array.data[2]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: maskTable.Array.data[6]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: maskTable.Array.data[7]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
@@ -215,7 +244,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
+      propertyPath: typeOfAction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
       propertyPath: actionStartOnPlay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: FacingWithDirection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,

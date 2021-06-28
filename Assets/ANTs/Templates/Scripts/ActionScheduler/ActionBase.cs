@@ -7,7 +7,7 @@ namespace ANTs.Template
     [Serializable]
     public enum ActionType
     {
-        SynWithAnimation,
+        TriggerWithSync,
         TriggerButNotSync,
         BooleanNotStartOnPlay,
         BooleanStartOnPlay,
@@ -61,14 +61,12 @@ namespace ANTs.Template
                     {
                         if (time < ENTERED_TIME_OFFSET)
                         {
-                            Debug.Log("Animation Exit");
                             ActionStop();
                             return;
                         }
                     }
                     else if (time > ENTERED_TIME_OFFSET)
                     {
-                        Debug.Log("Animation Entered");
                         isAnimationEntered = true;
                     }
                 }
