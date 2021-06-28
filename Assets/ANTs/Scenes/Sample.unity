@@ -506,16 +506,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: typeOfAction
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: actionStartOnPlay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name

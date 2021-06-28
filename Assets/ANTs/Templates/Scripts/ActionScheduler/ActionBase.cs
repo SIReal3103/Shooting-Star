@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace ANTs.Template
 {
@@ -16,7 +15,7 @@ namespace ANTs.Template
 
     [RequireComponent(typeof(ActionScheduler))]
     public abstract class ActionBase : MonoBehaviour, IAction
-    {   
+    {
         public event Action OnActionStartEvent;
         public event Action OnActionStopEvent;
 
@@ -89,13 +88,13 @@ namespace ANTs.Template
             scheduler.StopActionRelavetiveTo(this);
             isAnimationEntered = false;
             SetAnimatorTrigger();
-        }        
+        }
 
         public virtual void ActionStop()
         {
             isActionActive = false;
             OnActionStopEvent?.Invoke();
-            if(!isTransitionTrigger) SetBoolAnimator(false);
+            if (!isTransitionTrigger) SetBoolAnimator(false);
         }
 
         protected virtual void ActionUpdate() { }
@@ -109,7 +108,7 @@ namespace ANTs.Template
         {
             if (animator)
             {
-                if(isTransitionTrigger)
+                if (isTransitionTrigger)
                 {
                     Debug.LogWarning("SetAnimationBool function shouldn't be called by " + GetType().Name + " which is on isTransitionTrigger mode");
                     return;
@@ -120,7 +119,7 @@ namespace ANTs.Template
 
         private void SetAnimatorTrigger()
         {
-            if(isTransitionTrigger && animator)
+            if (isTransitionTrigger && animator)
                 animator.SetTrigger(GetType().Name);
         }
         #endregion

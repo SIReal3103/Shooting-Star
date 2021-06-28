@@ -66,8 +66,8 @@ namespace ANTs.Template
                 EditorGUILayout.BeginHorizontal();
 
                 EditorGUILayout.LabelField(
-                    labelNames[i], 
-                    actions[i].IsActionActive ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR), 
+                    labelNames[i],
+                    actions[i].IsActionActive ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR),
                     GUILayout.Width(HORIZONTAL_DISTANCE)
                 );
 
@@ -100,8 +100,8 @@ namespace ANTs.Template
                 // rotate to vertical
 
                 GUI.Label(
-                    new Rect(rect.x, rect.y - offSetY, textSize.x, textSize.y), 
-                    text, 
+                    new Rect(rect.x, rect.y - offSetY, textSize.x, textSize.y),
+                    text,
                     actions[i].IsActionActive ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR)
                 );
 
@@ -136,7 +136,7 @@ namespace ANTs.Template
         }
 
         private string[] GetLabelNames(IAction[] actions)
-        {            
+        {
             return actions.Select(action => action.GetType().Name).ToArray();
         }
 

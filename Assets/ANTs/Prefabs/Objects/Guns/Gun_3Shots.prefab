@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &91614528238492678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8018836862884229770}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8018836862884229770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91614528238492678}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2926693, w: 0.9562137}
+  m_LocalPosition: {x: -0.329, y: 0.311, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7528000392571864513}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.036003}
+--- !u!1 &199714614309580183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4525014331854796644}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4525014331854796644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199714614309580183}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.741, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7528000392571864513}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4868904849282699801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3177862036050731231}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3177862036050731231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4868904849282699801}
+  m_LocalRotation: {x: -0, y: -0, z: -0.23232122, w: 0.97263914}
+  m_LocalPosition: {x: 0.329, y: 0.242, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7528000392571864513}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.868002}
 --- !u!1001 &3544777010091241349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
         type: 3}
+      propertyPath: projectileTransforms.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
       propertyPath: bulletDirections.Array.data[0].x
       value: -0.3
       objectReference: {fileID: 0}
@@ -132,5 +227,26 @@ PrefabInstance:
       propertyPath: bulletDirections.Array.data[2].y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 4525014331854796644}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 3177862036050731231}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[2]
+      value: 
+      objectReference: {fileID: 8018836862884229770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40a2e670df36264bb481cf6a7a7a86c, type: 3}
+--- !u!4 &7528000392571864513 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6433752226649008708, guid: b40a2e670df36264bb481cf6a7a7a86c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3544777010091241349}
+  m_PrefabAsset: {fileID: 0}

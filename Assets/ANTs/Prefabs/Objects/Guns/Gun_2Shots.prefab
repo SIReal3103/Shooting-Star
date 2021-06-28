@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5584734151890540761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 92237719467984438}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &92237719467984438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584734151890540761}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2926693, w: 0.9562137}
+  m_LocalPosition: {x: -0.329, y: 0.311, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3644680540065402963}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.036003}
+--- !u!1 &6968484185293668872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1975961577614317686}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1975961577614317686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968484185293668872}
+  m_LocalRotation: {x: -0, y: -0, z: -0.2323212, w: 0.9726391}
+  m_LocalPosition: {x: 0.329, y: 0.242, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3644680540065402963}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.868002}
 --- !u!1001 &7772586458621835799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,6 +174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
         type: 3}
+      propertyPath: projectileTransforms.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
       propertyPath: bulletDirections.Array.data[0].x
       value: -0.2
       objectReference: {fileID: 0}
@@ -127,5 +192,26 @@ PrefabInstance:
       propertyPath: bulletDirections.Array.data[1].y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1975961577614317686}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 92237719467984438}
+    - target: {fileID: 1927165281732816591, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[2]
+      value: 
+      objectReference: {fileID: 92237719467984438}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40a2e670df36264bb481cf6a7a7a86c, type: 3}
+--- !u!4 &3644680540065402963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6433752226649008708, guid: b40a2e670df36264bb481cf6a7a7a86c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7772586458621835799}
+  m_PrefabAsset: {fileID: 0}

@@ -7,41 +7,34 @@ namespace ANTs.Core
     {
 
         [Tooltip("The direction which bullet start firing")]
-        [SerializeField] Vector2[] bulletDirections;
-        [Space]
+        [SerializeField] Transform[] projectileTransforms;
+        [Header("IProgressable")]
+        [Space(10)]
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
-        private ShootAction gunHolder;
+        private GameObject source;
         private BulletPool currentBulletPool;
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
         public GunPool CurrentPool { get; set; } // IANTsPoolable Implementation
 
+        #region ==================================Behaviours
         public void SetBulletPool(BulletPool pool) => currentBulletPool = pool;
-
-        public void Init(ShootAction gunHolder)
-        {
-            this.gunHolder = gunHolder;
-        }
-
         public void Fire()
         {
             if (currentBulletPool == null)
                 throw new UnityException("CurrentBulletPool can't be null, (BulletPoolManager might be empty?)");
 
-            for (int i = 0; i < bulletDirections.Length; i++)
+            foreach (Transform projectileTransform in projectileTransforms)
             {
-                float rotationAngle = gunHolder.transform.rotation.eulerAngles.z;
-                Vector2 bulletDirection = Quaternion.AngleAxis(rotationAngle, Vector3.forward) * bulletDirections[i];
-
-                BulletData bulletData = new BulletData(gunHolder.gameObject, gunHolder.GetBulletSpawnPosition(), bulletDirection);
-                currentBulletPool.Pop(bulletData);
+                currentBulletPool.Pop(new BulletData(source.gameObject, projectileTransform.position, projectileTransform.up));
             }
         }
+        #endregion
 
-        #region IANTsPoolable IMPLEMENTATION
+        #region ============================ IANTsPoolable
         public void ReturnToPool()
         {
             CurrentPool.ReturnToPool(this);
@@ -52,8 +45,8 @@ namespace ANTs.Core
             gameObject.SetActive(true);
 
             GunData data = args as GunData;
-            transform.SetParent(data.transform);
-            gunHolder = data.gunHolder;
+            transform.SetParent(data.parent);
+            source = data.source;
             currentBulletPool = data.bulletPool;
 
             transform.localPosition = Vector3.zero;
@@ -62,6 +55,17 @@ namespace ANTs.Core
         public void Sleep()
         {
             gameObject.SetActive(false);
+        }
+        #endregion
+
+
+        #region =================================projectileTransforms
+        private void OnDrawGizmos()
+        {
+            foreach (Transform projectileTransform in projectileTransforms)
+            {
+                Gizmos.DrawRay(new Ray(projectileTransform.position, projectileTransform.up));
+            }
         }
         #endregion
     }

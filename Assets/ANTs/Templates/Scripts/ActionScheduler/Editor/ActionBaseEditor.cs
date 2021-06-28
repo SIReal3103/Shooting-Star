@@ -68,7 +68,7 @@ namespace ANTs.Template
         private GUIStyle GetTextStyle(Color color)
         {
             GUIStyle s = new GUIStyle(EditorStyles.label);
-            s.normal.textColor = color;            
+            s.normal.textColor = color;
             return s;
         }
 

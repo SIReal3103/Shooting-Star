@@ -15,15 +15,15 @@ namespace ANTs.Core
 
     public class GunData
     {
-        public Transform transform;
-        public ShootAction gunHolder;
+        public Transform parent;
+        public GameObject source;
         public BulletPool bulletPool;
 
-        public GunData(Transform transform, ShootAction gunHolder, BulletPool bullet)
+        public GunData(Transform transform, GameObject source, BulletPool bulletPool)
         {
-            this.transform = transform;
-            this.gunHolder = gunHolder;
-            this.bulletPool = bullet;
+            this.parent = transform;
+            this.source = source;
+            this.bulletPool = bulletPool;
         }
     }
 }

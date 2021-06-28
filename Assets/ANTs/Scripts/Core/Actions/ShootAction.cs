@@ -6,9 +6,7 @@ namespace ANTs.Core
     public class ShootAction : ActionBase
     {
         #region =================================================SERIALIZE_FIELD
-        [Header("Gunner Action")]
-        [Space(10)]
-        [SerializeField] Transform bulletSpawnPosition;
+        [SerializeField] Transform weaponAttachment;
         [SerializeField] float timeBetweenFire = 0.5f;
         [Tooltip("Initial gun type for gunner, default gun if null")]
         [SerializeField] GunPool initialGunPool;
@@ -77,18 +75,12 @@ namespace ANTs.Core
         private void LoadCurrenGun()
         {
             if (currentGun != null) currentGun.ReturnToPool();
-            currentGun = currentGunPool.Pop(new GunData(transform, this, currentBulletPool));
+            currentGun = currentGunPool.Pop(new GunData(weaponAttachment, gameObject, currentBulletPool));
         }
 
         private void LoadCurrentBullet()
         {
             currentGun.SetBulletPool(currentBulletPool);
-        }
-
-        public Vector2 GetBulletSpawnPosition()
-        {
-            var position = bulletSpawnPosition.position;
-            return new Vector2(position.x, position.y);
         }
 
         private void UpdateTimer()

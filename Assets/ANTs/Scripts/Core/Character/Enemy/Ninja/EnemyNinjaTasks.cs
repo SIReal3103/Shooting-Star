@@ -64,7 +64,7 @@ namespace ANTs.Core
             {
                 isArrived = false;
                 enemy.MoveTo(preparePosition);
-            }            
+            }
 
             if (isArrived) Task.current.Succeed();
         }
@@ -94,6 +94,6 @@ namespace ANTs.Core
         {
             isAttackDone = true;
         }
-        
+
     }
 }
