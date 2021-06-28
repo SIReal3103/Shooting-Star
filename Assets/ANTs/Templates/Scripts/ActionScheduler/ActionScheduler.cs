@@ -23,19 +23,29 @@ namespace ANTs.Template
                 getMaskId.Add(actions[i], i);
         }
 
-        public bool IsActionPrevent(IAction action)
+        public bool IsPrevent(IAction action)
         {
+            int j = getMaskId[action];
+            for (int i = 0; i < actions.Length; i++)
+            {
+                if (GetMask(i, j) && actions[i].IsActionActive)
+                    return true;
+            }
             return false;
         }
 
         public void StopActionRelavetiveTo(IAction action)
         {
-            int startAction = getMaskId[action];
-            for (int stopAction = 0; stopAction < actions.Length; stopAction++)
+            int i = getMaskId[action];
+            for (int j = 0; j < actions.Length; j++)
             {
-                if (maskTable[startAction * actions.Length + stopAction])
-                    actions[stopAction].ActionStop();
+                if (GetMask(i, j)) actions[j].ActionStop();
             }
+        }
+
+        private bool GetMask(int i, int j)
+        {
+            return maskTable[i * actions.Length + j];
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ANTs.Template
         public event Action OnActionStartEvent;
         public event Action OnActionStopEvent;
 
-        [HideInInspector] [SerializeField] bool isActionStart = false;
+        [HideInInspector] [SerializeField] bool isActionActive = false;
         [HideInInspector] [SerializeField] bool isTransitionTrigger;
         [HideInInspector] [SerializeField] bool syncWithAnimation;
         [HideInInspector] [SerializeField] bool actionStartOnPlay;
@@ -34,7 +34,7 @@ namespace ANTs.Template
         private bool isAnimationEntered;
         private ActionScheduler scheduler;
 
-        public bool IsActionStart { get => isActionStart; set => isActionStart = value; }
+        public bool IsActionActive { get => isActionActive; set => isActionActive = value; }
 
         protected virtual void Awake()
         {
@@ -51,7 +51,7 @@ namespace ANTs.Template
 
         protected void Update()
         {
-            if (IsActionStart)
+            if (IsActionActive)
             {
                 ActionUpdate();
                 if (syncWithAnimation)
@@ -62,7 +62,6 @@ namespace ANTs.Template
                         if (time < ENTERED_TIME_OFFSET)
                         {
                             ActionStop();
-                            return;
                         }
                     }
                     else if (time > ENTERED_TIME_OFFSET)
@@ -75,36 +74,45 @@ namespace ANTs.Template
 
         public virtual void ActionStart()
         {
-            if (scheduler.IsActionPrevent(this)) return;
+            if (scheduler.IsPrevent(this))
+            {
+                Debug.LogWarning(GetType().Name + " is prevented!");
+                return;
+            }
 
-            isAnimationEntered = false;
-            isActionStart = true;
+            InitAnimatorData();
             OnActionStartEvent?.Invoke();
-
-            if (isTransitionTrigger) SetTrigger();
-
             scheduler.StopActionRelavetiveTo(this);
+        }
+
+        private void InitAnimatorData()
+        {
+            isAnimationEntered = false;
+            isActionActive = true;
+            if (isTransitionTrigger) animator.SetTrigger(GetType().Name);
         }
 
         public virtual void ActionStop()
         {
-            isActionStart = false;
+            isActionActive = false;
             OnActionStopEvent?.Invoke();
         }
 
         protected virtual void ActionUpdate() { }
 
         #region ===================================Animator control
-        protected void SetAnimationBool(bool value)
+        /// <summary>
+        /// Only allow in BooleanNotStartOnPlay, BooleanStartOnPlay or Custom with isTransitionTrigger on.
+        /// </summary>
+        /// <param name="value"></param>
+        protected void SetBoolAnimator(bool value)
         {
-            Assert.AreEqual(isTransitionTrigger, false);
-            if (animator) animator.SetBool("Is" + GetType().Name, value);
-        }
-
-        private void SetTrigger()
-        {
-            Assert.AreEqual(isTransitionTrigger, true);
-            if (animator) animator.SetTrigger(GetType().Name);
+            if (animator)
+            {
+                if(isTransitionTrigger)
+                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " + GetType().Name + " which is on isTransitionTrigger mode");
+                animator.SetBool("Is" + GetType().Name, value);
+            }
         }
         #endregion
     }

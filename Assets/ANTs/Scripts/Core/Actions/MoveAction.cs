@@ -71,7 +71,7 @@ namespace ANTs.Core
             if (FacingWithDirection)
                 model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
 
-            SetAnimationBool(IsMoving());
+            SetBoolAnimator(IsMoving());
 
             if (IsArrived())
             {
@@ -83,7 +83,7 @@ namespace ANTs.Core
 
         private bool IsMoving()
         {
-            return IsActionStart && !IsArrived();
+            return IsActionActive && !IsArrived();
         }
 
         private bool IsArrived()

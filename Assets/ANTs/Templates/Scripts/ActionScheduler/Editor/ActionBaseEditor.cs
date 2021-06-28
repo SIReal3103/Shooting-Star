@@ -18,7 +18,7 @@ namespace ANTs.Template
             isTransitionTrigger = serializedObject.FindProperty("isTransitionTrigger");
             syncWithAnimation = serializedObject.FindProperty("syncWithAnimation");
             actionStartOnPlay = serializedObject.FindProperty("actionStartOnPlay");
-            isActionStart = serializedObject.FindProperty("isActionStart");
+            isActionStart = serializedObject.FindProperty("isActionActive");
             typeOfAction = serializedObject.FindProperty("typeOfAction");
         }
 
@@ -47,7 +47,7 @@ namespace ANTs.Template
 
         private void DisplayActive()
         {
-            GUILayout.TextField("isActionStart", isActionStart.boolValue ? GetTextStyle(Color.green) : GetTextStyle(Color.gray));
+            GUILayout.TextField("isActionActive", isActionStart.boolValue ? GetTextStyle(Color.green) : GetTextStyle(Color.gray));
         }
 
         private void DisplayProperty()

@@ -38,13 +38,13 @@ namespace ANTs.Template
             serializedObject.Update();
 
             DisplayDefaultScriptLine();
-            DisplayMaskPropertyField();
+            DisplayMaskTable();
 
             serializedObject.ApplyModifiedProperties();
         }
 
         #region ============================================================Display logics
-        private void DisplayMaskPropertyField()
+        private void DisplayMaskTable()
         {
             if (numLabel > 1)
             {
@@ -67,7 +67,7 @@ namespace ANTs.Template
 
                 EditorGUILayout.LabelField(
                     labelNames[i], 
-                    actions[i].IsActionStart ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR), 
+                    actions[i].IsActionActive ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR), 
                     GUILayout.Width(HORIZONTAL_DISTANCE)
                 );
 
@@ -102,7 +102,7 @@ namespace ANTs.Template
                 GUI.Label(
                     new Rect(rect.x, rect.y - offSetY, textSize.x, textSize.y), 
                     text, 
-                    actions[i].IsActionStart ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR)
+                    actions[i].IsActionActive ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR)
                 );
 
                 GUIUtility.RotateAroundPivot(-90, new Vector2(rect.x, rect.y + textSize.y / 2f));
@@ -110,8 +110,9 @@ namespace ANTs.Template
                 offSetY += HORIZONTAL_TEXT_OFFSET;
             }
         }
-#endregion
+        #endregion
 
+        #region =========================================Utils
         private Rect GetVertcalArea()
         {
             float maxHeight = labelNames.Max(name => GetTextSize(name).x) + VERTICAL_DISTANCE;
@@ -131,7 +132,6 @@ namespace ANTs.Template
             {
                 return new IAction[] { }; //HACK: Protential bug
             }
-
             return selected.GetComponents<IAction>();
         }
 
@@ -146,6 +146,7 @@ namespace ANTs.Template
             s.normal.textColor = color;
             return s;
         }
+        #endregion
     }
 }
 

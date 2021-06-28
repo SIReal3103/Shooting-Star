@@ -2,7 +2,7 @@
 {
     public interface IAction
     {
-        bool IsActionStart { get; set; }
+        bool IsActionActive { get; set; }
         void ActionStart();
         void ActionStop();
     }
