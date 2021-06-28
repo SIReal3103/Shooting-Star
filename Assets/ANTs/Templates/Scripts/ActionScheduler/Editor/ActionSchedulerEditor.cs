@@ -13,16 +13,20 @@ namespace ANTs.Template
         private const float HORIZONTAL_DISTANCE = 300f;
         private const float TOGGLES_DISTANCE = 16f;
         private const float HORIZONTAL_TEXT_OFFSET = 20f;
+        static private readonly Color ACTIVE_COLOR = Color.green;
+        static private readonly Color DISABLE_COLOR = Color.gray;
 
         private SerializedProperty mask;
         private int numLabel;
         private string[] labelNames;
+        private IAction[] actions;
 
         private void OnEnable()
         {
             mask = serializedObject.FindProperty("maskTable");
 
-            labelNames = GetLabelNames();
+            actions = GetActions();
+            labelNames = GetLabelNames(actions);
             numLabel = labelNames.Length;
             mask.arraySize = numLabel * numLabel;
 
@@ -39,6 +43,7 @@ namespace ANTs.Template
             serializedObject.ApplyModifiedProperties();
         }
 
+        #region ============================================================Display logics
         private void DisplayMaskPropertyField()
         {
             if (numLabel > 1)
@@ -59,7 +64,13 @@ namespace ANTs.Template
             for (int i = 0; i < numLabel; i++)
             {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(labelNames[i], GUILayout.Width(HORIZONTAL_DISTANCE));
+
+                EditorGUILayout.LabelField(
+                    labelNames[i], 
+                    actions[i].IsActionStart ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR), 
+                    GUILayout.Width(HORIZONTAL_DISTANCE)
+                );
+
                 for (int j = 0; j < numLabel; j++)
                 {
                     if (i == j)
@@ -85,14 +96,21 @@ namespace ANTs.Template
                 string text = labelNames[i];
                 Vector2 textSize = GetTextSize(text);
 
-                // rotate to vertical
                 GUIUtility.RotateAroundPivot(90, new Vector2(rect.x, rect.y + textSize.y / 2f));
-                GUI.Label(new Rect(rect.x, rect.y - offSetY, textSize.x, textSize.y), text);
+                // rotate to vertical
+
+                GUI.Label(
+                    new Rect(rect.x, rect.y - offSetY, textSize.x, textSize.y), 
+                    text, 
+                    actions[i].IsActionStart ? GetTextStyle(ACTIVE_COLOR) : GetTextStyle(DISABLE_COLOR)
+                );
+
                 GUIUtility.RotateAroundPivot(-90, new Vector2(rect.x, rect.y + textSize.y / 2f));
 
                 offSetY += HORIZONTAL_TEXT_OFFSET;
             }
         }
+#endregion
 
         private Rect GetVertcalArea()
         {
@@ -106,16 +124,27 @@ namespace ANTs.Template
             return GUI.skin.label.CalcSize(new GUIContent(text + "_"));
         }
 
-        private string[] GetLabelNames()
+        private IAction[] GetActions()
         {
             GameObject selected = Selection.activeGameObject;
             if (selected == null)
             {
-                return new string[] { }; //HACK: Protential bug
+                return new IAction[] { }; //HACK: Protential bug
             }
 
-            ActionBase[] actions = selected.GetComponents<ActionBase>();
+            return selected.GetComponents<IAction>();
+        }
+
+        private string[] GetLabelNames(IAction[] actions)
+        {            
             return actions.Select(action => action.GetType().Name).ToArray();
+        }
+
+        private GUIStyle GetTextStyle(Color color)
+        {
+            GUIStyle s = new GUIStyle(EditorStyles.label);
+            s.normal.textColor = color;
+            return s;
         }
     }
 }

@@ -17,7 +17,6 @@ namespace ANTs.Template
     [RequireComponent(typeof(ActionScheduler))]
     public abstract class ActionBase : MonoBehaviour, IAction
     {   
-
         public event Action OnActionStartEvent;
         public event Action OnActionStopEvent;
 
@@ -27,7 +26,6 @@ namespace ANTs.Template
         [HideInInspector] [SerializeField] bool actionStartOnPlay;
         [HideInInspector] [SerializeField] ActionType typeOfAction;
 
-
         const float ENTERED_TIME_OFFSET = 0.1f;
 
         protected AnimatorEvents animatorEvents;
@@ -36,7 +34,7 @@ namespace ANTs.Template
         private bool isAnimationEntered;
         private ActionScheduler scheduler;
 
-        public bool IsActionStart { get => isActionStart; }
+        public bool IsActionStart { get => isActionStart; set => isActionStart = value; }
 
         protected virtual void Awake()
         {
@@ -63,7 +61,7 @@ namespace ANTs.Template
                     {
                         if (time < ENTERED_TIME_OFFSET)
                         {
-                            Debug.Log("Action stopped");
+                            Debug.Log("Animation Exit");
                             ActionStop();
                             return;
                         }
