@@ -25,7 +25,10 @@ namespace ANTs.Template
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
+            base.OnInspectorGUI();
 
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("ActionBase", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(typeOfAction);
             AssignValue((ActionType)typeOfAction.enumValueIndex);
 
@@ -37,10 +40,8 @@ namespace ANTs.Template
             {
                 ReadOnly(DisplayProperty);
             }
-
             ReadOnly(DisplayActive);
 
-            base.OnInspectorGUI();
             serializedObject.ApplyModifiedProperties();
         }
 

@@ -14,8 +14,6 @@ namespace ANTs.Core
     {
         public event Action OnArrivedEvent;
 
-        [Header("Facing")]
-        [Space(10)]
         [Tooltip("To control actor's facing direction")]
         [SerializeField] Transform model;
         [SerializeField] bool FacingWithDirection;
