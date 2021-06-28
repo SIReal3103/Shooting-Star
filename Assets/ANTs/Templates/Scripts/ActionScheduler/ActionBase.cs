@@ -4,33 +4,37 @@ using UnityEngine.Assertions;
 
 namespace ANTs.Template
 {
+    [Serializable]
+    public enum ActionType
+    {
+        SynWithAnimation,
+        TriggerButNotSync,
+        BooleanNotStartOnPlay,
+        BooleanStartOnPlay,
+        Custom
+    }
+
     [RequireComponent(typeof(ActionScheduler))]
     public abstract class ActionBase : MonoBehaviour, IAction
-    {
+    {   
+
         public event Action OnActionStartEvent;
         public event Action OnActionStopEvent;
 
-        [Serializable]
-        enum TransitionMode
-        {
-            Trigger,
-            Boolean,
-            Default
-        }
+        [HideInInspector] [SerializeField] bool isActionStart = false;
+        [HideInInspector] [SerializeField] bool isTransitionTrigger;
+        [HideInInspector] [SerializeField] bool syncWithAnimation;
+        [HideInInspector] [SerializeField] bool actionStartOnPlay;
+        [HideInInspector] [SerializeField] ActionType typeOfAction;
 
-        [SerializeField] TransitionMode transitionMode = TransitionMode.Default;
-        [SerializeField] bool SyncWithAnimation = true;
-        [SerializeField] bool actionStartOnPlay = false;
-        [ReadOnly]
-        [SerializeField] bool isActionStart = false;
 
         const float ENTERED_TIME_OFFSET = 0.1f;
 
-        [HideInInspector]
         protected AnimatorEvents animatorEvents;
         protected Animator animator;
-        private ActionScheduler scheduler;
+
         private bool isAnimationEntered;
+        private ActionScheduler scheduler;
 
         public bool IsActionStart { get => isActionStart; }
 
@@ -39,9 +43,6 @@ namespace ANTs.Template
             animator = GetComponentInChildren<Animator>();
             animatorEvents = GetComponentInChildren<AnimatorEvents>();
             scheduler = GetComponent<ActionScheduler>();
-
-            if (transitionMode == TransitionMode.Default)
-                transitionMode = GetDefaultTriggerMode(GetType().Name);
         }
 
         protected virtual void Start()
@@ -55,35 +56,24 @@ namespace ANTs.Template
             if (IsActionStart)
             {
                 ActionUpdate();
-                if (SyncWithAnimation)
+                if (syncWithAnimation)
                 {
                     float time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                     if (isAnimationEntered)
                     {
-                        if(time < ENTERED_TIME_OFFSET)
+                        if (time < ENTERED_TIME_OFFSET)
                         {
                             Debug.Log("Action stopped");
                             ActionStop();
                             return;
                         }
                     }
-                    else if(time > ENTERED_TIME_OFFSET)
+                    else if (time > ENTERED_TIME_OFFSET)
                     {
                         Debug.Log("Animation Entered");
                         isAnimationEntered = true;
                     }
                 }
-            }
-        }
-
-        private TransitionMode GetDefaultTriggerMode(string name)
-        {
-            switch (name)
-            {
-                case "MoveAction":
-                    return TransitionMode.Boolean;
-                default:
-                    return TransitionMode.Trigger;
             }
         }
 
@@ -95,7 +85,7 @@ namespace ANTs.Template
             isActionStart = true;
             OnActionStartEvent?.Invoke();
 
-            if (transitionMode == TransitionMode.Trigger) SetTrigger();
+            if (isTransitionTrigger) SetTrigger();
 
             scheduler.StopActionRelavetiveTo(this);
         }
@@ -111,13 +101,13 @@ namespace ANTs.Template
         #region ===================================Animator control
         protected void SetAnimationBool(bool value)
         {
-            Assert.AreEqual(transitionMode, TransitionMode.Boolean);
+            Assert.AreEqual(isTransitionTrigger, false);
             if (animator) animator.SetBool("Is" + GetType().Name, value);
         }
 
         private void SetTrigger()
         {
-            Assert.AreEqual(transitionMode, TransitionMode.Trigger);
+            Assert.AreEqual(isTransitionTrigger, true);
             if (animator) animator.SetTrigger(GetType().Name);
         }
         #endregion
