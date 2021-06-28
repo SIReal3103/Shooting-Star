@@ -88,14 +88,14 @@ namespace ANTs.Template
             OnActionStartEvent?.Invoke();
             scheduler.StopActionRelavetiveTo(this);
             isAnimationEntered = false;
-            if(isTransitionTrigger) SetAnimatorTrigger();
+            SetAnimatorTrigger();
         }        
 
         public virtual void ActionStop()
         {
             isActionActive = false;
             OnActionStopEvent?.Invoke();
-            SetBoolAnimator(false);
+            if(!isTransitionTrigger) SetBoolAnimator(false);
         }
 
         protected virtual void ActionUpdate() { }
@@ -110,14 +110,18 @@ namespace ANTs.Template
             if (animator)
             {
                 if(isTransitionTrigger)
+                {
                     Debug.LogWarning("SetAnimationBool function shouldn't be called by " + GetType().Name + " which is on isTransitionTrigger mode");
+                    return;
+                }
                 animator.SetBool("Is" + GetType().Name, value);
             }
         }
 
         private void SetAnimatorTrigger()
         {
-            if (animator) animator.SetTrigger(GetType().Name);
+            if(isTransitionTrigger && animator)
+                animator.SetTrigger(GetType().Name);
         }
         #endregion
     }
