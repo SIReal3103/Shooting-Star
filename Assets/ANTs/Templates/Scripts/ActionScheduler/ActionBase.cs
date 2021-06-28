@@ -79,16 +79,15 @@ namespace ANTs.Template
                 Debug.LogWarning(GetType().Name + " is prevented!");
                 return;
             }
-
-            InitAnimatorData();
-            OnActionStartEvent?.Invoke();
-            scheduler.StopActionRelavetiveTo(this);
+            InitData();
         }
 
-        private void InitAnimatorData()
+        private void InitData()
         {
-            isAnimationEntered = false;
             isActionActive = true;
+            OnActionStartEvent?.Invoke();
+            scheduler.StopActionRelavetiveTo(this);
+            isAnimationEntered = false;
             if (isTransitionTrigger) animator.SetTrigger(GetType().Name);
         }
 

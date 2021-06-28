@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191b83af7abdbc34b9c60b8a392c8d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActionStart: 0
+  isActionActive: 0
   isTransitionTrigger: 1
   syncWithAnimation: 1
   actionStartOnPlay: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDamage: 10
+  initialDamage: 30
   criticalChance: 0
   critEfficent: 0
 --- !u!61 &3137335475607611748

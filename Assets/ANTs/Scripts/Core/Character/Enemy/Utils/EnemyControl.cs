@@ -3,7 +3,7 @@
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Damageable))]
-    public class EnemyFacade : MonoBehaviour
+    public class EnemyControl : MonoBehaviour
     {
         private void OnEnable()
         {

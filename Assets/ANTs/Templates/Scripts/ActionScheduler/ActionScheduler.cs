@@ -6,8 +6,6 @@ namespace ANTs.Template
 
     public class ActionScheduler : MonoBehaviour
     {
-        public const int MAX_MASK = 100;
-
         [SerializeField] bool[] maskTable;
         [Tooltip("Default animator (in model) if null")]
 

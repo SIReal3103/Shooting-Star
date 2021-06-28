@@ -11,7 +11,7 @@ namespace ANTs.Core
         [SerializeField] ANTsPolygon prepareZone;
         [SerializeField] AnimatorEvents animationEvent;
 
-        private EnemyNinjaFacade enemy;
+        private EnemyNinjaControl enemy;
         private bool isArrived;
         private bool isAttackDone;
         private Vector2 preparePosition;
@@ -19,7 +19,7 @@ namespace ANTs.Core
         #region ======================================================Initialize
         public void Awake()
         {
-            enemy = GetComponent<EnemyNinjaFacade>();
+            enemy = GetComponent<EnemyNinjaControl>();
             preparePosition = prepareZone.GetRandomPointOnSurface();
         }
 
@@ -64,7 +64,7 @@ namespace ANTs.Core
             {
                 isArrived = false;
                 enemy.MoveTo(preparePosition);
-            }
+            }            
 
             if (isArrived) Task.current.Succeed();
         }
@@ -80,6 +80,10 @@ namespace ANTs.Core
 
             if (isAttackDone) Task.current.Succeed();
         }
+        #endregion
+
+
+
 
         public void OnActorArrived()
         {
@@ -90,6 +94,6 @@ namespace ANTs.Core
         {
             isAttackDone = true;
         }
-        #endregion
+        
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(EnemyFacade))]
-    public class EnemyNinjaFacade : MonoBehaviour
+    [RequireComponent(typeof(EnemyControl))]
+    public class EnemyNinjaControl : MonoBehaviour
     {
         public event Action OnActorArrivedEvent
         {
