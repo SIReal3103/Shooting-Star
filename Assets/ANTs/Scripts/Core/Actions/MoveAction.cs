@@ -71,7 +71,7 @@ namespace ANTs.Core
             if (FacingWithDirection)
                 model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
 
-            SetBoolAnimator(IsMoving());
+            SetAnimatorBool(IsMoving());
 
             if (IsArrived())
             {

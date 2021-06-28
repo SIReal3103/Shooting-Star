@@ -37,8 +37,8 @@ namespace ANTs.Template
 
         protected virtual void Awake()
         {
-            animator = GetComponentInChildren<Animator>();
             animatorEvents = GetComponentInChildren<AnimatorEvents>();
+            animator = GetComponentInChildren<Animator>();
             scheduler = GetComponent<ActionScheduler>();
         }
 
@@ -94,7 +94,7 @@ namespace ANTs.Template
         {
             isActionActive = false;
             OnActionStopEvent?.Invoke();
-            if (!isTransitionTrigger) SetBoolAnimator(false);
+            if (!isTransitionTrigger) SetAnimatorBool(false);
         }
 
         protected virtual void ActionUpdate() { }
@@ -103,24 +103,36 @@ namespace ANTs.Template
         /// <summary>
         /// Only allow in BooleanNotStartOnPlay, BooleanStartOnPlay or Custom with isTransitionTrigger on.
         /// </summary>
-        /// <param name="value"></param>
-        protected void SetBoolAnimator(bool value)
+        /// <param name="value"></param>        
+        protected void SetAnimatorBool(bool value)
         {
             if (animator)
             {
                 if (isTransitionTrigger)
                 {
-                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " + GetType().Name + " which is on isTransitionTrigger mode");
+                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " + 
+                        GetType().Name + 
+                        " which set isTransitionTrigger true"
+                    );
                     return;
                 }
                 animator.SetBool("Is" + GetType().Name, value);
             }
         }
-
         private void SetAnimatorTrigger()
         {
-            if (isTransitionTrigger && animator)
+            if (animator)
+            {
+                if (!isTransitionTrigger)
+                {
+                    Debug.LogWarning("SetAnimatorTrigger function shouldn't be called by " +
+                        GetType().Name +
+                        " which set isTransitionTrigger false"
+                    );
+                    return;
+                }
                 animator.SetTrigger(GetType().Name);
+            }
         }
         #endregion
     }
