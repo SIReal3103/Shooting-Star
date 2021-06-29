@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Damager))]
-    public class Bullet : Projectile, IANTsPoolable<BulletPool, Bullet>, IProgressable
+    public class WeaponAmmo : Projectile, IANTsPoolable<AmmoPool, WeaponAmmo>, IProgressable
     {
         #region ==================================SerializeField
 
@@ -18,7 +18,7 @@ namespace ANTs.Core
 
         #endregion
 
-        public BulletPool CurrentPool { get; set; }
+        public AmmoPool CurrentPool { get; set; }
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextBulletId; }
 
@@ -67,16 +67,14 @@ namespace ANTs.Core
             CurrentPool.ReturnToPool(this);
         }
 
-        public void WakeUp(System.Object args) // IANTsPoolable Implementation
+        public void WakeUp(object args) // IANTsPoolable Implementation
         {
             gameObject.SetActive(true);
 
-            BulletData data = args as BulletData;
+            AmmoData data = args as AmmoData;
 
             transform.position = data.origin;
             SetDirection(data.moveDirection);
-            source = data.source;
-
             touchDamager.Source = data.source;
         }
 
@@ -86,5 +84,19 @@ namespace ANTs.Core
         }
 
         #endregion
+    }
+
+    public class AmmoData
+    {
+        public GameObject source;
+        public Vector2 origin;
+        public Vector2 moveDirection;
+
+        public AmmoData(GameObject source, Vector2 origin, Vector2 moveDirection)
+        {
+            this.source = source;
+            this.origin = origin;
+            this.moveDirection = moveDirection;
+        }
     }
 }

@@ -9,17 +9,17 @@ namespace ANTs.Core
         [SerializeField] Transform weaponAttachment;
         [SerializeField] float timeBetweenFire = 0.5f;
         [Tooltip("Initial gun type for gunner, default gun if null")]
-        [SerializeField] GunPool initialGunPool;
+        [SerializeField] ProjectileWeaponPool initialGunPool;
         [Tooltip("Initial bullet type for gunner, default bullet if null")]
-        [SerializeField] BulletPool initialBulletPool;
+        [SerializeField] AmmoPool initialBulletPool;
         #endregion
 
 
 
         #region =================================================VARIABLES
-        private GunPool currentGunPool;
-        private BulletPool currentBulletPool;
-        private Gun currentGun;
+        private ProjectileWeaponPool currentGunPool;
+        private AmmoPool currentBulletPool;
+        private ProjectileWeapon currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
         #endregion
 
@@ -28,10 +28,10 @@ namespace ANTs.Core
         {
             base.Start();
 
-            currentGunPool = initialGunPool ? initialGunPool : GunPoolManager.Instance.GetDefaultPool();
+            currentGunPool = initialGunPool ? initialGunPool : ProjectileWeaponManager.Instance.GetDefaultPool();
             LoadCurrenGun();
 
-            currentBulletPool = initialBulletPool ? initialBulletPool : BulletPoolManager.Instance.GetDefaultPool();
+            currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
             LoadCurrentBullet();
         }
         #endregion
@@ -58,7 +58,7 @@ namespace ANTs.Core
 
         public void ChangeStrongerGun()
         {
-            if (GunPoolManager.Instance.ProgressNextPool(ref currentGunPool))
+            if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentGunPool))
             {
                 LoadCurrenGun();
             }
@@ -66,7 +66,7 @@ namespace ANTs.Core
 
         public void ChangeStrongerBullet()
         {
-            if (BulletPoolManager.Instance.ProgressNextPool(ref currentBulletPool))
+            if (AmmoManager.Instance.ProgressNextPool(ref currentBulletPool))
             {
                 LoadCurrentBullet();
             }
@@ -75,12 +75,12 @@ namespace ANTs.Core
         private void LoadCurrenGun()
         {
             if (currentGun != null) currentGun.ReturnToPool();
-            currentGun = currentGunPool.Pop(new GunData(weaponAttachment, gameObject, currentBulletPool));
+            currentGun = currentGunPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentBulletPool));
         }
 
         private void LoadCurrentBullet()
         {
-            currentGun.SetBulletPool(currentBulletPool);
+            currentGun.SetAmmoPool(currentBulletPool);
         }
 
         private void UpdateTimer()

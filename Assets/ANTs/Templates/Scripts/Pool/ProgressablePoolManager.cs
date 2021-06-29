@@ -29,7 +29,7 @@ namespace ANTs.Template
         private TPool CreatePool(TObject poolObject)
         {
             GameObject go = new GameObject(poolObject.name + "_pool");
-            go.transform.SetParent(transform);
+            go.transform.SetParentPreserve(transform);
             return go.AddComponent<TPool>();
         }
 

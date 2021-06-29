@@ -137,6 +137,21 @@ PrefabInstance:
       propertyPath: projectileTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 3633079007253017735}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: nextLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 3633079007253017735}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40a2e670df36264bb481cf6a7a7a86c, type: 3}
 --- !u!4 &1786001487709372877 stripped

@@ -10,6 +10,7 @@ namespace ANTs.Core
         /// When touch damager hit a dammageble enemy
         /// </summary>
         public event Action OnHitEvent;
+
         [Tooltip("The source of the attacker, use to compare tag")]
         [SerializeField] GameObject source;
         [Tooltip("If the enemy stay in the collider, how long between dammages occur")]

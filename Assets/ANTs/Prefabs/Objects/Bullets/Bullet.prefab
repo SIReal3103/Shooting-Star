@@ -72,8 +72,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52cd87cc157c7f43b40083c872be931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActionActive: 0
   actionStartOnPlay: 1
-  isActionStart: 0
+  isAttachWithAnimator: 0
+  typeOfAction: 0
+  isTransitionTrigger: 0
+  syncWithAnimation: 0
   model: {fileID: 0}
   FacingWithDirection: 0
   movementType: 0
@@ -122,10 +126,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2465691811505759138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd6b9b13a1f1454d9c6a951b631056c, type: 3}
+  m_Script: {fileID: 11500000, guid: 30b6c9f76f89ee24f8b0c82b9cfe5842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
   destroyWhenOutOfScreen: 1
   outScreenOffSet: {x: 0, y: 0}
   currentLevel: 0
@@ -169,8 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActionActive: 0
   actionStartOnPlay: 0
-  isActionStart: 0
+  isAttachWithAnimator: 0
+  typeOfAction: 0
+  isTransitionTrigger: 0
+  syncWithAnimation: 0
   durationReturnToPool: 1
 --- !u!1 &2465691812362409213
 GameObject:

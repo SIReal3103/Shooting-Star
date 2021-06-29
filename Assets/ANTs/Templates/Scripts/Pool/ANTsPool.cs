@@ -35,7 +35,7 @@ namespace ANTs.Template
             }
         }
 
-        public TObject Pop(System.Object args)
+        public TObject Pop(object args)
         {
             if (objects.Count == 0)
             {
@@ -85,7 +85,7 @@ namespace ANTs.Template
     {
         TPool CurrentPool { get; set; }
         void ReturnToPool();
-        void WakeUp(System.Object args);
+        void WakeUp(object args);
         void Sleep();
     }
 }

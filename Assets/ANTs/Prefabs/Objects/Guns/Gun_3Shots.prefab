@@ -242,6 +242,36 @@ PrefabInstance:
       propertyPath: projectileTransforms.Array.data[2]
       value: 
       objectReference: {fileID: 8018836862884229770}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: nextLevel
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: currentLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 4525014331854796644}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 3177862036050731231}
+    - target: {fileID: 7955599028910590952, guid: b40a2e670df36264bb481cf6a7a7a86c,
+        type: 3}
+      propertyPath: projectileTransforms.Array.data[2]
+      value: 
+      objectReference: {fileID: 8018836862884229770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40a2e670df36264bb481cf6a7a7a86c, type: 3}
 --- !u!4 &7528000392571864513 stripped

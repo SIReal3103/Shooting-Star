@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927165281732816590}
-  - component: {fileID: 1927165281732816591}
+  - component: {fileID: 7955599028910590952}
   m_Layer: 0
   m_Name: GunPrototype
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1927165281732816591
+--- !u!114 &7955599028910590952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1927165281732816584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e13145d154f787e4ebea464bad9bd235, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2a5d04d3b274c4c9465b22045c869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDirections:
-  - {x: 0, y: 1}
-  BulletPool: {fileID: 0}
+  projectileTransforms: []
+  currentLevel: 0
+  nextLevel: 0

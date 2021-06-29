@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class Gun : MonoBehaviour, IANTsPoolable<GunPool, Gun>, IProgressable
+    public class ProjectileWeapon : MonoBehaviour, IANTsPoolable<ProjectileWeaponPool, ProjectileWeapon>, IProgressable
     {
-
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Transform[] projectileTransforms;
         [Header("IProgressable")]
@@ -13,28 +12,33 @@ namespace ANTs.Core
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
-        private GameObject source;
-        private BulletPool currentBulletPool;
+        private AmmoPool currentAmmo;
+        private GameObject owner;
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
-        public GunPool CurrentPool { get; set; } // IANTsPoolable Implementation
 
         #region ==================================Behaviours
-        public void SetBulletPool(BulletPool pool) => currentBulletPool = pool;
+        public void SetAmmoPool(AmmoPool pool) => currentAmmo = pool;
+
         public void Fire()
         {
-            if (currentBulletPool == null)
-                throw new UnityException("CurrentBulletPool can't be null, (BulletPoolManager might be empty?)");
+            if (currentAmmo == null)
+            {
+                Debug.LogWarning("currentBulletPool is null.");
+                return;
+            }
 
             foreach (Transform projectileTransform in projectileTransforms)
             {
-                currentBulletPool.Pop(new BulletData(source.gameObject, projectileTransform.position, projectileTransform.up));
+                currentAmmo.Pop(new AmmoData(owner, projectileTransform.position, projectileTransform.up));
             }
         }
         #endregion
 
         #region ============================ IANTsPoolable
+        public ProjectileWeaponPool CurrentPool { get; set; }
+
         public void ReturnToPool()
         {
             CurrentPool.ReturnToPool(this);
@@ -43,13 +47,11 @@ namespace ANTs.Core
         public void WakeUp(object args)
         {
             gameObject.SetActive(true);
+            ProjectileWeaponData data = args as ProjectileWeaponData;
 
-            GunData data = args as GunData;
-            transform.SetParent(data.parent);
-            source = data.source;
-            currentBulletPool = data.bulletPool;
-
-            transform.localPosition = Vector3.zero;
+            currentAmmo = data.ammoPool;
+            transform.SetParentPreserve(data.parent);
+            owner = data.owner;
         }
 
         public void Sleep()
@@ -68,5 +70,19 @@ namespace ANTs.Core
             }
         }
         #endregion
+    }
+
+    public class ProjectileWeaponData
+    {
+        public Transform parent;
+        public GameObject owner;
+        public AmmoPool ammoPool;
+
+        public ProjectileWeaponData(Transform parent, GameObject owner, AmmoPool ammoPool)
+        {
+            this.parent = parent;
+            this.owner = owner;
+            this.ammoPool = ammoPool;
+        }
     }
 }
