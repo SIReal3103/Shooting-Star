@@ -316,6 +316,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: typeOfAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5092417165955709028, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: player
@@ -326,6 +336,16 @@ PrefabInstance:
       propertyPath: prepareZone
       value: 
       objectReference: {fileID: 1402188611}
+    - target: {fileID: 7773835127268301595, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970156681229711827, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_Name
@@ -506,10 +526,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: typeOfAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: typeOfAction
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318241499830329420, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719824776850711000, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: m_Name
+      value: WeaponAttachment
       objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}

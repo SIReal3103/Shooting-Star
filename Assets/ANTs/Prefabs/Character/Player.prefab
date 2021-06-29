@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2648071465191318721}
   m_Layer: 0
-  m_Name: weaponAttachment
+  m_Name: WeaponAttachment
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -55,10 +55,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActionActive: 0
+  actionStartOnPlay: 1
+  isAttachWithAnimator: 1
+  typeOfAction: 3
   isTransitionTrigger: 0
   syncWithAnimation: 0
-  actionStartOnPlay: 1
-  typeOfAction: 3
   weaponAttachment: {fileID: 2648071465191318721}
   timeBetweenFire: 0.5
   initialGunPool: {fileID: 0}
@@ -76,10 +77,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActionActive: 0
+  actionStartOnPlay: 0
+  isAttachWithAnimator: 1
+  typeOfAction: 1
   isTransitionTrigger: 1
   syncWithAnimation: 0
-  actionStartOnPlay: 0
-  typeOfAction: 1
   durationReturnToPool: 1
 --- !u!114 &5365085402913456819
 MonoBehaviour:
@@ -245,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: typeOfAction
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
@@ -255,6 +257,11 @@ PrefabInstance:
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: FacingWithDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: isAttachWithAnimator
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,

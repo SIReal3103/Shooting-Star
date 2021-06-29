@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActionActive: 0
+  actionStartOnPlay: 0
+  isAttachWithAnimator: 1
+  typeOfAction: 0
   isTransitionTrigger: 1
   syncWithAnimation: 1
-  actionStartOnPlay: 0
-  typeOfAction: 0
   area: {fileID: 8944774670685677394}
 --- !u!1 &8846833554196541729
 GameObject:
@@ -265,6 +266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: durationReturnToPool
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 487914377970973947, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 501706052248390141, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
@@ -386,11 +392,16 @@ PrefabInstance:
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: typeOfAction
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: FacingWithDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: isAttachWithAnimator
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
