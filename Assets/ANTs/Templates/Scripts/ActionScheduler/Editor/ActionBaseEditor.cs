@@ -40,6 +40,9 @@ namespace ANTs.Template
             {
                 ReadOnly(DisplayProperty);
             }
+
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("ActionBase", EditorStyles.boldLabel);
             ReadOnly(DisplayActive);
 
             serializedObject.ApplyModifiedProperties();
@@ -47,7 +50,9 @@ namespace ANTs.Template
 
         private void DisplayActive()
         {
-            GUILayout.TextField("isActionActive", isActionStart.boolValue ? GetTextStyle(Color.green) : GetTextStyle(Color.gray));
+            GUILayout.TextField(
+                string.Format("isActionActive"), 
+                isActionStart.boolValue ? GetTextStyle(Color.green) : GetTextStyle(Color.gray));
         }
 
         private void DisplayProperty()
