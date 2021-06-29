@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace ANTs.Template
 {
@@ -8,8 +9,7 @@ namespace ANTs.Template
     {
         TriggerWithSync,
         TriggerButNotSync,
-        BooleanNotStartOnPlay,
-        BooleanStartOnPlay,
+        Boolean,
         Custom
     }
 
@@ -20,10 +20,12 @@ namespace ANTs.Template
         public event Action OnActionStopEvent;
 
         [HideInInspector] [SerializeField] bool isActionActive = false;
-        [HideInInspector] [SerializeField] bool isTransitionTrigger;
-        [HideInInspector] [SerializeField] bool syncWithAnimation;
         [HideInInspector] [SerializeField] bool actionStartOnPlay;
+
+        [HideInInspector] [SerializeField] bool isAttachWithAnimator = false;
         [HideInInspector] [SerializeField] ActionType typeOfAction;
+        [HideInInspector] [SerializeField] bool isTransitionTrigger;
+        [HideInInspector] [SerializeField] bool syncWithAnimation;       
 
         const float ENTERED_TIME_OFFSET = 0.1f;
 
@@ -38,8 +40,15 @@ namespace ANTs.Template
         protected virtual void Awake()
         {
             animatorEvents = GetComponentInChildren<AnimatorEvents>();
-            animator = GetComponentInChildren<Animator>();
+            
             scheduler = GetComponent<ActionScheduler>();
+
+            if (isAttachWithAnimator)
+            {
+                animator = GetComponentInChildren<Animator>();
+                if(animator == null)
+                    Debug.LogError("No animator found for " + GetType().Name);
+            }
         }
 
         protected virtual void Start()
@@ -53,23 +62,9 @@ namespace ANTs.Template
             if (IsActionActive)
             {
                 ActionUpdate();
-                if (syncWithAnimation)
-                {
-                    float time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-                    if (isAnimationEntered)
-                    {
-                        if (time < ENTERED_TIME_OFFSET)
-                        {
-                            ActionStop();
-                        }
-                    }
-                    else if (time > ENTERED_TIME_OFFSET)
-                    {
-                        isAnimationEntered = true;
-                    }
-                }
+                SyncAnimationUpdate();
             }
-        }
+        }        
 
         public virtual void ActionStart()
         {
@@ -78,22 +73,22 @@ namespace ANTs.Template
                 Debug.LogWarning(GetType().Name + " is prevented!");
                 return;
             }
-            InitData();
+            if (isTransitionTrigger) SetAnimatorTrigger();
+            scheduler.StopActionRelavetiveTo(this);
+            InitDataAndCallEvents();
         }
 
-        private void InitData()
+        private void InitDataAndCallEvents()
         {
-            isActionActive = true;
             OnActionStartEvent?.Invoke();
-            scheduler.StopActionRelavetiveTo(this);
+            isActionActive = true;
             isAnimationEntered = false;
-            SetAnimatorTrigger();
         }
 
         public virtual void ActionStop()
         {
-            isActionActive = false;
             OnActionStopEvent?.Invoke();
+            isActionActive = false;
             if (!isTransitionTrigger) SetAnimatorBool(false);
         }
 
@@ -101,13 +96,33 @@ namespace ANTs.Template
 
         #region ===================================Animator control
         /// <summary>
-        /// Only allow in BooleanNotStartOnPlay, BooleanStartOnPlay or Custom with isTransitionTrigger on.
+        /// Only allow in BooleanNotStartOnPlay, BooleanStartOnPlay 
+        /// or Custom with isTransitionTrigger on option in ActionType.
         /// </summary>
-        /// <param name="value"></param>        
+        /// <param name="value"></param>       
+        private void SyncAnimationUpdate()
+        {            
+            if (isAttachWithAnimator && syncWithAnimation)
+            {
+                float time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                if (isAnimationEntered)
+                {
+                    if (time < ENTERED_TIME_OFFSET)
+                    {
+                        ActionStop();
+                    }
+                }
+                else if (time > ENTERED_TIME_OFFSET)
+                {
+                    isAnimationEntered = true;
+                }
+            }
+        }
         protected void SetAnimatorBool(bool value)
         {
-            if (animator)
+            if (isAttachWithAnimator)
             {
+                Assert.IsNotNull(animator);
                 if (isTransitionTrigger)
                 {
                     Debug.LogWarning("SetAnimationBool function shouldn't be called by " + 
@@ -121,16 +136,9 @@ namespace ANTs.Template
         }
         private void SetAnimatorTrigger()
         {
-            if (animator)
+            if (isAttachWithAnimator && isTransitionTrigger)
             {
-                if (!isTransitionTrigger)
-                {
-                    Debug.LogWarning("SetAnimatorTrigger function shouldn't be called by " +
-                        GetType().Name +
-                        " which set isTransitionTrigger false"
-                    );
-                    return;
-                }
+                Assert.IsNotNull(animator);
                 animator.SetTrigger(GetType().Name);
             }
         }

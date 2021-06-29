@@ -7,14 +7,16 @@ namespace ANTs.Template
     [CustomEditor(typeof(ActionBase), true)]
     public class ActionBaseEditor : Editor
     {
+        SerializedProperty isAttachWithAnimator;
+        SerializedProperty typeOfAction;
         SerializedProperty isTransitionTrigger;
         SerializedProperty syncWithAnimation;
         SerializedProperty actionStartOnPlay;
         SerializedProperty isActionStart;
-        SerializedProperty typeOfAction;
 
         public void OnEnable()
         {
+            isAttachWithAnimator = serializedObject.FindProperty("isAttachWithAnimator");
             isTransitionTrigger = serializedObject.FindProperty("isTransitionTrigger");
             syncWithAnimation = serializedObject.FindProperty("syncWithAnimation");
             actionStartOnPlay = serializedObject.FindProperty("actionStartOnPlay");
@@ -24,14 +26,33 @@ namespace ANTs.Template
 
         public override void OnInspectorGUI()
         {
+            // Header
             serializedObject.Update();
+
+            EditorGUILayout.PropertyField(actionStartOnPlay);
             base.OnInspectorGUI();
 
             EditorGUILayout.Space(10);
-            EditorGUILayout.LabelField("ActionBase", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(typeOfAction);
-            AssignValue((ActionType)typeOfAction.enumValueIndex);
+            EditorGUILayout.LabelField("Animator Control", EditorStyles.boldLabel); // Header
+            EditorGUILayout.PropertyField(isAttachWithAnimator);            
+            if (isAttachWithAnimator.boolValue)
+            {
+                EditorGUILayout.PropertyField(typeOfAction);
+                AssignValue((ActionType)typeOfAction.enumValueIndex);
+                DisplayAnimatorControl();
+            }
 
+            // Debug
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("Debug Info", EditorStyles.boldLabel); // Header
+            ReadOnly(DisplayActive);
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        #region ========================================Displays
+        private void DisplayAnimatorControl()
+        {
             if (typeOfAction.enumValueIndex == (int)ActionType.Custom)
             {
                 DisplayProperty();
@@ -40,28 +61,21 @@ namespace ANTs.Template
             {
                 ReadOnly(DisplayProperty);
             }
-
-            EditorGUILayout.Space(10);
-            EditorGUILayout.LabelField("ActionBase", EditorStyles.boldLabel);
-            ReadOnly(DisplayActive);
-
-            serializedObject.ApplyModifiedProperties();
         }
-
         private void DisplayActive()
         {
             GUILayout.TextField(
                 string.Format("isActionActive"), 
                 isActionStart.boolValue ? GetTextStyle(Color.green) : GetTextStyle(Color.gray));
         }
-
         private void DisplayProperty()
         {
             EditorGUILayout.PropertyField(isTransitionTrigger);
-            EditorGUILayout.PropertyField(syncWithAnimation);
-            EditorGUILayout.PropertyField(actionStartOnPlay);
+            EditorGUILayout.PropertyField(syncWithAnimation);            
         }
+        #endregion
 
+        #region ========================================= Utils
         private void ReadOnly(Action func)
         {
             bool wasEnabled = GUI.enabled;
@@ -69,14 +83,12 @@ namespace ANTs.Template
             func();
             GUI.enabled = wasEnabled;
         }
-
         private GUIStyle GetTextStyle(Color color)
         {
             GUIStyle s = new GUIStyle(EditorStyles.label);
             s.normal.textColor = color;
             return s;
         }
-
         private void AssignValue(ActionType actionType)
         {
             switch (actionType)
@@ -84,26 +96,19 @@ namespace ANTs.Template
                 case ActionType.TriggerWithSync:
                     isTransitionTrigger.boolValue = true;
                     syncWithAnimation.boolValue = true;
-                    actionStartOnPlay.boolValue = false;
                     break;
                 case ActionType.TriggerButNotSync:
                     isTransitionTrigger.boolValue = true;
                     syncWithAnimation.boolValue = false;
-                    actionStartOnPlay.boolValue = false;
                     break;
-                case ActionType.BooleanStartOnPlay:
+                case ActionType.Boolean:
                     isTransitionTrigger.boolValue = false;
                     syncWithAnimation.boolValue = false;
-                    actionStartOnPlay.boolValue = true;
-                    break;
-                case ActionType.BooleanNotStartOnPlay:
-                    isTransitionTrigger.boolValue = false;
-                    syncWithAnimation.boolValue = false;
-                    actionStartOnPlay.boolValue = false;
                     break;
                 default: // Custom
                     break;
             }
         }
+        #endregion
     }
 }
