@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191b83af7abdbc34b9c60b8a392c8d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfAction: 0
   isActionActive: 0
   actionStartOnPlay: 0
   isAttachWithAnimator: 1
-  typeOfAction: 0
   isTransitionTrigger: 1
   syncWithAnimation: 1
   area: {fileID: 8944774670685677394}
@@ -216,7 +216,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.07348853, y: -0.3025993}
@@ -270,6 +270,16 @@ PrefabInstance:
     - target: {fileID: 487914377970973947, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 487914377970973947, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: timeBeforeReturnPool
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 487914377970973947, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: isDisableColliderWhenDie
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 501706052248390141, guid: 9e9222022420a554187c138db3b69c93,

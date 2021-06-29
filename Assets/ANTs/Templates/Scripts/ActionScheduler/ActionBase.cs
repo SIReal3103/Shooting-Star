@@ -19,11 +19,10 @@ namespace ANTs.Template
         public event Action OnActionStartEvent;
         public event Action OnActionStopEvent;
 
+        [HideInInspector] [SerializeField] ActionType typeOfAction;
         [HideInInspector] [SerializeField] bool isActionActive = false;
         [HideInInspector] [SerializeField] bool actionStartOnPlay;
-
         [HideInInspector] [SerializeField] bool isAttachWithAnimator = false;
-        [HideInInspector] [SerializeField] ActionType typeOfAction;
         [HideInInspector] [SerializeField] bool isTransitionTrigger;
         [HideInInspector] [SerializeField] bool syncWithAnimation;       
 
@@ -35,7 +34,7 @@ namespace ANTs.Template
         private bool isAnimationEntered;
         private ActionScheduler scheduler;
 
-        public bool IsActionActive { get => isActionActive; set => isActionActive = value; }
+        public bool IsActionActive { get => isActionActive; }
 
         protected virtual void Awake()
         {

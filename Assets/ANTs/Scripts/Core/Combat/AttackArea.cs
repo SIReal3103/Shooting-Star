@@ -14,43 +14,36 @@ namespace ANTs.Core
         private HashSet<Damageable> damageables = new HashSet<Damageable>();
         private Damager damager;
 
-
-
-
         private void Awake()
         {
             damager = GetComponent<Damager>();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            if (IsEnemy(collision))
+            if (IsEnemy(collider))
             {
-                if (!collision.transform.TryGetComponent(out Damageable damageable))
+                if (collider.transform.TryGetComponent(out Damageable damageable))
                 {
-                    return;
+                    damageables.Add(damageable);
                 }
-                damageables.Add(damageable);
             }
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        private void OnTriggerExit2D(Collider2D collider)
         {
-            if (IsEnemy(collision))
+            if (IsEnemy(collider))
             {
-                if (!collision.transform.TryGetComponent(out Damageable damageable))
+                if (collider.transform.TryGetComponent(out Damageable damageable))
                 {
-                    return;
+                    damageables.Remove(damageable);
                 }
-                damageables.Remove(damageable);
             }
         }
 
-
-
-        private bool IsEnemy(Collision2D collision)
+        private bool IsEnemy(Collider2D collider)
         {
-            return !collision.transform.CompareTag(Source.tag);
+            return !collider.CompareTag(Source.tag);
         }
 
         public void Attack()

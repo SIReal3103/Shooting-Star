@@ -32,14 +32,14 @@ namespace ANTs.Core
 
         private void OnCollisionStay2D(Collision2D collision)
         {
+            if (!collision.enabled) return;
+
             if (IsEnemy(collision))
             {
-                if (!collision.transform.TryGetComponent(out Damageable damageable))
+                if (collision.transform.TryGetComponent(out Damageable damageable))
                 {
-                    return;
-                }
-
-                Attack(damageable);
+                    Attack(damageable);
+                }                
             }
         }
 

@@ -8,14 +8,20 @@ namespace ANTs.Core
         [Header("Die Action")]
         [Space(10)]
         [Tooltip("How long before the return to pool")]
-        [SerializeField] float durationReturnToPool = 1f;
+        [SerializeField] float timeBeforeReturnPool = 5f;
+        [SerializeField] bool isDisableColliderWhenDie = true;
 
         public EnemyPool CurrentPool { get; set; }
 
         public override void ActionStart()
         {
             base.ActionStart();
-            Invoke(nameof(ReturnToPool), durationReturnToPool);
+            if (isDisableColliderWhenDie)
+            {
+                GetComponent<Collider2D>().enabled = false;
+            }
+
+            Invoke(nameof(ReturnToPool), timeBeforeReturnPool);
         }
 
         #region =======================================IANTsPoolObject IMPLEMENTATION

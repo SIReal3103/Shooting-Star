@@ -24,6 +24,7 @@ namespace ANTs.Core
             get => health;
             set
             {
+                if (health == 0 && value <= 0) return;
                 health = Mathf.Clamp(value, 0, MaxHealth);
                 OnHealthUpdateEvent?.Invoke(health);
                 if (health == 0) OnHealthReachZeroEvent?.Invoke();
@@ -49,7 +50,6 @@ namespace ANTs.Core
         {
             this.Health -= health;
         }
-
         public void GainHealth(int health)
         {
             this.Health += health;
