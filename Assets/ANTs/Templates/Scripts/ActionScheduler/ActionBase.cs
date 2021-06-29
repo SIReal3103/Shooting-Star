@@ -26,13 +26,14 @@ namespace ANTs.Template
         [HideInInspector] [SerializeField] bool isTransitionTrigger;
         [HideInInspector] [SerializeField] bool syncWithAnimation;       
 
-        const float ENTERED_TIME_OFFSET = 0.1f;
+        const float EXIT_TIME_OFFSET = 0.05f;
+        const float TRANSITION_WAIT_TIME = 0.1f; // Must larger than ENTERED_TIME_OFFSET
 
         protected AnimatorEvents animatorEvents;
         protected Animator animator;
 
-        private bool isAnimationEntered;
         private ActionScheduler scheduler;
+        private float transitionTimer;
 
         public bool IsActionActive { get => isActionActive; }
 
@@ -61,9 +62,18 @@ namespace ANTs.Template
             if (IsActionActive)
             {
                 ActionUpdate();
-                SyncAnimationUpdate();
+
+                if(syncWithAnimation)
+                    SyncAnimationUpdate();
             }
-        }        
+
+            UpdateTimer();
+        }
+
+        private void UpdateTimer()
+        {
+            transitionTimer += Time.deltaTime;
+        }
 
         public virtual void ActionStart()
         {
@@ -81,7 +91,7 @@ namespace ANTs.Template
         {
             OnActionStartEvent?.Invoke();
             isActionActive = true;
-            isAnimationEntered = false;
+            transitionTimer = 0f;
         }
 
         public virtual void ActionStop()
@@ -101,22 +111,18 @@ namespace ANTs.Template
         /// <param name="value"></param>       
         private void SyncAnimationUpdate()
         {            
-            if (isAttachWithAnimator && syncWithAnimation)
+            if (isAttachWithAnimator)
             {
-                float time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-                if (isAnimationEntered)
-                {
-                    if (time < ENTERED_TIME_OFFSET)
-                    {
-                        ActionStop();
-                    }
-                }
-                else if (time > ENTERED_TIME_OFFSET)
-                {
-                    isAnimationEntered = true;
-                }
+                if (transitionTimer < TRANSITION_WAIT_TIME) return;
+                if (AnimatorTransitionTime() < EXIT_TIME_OFFSET) ActionStop();
             }
         }
+
+        private float AnimatorTransitionTime()
+        {
+            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        }
+
         protected void SetAnimatorBool(bool value)
         {
             if (isAttachWithAnimator)

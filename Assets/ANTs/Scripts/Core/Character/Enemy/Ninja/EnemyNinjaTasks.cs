@@ -26,13 +26,13 @@ namespace ANTs.Core
         public void OnEnable()
         {
             enemy.OnActorArrivedEvent += OnActorArrived;
-            animationEvent.OnActorAttackEvent += OnActorAttack;
+            enemy.OnActorAttackDone += OnActorAttackDone;
         }
 
         private void OnDisable()
         {
             enemy.OnActorArrivedEvent -= OnActorArrived;
-            animationEvent.OnActorAttackEvent -= OnActorAttack;
+            enemy.OnActorAttackDone -= OnActorAttackDone;
         }
         #endregion
 
@@ -85,15 +85,15 @@ namespace ANTs.Core
 
 
 
+
         public void OnActorArrived()
         {
             isArrived = true;
         }
 
-        private void OnActorAttack()
+        private void OnActorAttackDone()
         {
             isAttackDone = true;
         }
-
     }
 }
