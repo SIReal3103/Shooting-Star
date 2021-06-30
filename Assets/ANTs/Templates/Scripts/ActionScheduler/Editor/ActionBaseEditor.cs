@@ -26,11 +26,11 @@ namespace ANTs.Template
 
         public override void OnInspectorGUI()
         {
-            // Header
             serializedObject.Update();
-
-            EditorGUILayout.PropertyField(actionStartOnPlay);
             base.OnInspectorGUI();
+
+            EditorGUILayout.Space(10);
+            EditorGUILayout.PropertyField(actionStartOnPlay);
 
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Animator Control", EditorStyles.boldLabel); // Header
