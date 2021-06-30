@@ -36,15 +36,14 @@ namespace ANTs.Template
 
         protected virtual void Awake()
         {
-            animatorEvents = GetComponentInChildren<AnimatorEvents>();
-            
+            animatorEvents = GetComponentInChildren<AnimatorEvents>();            
             scheduler = GetComponent<ActionScheduler>();
 
             if (isAttachWithAnimator)
             {
                 animator = GetComponentInChildren<Animator>();
                 if(animator == null)
-                    Debug.LogError("No animator found for " + GetType().Name);
+                    Debug.LogError("No animator found for " + this);
             }
         }
 
@@ -62,6 +61,7 @@ namespace ANTs.Template
             }            
         }
 
+        #region =================================== Overrideable
         public virtual void ActionStart()
         {
             if (scheduler.IsPrevent(this))
@@ -83,6 +83,15 @@ namespace ANTs.Template
             OnActionStartEvent?.Invoke();
             isActionActive = true;
         }
+        public virtual void ActionStop()
+        {
+            OnActionStopEvent?.Invoke();
+            isActionActive = false;
+            if (!isTransitionTrigger) SetAnimatorBool(false);
+        }
+
+        protected virtual void ActionUpdate() { }
+        #endregion
 
         #region ====================================== Sync Animation Logics
         private void InitSyncWithAnimationLogic()
@@ -95,41 +104,26 @@ namespace ANTs.Template
             }
         }
 
-        public void OnTransitionExitEvent()
+        public void OnTransitionExit()
         {
             calculator.OnTransitionExitEvent -= ActionStop;
             ActionStop();
         }
-        #endregion
-
-
-        public virtual void ActionStop()
-        {
-            OnActionStopEvent?.Invoke();
-            isActionActive = false;
-            if (!isTransitionTrigger) SetAnimatorBool(false);
-        }
-
-        protected virtual void ActionUpdate() { }
+        #endregion               
 
         #region ===================================Animator control
         /// <summary>
-        /// Only allow in BooleanNotStartOnPlay, BooleanStartOnPlay 
-        /// or Custom with isTransitionTrigger on option in ActionType.
+        /// Only allow in Boolean or Custom with isTransitionTrigger on option in ActionType.
         /// </summary>
-        /// <param name="value"></param>
-
-        
-
+        /// <param name="value"></param>     
         protected void SetAnimatorBool(bool value)
         {
             if (isAttachWithAnimator)
-            {
-                Assert.IsNotNull(animator);                
+            {            
                 if (isTransitionTrigger)
                 {
-                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " + 
-                        GetType().Name + 
+                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " +
+                        this + 
                         " which set isTransitionTrigger true"
                     );
                     return;
@@ -141,7 +135,6 @@ namespace ANTs.Template
         {
             if (isAttachWithAnimator)
             {
-                Assert.IsNotNull(animator);
                 Assert.IsTrue(isTransitionTrigger);
                 animator.SetTrigger(GetType().Name);
             }
