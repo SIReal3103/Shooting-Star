@@ -6,7 +6,7 @@ namespace ANTs.Template
     public abstract class ANTsPool : MonoBehaviour
     {
         [SerializeField] private GameObject prefab;
-        [SerializeField] private int initialPoolSize = 10;        
+        [SerializeField] private int initialPoolSize = 10;
 
         private Queue<GameObject> objects;
         //public GameObject Prefab { get => prefab; }

@@ -39,7 +39,7 @@ namespace ANTs.Core
                 if (collision.transform.TryGetComponent(out Damageable damageable))
                 {
                     Attack(damageable);
-                }                
+                }
             }
         }
 

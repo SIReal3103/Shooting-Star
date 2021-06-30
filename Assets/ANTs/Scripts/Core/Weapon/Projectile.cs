@@ -4,7 +4,7 @@ namespace ANTs.Core
 {
     [RequireComponent(typeof(MoveAction))]
     public abstract class Projectile : MonoBehaviour
-    {       
+    {
         private MoveAction mover;
         protected virtual void Awake()
         {

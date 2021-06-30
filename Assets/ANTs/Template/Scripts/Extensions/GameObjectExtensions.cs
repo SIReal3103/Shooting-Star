@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using ANTs.Template;
-using System.Collections.Generic;
+﻿using ANTs.Template;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 static public class GameObjectExtensions
 {
@@ -43,7 +43,7 @@ static public class GameObjectExtensions
         else
         {
             OnWakeUpEvents.Add(go, callback);
-        }            
+        }
     }
     static public void SetSleepDelegate(this GameObject go, Action callback)
     {
@@ -60,9 +60,9 @@ static public class GameObjectExtensions
 
     static public void ReturnToPoolOrDestroy(this GameObject go)
     {
-        if(objectPools.TryGetValue(go, out ANTsPool objectPool))
+        if (objectPools.TryGetValue(go, out ANTsPool objectPool))
         {
-            objectPool.ReturnToPool(go);            
+            objectPool.ReturnToPool(go);
         }
         else UnityEngine.Object.Destroy(go);
     }

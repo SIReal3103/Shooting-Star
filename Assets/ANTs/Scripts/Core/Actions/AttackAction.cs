@@ -9,7 +9,6 @@ namespace ANTs.Core
         [Space(10)]
         [SerializeField] AttackArea area;
 
-
         public override void ActionStart()
         {
             base.ActionStart();
