@@ -125,7 +125,7 @@ namespace ANTs.Template
         {
             if (isAttachWithAnimator)
             {
-                Assert.IsNotNull(animator);
+                Assert.IsNotNull(animator);                
                 if (isTransitionTrigger)
                 {
                     Debug.LogWarning("SetAnimationBool function shouldn't be called by " + 
@@ -139,9 +139,10 @@ namespace ANTs.Template
         }
         private void SetAnimatorTrigger()
         {
-            if (isAttachWithAnimator && isTransitionTrigger)
+            if (isAttachWithAnimator)
             {
                 Assert.IsNotNull(animator);
+                Assert.IsTrue(isTransitionTrigger);
                 animator.SetTrigger(GetType().Name);
             }
         }
