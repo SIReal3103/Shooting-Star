@@ -19,6 +19,17 @@ namespace ANTs.Core
         public ProgressIdentifier NextLevel { get => nextLevel; }
 
         #region ==================================Behaviours
+        private void Awake()
+        {
+            gameObject.SetWakeUpDelegate(args =>
+            {
+                ProjectileWeaponData data = args as ProjectileWeaponData;
+                currentAmmo = data.ammoPool;
+                transform.SetParentPreserve(data.parent);
+                owner = data.owner;
+            });
+        }
+
         public void SetAmmoPool(AmmoPool pool) => currentAmmo = pool;
 
         public void Fire()
@@ -36,30 +47,11 @@ namespace ANTs.Core
         }
         #endregion
 
-        #region ============================ IANTsPoolable
-        public ProjectileWeaponPool CurrentPool { get; set; }
 
         public void ReturnToPool()
         {
             gameObject.ReturnToPoolOrDestroy();
         }
-
-        public void WakeUp(object args)
-        {
-            gameObject.SetActive(true);
-            ProjectileWeaponData data = args as ProjectileWeaponData;
-
-            currentAmmo = data.ammoPool;
-            transform.SetParentPreserve(data.parent);
-            owner = data.owner;
-        }
-
-        public void Sleep()
-        {
-            gameObject.SetActive(false);
-        }
-        #endregion
-
 
         #region =================================projectileTransforms
         private void OnDrawGizmos()
