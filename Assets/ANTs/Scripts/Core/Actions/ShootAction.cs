@@ -35,9 +35,9 @@ namespace ANTs.Core
             //LoadCurrentBullet();
 
             currentGunPool = initialGunPool;
-            LoadCurrenGun();
+            LoadnewGunAndDestroyCurrent();
             currentBulletPool = initialBulletPool;
-            LoadCurrentBullet();
+            LoadBulletToCurrentGun();
         }
         #endregion
 
@@ -77,14 +77,14 @@ namespace ANTs.Core
             //}
         }
 
-        private void LoadCurrenGun()
+        private void LoadnewGunAndDestroyCurrent()
         {
             if (currentGun != null) currentGun.ReturnToPool();
             currentGun = currentGunPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentBulletPool))
                 .GetComponent<ProjectileWeapon>();
         }
 
-        private void LoadCurrentBullet()
+        private void LoadBulletToCurrentGun()
         {
             currentGun.SetAmmoPool(currentBulletPool);
         }

@@ -142,7 +142,8 @@ namespace ANTs.Template
 
         private string GetName()
         {
-            return GetType().Name.Replace("Action", "");
+            //return GetType().Name.Replace("Action", "");
+            return GetType().Name;
         }
         #endregion
     }
