@@ -36,13 +36,13 @@ namespace ANTs.Template
 
         protected virtual void Awake()
         {
-            animatorEvents = GetComponentInChildren<AnimatorEvents>();            
+            animatorEvents = GetComponentInChildren<AnimatorEvents>();
             scheduler = GetComponent<ActionScheduler>();
 
             if (isAttachWithAnimator)
             {
                 animator = GetComponentInChildren<Animator>();
-                if(animator == null)
+                if (animator == null)
                     Debug.LogError("No animator found for " + this);
             }
         }
@@ -58,7 +58,7 @@ namespace ANTs.Template
             if (IsActionActive)
             {
                 ActionUpdate();
-            }            
+            }
         }
 
         #region =================================== Overrideable
@@ -72,7 +72,7 @@ namespace ANTs.Template
 
             InitDataAndCall();
 
-            if(syncWithAnimation)
+            if (syncWithAnimation)
                 InitSyncWithAnimationLogic();
         }
 
@@ -96,7 +96,7 @@ namespace ANTs.Template
         #region ====================================== Sync Animation Logics
         private void InitSyncWithAnimationLogic()
         {
-            if(isAttachWithAnimator)
+            if (isAttachWithAnimator)
             {
                 calculator = new AnimationTransitionCalculator(animator);
                 calculator.OnTransitionExitEvent += ActionStop;
@@ -119,16 +119,16 @@ namespace ANTs.Template
         protected void SetAnimatorBool(bool value)
         {
             if (isAttachWithAnimator)
-            {            
+            {
                 if (isTransitionTrigger)
                 {
                     Debug.LogWarning("SetAnimationBool function shouldn't be called by " +
-                        this + 
+                        this +
                         " which set isTransitionTrigger true"
                     );
                     return;
                 }
-                animator.SetBool("Is" + GetType().Name, value);
+                animator.SetBool("Is" + GetName(), value);
             }
         }
         private void SetAnimatorTrigger()
@@ -136,8 +136,13 @@ namespace ANTs.Template
             if (isAttachWithAnimator)
             {
                 Assert.IsTrue(isTransitionTrigger);
-                animator.SetTrigger(GetType().Name);
+                animator.SetTrigger(GetName());
             }
+        }
+
+        private string GetName()
+        {
+            return GetType().Name.Replace("Action", "");
         }
         #endregion
     }

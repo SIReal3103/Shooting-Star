@@ -34,7 +34,7 @@ namespace ANTs.Template
 
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Animator Control", EditorStyles.boldLabel); // Header
-            EditorGUILayout.PropertyField(isAttachWithAnimator);            
+            EditorGUILayout.PropertyField(isAttachWithAnimator);
             if (isAttachWithAnimator.boolValue)
             {
                 EditorGUILayout.PropertyField(typeOfAction);
@@ -65,13 +65,13 @@ namespace ANTs.Template
         private void DisplayActive()
         {
             GUILayout.TextField(
-                string.Format("isActionActive"), 
+                string.Format("isActionActive"),
                 isActionStart.boolValue ? GetTextStyle(Color.green) : GetTextStyle(Color.gray));
         }
         private void DisplayProperty()
         {
             EditorGUILayout.PropertyField(isTransitionTrigger);
-            EditorGUILayout.PropertyField(syncWithAnimation);            
+            EditorGUILayout.PropertyField(syncWithAnimation);
         }
         #endregion
 
