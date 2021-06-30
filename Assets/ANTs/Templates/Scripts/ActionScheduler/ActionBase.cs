@@ -24,16 +24,13 @@ namespace ANTs.Template
         [HideInInspector] [SerializeField] bool actionStartOnPlay;
         [HideInInspector] [SerializeField] bool isAttachWithAnimator = false;
         [HideInInspector] [SerializeField] bool isTransitionTrigger;
-        [HideInInspector] [SerializeField] bool syncWithAnimation;       
-
-        const float EXIT_TIME_OFFSET = 0.05f;
-        const float TRANSITION_WAIT_TIME = 0.1f; // Must larger than ENTERED_TIME_OFFSET
+        [HideInInspector] [SerializeField] bool syncWithAnimation;
 
         protected AnimatorEvents animatorEvents;
         protected Animator animator;
 
+        private AnimationTransitionCalculator calculator;
         private ActionScheduler scheduler;
-        private float transitionTimer;
 
         public bool IsActionActive { get => isActionActive; }
 
@@ -57,22 +54,12 @@ namespace ANTs.Template
                 ActionStart();
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             if (IsActionActive)
             {
                 ActionUpdate();
-
-                if(syncWithAnimation)
-                    SyncAnimationUpdate();
-            }
-
-            UpdateTimer();
-        }
-
-        private void UpdateTimer()
-        {
-            transitionTimer += Time.deltaTime;
+            }            
         }
 
         public virtual void ActionStart()
@@ -82,17 +69,39 @@ namespace ANTs.Template
                 Debug.LogWarning(GetType().Name + " is prevented!");
                 return;
             }
-            if (isTransitionTrigger) SetAnimatorTrigger();
-            scheduler.StopActionRelavetiveTo(this);
-            InitDataAndCallEvents();
+
+            InitDataAndCall();
+
+            if(syncWithAnimation)
+                InitSyncWithAnimationLogic();
         }
 
-        private void InitDataAndCallEvents()
+        private void InitDataAndCall()
         {
+            scheduler.StopActionRelavetiveTo(this);
+            if (isTransitionTrigger) SetAnimatorTrigger();
             OnActionStartEvent?.Invoke();
             isActionActive = true;
-            transitionTimer = 0f;
         }
+
+        #region ====================================== Sync Animation Logics
+        private void InitSyncWithAnimationLogic()
+        {
+            if(isAttachWithAnimator)
+            {
+                calculator = new AnimationTransitionCalculator(animator);
+                calculator.OnTransitionExitEvent += ActionStop;
+                StartCoroutine(calculator.FixedUpdate());
+            }
+        }
+
+        public void OnTransitionExitEvent()
+        {
+            calculator.OnTransitionExitEvent -= ActionStop;
+            ActionStop();
+        }
+        #endregion
+
 
         public virtual void ActionStop()
         {
@@ -108,20 +117,9 @@ namespace ANTs.Template
         /// Only allow in BooleanNotStartOnPlay, BooleanStartOnPlay 
         /// or Custom with isTransitionTrigger on option in ActionType.
         /// </summary>
-        /// <param name="value"></param>       
-        private void SyncAnimationUpdate()
-        {            
-            if (isAttachWithAnimator)
-            {
-                if (transitionTimer < TRANSITION_WAIT_TIME) return;
-                if (AnimatorTransitionTime() < EXIT_TIME_OFFSET) ActionStop();
-            }
-        }
+        /// <param name="value"></param>
 
-        private float AnimatorTransitionTime()
-        {
-            return animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        }
+        
 
         protected void SetAnimatorBool(bool value)
         {
