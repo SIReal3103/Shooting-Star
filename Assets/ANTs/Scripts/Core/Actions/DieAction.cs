@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class DieAction : ActionBase, IANTsPoolable<EnemyPool, DieAction>
+    public class DieAction : ActionBase
     {
         [Header("Die Action")]
         [Space(10)]
@@ -12,6 +12,17 @@ namespace ANTs.Core
         [SerializeField] bool isDisableColliderWhenDie = true;
 
         public EnemyPool CurrentPool { get; set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            gameObject.SetWakeUpDelegate(args =>
+            {
+                EnemyData data = args as EnemyData;
+                gameObject.SetActive(true);
+                transform.position = data.spawnPosition;
+            });
+        }
 
         public override void ActionStart()
         {
@@ -24,28 +35,9 @@ namespace ANTs.Core
             Invoke(nameof(ReturnToPool), timeBeforeReturnPool);
         }
 
-        #region =======================================IANTsPoolObject IMPLEMENTATION
         public void ReturnToPool()
         {
-            if (CurrentPool == null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            CurrentPool.ReturnToPool(this);
+            gameObject.ReturnToPoolOrDestroy();
         }
-
-        public void WakeUp(object args)
-        {
-            EnemyData data = args as EnemyData;
-            gameObject.SetActive(true);
-            transform.position = data.spawnPosition;
-        }
-
-        public void Sleep()
-        {
-            gameObject.SetActive(false);
-        }
-        #endregion
     }
 }

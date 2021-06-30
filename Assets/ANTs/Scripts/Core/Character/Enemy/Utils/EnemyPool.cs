@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class EnemyPool : ANTsPool<EnemyPool, DieAction>
+    public class EnemyPool : ANTsPool
     {
 
     }

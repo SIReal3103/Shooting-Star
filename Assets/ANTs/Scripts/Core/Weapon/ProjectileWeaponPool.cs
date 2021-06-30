@@ -2,7 +2,7 @@
 
 namespace ANTs.Core
 {
-    public class ProjectileWeaponPool : ANTsPool<ProjectileWeaponPool, ProjectileWeapon>
+    public class ProjectileWeaponPool : ANTsPool
     {
 
     }    

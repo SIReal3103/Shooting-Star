@@ -2,7 +2,7 @@
 
 namespace ANTs.Core
 {
-    public class AmmoPool : ANTsPool<AmmoPool, WeaponAmmo>
+    public class AmmoPool : ANTsPool
     {
     }
 

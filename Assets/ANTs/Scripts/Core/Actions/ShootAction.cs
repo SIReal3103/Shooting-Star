@@ -28,10 +28,15 @@ namespace ANTs.Core
         {
             base.Start();
 
-            currentGunPool = initialGunPool ? initialGunPool : ProjectileWeaponManager.Instance.GetDefaultPool();
-            LoadCurrenGun();
+            //currentGunPool = initialGunPool ? initialGunPool : ProjectileWeaponManager.Instance.GetDefaultPool();
+            //LoadCurrenGun();
 
-            currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
+            //currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
+            //LoadCurrentBullet();
+
+            currentGunPool = initialGunPool;
+            LoadCurrenGun();
+            currentBulletPool = initialBulletPool;
             LoadCurrentBullet();
         }
         #endregion
@@ -58,24 +63,25 @@ namespace ANTs.Core
 
         public void ChangeStrongerGun()
         {
-            if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentGunPool))
-            {
-                LoadCurrenGun();
-            }
+            //if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentGunPool))
+            //{
+            //    LoadCurrenGun();
+            //}
         }
 
         public void ChangeStrongerBullet()
         {
-            if (AmmoManager.Instance.ProgressNextPool(ref currentBulletPool))
-            {
-                LoadCurrentBullet();
-            }
+            //if (AmmoManager.Instance.ProgressNextPool(ref currentBulletPool))
+            //{
+            //    LoadCurrentBullet();
+            //}
         }
 
         private void LoadCurrenGun()
         {
             if (currentGun != null) currentGun.ReturnToPool();
-            currentGun = currentGunPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentBulletPool));
+            currentGun = currentGunPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentBulletPool))
+                .GetComponent<ProjectileWeapon>();
         }
 
         private void LoadCurrentBullet()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class AmmoManager : ProgressablePoolManager<AmmoManager, AmmoPool, WeaponAmmo>
+    public class AmmoManager : ProgressablePoolManager<AmmoManager>
     {
 
     }

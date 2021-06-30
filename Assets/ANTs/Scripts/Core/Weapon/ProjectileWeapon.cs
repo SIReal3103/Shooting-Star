@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class ProjectileWeapon : MonoBehaviour, IANTsPoolable<ProjectileWeaponPool, ProjectileWeapon>, IProgressable
+    public class ProjectileWeapon : MonoBehaviour, IProgressable
     {
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Transform[] projectileTransforms;
@@ -41,7 +41,7 @@ namespace ANTs.Core
 
         public void ReturnToPool()
         {
-            CurrentPool.ReturnToPool(this);
+            gameObject.ReturnToPoolOrDestroy();
         }
 
         public void WakeUp(object args)
