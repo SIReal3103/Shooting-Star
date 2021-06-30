@@ -70,7 +70,6 @@ namespace ANTs.Core
         public void WakeUp(object args) // IANTsPoolable Implementation
         {
             gameObject.SetActive(true);
-
             AmmoData data = args as AmmoData;
 
             transform.position = data.origin;
