@@ -4,6 +4,7 @@ namespace ANTs.Core
 {
     [RequireComponent(typeof(MoveAction))]
     [RequireComponent(typeof(ShootAction))]
+    [RequireComponent(typeof(Damageable))]
     public class PlayerControl : MonoBehaviour
     {
         private MoveAction mover;

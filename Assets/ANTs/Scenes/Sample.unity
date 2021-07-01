@@ -241,6 +241,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2477570257182526307, guid: 149311a30b02d9d468acf5a34278a8db, type: 3}
   initialPoolSize: 10
+--- !u!1 &322974028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
+    type: 3}
+  m_PrefabInstance: {fileID: 1096918850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &344278781
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +458,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1713065283}
     m_Modifications:
+    - target: {fileID: 185504886, guid: 3790ae7b3b5db934ea9edb138c516bb5, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 322974028}
     - target: {fileID: 2521491159427168576, guid: 3790ae7b3b5db934ea9edb138c516bb5,
         type: 3}
       propertyPath: m_Name
@@ -527,17 +537,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
-    - target: {fileID: 3741186479137419969, guid: f632e97329d23334ba582429bc989481,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -7587223563252373239, guid: 5a77609017eddb448b34d883bf55f64d,
-        type: 3}
-    - target: {fileID: 3741186479137419969, guid: f632e97329d23334ba582429bc989481,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5092417165955709028, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: player

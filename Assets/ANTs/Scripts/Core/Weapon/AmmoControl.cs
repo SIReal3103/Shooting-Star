@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(Damager))]
+    [RequireComponent(typeof(TouchDamager))]
     public class AmmoControl : Projectile, IProgressable
     {
         #region ==================================SerializeField
@@ -27,7 +27,7 @@ namespace ANTs.Core
         protected override void Awake()
         {
             base.Awake();
-            touchDamager = GetComponent<TouchDamager>();
+            touchDamager = GetComponent<TouchDamager>();            
 
             gameObject.SetWakeUpDelegate(args =>
             {

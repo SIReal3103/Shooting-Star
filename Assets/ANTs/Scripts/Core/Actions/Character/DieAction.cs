@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
+    [RequireComponent(typeof(Collider2D))]
     public class DieAction : ActionBase
     {
         [Header("Die Action")]

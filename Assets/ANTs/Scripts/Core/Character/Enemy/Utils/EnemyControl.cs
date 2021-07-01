@@ -3,6 +3,8 @@
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Damageable))]
+    [RequireComponent(typeof(MeleeAttackAction))]
+    [RequireComponent(typeof(DieAction))]
     public class EnemyControl : MonoBehaviour
     {
         private MeleeWeaponControl meleeWeapon;

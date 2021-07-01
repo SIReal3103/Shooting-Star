@@ -4,6 +4,8 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(EnemyControl))]
+    [RequireComponent(typeof(MoveAction))]
+    [RequireComponent(typeof(MeleeAttackAction))]
     public class EnemyNinjaControl : MonoBehaviour
     {
         public event Action OnActorArrivedEvent
