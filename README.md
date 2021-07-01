@@ -7,3 +7,6 @@ All instantiate must throw Pooling
 Action System
 
 Animator controller override
+
+# Rules
+Animator stick with sprite
