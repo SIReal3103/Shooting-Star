@@ -19,7 +19,7 @@ namespace ANTs.Template
         }
 
         public IEnumerator FixedUpdate()
-        {            
+        {
             while (true)
             {
                 yield return new WaitForEndOfFrame();

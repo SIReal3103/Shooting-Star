@@ -27,7 +27,7 @@ namespace ANTs.Core
         protected override void Awake()
         {
             base.Awake();
-            touchDamager = GetComponent<TouchDamager>();            
+            touchDamager = GetComponent<TouchDamager>();
 
             gameObject.SetWakeUpDelegate(args =>
             {
