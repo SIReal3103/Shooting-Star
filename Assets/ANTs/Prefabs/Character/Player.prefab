@@ -123,17 +123,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 51f15dedb4ac9d3408b10cc020cdfc5f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 756007685803202417, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 51f15dedb4ac9d3408b10cc020cdfc5f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1230229215337870133, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 51f15dedb4ac9d3408b10cc020cdfc5f, type: 2}
+      objectReference: {fileID: 22100000, guid: 73ee784a886703349a797f0782da93b7,
+        type: 2}
     - target: {fileID: 3726713874072087784, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_Name

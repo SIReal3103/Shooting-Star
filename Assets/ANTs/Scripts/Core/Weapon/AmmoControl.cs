@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Damager))]
-    public class WeaponAmmo : Projectile, IProgressable
+    public class AmmoControl : Projectile, IProgressable
     {
         #region ==================================SerializeField
 

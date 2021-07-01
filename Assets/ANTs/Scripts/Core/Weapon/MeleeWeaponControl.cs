@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeaponControl : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
