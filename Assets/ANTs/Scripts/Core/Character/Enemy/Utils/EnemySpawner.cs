@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(EnemyPool))]
+    [RequireComponent(typeof(ANTsPool))]
     public class EnemySpawner : MonoBehaviour
     {
         [Tooltip("The path which the enemy spawn on")]
@@ -11,12 +11,12 @@ namespace ANTs.Core
         [Tooltip("Time between spawns")]
         [SerializeField] float spawnRate = 1f;
 
-        private EnemyPool enemyPool;
+        private ANTsPool enemyPool;
         private float timeSinceLastSpawn = Mathf.Infinity;
 
         private void Start()
         {
-            enemyPool = GetComponent<EnemyPool>();
+            enemyPool = GetComponent<ANTsPool>();
         }
 
         private void Update()

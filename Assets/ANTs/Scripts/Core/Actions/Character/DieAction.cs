@@ -38,4 +38,14 @@ namespace ANTs.Core
             gameObject.ReturnToPoolOrDestroy();
         }
     }
+
+    public class EnemyData
+    {
+        public Vector3 spawnPosition;
+
+        public EnemyData(Vector3 position)
+        {
+            this.spawnPosition = position;
+        }
+    }
 }
