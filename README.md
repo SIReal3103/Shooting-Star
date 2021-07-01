@@ -12,3 +12,5 @@ Animator controller override
 Animator stick with sprite
 
 Animator Events
+
+Actor replace Character
