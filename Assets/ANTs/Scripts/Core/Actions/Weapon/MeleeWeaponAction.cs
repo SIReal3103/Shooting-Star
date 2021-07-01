@@ -6,8 +6,10 @@ namespace ANTs.Core
     [RequireComponent(typeof(Damager))]
     public class MeleeWeaponAction : ActionBase
     {
-        [SerializeField] GameObject weaponOwner;
         [SerializeField] AttackArea attackArea;
+
+        [HideInInspector]
+        public GameObject weaponOwner;
 
         private Damager damager;
 

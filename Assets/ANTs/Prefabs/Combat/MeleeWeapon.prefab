@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1dd39c15c61884fa16f6ad9308a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maskTable: 00000000
+  maskTable: 00000100
 --- !u!114 &5239362829091667820
 MonoBehaviour:
   m_ObjectHideFlags: 0
