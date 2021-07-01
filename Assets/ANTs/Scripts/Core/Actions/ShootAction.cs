@@ -19,7 +19,7 @@ namespace ANTs.Core
         #region =================================================VARIABLES
         private ProjectileWeaponPool currentGunPool;
         private AmmoPool currentBulletPool;
-        private ProjectileWeapon currentGun;
+        private ProjectileWeaponControl currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
         #endregion
 
@@ -81,7 +81,7 @@ namespace ANTs.Core
         {
             if (currentGun != null) currentGun.ReturnToPool();
             currentGun = currentGunPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentBulletPool))
-                .GetComponent<ProjectileWeapon>();
+                .GetComponent<ProjectileWeaponControl>();
         }
 
         private void LoadBulletToCurrentGun()
