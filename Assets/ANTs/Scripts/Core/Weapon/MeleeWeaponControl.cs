@@ -7,7 +7,7 @@ namespace ANTs.Core
     [RequireComponent(typeof(MeleeWeaponAction))]
     public class MeleeWeaponControl : MonoBehaviour
     {
-        public void DoAttack()
+        public void Attack()
         {
             GetComponent<MeleeWeaponAction>().ActionStart();
         }

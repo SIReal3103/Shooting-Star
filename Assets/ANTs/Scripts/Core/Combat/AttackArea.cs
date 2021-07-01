@@ -3,14 +3,9 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(Damager))]
     public class AttackArea : MonoBehaviour
     {
-        [Tooltip("The source of the attacker, use to compare tag")]
-        [SerializeField] GameObject source;
-
-        public GameObject Source { get => source; set => source = value; }
-
+        public GameObject Source { get; set; }
         private HashSet<Damageable> damageables = new HashSet<Damageable>();
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -35,14 +30,13 @@ namespace ANTs.Core
             }
         }
 
-        private bool IsEnemy(Damageable damageable)
+        private bool IsEnemy(Collider2D collider)
         {
             return !collider.CompareTag(Source.tag);
         }
 
         public void Attack(Damager damager)
         {
-            
             foreach (Damageable damageable in damageables)
             {
                 damageable.TakeDamageFrom(damager);

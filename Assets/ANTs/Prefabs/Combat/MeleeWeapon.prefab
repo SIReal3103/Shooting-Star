@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2531583661471074941}
   - component: {fileID: 6742497220475862775}
   - component: {fileID: 5239362829091667820}
+  - component: {fileID: 6268203358679428382}
   m_Layer: 0
-  m_Name: MelleWeapon
+  m_Name: MeleeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +78,24 @@ MonoBehaviour:
   isAttachWithAnimator: 1
   isTransitionTrigger: 1
   syncWithAnimation: 1
+  weaponOwner: {fileID: 0}
+  attackArea: {fileID: 8104147521604481026}
+  events: {fileID: 6199947143644902563}
+--- !u!114 &6268203358679428382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000757619593086653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialDamage: 30
+  criticalChance: 0
+  critEfficent: 0
 --- !u!1 &7852748619624759019
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +284,9 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7269663618278525229, guid: d9b1036fee681684e8a7ec819348b2f0, type: 3}
+    - {fileID: 1627605959219093746, guid: d9b1036fee681684e8a7ec819348b2f0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9b1036fee681684e8a7ec819348b2f0, type: 3}
 --- !u!4 &401367540343835731 stripped
 Transform:
@@ -273,3 +294,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6217341395973841446}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8104147521604481026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2756159217823044132, guid: d9b1036fee681684e8a7ec819348b2f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6217341395973841446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be0b6bdeca9d1b4eb02a67e083369aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

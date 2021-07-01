@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6450823807470506459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2716003436068321698}
+  m_Layer: 0
+  m_Name: WeaponAttachment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2716003436068321698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450823807470506459}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5795937482615585853}
+  m_Father: {fileID: 7973814677124222154}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5092417165955709028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,14 +106,13 @@ MonoBehaviour:
   isAttachWithAnimator: 1
   isTransitionTrigger: 1
   syncWithAnimation: 1
-  area: {fileID: 8944774670685677394}
-  meleeWeapon: {fileID: 0}
+  meleeWeapon: {fileID: 7901745053729785380}
 --- !u!1001 &5659158514701503577
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7973814677124222154}
+    m_TransformParent: {fileID: 2716003436068321698}
     m_Modifications:
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
@@ -112,17 +142,17 @@ PrefabInstance:
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
@@ -149,6 +179,11 @@ PrefabInstance:
       propertyPath: source
       value: 
       objectReference: {fileID: 7973814678278962949}
+    - target: {fileID: 5239362829091667820, guid: 44d8089fc3e2020479179a204a2d8cd3,
+        type: 3}
+      propertyPath: weaponOwner
+      value: 
+      objectReference: {fileID: 7973814678278962949}
     - target: {fileID: 7278753032814961981, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_Size.x
@@ -171,16 +206,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d8089fc3e2020479179a204a2d8cd3, type: 3}
---- !u!114 &8944774670685677394 stripped
+--- !u!4 &5795937482615585853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5659158514701503577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7901745053729785380 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3651125741397519115, guid: 44d8089fc3e2020479179a204a2d8cd3,
+  m_CorrespondingSourceObject: {fileID: 2531583661471074941, guid: 44d8089fc3e2020479179a204a2d8cd3,
     type: 3}
   m_PrefabInstance: {fileID: 5659158514701503577}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5be0b6bdeca9d1b4eb02a67e083369aa, type: 3}
+  m_Script: {fileID: 11500000, guid: aa036388eca364e4ebf5bb5ed62fdb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7520664811280319784

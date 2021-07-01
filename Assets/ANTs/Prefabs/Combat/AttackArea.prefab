@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6042034827149651573}
-  - component: {fileID: 1627605959219093746}
   - component: {fileID: 3696114296479123227}
-  - component: {fileID: 7269663618278525229}
+  - component: {fileID: 2756159217823044132}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -33,21 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1627605959219093746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7063743862939262814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialDamage: 30
-  criticalChance: 0
-  critEfficent: 0
 --- !u!61 &3696114296479123227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7269663618278525229
+--- !u!114 &2756159217823044132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,4 +70,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be0b6bdeca9d1b4eb02a67e083369aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}

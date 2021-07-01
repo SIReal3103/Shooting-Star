@@ -5,21 +5,36 @@ using ANTs.Template;
 
 namespace ANTs.Core
 {
+    [RequireComponent(typeof(Damager))]
     public class MeleeWeaponAction : ActionBase
     {
-        [SerializeField] AttackArea area;
-        [SerializeField] AnimatorEvents events;
+        [SerializeField] GameObject weaponOwner;
+        [SerializeField] AttackArea attackArea;
+
+        private Damager damager;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            damager = GetComponent<Damager>();
+            attackArea.Source = weaponOwner;
+        }
 
         public override void ActionStart()
         {
             base.ActionStart();
-            events.OnActorAttackEvent += area.Attack;
+            animatorEvents.OnActorAttackEvent += AttackBehaviour;
         }
 
         public override void ActionStop()
         {
             base.ActionStop();
-            events.OnActorAttackEvent -= area.Attack;
+            animatorEvents.OnActorAttackEvent -= AttackBehaviour;
+        }
+
+        private void AttackBehaviour()
+        {
+            attackArea.Attack(damager);
         }
     }
 }

@@ -8,6 +8,11 @@ namespace ANTs.Core
         [SerializeField] float criticalChance = 0;
         [SerializeField] float critEfficent = 0;
 
+        public bool IsEnemy(Damageable damageable)
+        {
+            return damageable.tag != tag;
+        }
+
         public int GetFinalDamage()
         {
             if (Random.value < criticalChance)
