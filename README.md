@@ -14,3 +14,5 @@ Animator stick with sprite
 Animator Events
 
 Actor replace Character
+
+call ActionBase Awake must have base.Awake();
