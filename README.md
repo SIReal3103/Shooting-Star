@@ -10,3 +10,4 @@ Animator controller override
 
 # Rules
 Animator stick with sprite
+Animator Events
