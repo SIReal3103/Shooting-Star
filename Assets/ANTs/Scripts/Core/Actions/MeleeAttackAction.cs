@@ -8,6 +8,7 @@ namespace ANTs.Core
         [Header("AttackAction")]
         [Space(10)]
         [SerializeField] AttackArea area;
+        [SerializeField] MeleeWeaponControl meleeWeapon;
 
         public override void ActionStart()
         {

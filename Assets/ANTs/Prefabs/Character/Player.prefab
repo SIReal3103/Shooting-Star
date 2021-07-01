@@ -62,8 +62,8 @@ MonoBehaviour:
   syncWithAnimation: 0
   weaponAttachment: {fileID: 2648071465191318721}
   timeBetweenFire: 0.5
-  initialGunPool: {fileID: 0}
-  initialBulletPool: {fileID: 0}
+  initialProjectileWeaponPool: {fileID: 0}
+  initialAmmoPool: {fileID: 0}
 --- !u!114 &3318241499830329420
 MonoBehaviour:
   m_ObjectHideFlags: 0

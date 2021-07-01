@@ -9,16 +9,16 @@ namespace ANTs.Core
         [SerializeField] Transform weaponAttachment;
         [SerializeField] float timeBetweenFire = 0.5f;
         [Tooltip("Initial gun type for gunner, default gun if null")]
-        [SerializeField] ProjectileWeaponPool initialGunPool;
+        [SerializeField] ANTsPool initialProjectileWeaponPool;
         [Tooltip("Initial bullet type for gunner, default bullet if null")]
-        [SerializeField] AmmoPool initialBulletPool;
+        [SerializeField] ANTsPool initialAmmoPool;
         #endregion
 
 
 
         #region =================================================VARIABLES
-        private ProjectileWeaponPool currentGunPool;
-        private AmmoPool currentBulletPool;
+        private ANTsPool currentProjectileWeaponPool;
+        private ANTsPool currentAmmoPool;
         private ProjectileWeaponControl currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
         #endregion
@@ -34,9 +34,9 @@ namespace ANTs.Core
             //currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
             //LoadCurrentBullet();
 
-            currentGunPool = initialGunPool;
+            currentProjectileWeaponPool = initialProjectileWeaponPool;
             LoadnewGunAndDestroyCurrent();
-            currentBulletPool = initialBulletPool;
+            currentAmmoPool = initialAmmoPool;
             LoadBulletToCurrentGun();
         }
         #endregion
@@ -80,13 +80,13 @@ namespace ANTs.Core
         private void LoadnewGunAndDestroyCurrent()
         {
             if (currentGun != null) currentGun.ReturnToPool();
-            currentGun = currentGunPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentBulletPool))
+            currentGun = currentProjectileWeaponPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentAmmoPool))
                 .GetComponent<ProjectileWeaponControl>();
         }
 
         private void LoadBulletToCurrentGun()
         {
-            currentGun.SetAmmoPool(currentBulletPool);
+            currentGun.SetAmmoPool(currentAmmoPool);
         }
 
         private void UpdateTimer()

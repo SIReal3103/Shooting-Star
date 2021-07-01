@@ -7,5 +7,11 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NinjaSword
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 4f25aa91de95ea44fbee3e4dd5316b9c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 06fc9c8223723bc4bb76180116fb184e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3977af65694827a4dac7138808284403, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a86de649b193d574e8f462cbc9d5211c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cea03c7532d2bf8468300bd31b610c7c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 33a0440032c1c444eb0a541e21f6eb2b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9ae38377f00154c418c64646e385a0e9, type: 2}

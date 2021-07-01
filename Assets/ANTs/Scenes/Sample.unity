@@ -236,11 +236,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 314578244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5c9ecfa5e01d747aad9172b525839b, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c0194a2165571428922915daccbd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2465691811505759138, guid: 1b8b737626a42dd4f86e7de802f71d6d, type: 3}
-  initialPoolSize: 9
+  prefab: {fileID: 2477570257182526307, guid: 149311a30b02d9d468acf5a34278a8db, type: 3}
+  initialPoolSize: 10
 --- !u!1 &344278781
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,11 +440,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 640617310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcf52f8c99943142b6e578f844134a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c0194a2165571428922915daccbd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6574916733370369345, guid: 6296cdc56c65bce49ae428dd27e31308, type: 3}
-  initialPoolSize: 9
+  initialPoolSize: 10
 --- !u!1001 &685361512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,19 +452,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1713065283}
     m_Modifications:
-    - target: {fileID: 185504886, guid: 3790ae7b3b5db934ea9edb138c516bb5, type: 3}
-      propertyPath: prefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2521491159427168576, guid: 3790ae7b3b5db934ea9edb138c516bb5,
         type: 3}
       propertyPath: m_Name
       value: EnemySpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 2521491159427168576, guid: 3790ae7b3b5db934ea9edb138c516bb5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2599105109503484953, guid: 3790ae7b3b5db934ea9edb138c516bb5,
         type: 3}
@@ -536,11 +527,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
-    - target: {fileID: 619204247476550354, guid: f632e97329d23334ba582429bc989481,
-        type: 3}
-      propertyPath: maskTable.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5092417165955709028, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: player
@@ -782,7 +768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc38d5525d148af47a13d970180c8daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool: {fileID: 314578246}
 --- !u!1 &1713065282
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,19 +810,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
-      propertyPath: initialGunPool
-      value: 
-      objectReference: {fileID: 640617312}
-    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: initialBulletPool
+      propertyPath: initialAmmoPool
       value: 
       objectReference: {fileID: 314578246}
-    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
+    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
-      propertyPath: maskTable.Array.size
-      value: 9
-      objectReference: {fileID: 0}
+      propertyPath: initialProjectileWeaponPool
+      value: 
+      objectReference: {fileID: 640617312}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name
@@ -911,11 +891,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PrepareZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240885927958010841, guid: f6383b9879a65724fa0b6ae4fb52b164,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8344591155700560127, guid: f6383b9879a65724fa0b6ae4fb52b164,
         type: 3}

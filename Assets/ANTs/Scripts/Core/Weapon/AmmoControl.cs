@@ -18,7 +18,7 @@ namespace ANTs.Core
 
         #endregion
 
-        public AmmoPool CurrentPool { get; set; }
+        public ANTsPool CurrentPool { get; set; }
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextBulletId; }
 

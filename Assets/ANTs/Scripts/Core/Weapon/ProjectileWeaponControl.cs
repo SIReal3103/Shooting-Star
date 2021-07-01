@@ -12,7 +12,7 @@ namespace ANTs.Core
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
-        private AmmoPool currentAmmo;
+        private ANTsPool currentAmmo;
         private GameObject owner;
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
@@ -30,7 +30,7 @@ namespace ANTs.Core
             });
         }
 
-        public void SetAmmoPool(AmmoPool pool) => currentAmmo = pool;
+        public void SetAmmoPool(ANTsPool pool) => currentAmmo = pool;
 
         public void Fire()
         {
@@ -68,9 +68,9 @@ namespace ANTs.Core
     {
         public Transform parent;
         public GameObject owner;
-        public AmmoPool ammoPool;
+        public ANTsPool ammoPool;
 
-        public ProjectileWeaponData(Transform parent, GameObject owner, AmmoPool ammoPool)
+        public ProjectileWeaponData(Transform parent, GameObject owner, ANTsPool ammoPool)
         {
             this.parent = parent;
             this.owner = owner;
