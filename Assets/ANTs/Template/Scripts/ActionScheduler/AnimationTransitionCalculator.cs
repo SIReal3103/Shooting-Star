@@ -9,14 +9,12 @@ namespace ANTs.Template
 
         readonly private float ENTER_TIME_OFFSET = Time.maximumDeltaTime; // one frame
 
-        private float transitionTimer;
         private bool isTransitionEntered;
-        Animator animator;
+        private Animator animator;
 
         public AnimationTransitionCalculator(Animator animator)
         {
             this.animator = animator;
-            transitionTimer = 0f;
             isTransitionEntered = false;
         }
 
