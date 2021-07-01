@@ -14,8 +14,8 @@ namespace ANTs.Core
 
         public event Action OnActorAttackDone
         {
-            add { GetComponent<AttackAction>().OnActionStopEvent += value; }
-            remove { GetComponent<AttackAction>().OnActionStopEvent -= value; }
+            add { GetComponent<MeleeAttackAction>().OnActionStopEvent += value; }
+            remove { GetComponent<MeleeAttackAction>().OnActionStopEvent -= value; }
         }
 
         [Tooltip("The speed which Charger normally move")]
@@ -24,12 +24,12 @@ namespace ANTs.Core
         [SerializeField] MoveData chargeSpeed;
 
         private MoveAction move;
-        private AttackAction attack;
+        private MeleeAttackAction attack;
 
         private void Awake()
         {
             move = GetComponent<MoveAction>();
-            attack = GetComponent<AttackAction>();
+            attack = GetComponent<MeleeAttackAction>();
         }
 
         public void MoveTo(Vector2 destination)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class AttackAction : ActionBase
+    public class MeleeAttackAction : ActionBase
     {
         [Header("AttackAction")]
         [Space(10)]
