@@ -7,6 +7,11 @@ namespace ANTs.Core
     {
         [SerializeField] MeleeWeaponControl meleeWeapon;
 
+        public MeleeWeaponControl GetMeleeWeapon()
+        {
+            return meleeWeapon;
+        }
+
         public override void ActionStart()
         {
             base.ActionStart();

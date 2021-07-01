@@ -5,6 +5,13 @@ namespace ANTs.Core
     [RequireComponent(typeof(Damageable))]
     public class EnemyControl : MonoBehaviour
     {
+        private MeleeWeaponControl meleeWeapon;
+
+        private void Awake()
+        {
+            meleeWeapon = GetComponent<MeleeAttackAction>().GetMeleeWeapon();
+        }
+
         private void OnEnable()
         {
             GetComponent<Damageable>().OnHealthReachZeroEvent += DeadBehaviour;
@@ -18,6 +25,7 @@ namespace ANTs.Core
         private void DeadBehaviour()
         {
             GetComponent<DieAction>().ActionStart();
+            meleeWeapon.OwnerDie();
         }
     }
 }

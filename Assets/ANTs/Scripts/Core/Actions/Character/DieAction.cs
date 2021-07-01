@@ -11,8 +11,6 @@ namespace ANTs.Core
         [SerializeField] float timeBeforeReturnPool = 5f;
         [SerializeField] bool isDisableColliderWhenDie = true;
 
-        public EnemyPool CurrentPool { get; set; }
-
         protected override void Awake()
         {
             base.Awake();
