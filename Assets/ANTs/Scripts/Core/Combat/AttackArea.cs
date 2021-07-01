@@ -12,12 +12,6 @@ namespace ANTs.Core
         public GameObject Source { get => source; set => source = value; }
 
         private HashSet<Damageable> damageables = new HashSet<Damageable>();
-        private Damager damager;
-
-        private void Awake()
-        {
-            damager = GetComponent<Damager>();
-        }
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
@@ -41,13 +35,14 @@ namespace ANTs.Core
             }
         }
 
-        private bool IsEnemy(Collider2D collider)
+        private bool IsEnemy(Damageable damageable)
         {
             return !collider.CompareTag(Source.tag);
         }
 
-        public void Attack()
+        public void Attack(Damager damager)
         {
+            
             foreach (Damageable damageable in damageables)
             {
                 damageable.TakeDamageFrom(damager);

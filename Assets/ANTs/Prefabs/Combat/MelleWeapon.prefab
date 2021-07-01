@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2226485487496163428}
+  - component: {fileID: 2531583661471074941}
+  - component: {fileID: 6742497220475862775}
+  - component: {fileID: 5239362829091667820}
   m_Layer: 0
   m_Name: MelleWeapon
   m_TagString: Untagged
@@ -31,6 +34,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2531583661471074941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000757619593086653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa036388eca364e4ebf5bb5ed62fdb09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6742497220475862775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000757619593086653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1dd39c15c61884fa16f6ad9308a579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maskTable: 00
+--- !u!114 &5239362829091667820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000757619593086653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050c92521302dca4cb971ccfa74b4fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfAction: 0
+  isActionActive: 0
+  actionStartOnPlay: 0
+  isAttachWithAnimator: 1
+  isTransitionTrigger: 1
+  syncWithAnimation: 1
 --- !u!1 &7852748619624759019
 GameObject:
   m_ObjectHideFlags: 0

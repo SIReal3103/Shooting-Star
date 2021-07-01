@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeaponControl : MonoBehaviour
+namespace ANTs.Core
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(MeleeWeaponAction))]
+    public class MeleeWeaponControl : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void DoAttack()
+        {
+            GetComponent<MeleeWeaponAction>().ActionStart();
+        }
     }
 }
