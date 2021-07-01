@@ -9,14 +9,32 @@ static public class GameObjectExtensions
     static public Dictionary<GameObject, Action<object>> OnWakeUpEvents = new Dictionary<GameObject, Action<object>>();
     static public Dictionary<GameObject, Action> OnSleepEvents = new Dictionary<GameObject, Action>();
 
-    static public ANTsPool GetPool(this GameObject go)
+    static public ANTsPool GetOrCreatePool(this GameObject go)
     {
-        return objectPools[go];
+        if (objectPools.TryGetValue(go, out ANTsPool pool))
+        {
+            return pool;
+        }
+
+        Debug.LogWarning(go + " don't belong to any pool, one is automatically created on scene");
+
+        GameObject newGo = new GameObject(go + "_pool");
+        ANTsPool newPool = newGo.AddComponent<ANTsPool>();
+        newPool.LoadNewPrefab(go);
+        return newPool;
     }
 
-    static public void SetPool(this GameObject go, ANTsPool objectPool)
+    static public void SetPool(this GameObject go, ANTsPool pool)
     {
-        objectPools.Add(go, objectPool);
+        if (objectPools.ContainsKey(go))
+        {
+            Debug.LogWarning(go + " already has a pool");
+            objectPools[go] = pool;
+        }
+        else
+        {
+            objectPools.Add(go, pool);
+        }
     }
 
     static public void WakeUp(this GameObject go, object args)

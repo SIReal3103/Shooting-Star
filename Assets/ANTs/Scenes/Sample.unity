@@ -818,16 +818,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
-    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
-      propertyPath: initialAmmoPool
-      value: 
-      objectReference: {fileID: 314578246}
-    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
+      propertyPath: maskTable.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
-      propertyPath: initialProjectileWeaponPool
-      value: 
-      objectReference: {fileID: 640617312}
+      propertyPath: maskTable.Array.data[5]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: maskTable.Array.data[6]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485042731372785418, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: maskTable.Array.data[7]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name

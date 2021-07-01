@@ -8,7 +8,7 @@ namespace ANTs.Core
     {
         [SerializeField] AttackArea attackArea;
 
-        [HideInInspector]
+        [ReadOnly]
         public GameObject weaponOwner;
 
         private Damager damager;

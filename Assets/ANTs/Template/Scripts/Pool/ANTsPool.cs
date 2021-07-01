@@ -11,7 +11,7 @@ namespace ANTs.Template
         private Queue<GameObject> objects;
         //public GameObject Prefab { get => prefab; }
 
-        public void ReloadPrefab(GameObject prefab)
+        public void LoadNewPrefab(GameObject prefab)
         {
             this.prefab = prefab;
             ResetPool();
