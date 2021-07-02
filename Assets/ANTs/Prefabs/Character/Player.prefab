@@ -62,10 +62,8 @@ MonoBehaviour:
   syncWithAnimation: 0
   weaponAttachment: {fileID: 2648071465191318721}
   timeBetweenFire: 0.5
-  initialProjectileWeaponPrefab: {fileID: 3451892950359793761, guid: 6296cdc56c65bce49ae428dd27e31308,
-    type: 3}
-  initialAmmoPrefab: {fileID: 1151250945646034363, guid: 149311a30b02d9d468acf5a34278a8db,
-    type: 3}
+  initialProjectileWeaponPrefab: {fileID: 0}
+  initialAmmoPrefab: {fileID: 0}
 --- !u!114 &3318241499830329420
 MonoBehaviour:
   m_ObjectHideFlags: 0

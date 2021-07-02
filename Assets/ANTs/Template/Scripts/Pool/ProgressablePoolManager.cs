@@ -33,7 +33,8 @@ namespace ANTs.Template
         private Dictionary<ProgressIdentifier, ANTsPoolDecorator> id2Decorator =
             new Dictionary<ProgressIdentifier, ANTsPoolDecorator>();
 
-        private Dictionary<ANTsPool, ANTsPoolDecorator> pool2Decorator;
+        private Dictionary<ANTsPool, ANTsPoolDecorator> pool2Decorator = 
+            new Dictionary<ANTsPool, ANTsPoolDecorator>();
 
         protected ProgressablePoolManager() { }
 

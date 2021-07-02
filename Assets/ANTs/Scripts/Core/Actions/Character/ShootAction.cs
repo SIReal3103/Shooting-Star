@@ -34,10 +34,25 @@ namespace ANTs.Core
             //currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
             //LoadCurrentBullet();
 
-            currentProjectileWeaponPool = initialProjectileWeaponPrefab.gameObject.GetOrCreatePool(transform);
+            if(initialProjectileWeaponPrefab)
+            {
+                currentProjectileWeaponPool = initialProjectileWeaponPrefab.gameObject.GetOrCreatePool(transform);
+            }
+            else
+            {
+                currentProjectileWeaponPool = ProjectileWeaponManager.Instance.GetDefaultPool();
+            }
             LoadnewGunAndDestroyCurrent();
-            currentAmmoPool = initialAmmoPrefab.gameObject.GetOrCreatePool();
-            LoadBulletToCurrentGun();
+
+            if(initialAmmoPrefab)
+            {
+                currentAmmoPool = initialAmmoPrefab.gameObject.GetOrCreatePool();
+            }
+            else
+            {
+                currentAmmoPool = AmmoManager.Instance.GetDefaultPool();
+            }
+            LoadBulletForCurrentGun();
         }
         #endregion
 
@@ -63,18 +78,18 @@ namespace ANTs.Core
 
         public void ChangeStrongerGun()
         {
-            //if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentGunPool))
-            //{
-            //    LoadCurrenGun();
-            //}
+            if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentProjectileWeaponPool))
+            {
+                LoadnewGunAndDestroyCurrent();
+            }
         }
 
         public void ChangeStrongerBullet()
         {
-            //if (AmmoManager.Instance.ProgressNextPool(ref currentBulletPool))
-            //{
-            //    LoadCurrentBullet();
-            //}
+            if (AmmoManager.Instance.ProgressNextPool(ref currentAmmoPool))
+            {
+                LoadBulletForCurrentGun();
+            }
         }
 
         private void LoadnewGunAndDestroyCurrent()
@@ -84,7 +99,7 @@ namespace ANTs.Core
                 .GetComponent<ProjectileWeaponControl>();
         }
 
-        private void LoadBulletToCurrentGun()
+        private void LoadBulletForCurrentGun()
         {
             currentGun.SetAmmoPool(currentAmmoPool);
         }
