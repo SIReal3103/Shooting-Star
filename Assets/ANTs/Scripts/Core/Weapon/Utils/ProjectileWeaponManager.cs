@@ -2,7 +2,7 @@
 
 namespace ANTs.Core
 {
-    public class ProjectileWeaponManager : ProgressablePoolManager<ProjectileWeaponManager>
+    public class ProjectileWeaponManager : ProgressablePoolManager<ProjectileWeaponManager, ProjectileWeaponControl>
     {
 
     }

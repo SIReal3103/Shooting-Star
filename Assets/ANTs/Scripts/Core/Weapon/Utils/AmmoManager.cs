@@ -2,7 +2,7 @@
 
 namespace ANTs.Core
 {
-    public class AmmoManager : ProgressablePoolManager<AmmoManager>
+    public class AmmoManager : ProgressablePoolManager<AmmoManager, AmmoControl>
     {
 
     }

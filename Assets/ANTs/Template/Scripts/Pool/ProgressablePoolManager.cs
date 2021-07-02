@@ -9,26 +9,26 @@ namespace ANTs.Template
     //    where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>, IProgressable
     //{
 
-    public abstract class ProgressablePoolManager<TManager> : Singleton<TManager>
+    public abstract class ProgressablePoolManager<TManager, TObject> : Singleton<TManager>
         where TManager : Component
+        where TObject : MonoBehaviour, IProgressable
     {
         [SerializeField] ProgressIdentifier defaultId;
-        [SerializeField] List<GameObject> prefabs;
+        [SerializeField] List<TObject> prefabs;
 
-        //private Dictionary<ProgressIdentifier, TPool> pools =
-        //    new Dictionary<ProgressIdentifier, TPool>();
+        private Dictionary<ProgressIdentifier, ANTsPool> pools =
+            new Dictionary<ProgressIdentifier, ANTsPool>();
 
-        //protected ProgressablePoolManager() { }
+        protected ProgressablePoolManager() { }
 
-        //protected override void Awake()
-        //{
-        //    foreach (TObject prefab in prefabs)
-        //    {
-        //        TPool pool = CreatePool(prefab);
-        //        pool.ReloadPrefab(prefab);
-        //        pools.Add(pool.Prefab.CurrentLevel, pool);
-        //    }
-        //}
+        protected override void Awake()
+        {
+            foreach (TObject prefab in prefabs)
+            {
+                ANTsPool pool = prefab.gameObject.GetOrCreatePool(transform);
+                pools.Add(prefab.CurrentLevel, pool);
+            }
+        }
 
         //private TPool CreatePool(TObject poolObject)
         //{

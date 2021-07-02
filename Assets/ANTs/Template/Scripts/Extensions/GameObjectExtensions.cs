@@ -9,7 +9,13 @@ static public class GameObjectExtensions
     static public Dictionary<GameObject, Action<object>> OnWakeUpEvents = new Dictionary<GameObject, Action<object>>();
     static public Dictionary<GameObject, Action> OnSleepEvents = new Dictionary<GameObject, Action>();
 
-    static public ANTsPool GetOrCreatePool(this GameObject go)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="go"></param>
+    /// <param name="parent"> The parent for the new pool, null if don't specify </param>
+    /// <returns>The pool this gameObject belong to</returns>
+    static public ANTsPool GetOrCreatePool(this GameObject go, Transform parent = null)
     {
         if (objectPools.TryGetValue(go, out ANTsPool pool))
         {
@@ -18,11 +24,13 @@ static public class GameObjectExtensions
 
         Debug.LogWarning(go + " don't belong to any pool, one is automatically created on scene");
 
-        GameObject newGo = new GameObject(go + "_pool");
+        GameObject newGo = new GameObject(go.name + "_pool");
+        if (parent != null) newGo.transform.SetParentPreserve(parent);
         ANTsPool newPool = newGo.AddComponent<ANTsPool>();
         newPool.LoadNewPrefab(go);
+
         return newPool;
-    }
+    }    
 
     static public void SetPool(this GameObject go, ANTsPool pool)
     {

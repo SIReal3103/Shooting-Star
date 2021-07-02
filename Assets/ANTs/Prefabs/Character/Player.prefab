@@ -57,7 +57,7 @@ MonoBehaviour:
   typeOfAction: 2
   isActionActive: 0
   actionStartOnPlay: 1
-  isAttachWithAnimator: 1
+  isAttachWithAnimator: 0
   isTransitionTrigger: 0
   syncWithAnimation: 0
   weaponAttachment: {fileID: 2648071465191318721}
