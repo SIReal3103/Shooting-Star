@@ -9,7 +9,8 @@ namespace ANTs.Core
         [SerializeField] AttackArea attackArea;
 
         private Damager damager;
-        [ReadOnly] [SerializeField]
+        [ReadOnly]
+        [SerializeField]
         private GameObject weaponOwner;
 
         protected override void Awake()

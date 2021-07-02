@@ -17,8 +17,6 @@ namespace ANTs.Core
         [SerializeField] ProgressIdentifier nextBulletId;
 
         #endregion
-
-        public ANTsPool CurrentPool { get; set; }
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextBulletId; }
 
