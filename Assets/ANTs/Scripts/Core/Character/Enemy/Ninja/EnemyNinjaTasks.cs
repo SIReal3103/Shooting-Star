@@ -7,9 +7,7 @@ namespace ANTs.Core
     [RequireComponent(typeof(EnemyNinjaControl))]
     public class EnemyNinjaTasks : MonoBehaviour
     {
-        [ReadOnly]
         public Transform player;
-        [ReadOnly]
         [SerializeField] ANTsPolygon prepareZone;
 
         private EnemyNinjaControl enemy;

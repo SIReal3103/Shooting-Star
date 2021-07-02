@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   prepareZone: {fileID: 0}
-  animationEvent: {fileID: 6808848497392365142}
 --- !u!114 &5414274874121336222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,15 +436,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7520664811280319784}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6808848497392365142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3901005057908468606, guid: 9e9222022420a554187c138db3b69c93,
-    type: 3}
-  m_PrefabInstance: {fileID: 7520664811280319784}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f79e3afbf816042a7f42214cbd22aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
