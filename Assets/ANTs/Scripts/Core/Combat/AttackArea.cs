@@ -1,11 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using ANTs.Template;
+using System.Collections.Generic;
 using UnityEngine;
-
 namespace ANTs.Core
 {
     public class AttackArea : MonoBehaviour
     {
-        public GameObject Source { get; set; }
+        [ReadOnly]
+        [SerializeField]
+        private GameObject source;
+
+        public void SetSource(GameObject source)
+        {
+            this.source = source;
+        }
+
         private HashSet<Damageable> damageables = new HashSet<Damageable>();
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -32,7 +40,7 @@ namespace ANTs.Core
 
         private bool IsEnemy(Collider2D collider)
         {
-            return !collider.CompareTag(Source.tag);
+            return !collider.CompareTag(source.tag);
         }
 
         public void Attack(Damager damager)

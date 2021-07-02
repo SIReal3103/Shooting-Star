@@ -34,7 +34,7 @@ namespace ANTs.Core
             //currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
             //LoadCurrentBullet();
 
-            if(initialProjectileWeaponPrefab)
+            if (initialProjectileWeaponPrefab)
             {
                 currentProjectileWeaponPool = initialProjectileWeaponPrefab.gameObject.GetOrCreatePool(transform);
             }
@@ -44,7 +44,7 @@ namespace ANTs.Core
             }
             LoadnewGunAndDestroyCurrent();
 
-            if(initialAmmoPrefab)
+            if (initialAmmoPrefab)
             {
                 currentAmmoPool = initialAmmoPrefab.gameObject.GetOrCreatePool();
             }

@@ -7,18 +7,15 @@ namespace ANTs.Core
     public class MeleeWeaponAction : ActionBase
     {
         [SerializeField] AttackArea attackArea;
+        [SerializeField] GameObject weaponOwner;
 
         private Damager damager;
-        [ReadOnly]
-        [SerializeField]
-        private GameObject weaponOwner;
 
         protected override void Awake()
         {
             base.Awake();
             damager = GetComponent<Damager>();
-            weaponOwner = GetComponent<MeleeWeaponControl>().GetWeaponOwner();
-            attackArea.Source = weaponOwner;
+            attackArea.SetSource(weaponOwner);
         }
 
         public override void ActionStart()

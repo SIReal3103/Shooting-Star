@@ -33,7 +33,7 @@ namespace ANTs.Template
         private Dictionary<ProgressIdentifier, ANTsPoolDecorator> id2Decorator =
             new Dictionary<ProgressIdentifier, ANTsPoolDecorator>();
 
-        private Dictionary<ANTsPool, ANTsPoolDecorator> pool2Decorator = 
+        private Dictionary<ANTsPool, ANTsPoolDecorator> pool2Decorator =
             new Dictionary<ANTsPool, ANTsPoolDecorator>();
 
         protected ProgressablePoolManager() { }
@@ -58,7 +58,7 @@ namespace ANTs.Template
 
         public bool ProgressNextPool(ref ANTsPool pool)
         {
-            if(pool2Decorator.TryGetValue(pool, out ANTsPoolDecorator decorator))
+            if (pool2Decorator.TryGetValue(pool, out ANTsPoolDecorator decorator))
             {
                 ANTsPoolDecorator nextDecorator = id2Decorator[decorator.nextLevel];
                 pool = nextDecorator.pool;

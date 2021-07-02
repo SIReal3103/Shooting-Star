@@ -33,7 +33,7 @@ static public class GameObjectExtensions
 
         if (parent != null) result.transform.SetParentPreserve(parent);
         return result;
-    }    
+    }
 
     static public void SetPool(this GameObject go, ANTsPool pool)
     {
