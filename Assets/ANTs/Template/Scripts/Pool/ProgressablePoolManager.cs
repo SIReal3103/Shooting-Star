@@ -37,16 +37,17 @@ namespace ANTs.Template
         //    return go.AddComponent<TPool>();
         //}
 
-        //public bool ProgressNextPool(ref TPool pool)
-        //{
-        //    if (pools.TryGetValue(pool.Prefab.NextLevel, out TPool result))
-        //    {
-        //        pool = result;
-        //        return true;
-        //    }
-        //    Debug.Log("Can't get next of item level max.");
-        //    return false;
-        //}
+        public bool ProgressNextPool(ref ANTsPool pool)
+        {
+            ProgressIdentifier id = (pool.GetPrefab() as IProgressable).CurrentLevel;
+            if (pools.TryGetValue(pool.Prefab.NextLevel, out ANTsPool result))
+            {
+                pool = result;
+                return true;
+            }
+            Debug.Log("Can't get next of item level max.");
+            return false;
+        }
 
         //public TPool GetDefaultPool()
         //{

@@ -9,7 +9,7 @@ namespace ANTs.Template
         [SerializeField] private int initialPoolSize = 10;
 
         private Queue<GameObject> objects;
-        //public GameObject Prefab { get => prefab; }
+        public GameObject GetPrefab() { return prefab; }
 
         public void LoadNewPrefab(GameObject prefab)
         {
