@@ -15,6 +15,8 @@ Animator Events
 
 Actor replace Character
 
+Tasks communicate through control
+
 call ActionBase Awake must have base.Awake();
 
 # One entry rule
