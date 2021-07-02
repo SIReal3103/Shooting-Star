@@ -108,7 +108,7 @@ AnimatorController:
   m_Name: BaseMeleeWeapon
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: MeleeWeaponOwnerDie
+  - m_Name: MeleeOwnerDie
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -172,7 +172,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: MeleeWeaponOwnerDie
+    m_ConditionEvent: MeleeOwnerDie
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8222827530465416683}
