@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using ANTs.Template;
 
 namespace ANTs.Core
 {
@@ -19,11 +20,12 @@ namespace ANTs.Core
             add { GetComponent<MeleeAttackAction>().OnActionStopEvent += value; }
             remove { GetComponent<MeleeAttackAction>().OnActionStopEvent -= value; }
         }
-
+        
         [Tooltip("The speed which Charger normally move")]
         [SerializeField] MoveData normalSpeed;
         [Tooltip("The speed which charger run to target (or player)")]
         [SerializeField] MoveData chargeSpeed;
+
 
         private MoveAction move;
         private MeleeAttackAction attack;

@@ -7,10 +7,7 @@ namespace ANTs.Core
     {
         [SerializeField] GameObject weaponOwner;
 
-        private void Awake()
-        {
-            GetComponent<MeleeWeaponAction>().weaponOwner = weaponOwner;
-        }
+        public GameObject GetWeaponOwner() { return weaponOwner; }
 
         public void OwnerDie()
         {

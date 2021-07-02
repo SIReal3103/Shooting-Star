@@ -8,15 +8,15 @@ namespace ANTs.Core
     {
         [SerializeField] AttackArea attackArea;
 
-        [ReadOnly]
-        public GameObject weaponOwner;
-
         private Damager damager;
+        [ReadOnly] [SerializeField]
+        private GameObject weaponOwner;
 
         protected override void Awake()
         {
             base.Awake();
             damager = GetComponent<Damager>();
+            weaponOwner = GetComponent<MeleeWeaponControl>().GetWeaponOwner();
             attackArea.Source = weaponOwner;
         }
 

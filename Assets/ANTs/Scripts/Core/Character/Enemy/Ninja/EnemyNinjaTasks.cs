@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
+    [RequireComponent(typeof(EnemyNinjaControl))]
     public class EnemyNinjaTasks : MonoBehaviour
     {
-
-        [SerializeField] Transform player;
+        [ReadOnly]
+        public Transform player;
+        [ReadOnly]
         [SerializeField] ANTsPolygon prepareZone;
-        [SerializeField] AnimatorEvents animationEvent;
 
         private EnemyNinjaControl enemy;
         private bool isArrived;
