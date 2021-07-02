@@ -17,19 +17,22 @@ static public class GameObjectExtensions
     /// <returns>The pool this gameObject belong to</returns>
     static public ANTsPool GetOrCreatePool(this GameObject go, Transform parent = null)
     {
-        if (objectPools.TryGetValue(go, out ANTsPool pool))
+        if (objectPools.TryGetValue(go, out ANTsPool result))
         {
-            return pool;
+
+        }
+        else
+        {
+            Debug.LogWarning(go + " don't belong to any pool, one is automatically created on scene");
+
+            GameObject newGo = new GameObject(go.name + "_pool");
+            if (parent != null) newGo.transform.SetParentPreserve(parent);
+            result = newGo.AddComponent<ANTsPool>();
+            result.LoadNewPrefab(go);
         }
 
-        Debug.LogWarning(go + " don't belong to any pool, one is automatically created on scene");
-
-        GameObject newGo = new GameObject(go.name + "_pool");
-        if (parent != null) newGo.transform.SetParentPreserve(parent);
-        ANTsPool newPool = newGo.AddComponent<ANTsPool>();
-        newPool.LoadNewPrefab(go);
-
-        return newPool;
+        if (parent != null) result.transform.SetParentPreserve(parent);
+        return result;
     }    
 
     static public void SetPool(this GameObject go, ANTsPool pool)
