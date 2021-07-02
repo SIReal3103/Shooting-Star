@@ -9,15 +9,31 @@ namespace ANTs.Template
     //    where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>, IProgressable
     //{
 
+    public class ANTsPoolDecorator
+    {
+        public ANTsPool pool;
+        public ProgressIdentifier currentLevel;
+        public ProgressIdentifier nextLevel;
+
+        public ANTsPoolDecorator(ANTsPool pool, ProgressIdentifier currentLevel, ProgressIdentifier nextLevel)
+        {
+            this.pool = pool;
+            this.currentLevel = currentLevel;
+            this.nextLevel = nextLevel;
+        }
+    }
+
     public abstract class ProgressablePoolManager<TManager, TObject> : Singleton<TManager>
         where TManager : Component
-        where TObject : MonoBehaviour, IProgressable
+        where TObject : Component, IProgressable
     {
         [SerializeField] ProgressIdentifier defaultId;
         [SerializeField] List<TObject> prefabs;
 
-        private Dictionary<ProgressIdentifier, ANTsPool> pools =
-            new Dictionary<ProgressIdentifier, ANTsPool>();
+        private Dictionary<ProgressIdentifier, ANTsPoolDecorator> id2Decorator =
+            new Dictionary<ProgressIdentifier, ANTsPoolDecorator>();
+
+        private Dictionary<ANTsPool, ANTsPoolDecorator> pool2Decorator;
 
         protected ProgressablePoolManager() { }
 
@@ -26,7 +42,9 @@ namespace ANTs.Template
             foreach (TObject prefab in prefabs)
             {
                 ANTsPool pool = prefab.gameObject.GetOrCreatePool(transform);
-                pools.Add(prefab.CurrentLevel, pool);
+                ANTsPoolDecorator decorator = new ANTsPoolDecorator(pool, prefab.CurrentLevel, prefab.NextLevel);
+                pool2Decorator.Add(pool, decorator);
+                id2Decorator.Add(prefab.CurrentLevel, decorator);
             }
         }
 
@@ -39,24 +57,35 @@ namespace ANTs.Template
 
         public bool ProgressNextPool(ref ANTsPool pool)
         {
-            ProgressIdentifier id = (pool.GetPrefab() as IProgressable).CurrentLevel;
-            if (pools.TryGetValue(pool.Prefab.NextLevel, out ANTsPool result))
+            if(pool2Decorator.TryGetValue(pool, out ANTsPoolDecorator decorator))
             {
-                pool = result;
+                ANTsPoolDecorator nextDecorator = id2Decorator[decorator.nextLevel];
+                pool = nextDecorator.pool;
                 return true;
             }
-            Debug.Log("Can't get next of item level max.");
-            return false;
+            else
+            {
+                Debug.LogWarning(pool + " is not found in " + this);
+                return false;
+            }
+
+            //ProgressIdentifier id = (pool.GetPrefab() as IProgressable).CurrentLevel;
+            //if (id2Decorators.TryGetValue(pool.Prefab.NextLevel, out ANTsPool result))
+            //{
+            //    pool = result;
+            //    return true;
+            //}
+            //Debug.Log("Can't get next of item level max.");
+            //return false;
         }
 
-        //public TPool GetDefaultPool()
-        //{
-        //    TPool result;
-        //    if (pools.TryGetValue(defaultId, out result))
-        //    {
-        //        return result;
-        //    }
-        //    throw new UnityException("Invalid default Id");
-        //}
+        public ANTsPool GetDefaultPool()
+        {
+            if (id2Decorator.TryGetValue(defaultId, out ANTsPoolDecorator decorator))
+            {
+                return decorator.pool;
+            }
+            throw new UnityException("Invalid default Id");
+        }
     }
 }
