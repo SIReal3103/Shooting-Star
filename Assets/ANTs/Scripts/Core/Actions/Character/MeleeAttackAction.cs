@@ -5,9 +5,9 @@ namespace ANTs.Core
 {
     public class MeleeAttackAction : ActionBase
     {
-        [SerializeField] MeleeWeaponControl meleeWeapon;
+        [SerializeField] MeleeWeapon meleeWeapon;
 
-        public MeleeWeaponControl GetMeleeWeapon()
+        public MeleeWeapon GetMeleeWeapon()
         {
             return meleeWeapon;
         }

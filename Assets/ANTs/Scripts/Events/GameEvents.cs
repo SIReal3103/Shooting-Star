@@ -6,16 +6,16 @@ namespace ANTs.Core
     {
         private static ChangeGunEvent changeGunEvent;
 
-        public ProjectileWeaponControl newGun;
+        public ProjectileWeapon newGun;
         public ShootAction holder;
 
-        public ChangeGunEvent(ProjectileWeaponControl newGun, ShootAction holder)
+        public ChangeGunEvent(ProjectileWeapon newGun, ShootAction holder)
         {
             this.newGun = newGun;
             this.holder = holder;
         }
 
-        public static void Trigger(ShootAction Holder, ProjectileWeaponControl newGun)
+        public static void Trigger(ShootAction Holder, ProjectileWeapon newGun)
         {
             changeGunEvent.holder = Holder;
             changeGunEvent.newGun = newGun;

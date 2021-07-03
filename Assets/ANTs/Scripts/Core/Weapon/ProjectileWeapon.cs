@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class ProjectileWeaponControl : MonoBehaviour, IProgressable
+    public class ProjectileWeapon : MonoBehaviour, IProgressable
     {
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Transform[] projectileTransforms;

@@ -3,7 +3,7 @@
 namespace ANTs.Core
 {
     [RequireComponent(typeof(MeleeWeaponAction))]
-    public class MeleeWeaponControl : MonoBehaviour
+    public class MeleeWeapon : MonoBehaviour
     {
         public void OwnerDie()
         {

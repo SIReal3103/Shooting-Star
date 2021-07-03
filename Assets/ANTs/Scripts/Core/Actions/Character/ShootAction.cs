@@ -9,9 +9,9 @@ namespace ANTs.Core
         [SerializeField] Transform weaponAttachment;
         [SerializeField] float timeBetweenFire = 0.5f;
         [Tooltip("Initial gun type for gunner, default gun if null")]
-        [SerializeField] ProjectileWeaponControl initialProjectileWeaponPrefab;
+        [SerializeField] ProjectileWeapon initialProjectileWeaponPrefab;
         [Tooltip("Initial bullet type for gunner, default bullet if null")]
-        [SerializeField] AmmoControl initialAmmoPrefab;
+        [SerializeField] WeaponAmmo initialAmmoPrefab;
         #endregion
 
 
@@ -19,7 +19,7 @@ namespace ANTs.Core
         #region =================================================VARIABLES
         private ANTsPool currentProjectileWeaponPool;
         private ANTsPool currentAmmoPool;
-        private ProjectileWeaponControl currentGun;
+        private ProjectileWeapon currentGun;
         private float timeSinceLastFire = Mathf.Infinity;
         #endregion
 
@@ -96,7 +96,7 @@ namespace ANTs.Core
         {
             if (currentGun != null) currentGun.ReturnToPool();
             currentGun = currentProjectileWeaponPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentAmmoPool))
-                .GetComponent<ProjectileWeaponControl>();
+                .GetComponent<ProjectileWeapon>();
         }
 
         private void LoadBulletForCurrentGun()

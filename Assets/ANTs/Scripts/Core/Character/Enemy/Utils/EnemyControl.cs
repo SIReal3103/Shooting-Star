@@ -7,7 +7,7 @@ namespace ANTs.Core
     [RequireComponent(typeof(DieAction))]
     public class EnemyControl : MonoBehaviour
     {
-        private MeleeWeaponControl meleeWeapon;
+        private MeleeWeapon meleeWeapon;
 
         private void Awake()
         {
