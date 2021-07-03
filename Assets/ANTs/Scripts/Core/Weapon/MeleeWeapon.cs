@@ -7,7 +7,6 @@ namespace ANTs.Core
     public class MeleeWeapon : Weapon
     {
         [SerializeField] AttackArea attackArea;
-        [SerializeField] GameObject owner;
 
         public AttackArea GetAttackArea() { return attackArea; }
 
@@ -28,6 +27,11 @@ namespace ANTs.Core
         }
 
         public void Attack()
+        {
+            TriggerWeapon();            
+        }
+
+        public override void TriggerWeapon()
         {
             GetComponent<MeleeWeaponAction>().ActionStart();
         }

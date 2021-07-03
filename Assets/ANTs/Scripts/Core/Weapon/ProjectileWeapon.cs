@@ -22,9 +22,9 @@ namespace ANTs.Core
             });
         }
 
-        public void SetAmmoPool(ANTsPool pool) => currentAmmo = pool;
+        public void SetAmmoPool(ANTsPool pool) { currentAmmo = pool; }
 
-        public void Fire()
+        public override void TriggerWeapon()
         {
             if (currentAmmo == null)
             {
@@ -37,8 +37,12 @@ namespace ANTs.Core
                 currentAmmo.Pop(new AmmoData(owner, projectileTransform.position, projectileTransform.up));
             }
         }
-        #endregion
 
+        public void Fire()
+        {
+            TriggerWeapon();
+        }
+        #endregion
 
         public void ReturnToPool()
         {
@@ -52,7 +56,7 @@ namespace ANTs.Core
             {
                 Gizmos.DrawRay(new Ray(projectileTransform.position, projectileTransform.up));
             }
-        }
+        }        
         #endregion
     }
 
