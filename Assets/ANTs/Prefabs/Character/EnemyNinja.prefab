@@ -170,43 +170,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531583661471074941, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
-      propertyPath: weaponOwner
+      propertyPath: owner
       value: 
       objectReference: {fileID: 7973814678278962949}
     - target: {fileID: 3000757619593086653, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_Name
       value: NinjaSword
-      objectReference: {fileID: 0}
-    - target: {fileID: 3651125741397519115, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: source
-      value: 
-      objectReference: {fileID: 7973814678278962949}
-    - target: {fileID: 5239362829091667820, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: weaponOwner
-      value: 
-      objectReference: {fileID: 7973814678278962949}
-    - target: {fileID: 7278753032814961981, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.7490153
-      objectReference: {fileID: 0}
-    - target: {fileID: 7278753032814961981, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.60656357
-      objectReference: {fileID: 0}
-    - target: {fileID: 7278753032814961981, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.38308287
-      objectReference: {fileID: 0}
-    - target: {fileID: 7278753032814961981, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d8089fc3e2020479179a204a2d8cd3, type: 3}

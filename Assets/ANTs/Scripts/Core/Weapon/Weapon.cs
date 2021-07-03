@@ -13,6 +13,7 @@ namespace ANTs.Core
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
         public GameObject GetWeaponOwner() { return owner; }
+        public virtual void SetOwner(GameObject owner) { this.owner = owner; }
     }
 
     public abstract class WeaponData

@@ -7,17 +7,6 @@ namespace ANTs.Core
     [RequireComponent(typeof(Weapon))]
     public class MeleeWeaponAction : ActionBase
     {
-        [SerializeField] AttackArea attackArea;
-
-        private Damager damager;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            damager = GetComponent<Damager>();
-            attackArea.SetSource(GetComponent<Weapon>().GetWeaponOwner());
-        }
-
         public override void ActionStart()
         {
             base.ActionStart();
@@ -32,7 +21,7 @@ namespace ANTs.Core
 
         private void AttackBehaviour()
         {
-            attackArea.Attack(damager);
+            GetComponent<MeleeWeapon>().TriggerAttackArea();
         }
     }
 }

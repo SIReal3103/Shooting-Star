@@ -57,12 +57,12 @@ namespace ANTs.Core
     }
 
     public class ProjectileWeaponData : WeaponData
-    {        
+    {
         public ANTsPool ammoPool;
 
         public ProjectileWeaponData(GameObject owner, Transform parent, ANTsPool ammoPool)
             : base(owner, parent)
-        {            
+        {
             this.ammoPool = ammoPool;
         }
     }
