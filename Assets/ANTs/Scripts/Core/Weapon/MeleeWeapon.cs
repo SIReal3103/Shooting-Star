@@ -37,7 +37,6 @@ namespace ANTs.Core
         }
     }
 
-
     public class MeleeWeaponData : WeaponData
     {
         public MeleeWeaponData(GameObject owner, Transform parent)

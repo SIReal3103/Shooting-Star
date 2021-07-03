@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ANTs.Template;
 using UnityEngine;
 
 namespace ANTs.Core
@@ -11,30 +11,30 @@ namespace ANTs.Core
         [SerializeField] Weapon initialWeapon;
         [SerializeField] WeaponAmmo initialAmmo;
 
-        private ProjectileWeapon currentProjectileWeapon;
-        private MeleeWeapon currentMeleeWeapon;
+        public ProjectileWeapon currentProjectileWeapon;
+        public MeleeWeapon currentMeleeWeapon;
         private Weapon currentWeapon;
+        private ANTsPool currentAmmo;
 
-        private void Awake()
+        private void Start()
         {
-            if(initialWeapon)
+            currentAmmo = initialAmmo ? initialAmmo.gameObject.GetOrCreatePool() : AmmoManager.Instance.GetDefaultPool();
+
+            if (initialWeapon)
             {
                 currentWeapon = initialWeapon;
-                currentWeapon.SetOwner(gameObject);
                 if (currentWeapon is ProjectileWeapon)
                 {
-                    InitProjectileWeapon();
-                }                    
-                else if(currentWeapon is MeleeWeapon)
+                    InitProjectileWeapon(currentAmmo);
+                }
+                else if (currentWeapon is MeleeWeapon)
                 {
                     InitMeleeWeapon();
                 }
                 else
                 {
-                    throw new UnityException("Invalid type of current Weapon");
+                    throw new UnityException("Invalid type of initialWeapon");
                 }
-
-                SetDirection(Vector2.left);
             }
         }
 
@@ -49,22 +49,22 @@ namespace ANTs.Core
             weaponAttachment.rotation = Quaternion.Euler(new Vector3(0, 0, rotZ - 90));
         }
 
+        public void UpgradeCurrentWeapon()
+        {
+            currentWeapon = WeaponUpgradeHandler.GetUpgradedWeapon(currentWeapon);
+        }
+
         private void InitMeleeWeapon()
         {
             currentMeleeWeapon = currentWeapon as MeleeWeapon;
+            currentMeleeWeapon.SetOwner(gameObject);
         }
 
-        private void InitProjectileWeapon()
+        private void InitProjectileWeapon(ANTsPool ammoPool)
         {
-            currentProjectileWeapon = currentWeapon as ProjectileWeapon;            
-            if(initialAmmo)
-            {
-                currentProjectileWeapon.SetAmmoPool(initialAmmo.gameObject.GetOrCreatePool());
-            }
-            else
-            {
-                currentProjectileWeapon.SetAmmoPool(AmmoManager.Instance.GetDefaultPool());
-            }
-        }        
+            currentProjectileWeapon = currentWeapon as ProjectileWeapon;
+            currentProjectileWeapon.SetAmmoPool(ammoPool);
+            currentProjectileWeapon.SetOwner(gameObject);
+        }
     }
 }

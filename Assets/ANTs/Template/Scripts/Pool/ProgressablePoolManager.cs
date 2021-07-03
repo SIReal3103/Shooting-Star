@@ -40,6 +40,7 @@ namespace ANTs.Template
 
         protected override void Awake()
         {
+            base.Awake();
             foreach (TObject prefab in prefabs)
             {
                 ANTsPool pool = prefab.gameObject.GetOrCreatePool(transform);

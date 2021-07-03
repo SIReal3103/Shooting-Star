@@ -7,13 +7,6 @@ namespace ANTs.Core
     [RequireComponent(typeof(DieAction))]
     public class EnemyControl : MonoBehaviour
     {
-        private MeleeWeapon meleeWeapon;
-
-        private void Awake()
-        {
-            meleeWeapon = GetComponent<MeleeAttackAction>().GetMeleeWeapon();
-        }
-
         private void OnEnable()
         {
             GetComponent<Damageable>().OnHealthReachZeroEvent += DeadBehaviour;
@@ -27,7 +20,7 @@ namespace ANTs.Core
         private void DeadBehaviour()
         {
             GetComponent<DieAction>().ActionStart();
-            meleeWeapon.OwnerDie();
+            GetComponent<WeaponHandler>().currentMeleeWeapon.OwnerDie();
         }
     }
 }

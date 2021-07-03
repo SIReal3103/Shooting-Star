@@ -10,7 +10,9 @@ namespace ANTs.Core
 
         private ANTsPool currentAmmo;
 
-        #region ==================================Behaviours
+        public ANTsPool GetCurrentAmmoPool() { return currentAmmo; }
+
+
         private void Awake()
         {
             gameObject.SetWakeUpDelegate(args =>
@@ -42,14 +44,12 @@ namespace ANTs.Core
         {
             TriggerWeapon();
         }
-        #endregion
 
         public void ReturnToPool()
         {
             gameObject.ReturnToPoolOrDestroy();
         }
 
-        #region =================================projectileTransforms
         private void OnDrawGizmos()
         {
             foreach (Transform projectileTransform in projectileTransforms)
@@ -57,7 +57,6 @@ namespace ANTs.Core
                 Gizmos.DrawRay(new Ray(projectileTransform.position, projectileTransform.up));
             }
         }
-        #endregion
     }
 
     public class ProjectileWeaponData : WeaponData

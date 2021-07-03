@@ -35,6 +35,15 @@ static public class GameObjectExtensions
         return result;
     }
 
+    static public ANTsPool GetPool(this GameObject go)
+    {
+        if (objectPools.TryGetValue(go, out ANTsPool result))
+        {
+            return result;
+        }
+        throw new UnityException("No pool avaiable for " + go);
+    }
+
     static public void SetPool(this GameObject go, ANTsPool pool)
     {
         if (objectPools.ContainsKey(go))
