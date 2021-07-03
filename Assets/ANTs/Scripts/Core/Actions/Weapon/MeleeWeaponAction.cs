@@ -4,10 +4,10 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Damager))]
+    [RequireComponent(typeof(Weapon))]
     public class MeleeWeaponAction : ActionBase
     {
         [SerializeField] AttackArea attackArea;
-        [SerializeField] GameObject weaponOwner;
 
         private Damager damager;
 
@@ -15,7 +15,7 @@ namespace ANTs.Core
         {
             base.Awake();
             damager = GetComponent<Damager>();
-            attackArea.SetSource(weaponOwner);
+            attackArea.SetSource(GetComponent<Weapon>().GetWeaponOwner());
         }
 
         public override void ActionStart()

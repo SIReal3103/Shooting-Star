@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class ProjectileWeapon : Weapon, IProgressable
+    public class ProjectileWeapon : Weapon
     {
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Transform[] projectileTransforms;
@@ -57,14 +57,12 @@ namespace ANTs.Core
     }
 
     public class ProjectileWeaponData : WeaponData
-    {
-        public Transform parent;
+    {        
         public ANTsPool ammoPool;
 
         public ProjectileWeaponData(GameObject owner, Transform parent, ANTsPool ammoPool)
-            : base(owner)
-        {
-            this.parent = parent;
+            : base(owner, parent)
+        {            
             this.ammoPool = ammoPool;
         }
     }

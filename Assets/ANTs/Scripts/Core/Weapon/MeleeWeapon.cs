@@ -3,7 +3,7 @@
 namespace ANTs.Core
 {
     [RequireComponent(typeof(MeleeWeaponAction))]
-    public class MeleeWeapon : MonoBehaviour
+    public class MeleeWeapon : Weapon
     {
         public void OwnerDie()
         {
@@ -13,6 +13,16 @@ namespace ANTs.Core
         public void Attack()
         {
             GetComponent<MeleeWeaponAction>().ActionStart();
+        }
+    }
+
+
+    public class MeleeWeaponData : WeaponData
+    {
+        public MeleeWeaponData(GameObject owner, Transform parent)
+            : base(owner, parent)
+        {
+
         }
     }
 }

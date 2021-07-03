@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public abstract class Weapon : MonoBehaviour
+    public abstract class Weapon : MonoBehaviour, IProgressable
     {
-        [Header("IProgressable")]
-        [Space(10)]
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
@@ -14,15 +12,18 @@ namespace ANTs.Core
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
+        public GameObject GetWeaponOwner() { return owner; }
     }
 
     public abstract class WeaponData
     {
         public GameObject owner;
+        public Transform parent;
 
-        public WeaponData(GameObject owner)
+        public WeaponData(GameObject owner, Transform parent)
         {
             this.owner = owner;
+            this.parent = parent;
         }
     }
 }
