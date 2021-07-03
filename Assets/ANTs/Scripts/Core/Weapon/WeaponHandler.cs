@@ -46,7 +46,7 @@ namespace ANTs.Core
         }
 
         #region ==================================== TRIGGERS
-        public void TriggerWeapon()
+        public void TriggerCurrentWeapon()
         {
             currentWeapon.TriggerWeapon();
         }

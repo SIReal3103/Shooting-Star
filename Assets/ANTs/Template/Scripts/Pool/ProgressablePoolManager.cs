@@ -3,12 +3,6 @@ using UnityEngine;
 
 namespace ANTs.Template
 {
-    //public abstract class ProgressablePoolManager<TManager, TPool, TObject> : Singleton<TManager>
-    //    where TManager : Component
-    //    where TPool : ANTsPool<TPool, TObject>
-    //    where TObject : MonoBehaviour, IANTsPoolable<TPool, TObject>, IProgressable
-    //{
-
     public class ANTsPoolDecorator
     {
         public ANTsPool pool;
