@@ -3,20 +3,12 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class ProjectileWeapon : MonoBehaviour, IProgressable
+    public class ProjectileWeapon : Weapon, IProgressable
     {
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Transform[] projectileTransforms;
-        [Header("IProgressable")]
-        [Space(10)]
-        [SerializeField] ProgressIdentifier currentLevel;
-        [SerializeField] ProgressIdentifier nextLevel;
 
         private ANTsPool currentAmmo;
-        private GameObject owner;
-
-        public ProgressIdentifier CurrentLevel { get => currentLevel; }
-        public ProgressIdentifier NextLevel { get => nextLevel; }
 
         #region ==================================Behaviours
         private void Awake()
