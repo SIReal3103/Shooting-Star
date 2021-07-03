@@ -105,7 +105,24 @@ MonoBehaviour:
   isAttachWithAnimator: 1
   isTransitionTrigger: 1
   syncWithAnimation: 1
-  meleeWeapon: {fileID: 7901745053729785380}
+--- !u!114 &4527122078439656437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973814678278962949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d258573c0fa86a4db59fc09e2e9e94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAttachment: {fileID: 2716003436068321698}
+  rotateWithMouse: 0
+  initialWeapon: {fileID: 7901745053729785380}
+  initialAmmo: {fileID: 0}
+  currentProjectileWeapon: {fileID: 0}
+  currentMeleeWeapon: {fileID: 0}
 --- !u!1001 &5659158514701503577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NinjaSword
       objectReference: {fileID: 0}
+    - target: {fileID: 8104147521604481026, guid: 44d8089fc3e2020479179a204a2d8cd3,
+        type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 7973814678278962949}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d8089fc3e2020479179a204a2d8cd3, type: 3}
 --- !u!4 &5795937482615585853 stripped

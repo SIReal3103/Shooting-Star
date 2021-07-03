@@ -20,7 +20,7 @@ namespace ANTs.Core
         {
             if (timeSinceLastFire > timeBetweenFire)
             {
-                GetComponent<WeaponHandler>().TriggerWeapon();
+                GetComponent<WeaponHandler>().TriggerProjectileWeapon();
                 timeSinceLastFire = 0;
             }
         }

@@ -8,7 +8,6 @@ namespace ANTs.Core
     public class PlayerControl : MonoBehaviour
     {
         private MoveAction mover;
-        private ShootAction gunner;
 
         private void OnEnable()
         {
@@ -23,7 +22,6 @@ namespace ANTs.Core
         private void Awake()
         {
             mover = GetComponent<MoveAction>();
-            gunner = GetComponent<ShootAction>();
         }
 
         public void StartMovingTo(Vector2 position)
@@ -32,14 +30,14 @@ namespace ANTs.Core
             mover.SetDestination(position);
         }
 
-        public void ChangeStrongerGun()
+        public void UpgradeWeapon()
         {
-            //gunner.ChangeStrongerGun();
+            GetComponent<WeaponHandler>().UpgradeCurrentWeapon();
         }
 
         public void ChangeStrongerBullet()
         {
-            //gunner.ChangeStrongerBullet();
+            GetComponent<WeaponHandler>().UpgradeCurrentAmmo();
         }
     }
 }

@@ -50,13 +50,6 @@ namespace ANTs.Template
             }
         }
 
-        //private TPool CreatePool(TObject poolObject)
-        //{
-        //    GameObject go = new GameObject(poolObject.name + "_pool");
-        //    go.transform.SetParentPreserve(transform);
-        //    return go.AddComponent<TPool>();
-        //}
-
         public bool ProgressNextPool(ref ANTsPool pool)
         {
             if (pool2Decorator.TryGetValue(pool, out ANTsPoolDecorator decorator))
@@ -70,15 +63,6 @@ namespace ANTs.Template
                 Debug.LogWarning(pool + " is not found in " + this);
                 return false;
             }
-
-            //ProgressIdentifier id = (pool.GetPrefab() as IProgressable).CurrentLevel;
-            //if (id2Decorators.TryGetValue(pool.Prefab.NextLevel, out ANTsPool result))
-            //{
-            //    pool = result;
-            //    return true;
-            //}
-            //Debug.Log("Can't get next of item level max.");
-            //return false;
         }
 
         public ANTsPool GetDefaultPool()

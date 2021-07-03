@@ -18,7 +18,7 @@ namespace ANTs.Core
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                player.ChangeStrongerGun();
+                player.UpgradeWeapon();
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {

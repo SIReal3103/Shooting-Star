@@ -11,8 +11,11 @@ namespace ANTs.Core
         [SerializeField] Weapon initialWeapon;
         [SerializeField] WeaponAmmo initialAmmo;
 
+        [HideInInspector]
         public ProjectileWeapon currentProjectileWeapon;
+        [HideInInspector]
         public MeleeWeapon currentMeleeWeapon;
+
         private Weapon currentWeapon;
         private ANTsPool currentAmmo;
 
@@ -36,12 +39,28 @@ namespace ANTs.Core
                     throw new UnityException("Invalid type of initialWeapon");
                 }
             }
+            else
+            {
+                throw new UnityException("No initial weapon avaiable");
+            }
         }
 
+        #region ==================================== TRIGGERS
         public void TriggerWeapon()
         {
             currentWeapon.TriggerWeapon();
         }
+
+        public void TriggerMeleeWeapon()
+        {
+            currentMeleeWeapon.TriggerWeapon();
+        }
+
+        public void TriggerProjectileWeapon()
+        {
+            currentProjectileWeapon.TriggerWeapon();
+        }
+        #endregion
 
         public void SetDirection(Vector2 direction)
         {
@@ -51,7 +70,12 @@ namespace ANTs.Core
 
         public void UpgradeCurrentWeapon()
         {
-            currentWeapon = WeaponUpgradeHandler.GetUpgradedWeapon(currentWeapon);
+            WeaponUpgradeHandler.UpgradeWeapon(ref currentWeapon);
+        }
+
+        public void UpgradeCurrentAmmo()
+        {
+            WeaponUpgradeHandler.UpgradeWeaponAmmo(currentProjectileWeapon, ref currentAmmo);
         }
 
         private void InitMeleeWeapon()

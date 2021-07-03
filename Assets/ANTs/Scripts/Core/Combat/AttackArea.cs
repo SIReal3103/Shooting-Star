@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using ANTs.Template;
+using System.Collections.Generic;
 using UnityEngine;
 namespace ANTs.Core
 {
     public class AttackArea : MonoBehaviour
     {
+        [ReadOnly]
         [SerializeField]
         private GameObject source;
 
