@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using ANTs.Template;
+﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Core
 {
@@ -18,6 +18,11 @@ namespace ANTs.Core
 
     public abstract class WeaponData
     {
+        private GameObject owner;
 
+        public WeaponData(GameObject owner)
+        {
+            this.owner = owner;
+        }
     }
 }

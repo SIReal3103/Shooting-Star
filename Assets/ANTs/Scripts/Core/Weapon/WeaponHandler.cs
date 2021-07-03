@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using ANTs.Template;
+﻿using UnityEngine;
 
 namespace ANTs.Core
 {

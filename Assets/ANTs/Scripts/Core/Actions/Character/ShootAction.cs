@@ -95,7 +95,7 @@ namespace ANTs.Core
         private void LoadnewGunAndDestroyCurrent()
         {
             if (currentGun != null) currentGun.ReturnToPool();
-            currentGun = currentProjectileWeaponPool.Pop(new ProjectileWeaponData(weaponAttachment, gameObject, currentAmmoPool))
+            currentGun = currentProjectileWeaponPool.Pop(new ProjectileWeaponData(gameObject, weaponAttachment, currentAmmoPool))
                 .GetComponent<ProjectileWeapon>();
         }
 
