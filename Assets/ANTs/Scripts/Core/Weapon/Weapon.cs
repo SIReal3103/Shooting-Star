@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
+    public enum WeaponType
+    {
+        ProjectileWeapon,
+        MeleeWeapon
+    }
+
     public abstract class Weapon : MonoBehaviour, IProgressable
     {
         [SerializeField] ProgressIdentifier currentLevel;
@@ -16,6 +22,7 @@ namespace ANTs.Core
         public virtual void SetOwner(GameObject owner) { this.owner = owner; }
 
         public abstract void TriggerWeapon();
+        public abstract WeaponType GetWeaponType();
     }
 
     public abstract class WeaponData

@@ -10,6 +10,8 @@ namespace ANTs.Core
 
         public AttackArea GetAttackArea() { return attackArea; }
 
+
+        public override WeaponType GetWeaponType() { return WeaponType.MeleeWeapon; }
         public override void SetOwner(GameObject owner)
         {
             base.SetOwner(owner);
@@ -28,7 +30,7 @@ namespace ANTs.Core
 
         public void Attack()
         {
-            TriggerWeapon();            
+            TriggerWeapon();
         }
 
         public override void TriggerWeapon()

@@ -7,9 +7,15 @@ namespace ANTs.Core
         [SerializeField] Transform weaponAttachment;
         [SerializeField] bool rotateWithMouse;
         [Space(20)]
-        [SerializeField] MeleeWeapon meleeWeapon;        
-        [SerializeField] ProjectileWeapon projectileWeapon;
-        [SerializeField] WeaponAmmo weaponAmmo;
-        [SerializeField] Weapon CurrentWeapon;
+        [SerializeField] Weapon initialWeapon;
+        [SerializeField] WeaponAmmo
+
+        private Weapon currentWeapon;
+
+
+        public void TriggerWeapon()
+        {
+            currentWeapon.TriggerWeapon();
+        }
     }
 }
