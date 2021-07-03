@@ -59,14 +59,12 @@ namespace ANTs.Core
     public class ProjectileWeaponData : WeaponData
     {
         public Transform parent;
-        public GameObject owner;
         public ANTsPool ammoPool;
 
         public ProjectileWeaponData(GameObject owner, Transform parent, ANTsPool ammoPool)
             : base(owner)
         {
             this.parent = parent;
-            this.owner = owner;
             this.ammoPool = ammoPool;
         }
     }

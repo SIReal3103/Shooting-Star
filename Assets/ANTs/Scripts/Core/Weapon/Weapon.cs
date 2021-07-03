@@ -18,7 +18,7 @@ namespace ANTs.Core
 
     public abstract class WeaponData
     {
-        private GameObject owner;
+        public GameObject owner;
 
         public WeaponData(GameObject owner)
         {
