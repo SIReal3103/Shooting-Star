@@ -10,8 +10,6 @@ namespace ANTs.Core
 
         private ANTsPool currentAmmo;
 
-        public override WeaponType GetWeaponType() { return WeaponType.ProjectileWeapon; }
-
         #region ==================================Behaviours
         private void Awake()
         {

@@ -3,18 +3,12 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
+    [RequireComponent(typeof(WeaponHandler))]
     public class ShootAction : ActionBase
     {
         #region =================================================SERIALIZE_FIELD
-        [SerializeField] Transform weaponAttachment;
         [SerializeField] float timeBetweenFire = 0.5f;
-        [Tooltip("Initial gun type for gunner, default gun if null")]
-        [SerializeField] ProjectileWeapon initialProjectileWeaponPrefab;
-        [Tooltip("Initial bullet type for gunner, default bullet if null")]
-        [SerializeField] WeaponAmmo initialAmmoPrefab;
         #endregion
-
-
 
         #region =================================================VARIABLES
         private ANTsPool currentProjectileWeaponPool;
@@ -24,36 +18,30 @@ namespace ANTs.Core
         #endregion
 
         #region =================================================UNITY_EVENTS
-        protected override void Start()
-        {
-            base.Start();
+        //protected override void Start()
+        //{
+        //    base.Start();
 
-            //currentGunPool = initialGunPool ? initialGunPool : ProjectileWeaponManager.Instance.GetDefaultPool();
-            //LoadCurrenGun();
+        //    if (initialProjectileWeaponPrefab)
+        //    {
+        //        currentProjectileWeaponPool = initialProjectileWeaponPrefab.gameObject.GetOrCreatePool(transform);
+        //    }
+        //    else
+        //    {
+        //        currentProjectileWeaponPool = ProjectileWeaponManager.Instance.GetDefaultPool();
+        //    }
+        //    LoadnewGunAndDestroyCurrent();
 
-            //currentBulletPool = initialBulletPool ? initialBulletPool : AmmoManager.Instance.GetDefaultPool();
-            //LoadCurrentBullet();
-
-            if (initialProjectileWeaponPrefab)
-            {
-                currentProjectileWeaponPool = initialProjectileWeaponPrefab.gameObject.GetOrCreatePool(transform);
-            }
-            else
-            {
-                currentProjectileWeaponPool = ProjectileWeaponManager.Instance.GetDefaultPool();
-            }
-            LoadnewGunAndDestroyCurrent();
-
-            if (initialAmmoPrefab)
-            {
-                currentAmmoPool = initialAmmoPrefab.gameObject.GetOrCreatePool();
-            }
-            else
-            {
-                currentAmmoPool = AmmoManager.Instance.GetDefaultPool();
-            }
-            LoadBulletForCurrentGun();
-        }
+        //    if (initialAmmoPrefab)
+        //    {
+        //        currentAmmoPool = initialAmmoPrefab.gameObject.GetOrCreatePool();
+        //    }
+        //    else
+        //    {
+        //        currentAmmoPool = AmmoManager.Instance.GetDefaultPool();
+        //    }
+        //    LoadBulletForCurrentGun();
+        //}
         #endregion
 
 
@@ -71,33 +59,34 @@ namespace ANTs.Core
         {
             if (timeSinceLastFire > timeBetweenFire)
             {
-                currentGun.Fire();
+                //currentGun.Fire();
+                GetComponent<WeaponHandler>().TriggerWeapon();
                 timeSinceLastFire = 0;
             }
         }
 
-        public void ChangeStrongerGun()
-        {
-            if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentProjectileWeaponPool))
-            {
-                LoadnewGunAndDestroyCurrent();
-            }
-        }
+        //public void ChangeStrongerGun()
+        //{
+        //    if (ProjectileWeaponManager.Instance.ProgressNextPool(ref currentProjectileWeaponPool))
+        //    {
+        //        LoadnewGunAndDestroyCurrent();
+        //    }
+        //}
 
-        public void ChangeStrongerBullet()
-        {
-            if (AmmoManager.Instance.ProgressNextPool(ref currentAmmoPool))
-            {
-                LoadBulletForCurrentGun();
-            }
-        }
+        //public void ChangeStrongerBullet()
+        //{
+        //    if (AmmoManager.Instance.ProgressNextPool(ref currentAmmoPool))
+        //    {
+        //        LoadBulletForCurrentGun();
+        //    }
+        //}
 
-        private void LoadnewGunAndDestroyCurrent()
-        {
-            if (currentGun != null) currentGun.ReturnToPool();
-            currentGun = currentProjectileWeaponPool.Pop(new ProjectileWeaponData(gameObject, weaponAttachment, currentAmmoPool))
-                .GetComponent<ProjectileWeapon>();
-        }
+        //private void LoadnewGunAndDestroyCurrent()
+        //{
+        //    if (currentGun != null) currentGun.ReturnToPool();
+        //    currentGun = currentProjectileWeaponPool.Pop(new ProjectileWeaponData(gameObject, weaponAttachment, currentAmmoPool))
+        //        .GetComponent<ProjectileWeapon>();
+        //}
 
         private void LoadBulletForCurrentGun()
         {

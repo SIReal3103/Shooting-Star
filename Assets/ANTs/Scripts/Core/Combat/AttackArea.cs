@@ -5,7 +5,6 @@ namespace ANTs.Core
 {
     public class AttackArea : MonoBehaviour
     {
-        [ReadOnly]
         [SerializeField]
         private GameObject source;
 

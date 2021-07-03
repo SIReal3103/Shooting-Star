@@ -10,17 +10,10 @@ namespace ANTs.Core
 
         public AttackArea GetAttackArea() { return attackArea; }
 
-
-        public override WeaponType GetWeaponType() { return WeaponType.MeleeWeapon; }
         public override void SetOwner(GameObject owner)
         {
             base.SetOwner(owner);
             attackArea.SetSource(owner);
-        }
-
-        private void Awake()
-        {
-            SetOwner(owner);
         }
 
         public void OwnerDie()

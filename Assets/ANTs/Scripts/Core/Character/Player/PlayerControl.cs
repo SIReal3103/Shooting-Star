@@ -34,12 +34,12 @@ namespace ANTs.Core
 
         public void ChangeStrongerGun()
         {
-            gunner.ChangeStrongerGun();
+            //gunner.ChangeStrongerGun();
         }
 
         public void ChangeStrongerBullet()
         {
-            gunner.ChangeStrongerBullet();
+            //gunner.ChangeStrongerBullet();
         }
     }
 }
