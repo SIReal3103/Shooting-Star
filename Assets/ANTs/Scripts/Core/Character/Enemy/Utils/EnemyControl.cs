@@ -19,8 +19,11 @@ namespace ANTs.Core
 
         private void DeadBehaviour()
         {
-            GetComponent<DieAction>().ActionStart();
-            GetComponent<WeaponHandler>().currentMeleeWeapon.OwnerDie();
+            GetComponent<DieAction>().ActionStart();            
+            if(TryGetComponent(out WeaponHandler handler))
+            {
+                handler.currentMeleeWeapon.OwnerDie();
+            }
         }
     }
 }
