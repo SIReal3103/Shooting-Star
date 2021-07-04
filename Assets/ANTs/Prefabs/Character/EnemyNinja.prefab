@@ -1,36 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6450823807470506459
-GameObject:
+--- !u!114 &4527122078439656437
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2716003436068321698}
-  m_Layer: 0
-  m_Name: WeaponAttachment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2716003436068321698
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6450823807470506459}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5795937482615585853}
-  m_Father: {fileID: 7973814677124222154}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 7973814678278962949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d258573c0fa86a4db59fc09e2e9e94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAttachment: {fileID: 6459191288796496263}
+  rotateWithMouse: 0
+  initialWeapon: {fileID: 2531583660175962055}
+  initialAmmo: {fileID: 0}
+  currentProjectileWeapon: {fileID: 0}
+  currentMeleeWeapon: {fileID: 0}
 --- !u!114 &5092417165955709028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,30 +92,12 @@ MonoBehaviour:
   isAttachWithAnimator: 1
   isTransitionTrigger: 1
   syncWithAnimation: 1
---- !u!114 &4527122078439656437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973814678278962949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d258573c0fa86a4db59fc09e2e9e94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponAttachment: {fileID: 2716003436068321698}
-  rotateWithMouse: 0
-  initialWeapon: {fileID: 7901745053729785380}
-  initialAmmo: {fileID: 0}
-  currentProjectileWeapon: {fileID: 0}
-  currentMeleeWeapon: {fileID: 0}
---- !u!1001 &5659158514701503577
+--- !u!1001 &1389503930
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2716003436068321698}
+    m_TransformParent: {fileID: 6459191288796496263}
     m_Modifications:
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
@@ -158,17 +127,17 @@ PrefabInstance:
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
@@ -185,34 +154,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2531583661471074941, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 7973814678278962949}
     - target: {fileID: 3000757619593086653, guid: 44d8089fc3e2020479179a204a2d8cd3,
         type: 3}
       propertyPath: m_Name
-      value: NinjaSword
+      value: MeleeWeapon
       objectReference: {fileID: 0}
-    - target: {fileID: 8104147521604481026, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: source
-      value: 
-      objectReference: {fileID: 7973814678278962949}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d8089fc3e2020479179a204a2d8cd3, type: 3}
---- !u!4 &5795937482615585853 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5659158514701503577}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7901745053729785380 stripped
+--- !u!114 &2531583660175962055 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2531583661471074941, guid: 44d8089fc3e2020479179a204a2d8cd3,
     type: 3}
-  m_PrefabInstance: {fileID: 5659158514701503577}
+  m_PrefabInstance: {fileID: 1389503930}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -422,9 +375,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7520664811280319784}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7973814677124222154 stripped
+--- !u!4 &6459191288796496263 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 501706052248390114, guid: 9e9222022420a554187c138db3b69c93,
+  m_CorrespondingSourceObject: {fileID: 3602154633942238383, guid: 9e9222022420a554187c138db3b69c93,
     type: 3}
   m_PrefabInstance: {fileID: 7520664811280319784}
   m_PrefabAsset: {fileID: 0}

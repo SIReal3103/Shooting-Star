@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e220793300ab64caeea0d1bc1b0117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfAction: 0
+  isActionActive: 0
   actionStartOnPlay: 0
-  isActionStart: 0
-  durationReturnToPool: 1
+  isAttachWithAnimator: 0
+  isTransitionTrigger: 0
+  syncWithAnimation: 0
+  timeBeforeReturnPool: 5
+  isDisableColliderWhenDie: 1
 --- !u!114 &4876512717909754548
 MonoBehaviour:
   m_ObjectHideFlags: 0
