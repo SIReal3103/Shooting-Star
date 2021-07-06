@@ -7,9 +7,9 @@ namespace ANTs.Core
     [RequireComponent(typeof(EnemyNinjaControl))]
     public class EnemyNinjaTasks : MonoBehaviour
     {
-        public Transform player;
         [SerializeField] ANTsPolygon prepareZone;
 
+        private Transform player;
         private EnemyNinjaControl enemy;
         private bool isArrived;
         private bool isAttackDone;
@@ -19,6 +19,7 @@ namespace ANTs.Core
         public void Awake()
         {
             enemy = GetComponent<EnemyNinjaControl>();
+            player = GameObject.FindGameObjectWithTag("Player").transform;
             preparePosition = prepareZone.GetRandomPointOnSurface();
         }
 
