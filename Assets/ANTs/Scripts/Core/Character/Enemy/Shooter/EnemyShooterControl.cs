@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using Panda;
 using UnityEngine;
-using Panda;
 
 namespace ANTs.Core
 {
@@ -35,20 +34,20 @@ namespace ANTs.Core
         [Task]
         public void ProgressNextPosition()
         {
-            if(Task.current.isStarting)
+            if (Task.current.isStarting)
             {
                 move.ActionStart();
                 move.SetDestination(path.GetPosition());
                 isArrived = false;
                 path.Progress();
             }
-            if (isArrived) Task.current.Succeed();            
+            if (isArrived) Task.current.Succeed();
         }
 
         [Task]
         public void ShootAtPlayer()
         {
-            if(Task.current.isStarting)
+            if (Task.current.isStarting)
             {
                 weaponHandler.SetDirectionLookAt(playerTransform.position);
                 weaponHandler.TriggerProjectileWeapon();

@@ -11,29 +11,31 @@ namespace ANTs.Core
 
         public int GetCurrentIndex() { return currentIndex; }
         public Vector2 GetPosition() { return GetPositionOfChild(currentIndex); }
-        public void Progress() { 
-            if(isLoop)
+        public void Progress()
+        {
+            if (isLoop)
             {
-                currentIndex = GetNextChildIndex(currentIndex); 
+                currentIndex = GetNextChildIndex(currentIndex);
             }
             else
-            {                
-                if(currentIndex == GetChildCount() - 1)
+            {
+                if (currentIndex == GetChildCount() - 1)
                 {
                     sign = -1;
                 }
-                else if(currentIndex == 0)
+                else if (currentIndex == 0)
                 {
                     sign = 1;
                 }
                 currentIndex += sign;
             }
         }
-        public void ResetIndex() { 
+        public void ResetIndex()
+        {
             currentIndex = 0;
             sign = 1;
         }
-       
+
         private void OnDrawGizmos()
         {
             for (int i = 0; i < GetChildCount() - (isLoop ? 0 : 1); i++)
@@ -41,9 +43,9 @@ namespace ANTs.Core
         }
 
         private int GetNextChildIndex(int i)
-        {              
+        {
             return (i + 1) % GetChildCount();
-        }        
+        }
 
         private Vector2 GetPositionOfChild(int i)
         {

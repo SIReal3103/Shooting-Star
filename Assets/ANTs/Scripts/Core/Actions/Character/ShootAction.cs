@@ -7,7 +7,8 @@ namespace ANTs.Core
     public class ShootAction : ActionBase
     {
         [SerializeField] bool isAutoFire = false;
-        [Conditional("isAutoFire")] [SerializeField] 
+        [Conditional("isAutoFire")]
+        [SerializeField]
         float timeBetweenFire = 0.5f;
 
         private float timeSinceLastFire = Mathf.Infinity;
@@ -15,7 +16,7 @@ namespace ANTs.Core
         public override void ActionStart()
         {
             base.ActionStart();
-            if(!isAutoFire)
+            if (!isAutoFire)
             {
                 FireBehaviour();
                 ActionStop();
@@ -38,8 +39,8 @@ namespace ANTs.Core
         }
 
         private void FireBehaviour()
-        {            
-            GetComponent<WeaponHandler>().TriggerProjectileWeapon();                            
+        {
+            GetComponent<WeaponHandler>().TriggerProjectileWeapon();
         }
 
         private void UpdateTimer()

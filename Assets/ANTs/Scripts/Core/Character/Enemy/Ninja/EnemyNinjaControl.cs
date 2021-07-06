@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using ANTs.Template;
+﻿using ANTs.Template;
 using Panda;
+using UnityEngine;
 
 namespace ANTs.Core
 {

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace ANTs.Core
 {
@@ -28,7 +27,7 @@ namespace ANTs.Core
                 throw new UnityException("there is no " + myAttribute.targetField + " in " + property.serializedObject);
             }
 
-            if(targetProperty.boolValue)
+            if (targetProperty.boolValue)
             {
                 EditorGUILayout.PropertyField(property);
             }
