@@ -4,17 +4,22 @@ using Panda;
 
 namespace ANTs.Core
 {
+    [RequireComponent(typeof(WeaponHandler))]
     [RequireComponent(typeof(MoveAction))]
     public class EnemyShooterControl : MonoBehaviour
     {
         [SerializeField] ANTsPath path;
 
+        private WeaponHandler weaponHandler;
+        private Transform playerTransform;
         private MoveAction move;
         private bool isArrived;
 
         private void Awake()
         {
             move = GetComponent<MoveAction>();
+            weaponHandler = GetComponent<WeaponHandler>();
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         private void OnEnable()
@@ -38,6 +43,17 @@ namespace ANTs.Core
                 path.Progress();
             }
             if (isArrived) Task.current.Succeed();            
+        }
+
+        [Task]
+        public void ShootAtPlayer()
+        {
+            if(Task.current.isStarting)
+            {
+                weaponHandler.SetDirectionLookAt(playerTransform.position);
+                weaponHandler.TriggerProjectileWeapon();
+                Task.current.Succeed();
+            }
         }
 
         public void OnArrived()

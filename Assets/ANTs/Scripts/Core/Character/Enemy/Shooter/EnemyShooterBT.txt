@@ -3,3 +3,5 @@ tree("Root")
 		sequence
 			ProgressNextPosition
 			Wait 2.0
+			ShootAtPlayer
+			Wait 1.0

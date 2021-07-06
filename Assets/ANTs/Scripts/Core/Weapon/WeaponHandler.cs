@@ -62,10 +62,12 @@ namespace ANTs.Core
         }
         #endregion
 
-        public void SetDirection(Vector2 direction)
+        public void SetDirectionLookAt(Vector2 position)
         {
-            float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            weaponAttachment.rotation = Quaternion.Euler(new Vector3(0, 0, rotZ - 90));
+            Vector2 delt = position - (Vector2)transform.position;
+            Debug.Log(position);
+            float ang = Mathf.Atan2(delt.y, delt.x) * Mathf.Rad2Deg;
+            weaponAttachment.eulerAngles = new Vector3(0, 0, ang - 90f);
         }
 
         public void UpgradeCurrentWeapon()

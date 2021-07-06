@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1918196192912313800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170168707460758789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts:
+  - {fileID: 4900000, guid: a794cdc0667fd87448d19945a1384704, type: 3}
+  autoReset: 1
+  tickOn: 0
+  sourceInfos:
+  - isFoldout: 1
+    breakPoints: 
+    breakPointStatuses: 
+    collapsedLines: 
+    btScript: 
 --- !u!114 &6730419312913332185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,12 +54,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeOfAction: 0
   isActionActive: 0
-  actionStartOnPlay: 1
+  actionStartOnPlay: 0
   isAttachWithAnimator: 0
   isTransitionTrigger: 0
   syncWithAnimation: 0
+  isAutoFire: 0
   timeBetweenFire: 0.5
---- !u!114 &1918196192912313800
+--- !u!114 &228946520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,19 +69,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3170168707460758789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a83c8816ec52024a81185e177b9b2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scripts:
-  - {fileID: 4900000, guid: a794cdc0667fd87448d19945a1384704, type: 3}
-  autoReset: 1
-  tickOn: 0
-  sourceInfos:
-  - isFoldout: 1
-    breakPoints: 
-    breakPointStatuses: 
-    collapsedLines: 
-    btScript: 
+  path: {fileID: 0}
 --- !u!1001 &3021680560800618928
 PrefabInstance:
   m_ObjectHideFlags: 0
