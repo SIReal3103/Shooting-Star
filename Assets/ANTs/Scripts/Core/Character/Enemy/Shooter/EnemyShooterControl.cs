@@ -5,7 +5,7 @@ using Panda;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(MoveAction))]
-    public class EnemyShooterTasks : MonoBehaviour
+    public class EnemyShooterControl : MonoBehaviour
     {
         [SerializeField] ANTsPath path;
 
@@ -35,9 +35,9 @@ namespace ANTs.Core
                 move.ActionStart();
                 move.SetDestination(path.GetPosition());
                 isArrived = false;
-                path.Progress();                
+                path.Progress();
             }
-            if (isArrived) Task.current.Succeed();
+            if (isArrived) Task.current.Succeed();            
         }
 
         public void OnArrived()

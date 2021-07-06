@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using ANTs.Template;
+using Panda;
 
 namespace ANTs.Core
 {
@@ -8,48 +10,81 @@ namespace ANTs.Core
     [RequireComponent(typeof(MeleeAttackAction))]
     public class EnemyNinjaControl : MonoBehaviour
     {
-        public event Action OnActorArrivedEvent
-        {
-            add { GetComponent<MoveAction>().OnArrivedEvent += value; }
-            remove { GetComponent<MoveAction>().OnArrivedEvent -= value; }
-        }
-
-        public event Action OnActorAttackDone
-        {
-            add { GetComponent<MeleeAttackAction>().OnActionStopEvent += value; }
-            remove { GetComponent<MeleeAttackAction>().OnActionStopEvent -= value; }
-        }
-
         [Tooltip("The speed which Charger normally move")]
         [SerializeField] MoveData normalSpeed;
         [Tooltip("The speed which charger run to target (or player)")]
-        [SerializeField] MoveData chargeSpeed;
+        [SerializeField] MoveData runSpeed;
+        [SerializeField] ANTsPolygon prepareZone;
 
 
         private MoveAction move;
         private MeleeAttackAction attack;
+        private Transform player;
+        private Vector2 preparePosition;
+        private bool isArrived;
+        private bool isAttackDone;
 
         private void Awake()
         {
             move = GetComponent<MoveAction>();
             attack = GetComponent<MeleeAttackAction>();
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
+            move.OnArrivedEvent += OnActorArrived;
+            attack.OnActionStopEvent += OnActorAttackDone;
         }
 
-        public void MoveTo(Vector2 destination)
+        #region ==================================================Tasks        
+        [Task]
+        public void ApproachPlayer()
         {
-            move.SetMoveData(normalSpeed);
-            move.SetDestination(destination);
+            if (Task.current.isStarting)
+            {
+                isArrived = false;
+                move.SetMoveData(runSpeed);
+                move.SetDestination(player.position);
+            }
+
+            if (isArrived)
+            {
+                Task.current.Succeed();
+            }
+            Task.current.debugInfo = Task.current.status.ToString();
         }
 
-        public void RunTo(Vector2 destination)
+        [Task]
+        public void MoveToPreparePosition()
         {
-            move.SetMoveData(chargeSpeed);
-            move.SetDestination(destination);
+            if (Task.current.isStarting)
+            {
+                isArrived = false;
+                move.SetMoveData(normalSpeed);
+                move.SetDestination(prepareZone.GetRandomPointOnSurface());
+            }
+
+            if (isArrived) Task.current.Succeed();
         }
 
-        public void Attack()
+        [Task]
+        public void AttackPlayer()
         {
-            attack.ActionStart();
+            if (Task.current.isStarting)
+            {
+                attack.ActionStart();
+            }
+
+            if (isAttackDone) Task.current.Succeed();
+        }
+        #endregion
+
+        public void OnActorArrived()
+        {
+            isArrived = true;
+        }
+
+        private void OnActorAttackDone()
+        {
+            isAttackDone = true;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ANTs.Core
         private Weapon currentWeapon;
         private ANTsPool currentAmmo;
 
-        private void Start()
+        private void Awake()
         {
             currentAmmo = initialAmmo ? initialAmmo.gameObject.GetOrCreatePool() : AmmoManager.Instance.GetDefaultPool();
 

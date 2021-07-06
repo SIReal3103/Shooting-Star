@@ -637,6 +637,16 @@ PrefabInstance:
       propertyPath: prepareZone
       value: 
       objectReference: {fileID: 1402188611}
+    - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: prepareZone
+      value: 
+      objectReference: {fileID: 1402188611}
+    - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: runSpeed.speed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_Name

@@ -12,6 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaab7c6019a64441a9c9fd0aed64dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &490839717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d258573c0fa86a4db59fc09e2e9e94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAttachment: {fileID: 8307126494357345375}
+  rotateWithMouse: 0
+  initialWeapon: {fileID: 3451892950078060413}
+  initialAmmo: {fileID: 0}
+  currentProjectileWeapon: {fileID: 0}
+  currentMeleeWeapon: {fileID: 0}
 --- !u!114 &1435031981315433058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +48,7 @@ MonoBehaviour:
   isAttachWithAnimator: 0
   isTransitionTrigger: 0
   syncWithAnimation: 0
+  isAutoFire: 1
   timeBetweenFire: 0.5
 --- !u!114 &3318241499830329420
 MonoBehaviour:
@@ -79,24 +98,6 @@ MonoBehaviour:
   health: 100
   defenseByValue: 0
   dodgeChance: 0
---- !u!114 &490839717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919006090545883869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d258573c0fa86a4db59fc09e2e9e94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponAttachment: {fileID: 8307126494357345375}
-  rotateWithMouse: 0
-  initialWeapon: {fileID: 3451892950078060413}
-  initialAmmo: {fileID: 0}
-  currentProjectileWeapon: {fileID: 0}
-  currentMeleeWeapon: {fileID: 0}
 --- !u!1001 &281876252
 PrefabInstance:
   m_ObjectHideFlags: 0

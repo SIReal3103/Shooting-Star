@@ -64,6 +64,8 @@ namespace ANTs.Template
         #region =================================== Overrideable
         public virtual void ActionStart()
         {
+            if (isActionActive) return;
+
             if (scheduler.IsPrevent(this))
             {
                 Debug.LogWarning(GetType().Name + " is prevented!");
@@ -85,6 +87,8 @@ namespace ANTs.Template
         }
         public virtual void ActionStop()
         {
+            if (!isActionActive) return;
+
             OnActionStopEvent?.Invoke();
             isActionActive = false;
             if (!isTransitionTrigger) SetAnimatorBool(false);
