@@ -16,7 +16,6 @@ namespace ANTs.Template
             this.currentLevelId = currentLevelId;
             this.nextLevelId = nextLevel;
             this.name = name;
-
         }
     }
 
