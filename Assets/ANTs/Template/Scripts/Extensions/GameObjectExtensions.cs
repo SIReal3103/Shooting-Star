@@ -26,7 +26,6 @@ static public class GameObjectExtensions
             Debug.Log(go + " don't belong to any pool, one is automatically created on scene");
 
             GameObject newGo = new GameObject(go.name + "_pool");
-            if (parent != null) newGo.transform.SetParentPreserve(parent);
             result = newGo.AddComponent<ANTsPool>();
             result.LoadNewPrefab(go);
         }
