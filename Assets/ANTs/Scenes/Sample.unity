@@ -721,6 +721,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyShooter
       objectReference: {fileID: 0}
+    - target: {fileID: 3170168707460758789, guid: b280f5196060880489710847aedcdf57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3170168707460758790, guid: b280f5196060880489710847aedcdf57,
         type: 3}
       propertyPath: m_RootOrder
@@ -1021,6 +1026,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
+    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: isAutoFire
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: actionStartOnPlay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name

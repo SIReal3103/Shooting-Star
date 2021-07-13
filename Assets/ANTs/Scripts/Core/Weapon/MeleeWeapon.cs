@@ -16,7 +16,6 @@ namespace ANTs.Core
             });
         }
 
-
         public override void Init(WeaponData data)
         {
             base.Init(data);

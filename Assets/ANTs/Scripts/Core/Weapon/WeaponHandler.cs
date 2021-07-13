@@ -26,11 +26,13 @@ namespace ANTs.Core
             if(initialWeaponIsMelee)
             {
                 InitMeleeWeapon();
+                currentWeapon = currentMeleeWeapon;
             }
             else
             {
                 InitAmmo();
-                InitProjectileWeapon(currentAmmoPool);                
+                InitProjectileWeapon(currentAmmoPool);
+                currentWeapon = currentProjectileWeapon;
             }
         }        
 
@@ -75,7 +77,7 @@ namespace ANTs.Core
             {
                 weaponPool = MeleeWeaponManager.Instance.GetDefaultPool();
             }
-            currentMeleeWeapon = weaponPool.Pop(new MeleeWeaponData(gameObject, transform)).GetComponent<MeleeWeapon>();
+            currentMeleeWeapon = weaponPool.Pop(new MeleeWeaponData(gameObject, weaponAttachment)).GetComponent<MeleeWeapon>();
         }
 
         private void InitProjectileWeapon(ANTsPool ammoPool)
@@ -84,7 +86,7 @@ namespace ANTs.Core
             {
                 weaponPool = ProjectileWeaponManager.Instance.GetDefaultPool();
             }
-            currentProjectileWeapon = weaponPool.Pop(new ProjectileWeaponData(gameObject, transform, ammoPool)).GetComponent<ProjectileWeapon>();
+            currentProjectileWeapon = weaponPool.Pop(new ProjectileWeaponData(gameObject, weaponAttachment, ammoPool)).GetComponent<ProjectileWeapon>();
         }
 
         private void InitAmmo()

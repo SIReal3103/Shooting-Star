@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 6742497220475862775}
   - component: {fileID: 5239362829091667820}
   - component: {fileID: 6268203358679428382}
-  - component: {fileID: 1163696540114786626}
   m_Layer: 0
-  m_Name: MeleeWeapon
+  m_Name: NinjaSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   nextLevel: 0
+  owner: {fileID: 0}
   attackArea: {fileID: 8104147521604481026}
 --- !u!114 &6742497220475862775
 MonoBehaviour:
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1dd39c15c61884fa16f6ad9308a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maskTable: 00000100
+  maskTable: 00
 --- !u!114 &5239362829091667820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,24 +97,6 @@ MonoBehaviour:
   initialDamage: 30
   criticalChance: 0
   critEfficent: 0
---- !u!114 &1163696540114786626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3000757619593086653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06eb25eee5ae9ea418c3d631b114691f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeOfAction: 1
-  isActionActive: 0
-  actionStartOnPlay: 0
-  isAttachWithAnimator: 1
-  isTransitionTrigger: 1
-  syncWithAnimation: 0
 --- !u!1 &7852748619624759019
 GameObject:
   m_ObjectHideFlags: 0
