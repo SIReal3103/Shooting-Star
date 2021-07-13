@@ -6,14 +6,14 @@ namespace ANTs.Template
     public class ANTsPoolDecorator
     {
         public ANTsPool pool;
-        public ProgressIdentifier currentLevel;
-        public ProgressIdentifier nextLevel;
+        public ProgressIdentifier currentLevelId;
+        public ProgressIdentifier nextLevelId;
 
         public ANTsPoolDecorator(ANTsPool pool, ProgressIdentifier currentLevel, ProgressIdentifier nextLevel)
         {
             this.pool = pool;
-            this.currentLevel = currentLevel;
-            this.nextLevel = nextLevel;
+            this.currentLevelId = currentLevel;
+            this.nextLevelId = nextLevel;
         }
     }
 
@@ -48,7 +48,7 @@ namespace ANTs.Template
         {
             if (pool2Decorator.TryGetValue(pool, out ANTsPoolDecorator decorator))
             {
-                ANTsPoolDecorator nextDecorator = id2Decorator[decorator.nextLevel];
+                ANTsPoolDecorator nextDecorator = id2Decorator[decorator.nextLevelId];
                 pool = nextDecorator.pool;
                 return true;
             }
