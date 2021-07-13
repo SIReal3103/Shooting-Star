@@ -10,11 +10,11 @@ namespace ANTs.Template
         public ProgressIdentifier currentLevelId;
         public ProgressIdentifier nextLevelId;
 
-        public ANTsPoolDecorator(ANTsPool pool, ProgressIdentifier currentLevelId, ProgressIdentifier nextLevelId, string name)
+        public ANTsPoolDecorator(ANTsPool pool, ProgressIdentifier currentLevelId, ProgressIdentifier nextLevel, string name)
         {
             this.pool = pool;
             this.currentLevelId = currentLevelId;
-            this.nextLevelId = nextLevelId;
+            this.nextLevelId = nextLevel;
             this.name = name;
 
         }
@@ -87,6 +87,17 @@ namespace ANTs.Template
                 return decorator.pool;
             }
             throw new UnityException("Invalid name");
+        }
+
+        public bool TryGetPool(string name, out ANTsPool pool)
+        {
+            if (name2Decorator.TryGetValue(name, out ANTsPoolDecorator decorator))
+            {
+                pool = decorator.pool;
+                return true;
+            }
+            pool = null;
+            return false;
         }
     }
 }

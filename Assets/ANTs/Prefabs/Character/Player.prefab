@@ -26,10 +26,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponAttachment: {fileID: 8307126494357345375}
   rotateWithMouse: 0
-  initialWeapon: {fileID: 3451892950078060413}
-  initialAmmo: {fileID: 0}
-  currentProjectileWeapon: {fileID: 0}
-  currentMeleeWeapon: {fileID: 0}
+  initialWeaponIsMelee: 0
+  initialWeaponName: Gun1Shot
+  initialAmmoName: BulletLevel1
+  currentWeapon: {fileID: 0}
 --- !u!114 &1435031981315433058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,87 +98,6 @@ MonoBehaviour:
   health: 100
   defenseByValue: 0
   dodgeChance: 0
---- !u!1001 &281876252
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8307126494357345375}
-    m_Modifications:
-    - target: {fileID: 6574916733370369345, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_Name
-      value: Gun_1Shot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.099999905
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574916733370369351, guid: 6296cdc56c65bce49ae428dd27e31308,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6296cdc56c65bce49ae428dd27e31308, type: 3}
---- !u!114 &3451892950078060413 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3451892950359793761, guid: 6296cdc56c65bce49ae428dd27e31308,
-    type: 3}
-  m_PrefabInstance: {fileID: 281876252}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3acd57629cf592442bf10e19e9c79836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8643572601143051829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -316,12 +235,12 @@ PrefabInstance:
     - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: maskTable.Array.data[6]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6163323762143553855, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: maskTable.Array.data[7]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}

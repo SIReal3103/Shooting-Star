@@ -2,7 +2,7 @@
 
 namespace ANTs.Core
 {
-    public class MeleeOwnerDieAction : ActionBase
+    public class WeaponOwnerDie : ActionBase
     {
         public override void ActionStart()
         {

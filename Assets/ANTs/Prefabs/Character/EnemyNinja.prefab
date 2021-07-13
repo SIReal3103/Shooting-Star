@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponAttachment: {fileID: 6459191288796496263}
   rotateWithMouse: 0
-  initialWeapon: {fileID: 2531583660175962055}
-  initialAmmo: {fileID: 0}
-  currentProjectileWeapon: {fileID: 0}
-  currentMeleeWeapon: {fileID: 0}
+  initialWeaponIsMelee: 1
+  initialWeaponName: NinjaSword
+  initialAmmoName: 
+  currentWeapon: {fileID: 0}
 --- !u!114 &5414274874121336222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
   runSpeed:
-    speed: 10
+    speed: 20
     destination: {x: 0, y: 0}
     rb: {fileID: 0}
   prepareZone: {fileID: 0}
@@ -79,87 +79,6 @@ MonoBehaviour:
   isAttachWithAnimator: 1
   isTransitionTrigger: 1
   syncWithAnimation: 1
---- !u!1001 &1389503930
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6459191288796496263}
-    m_Modifications:
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226485487496163428, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3000757619593086653, guid: 44d8089fc3e2020479179a204a2d8cd3,
-        type: 3}
-      propertyPath: m_Name
-      value: MeleeWeapon
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 44d8089fc3e2020479179a204a2d8cd3, type: 3}
---- !u!114 &2531583660175962055 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2531583661471074941, guid: 44d8089fc3e2020479179a204a2d8cd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1389503930}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa036388eca364e4ebf5bb5ed62fdb09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7520664811280319784
 PrefabInstance:
   m_ObjectHideFlags: 0

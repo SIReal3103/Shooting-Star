@@ -15,11 +15,17 @@ namespace ANTs.Core
 
         public virtual void Init(WeaponData data)
         {
-            transform.SetParent(data.parent);
+            transform.SetParentPreserve(data.parent);
             this.owner = data.owner;
         }
 
         public abstract void TriggerWeapon();
+
+
+        public void OwnerDie()
+        {
+            GetComponent<WeaponOwnerDie>().ActionStart();
+        }
     }
 
     public abstract class WeaponData

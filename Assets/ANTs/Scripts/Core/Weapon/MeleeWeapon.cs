@@ -7,19 +7,21 @@ namespace ANTs.Core
     public class MeleeWeapon : Weapon
     {
         [SerializeField] AttackArea attackArea;
-
         public AttackArea GetAttackArea() { return attackArea; }
+
+        private void Awake()
+        {
+            gameObject.SetWakeUpDelegate(args => {
+                Init((MeleeWeaponData)args);
+            });
+        }
+
 
         public override void Init(WeaponData data)
         {
             base.Init(data);
             MeleeWeaponData mData = (MeleeWeaponData)data; // to protect type
             attackArea.SetSource(owner);
-        }
-
-        public void OwnerDie()
-        {
-            GetComponent<MeleeOwnerDieAction>().ActionStart();
         }
 
         public void Attack()

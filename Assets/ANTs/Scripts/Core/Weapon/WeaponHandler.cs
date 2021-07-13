@@ -8,47 +8,31 @@ namespace ANTs.Core
         [SerializeField] Transform weaponAttachment;
         [SerializeField] bool rotateWithMouse;
         [Space(20)]
-        [SerializeField] Weapon initialWeapon;
-        [SerializeField] WeaponAmmo initialAmmo;
-        [Space(20)]
-        [SerializeField] bool initialWeaponIsMelee;
+        [SerializeField] bool initialWeaponIsMelee = true;
         [SerializeField] string initialWeaponName;
         [Conditional("initialWeaponIsMelee", false)]
         [SerializeField] string initialAmmoName;
 
-        [HideInInspector]
-        public ProjectileWeapon currentProjectileWeapon;
-        [HideInInspector]
-        public MeleeWeapon currentMeleeWeapon;
+        [ReadOnly]
+        public Weapon currentWeapon;
 
-        private Weapon currentWeapon;
-        private ANTsPool currentAmmo;
+        private ProjectileWeapon currentProjectileWeapon;
+        private MeleeWeapon currentMeleeWeapon;
+        private ANTsPool currentAmmoPool;
+
 
         private void Start()
         {
-            currentAmmo = initialAmmo ? initialAmmo.gameObject.GetOrCreatePool() : AmmoManager.Instance.GetDefaultPool();
-
-            if (initialWeapon)
+            if(initialWeaponIsMelee)
             {
-                currentWeapon = initialWeapon;
-                if (currentWeapon is ProjectileWeapon)
-                {
-                    InitProjectileWeapon(currentAmmo);
-                }
-                else if (currentWeapon is MeleeWeapon)
-                {
-                    InitMeleeWeapon();
-                }
-                else
-                {
-                    throw new UnityException("Invalid type of initialWeapon");
-                }
+                InitMeleeWeapon();
             }
             else
             {
-                throw new UnityException("No initial weapon avaiable");
+                InitAmmo();
+                InitProjectileWeapon(currentAmmoPool);                
             }
-        }
+        }        
 
         #region ==================================== TRIGGERS
         public void TriggerCurrentWeapon()
@@ -82,19 +66,33 @@ namespace ANTs.Core
 
         public void UpgradeCurrentAmmo()
         {
-            WeaponUpgradeHandler.UpgradeWeaponAmmo(currentProjectileWeapon, ref currentAmmo);
+            WeaponUpgradeHandler.UpgradeWeaponAmmo(currentProjectileWeapon, ref currentAmmoPool);
         }
 
         private void InitMeleeWeapon()
         {
-            currentMeleeWeapon = (MeleeWeapon)currentWeapon;
-            currentMeleeWeapon.Init(new MeleeWeaponData(gameObject, transform));
+            if (!MeleeWeaponManager.Instance.TryGetPool(initialWeaponName, out ANTsPool weaponPool))
+            {
+                weaponPool = MeleeWeaponManager.Instance.GetDefaultPool();
+            }
+            currentMeleeWeapon = weaponPool.Pop(new MeleeWeaponData(gameObject, transform)).GetComponent<MeleeWeapon>();
         }
 
         private void InitProjectileWeapon(ANTsPool ammoPool)
         {
-            currentProjectileWeapon = currentWeapon as ProjectileWeapon;
-            currentProjectileWeapon.Init(new ProjectileWeaponData(gameObject, transform, ammoPool));
+            if (!ProjectileWeaponManager.Instance.TryGetPool(initialWeaponName, out ANTsPool weaponPool))
+            {
+                weaponPool = ProjectileWeaponManager.Instance.GetDefaultPool();
+            }
+            currentProjectileWeapon = weaponPool.Pop(new ProjectileWeaponData(gameObject, transform, ammoPool)).GetComponent<ProjectileWeapon>();
+        }
+
+        private void InitAmmo()
+        {
+            if (!AmmoManager.Instance.TryGetPool(initialAmmoName, out currentAmmoPool))
+            {
+                currentAmmoPool = AmmoManager.Instance.GetDefaultPool();
+            }
         }
     }
 }

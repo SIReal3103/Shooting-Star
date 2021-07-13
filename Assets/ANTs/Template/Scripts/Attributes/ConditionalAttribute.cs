@@ -19,8 +19,6 @@ namespace ANTs.Core
     [CustomPropertyDrawer(typeof(ConditionalAttribute))]
     public class ConditionalAttributeDrawer : PropertyDrawer
     {
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) { return -4f; }
-
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             ConditionalAttribute myAttribute = (ConditionalAttribute)attribute;
@@ -33,7 +31,7 @@ namespace ANTs.Core
 
             if (targetProperty.boolValue == myAttribute.value)
             {
-                EditorGUILayout.PropertyField(property);
+                EditorGUI.PropertyField(position, property);
             }
         }
     }
