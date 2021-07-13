@@ -16,6 +16,7 @@ namespace ANTs.Core
         }
     }
 
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ConditionalAttribute))]
     public class ConditionalAttributeDrawer : PropertyDrawer
     {
@@ -35,4 +36,5 @@ namespace ANTs.Core
             }
         }
     }
+#endif
 }

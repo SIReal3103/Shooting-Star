@@ -61,9 +61,11 @@ namespace ANTs.Core
             weaponAttachment.eulerAngles = new Vector3(0, 0, ang - 90f);
         }
 
-        public void UpgradeCurrentWeapon()
+        public void UpgradeProjectileWeapon()
         {
-            WeaponUpgradeHandler.UpgradeWeapon(ref currentWeapon);
+            Weapon weaponToUpgrade = currentProjectileWeapon;
+            WeaponUpgradeHandler.UpgradeWeapon(ref weaponToUpgrade);
+            currentProjectileWeapon = (ProjectileWeapon)weaponToUpgrade;            
         }
 
         public void UpgradeCurrentAmmo()

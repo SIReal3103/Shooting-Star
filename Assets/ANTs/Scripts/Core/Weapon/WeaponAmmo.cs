@@ -29,7 +29,7 @@ namespace ANTs.Core
 
             gameObject.SetWakeUpDelegate(args =>
             {
-                AmmoData data = args as AmmoData;
+                AmmoData data = (AmmoData)args;
                 transform.position = data.origin;
                 SetDirection(data.moveDirection);
                 touchDamager.Source = data.source;
@@ -40,7 +40,7 @@ namespace ANTs.Core
         {
             if (destroyWhenOutOfScreen && IsOutOfScreen())
             {
-                ReturnToPool();
+                gameObject.ReturnToPoolOrDestroy();
             }
         }
 
@@ -62,11 +62,6 @@ namespace ANTs.Core
         }
 
         void OnHit()
-        {
-            ReturnToPool();
-        }
-
-        public void ReturnToPool() // IANTsPoolable Implementation
         {
             gameObject.ReturnToPoolOrDestroy();
         }

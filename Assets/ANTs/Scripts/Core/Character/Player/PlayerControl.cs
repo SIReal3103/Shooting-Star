@@ -32,7 +32,7 @@ namespace ANTs.Core
 
         public void UpgradeWeapon()
         {
-            GetComponent<WeaponHandler>().UpgradeCurrentWeapon();
+            GetComponent<WeaponHandler>().UpgradeProjectileWeapon();
         }
 
         public void ChangeStrongerBullet()

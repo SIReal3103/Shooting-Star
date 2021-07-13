@@ -8,6 +8,7 @@ namespace ANTs.Core
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
+        [ReadOnly]
         public GameObject owner;
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
