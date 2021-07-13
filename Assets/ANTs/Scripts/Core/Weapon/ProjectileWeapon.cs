@@ -8,27 +8,29 @@ namespace ANTs.Core
         [Tooltip("The direction which bullet start firing")]
         [SerializeField] Transform[] projectileTransforms;
 
-        private ANTsPool currentAmmo;
+        private ANTsPool ammoPool;
 
-        public ANTsPool GetCurrentAmmoPool() { return currentAmmo; }
-
+        public ANTsPool GetAmmoPool() { return ammoPool; }
+        public void SetAmmoPool(ANTsPool pool) { ammoPool = pool; }
 
         private void Awake()
         {
             gameObject.SetWakeUpDelegate(args =>
             {
-                ProjectileWeaponData data = args as ProjectileWeaponData;
-                currentAmmo = data.ammoPool;
-                transform.SetParentPreserve(data.parent);
-                owner = data.owner;
+                Init((ProjectileWeaponData)args);
             });
         }
 
-        public void SetAmmoPool(ANTsPool pool) { currentAmmo = pool; }
+        public override void Init(WeaponData data)
+        {
+            base.Init(data);
+            ProjectileWeaponData pData = (ProjectileWeaponData)data;
+            this.ammoPool = pData.ammoPool;
+        }
 
         public override void TriggerWeapon()
         {
-            if (currentAmmo == null)
+            if (ammoPool == null)
             {
                 Debug.LogWarning("currentBulletPool is null.");
                 return;
@@ -36,13 +38,8 @@ namespace ANTs.Core
 
             foreach (Transform projectileTransform in projectileTransforms)
             {
-                currentAmmo.Pop(new AmmoData(owner, projectileTransform.position, projectileTransform.up));
+                ammoPool.Pop(new AmmoData(owner, projectileTransform.position, projectileTransform.up));
             }
-        }
-
-        public void Fire()
-        {
-            TriggerWeapon();
         }
 
         public void ReturnToPool()

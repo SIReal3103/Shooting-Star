@@ -8,31 +8,29 @@ namespace ANTs.Core
         public static void UpgradeWeapon(ref Weapon weapon)
         {
             Weapon old = weapon;
-            ANTsPool pool = weapon.gameObject.GetPool();
+            ANTsPool weaponPool = weapon.gameObject.GetPool();
             if (weapon is ProjectileWeapon)
             {
-                ProjectileWeapon pWeapon = weapon as ProjectileWeapon;
-                ProjectileWeaponManager.Instance.ProgressNextPool(ref pool);
-                pool.Pop(new ProjectileWeaponData(
-                    pWeapon.GetOwner(),
+                ProjectileWeapon pWeapon = (ProjectileWeapon)weapon;
+                ProjectileWeaponManager.Instance.ProgressNextPool(ref weaponPool);
+                weapon = weaponPool.Pop(new ProjectileWeaponData(
+                    pWeapon.owner,
                     pWeapon.transform.parent,
-                    pWeapon.GetCurrentAmmoPool())
-                );
-                weapon = pWeapon;
+                    pWeapon.GetAmmoPool())
+                ).GetComponent<Weapon>();
             }
             else if (weapon is MeleeWeapon)
             {
-                MeleeWeapon mWeapon = weapon as MeleeWeapon;
-                MeleeWeaponManager.Instance.ProgressNextPool(ref pool);
-                pool.Pop(new MeleeWeaponData(
-                    mWeapon.GetOwner(),
+                MeleeWeapon mWeapon = (MeleeWeapon)weapon;
+                MeleeWeaponManager.Instance.ProgressNextPool(ref weaponPool);
+                weapon = weaponPool.Pop(new MeleeWeaponData(
+                    mWeapon.owner,
                     mWeapon.transform.parent)
-                );
-                weapon = mWeapon;
+                ).GetComponent<Weapon>();
             }
             else
             {
-                throw new UnityException("Can upgrade this item: " + weapon);
+                throw new UnityException("Can't upgrade this item: " + weapon);
             }
             old.gameObject.ReturnToPoolOrDestroy();
         }

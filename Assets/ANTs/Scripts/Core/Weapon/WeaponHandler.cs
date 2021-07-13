@@ -82,15 +82,14 @@ namespace ANTs.Core
 
         private void InitMeleeWeapon()
         {
-            currentMeleeWeapon = currentWeapon as MeleeWeapon;
-            currentMeleeWeapon.SetOwner(gameObject);
+            currentMeleeWeapon = (MeleeWeapon)currentWeapon;
+            currentMeleeWeapon.Init(new MeleeWeaponData(gameObject, transform));
         }
 
         private void InitProjectileWeapon(ANTsPool ammoPool)
         {
             currentProjectileWeapon = currentWeapon as ProjectileWeapon;
-            currentProjectileWeapon.SetAmmoPool(ammoPool);
-            currentProjectileWeapon.SetOwner(gameObject);
+            currentProjectileWeapon.Init(new ProjectileWeaponData(gameObject, transform, ammoPool));
         }
     }
 }

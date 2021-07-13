@@ -8,12 +8,16 @@ namespace ANTs.Core
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
 
-        protected GameObject owner;
+        public GameObject owner;
 
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextLevel; }
-        public GameObject GetOwner() { return owner; }
-        public virtual void SetOwner(GameObject owner) { this.owner = owner; }
+
+        public virtual void Init(WeaponData data)
+        {
+            transform.SetParent(data.parent);
+            this.owner = data.owner;
+        }
 
         public abstract void TriggerWeapon();
     }
