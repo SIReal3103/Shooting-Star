@@ -10,12 +10,13 @@ namespace ANTs.Template
         public ProgressIdentifier currentLevelId;
         public ProgressIdentifier nextLevelId;
 
-        public ANTsPoolDecorator(ANTsPool pool, ProgressIdentifier currentLevel, ProgressIdentifier nextLevel, string name)
+        public ANTsPoolDecorator(ANTsPool pool, ProgressIdentifier currentLevelId, ProgressIdentifier nextLevelId, string name)
         {
             this.pool = pool;
-            this.currentLevelId = currentLevel;
-            this.nextLevelId = nextLevel;
+            this.currentLevelId = currentLevelId;
+            this.nextLevelId = nextLevelId;
             this.name = name;
+
         }
     }
 
@@ -32,8 +33,8 @@ namespace ANTs.Template
         private Dictionary<ANTsPool, ANTsPoolDecorator> pool2Decorator =
             new Dictionary<ANTsPool, ANTsPoolDecorator>();
 
-        private Dictionary<string, ProgressIdentifier> name2Decorator =
-            new Dictionary<string, ProgressIdentifier>();
+        private Dictionary<string, ANTsPoolDecorator> name2Decorator =
+            new Dictionary<string, ANTsPoolDecorator>();
 
         protected ProgressablePoolManager() { }
 
@@ -46,6 +47,7 @@ namespace ANTs.Template
                 ANTsPoolDecorator decorator = new ANTsPoolDecorator(pool, prefab.CurrentLevel, prefab.NextLevel, prefab.name);
                 pool2Decorator.Add(pool, decorator);
                 id2Decorator.Add(prefab.CurrentLevel, decorator);
+                name2Decorator.Add(prefab.name, decorator);
             }
         }
 
@@ -76,6 +78,15 @@ namespace ANTs.Template
         public ANTsPool GetDefaultPool()
         {
             return GetPool(defaultId);
+        }
+
+        public ANTsPool GetPool(string name)
+        {
+            if (name2Decorator.TryGetValue(name, out ANTsPoolDecorator decorator))
+            {
+                return decorator.pool;
+            }
+            throw new UnityException("Invalid name");
         }
     }
 }

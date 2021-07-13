@@ -33,7 +33,7 @@ namespace ANTs.Core
 
             if (targetProperty.boolValue == myAttribute.value)
             {
-                EditorGUILayout.PropertyField(property);                
+                EditorGUILayout.PropertyField(property);
             }
         }
     }
