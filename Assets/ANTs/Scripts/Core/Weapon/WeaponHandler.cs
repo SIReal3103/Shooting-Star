@@ -10,6 +10,11 @@ namespace ANTs.Core
         [Space(20)]
         [SerializeField] Weapon initialWeapon;
         [SerializeField] WeaponAmmo initialAmmo;
+        [Space(20)]
+        [SerializeField] bool initialWeaponIsMelee;
+        [SerializeField] string initialWeaponName;
+        [Conditional("initialWeaponIsMelee", false)]
+        [SerializeField] string initialAmmoName;
 
         [HideInInspector]
         public ProjectileWeapon currentProjectileWeapon;

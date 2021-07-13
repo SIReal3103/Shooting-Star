@@ -7,7 +7,7 @@ namespace ANTs.Core
     public class ShootAction : ActionBase
     {
         [SerializeField] bool isAutoFire = false;
-        [Conditional("isAutoFire")]
+        [Conditional("isAutoFire", true)]
         [SerializeField]
         float timeBetweenFire = 0.5f;
 
