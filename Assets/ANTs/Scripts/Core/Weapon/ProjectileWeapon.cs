@@ -32,7 +32,7 @@ namespace ANTs.Core
         {
             if (ammoPool == null)
             {
-                Debug.LogWarning("currentBulletPool is null.");
+                Debug.LogWarning("There are no avaiable ammo for " + this);
                 return;
             }
 
