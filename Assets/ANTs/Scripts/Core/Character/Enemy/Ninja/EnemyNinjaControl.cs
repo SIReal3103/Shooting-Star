@@ -9,9 +9,7 @@ namespace ANTs.Core
     [RequireComponent(typeof(MeleeAttackAction))]
     public class EnemyNinjaControl : MonoBehaviour
     {
-        [Tooltip("The speed which Charger normally move")]
         [SerializeField] MoveData normalSpeed;
-        [Tooltip("The speed which charger run to target (or player)")]
         [SerializeField] MoveData runSpeed;
         [SerializeField] ANTsPolygon prepareZone;
 
@@ -19,7 +17,6 @@ namespace ANTs.Core
         private MoveAction move;
         private MeleeAttackAction attack;
         private Transform player;
-        private Vector2 preparePosition;
         private bool isArrived;
         private bool isAttackDone;
 
@@ -30,7 +27,7 @@ namespace ANTs.Core
             player = GameObject.FindGameObjectWithTag("Player").transform;
 
             move.OnArrivedEvent += OnActorArrived;
-            attack.OnActionStopEvent += OnActorAttackDone;
+            attack.OnActionStopEvent += OnActorAttackFinished;
         }
 
         #region ==================================================Tasks        
@@ -81,7 +78,7 @@ namespace ANTs.Core
             isArrived = true;
         }
 
-        private void OnActorAttackDone()
+        private void OnActorAttackFinished()
         {
             isAttackDone = true;
         }

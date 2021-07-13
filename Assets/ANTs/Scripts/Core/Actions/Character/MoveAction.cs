@@ -34,10 +34,12 @@ namespace ANTs.Core
             LoadMoveStrategy(MoveFactory.CreateMove(movementType));
         }
 
-        #region ===========================================Behaviours        
-        private bool IsFacingLeft()
+        #region ===========================================Behaviours
+
+        public void StartMovingTo(Vector2 destination)
         {
-            return GetMoveDirection().x < 0f;
+            ActionStart();
+            SetDestination(destination);
         }
 
         public Vector2 GetMoveDirection()
@@ -61,6 +63,10 @@ namespace ANTs.Core
             SetMoveData(initialMoveData);
         }
 
+        private bool IsFacingLeft()
+        {
+            return GetMoveDirection().x < 0f;
+        }
 
         #endregion
 

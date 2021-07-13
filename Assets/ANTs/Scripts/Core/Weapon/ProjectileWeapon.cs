@@ -5,7 +5,7 @@ namespace ANTs.Core
 {
     public class ProjectileWeapon : Weapon
     {
-        [Tooltip("The direction which bullet start firing")]
+        [Tooltip("The direction which bullets start firing")]
         [SerializeField] Transform[] projectileTransforms;
 
         private ANTsPool ammoPool;

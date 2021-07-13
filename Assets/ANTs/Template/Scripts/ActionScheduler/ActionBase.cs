@@ -72,13 +72,13 @@ namespace ANTs.Template
                 return;
             }
 
-            InitDataAndCall();
+            InitDataAndCallEvents();
 
             if (syncWithAnimation)
-                InitSyncWithAnimationLogic();
+                InitSyncLogic();
         }
 
-        private void InitDataAndCall()
+        private void InitDataAndCallEvents()
         {
             scheduler.StopActionRelavetiveTo(this);
             if (isTransitionTrigger) SetAnimatorTrigger();
@@ -98,7 +98,7 @@ namespace ANTs.Template
         #endregion
 
         #region ====================================== Sync Animation Logics
-        private void InitSyncWithAnimationLogic()
+        private void InitSyncLogic()
         {
             if (isAttachWithAnimator)
             {

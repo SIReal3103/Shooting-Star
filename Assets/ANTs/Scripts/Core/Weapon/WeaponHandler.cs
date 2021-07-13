@@ -6,7 +6,6 @@ namespace ANTs.Core
     public class WeaponHandler : MonoBehaviour
     {
         [SerializeField] Transform weaponAttachment;
-        [SerializeField] bool rotateWithMouse;
         [Space(20)]
         [SerializeField] bool initialWeaponIsMelee = true;
         [SerializeField] string initialWeaponName;
@@ -23,7 +22,7 @@ namespace ANTs.Core
 
         private void Start()
         {
-            if(initialWeaponIsMelee)
+            if (initialWeaponIsMelee)
             {
                 InitMeleeWeapon();
                 currentWeapon = currentMeleeWeapon;
@@ -34,7 +33,7 @@ namespace ANTs.Core
                 InitProjectileWeapon(currentAmmoPool);
                 currentWeapon = currentProjectileWeapon;
             }
-        }        
+        }
 
         #region ==================================== TRIGGERS
         public void TriggerCurrentWeapon()
@@ -53,10 +52,9 @@ namespace ANTs.Core
         }
         #endregion
 
-        public void SetDirectionLookAt(Vector2 position)
+        public void DirectWeaponTo(Vector2 position)
         {
             Vector2 delt = position - (Vector2)transform.position;
-            Debug.Log(position);
             float ang = Mathf.Atan2(delt.y, delt.x) * Mathf.Rad2Deg;
             weaponAttachment.eulerAngles = new Vector3(0, 0, ang - 90f);
         }
@@ -65,7 +63,7 @@ namespace ANTs.Core
         {
             Weapon weaponToUpgrade = currentProjectileWeapon;
             WeaponUpgradeHandler.UpgradeWeapon(ref weaponToUpgrade);
-            currentProjectileWeapon = (ProjectileWeapon)weaponToUpgrade;            
+            currentProjectileWeapon = (ProjectileWeapon)weaponToUpgrade;
         }
 
         public void UpgradeCurrentAmmo()

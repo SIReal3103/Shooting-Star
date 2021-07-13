@@ -36,8 +36,7 @@ namespace ANTs.Core
         {
             if (Task.current.isStarting)
             {
-                move.ActionStart();
-                move.SetDestination(path.GetPosition());
+                move.StartMovingTo(path.GetPosition());
                 isArrived = false;
                 path.Progress();
             }
@@ -49,7 +48,7 @@ namespace ANTs.Core
         {
             if (Task.current.isStarting)
             {
-                weaponHandler.SetDirectionLookAt(playerTransform.position);
+                weaponHandler.DirectWeaponTo(playerTransform.position);
                 weaponHandler.TriggerProjectileWeapon();
                 Task.current.Succeed();
             }

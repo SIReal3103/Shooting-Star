@@ -11,7 +11,8 @@ namespace ANTs.Core
 
         private void Awake()
         {
-            gameObject.SetWakeUpDelegate(args => {
+            gameObject.SetWakeUpDelegate(args =>
+            {
                 Init((MeleeWeaponData)args);
             });
         }
