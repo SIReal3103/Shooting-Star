@@ -21,7 +21,7 @@ namespace ANTs.Template
                 getMaskId.Add(actions[i], i);
         }
 
-        public bool IsPrevent(IAction action)
+        public bool IsPrevented(IAction action)
         {
             int j = getMaskId[action];
             for (int i = 0; i < actions.Length; i++)

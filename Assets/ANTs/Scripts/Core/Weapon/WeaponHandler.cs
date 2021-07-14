@@ -12,7 +12,6 @@ namespace ANTs.Core
         [Conditional("initialWeaponIsMelee", false)]
         [SerializeField] string initialAmmoName;
 
-
         private LazyANTs<Weapon> currentWeapon;
         private LazyANTs<ProjectileWeapon> currentProjectileWeapon = null;
         private LazyANTs<MeleeWeapon> currentMeleeWeapon = null;

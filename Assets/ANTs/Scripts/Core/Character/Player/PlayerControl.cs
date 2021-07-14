@@ -22,7 +22,7 @@ namespace ANTs.Core
         private void OnDisable()
         {
             GetComponent<Damageable>().OnHealthReachZeroEvent += GetComponent<DieAction>().ActionStop;
-        }        
+        }
 
         public void StartMovingTo(Vector2 position)
         {

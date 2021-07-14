@@ -42,8 +42,7 @@ namespace ANTs.Template
             if (isAttachWithAnimator)
             {
                 animator = GetComponentInChildren<Animator>();
-                if (animator == null)
-                    Debug.LogError("No animator found for " + this);
+                if (animator == null) Debug.LogError("No animator found for " + this);
             }
         }
 
@@ -62,7 +61,7 @@ namespace ANTs.Template
         {
             if (isActionActive) return;
 
-            if (scheduler.IsPrevent(this))
+            if (scheduler.IsPrevented(this))
             {
                 Debug.LogWarning(GetType().Name + " is prevented!");
                 return;
@@ -70,17 +69,17 @@ namespace ANTs.Template
 
             InitDataAndCallEvents();
 
-            if (syncWithAnimation)
-                InitSyncLogic();
+            if (syncWithAnimation) InitSyncLogic();
         }
 
         private void InitDataAndCallEvents()
         {
             scheduler.StopActionRelavetiveTo(this);
-            if (isTransitionTrigger) SetAnimatorTrigger();
+            if (isTransitionTrigger) TriggerAnimator();
             OnActionStartEvent?.Invoke();
             isActionActive = true;
         }
+
         public virtual void ActionStop()
         {
             if (!isActionActive) return;
@@ -131,7 +130,7 @@ namespace ANTs.Template
                 animator.SetBool("Is" + GetName(), value);
             }
         }
-        private void SetAnimatorTrigger()
+        private void TriggerAnimator()
         {
             if (isAttachWithAnimator)
             {
@@ -143,7 +142,6 @@ namespace ANTs.Template
         private string GetName()
         {
             return GetType().Name.Replace("Action", "");
-            //return GetType().Name;
         }
         #endregion
     }
