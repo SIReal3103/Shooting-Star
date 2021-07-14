@@ -49,16 +49,12 @@ namespace ANTs.Template
 
         protected virtual void Start()
         {
-            if (actionStartOnPlay)
-                ActionStart();
+            if (actionStartOnPlay) ActionStart();
         }
 
         protected virtual void Update()
         {
-            if (IsActionActive)
-            {
-                ActionUpdate();
-            }
+            if (IsActionActive) ActionUpdate();
         }
 
         #region =================================== Overrideable

@@ -17,14 +17,9 @@ static public class GameObjectExtensions
     /// <returns>The pool this gameObject belong to</returns>
     static public ANTsPool GetOrCreatePool(this GameObject go, Transform parent = null)
     {
-        if (objectPools.TryGetValue(go, out ANTsPool result))
-        {
-
-        }
-        else
+        if (!objectPools.TryGetValue(go, out ANTsPool result))
         {
             Debug.Log(go + " don't belong to any pool, one is automatically created on scene");
-
             GameObject newGo = new GameObject(go.name + "_pool");
             result = newGo.AddComponent<ANTsPool>();
             result.LoadNewPrefab(go);
@@ -58,8 +53,8 @@ static public class GameObjectExtensions
 
     static public void WakeUp(this GameObject go, object args)
     {
-        if (OnWakeUpEvents.TryGetValue(go, out Action<object> @event))
-            @event?.Invoke(args);
+        if (OnWakeUpEvents.TryGetValue(go, out Action<object> eventDelegate))
+            eventDelegate?.Invoke(args);
         go.SetActive(true);
     }
 

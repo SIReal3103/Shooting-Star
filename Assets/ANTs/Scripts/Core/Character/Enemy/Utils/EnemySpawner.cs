@@ -14,7 +14,7 @@ namespace ANTs.Core
         private ANTsPool enemyPool;
         private float timeSinceLastSpawn = Mathf.Infinity;
 
-        private void Start()
+        private void Awake()
         {
             enemyPool = GetComponent<ANTsPool>();
         }

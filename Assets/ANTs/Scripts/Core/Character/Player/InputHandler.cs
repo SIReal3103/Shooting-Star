@@ -7,7 +7,7 @@ namespace ANTs.Core
     {
         private PlayerControl player;
 
-        private void Start()
+        private void Awake()
         {
             player = GetComponent<PlayerControl>();
         }

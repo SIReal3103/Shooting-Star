@@ -21,7 +21,7 @@ namespace ANTs.Core
             GetComponent<DieAction>().ActionStart();
             if (TryGetComponent(out WeaponHandler handler))
             {
-                handler.currentWeapon.OwnerDie();
+                handler.currentWeapon.value.OwnerDie();
             }
         }
     }

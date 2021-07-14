@@ -9,6 +9,11 @@ namespace ANTs.Core
     {
         private MoveAction mover;
 
+        private void Awake()
+        {
+            mover = GetComponent<MoveAction>();
+        }
+
         private void OnEnable()
         {
             GetComponent<Damageable>().OnHealthReachZeroEvent += GetComponent<DieAction>().ActionStart;
@@ -17,12 +22,7 @@ namespace ANTs.Core
         private void OnDisable()
         {
             GetComponent<Damageable>().OnHealthReachZeroEvent += GetComponent<DieAction>().ActionStop;
-        }
-
-        private void Awake()
-        {
-            mover = GetComponent<MoveAction>();
-        }
+        }        
 
         public void StartMovingTo(Vector2 position)
         {

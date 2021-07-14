@@ -29,9 +29,9 @@ namespace ANTs.Core
         protected override void Awake()
         {
             base.Awake();
-
             rb = GetComponent<Rigidbody2D>();
-            LoadMoveStrategy(MoveFactory.CreateMove(movementType));
+            moveStrategy = MoveFactory.CreateMove(movementType);
+            SetMoveData(initialMoveData);
         }
 
         #region ===========================================Behaviours
@@ -52,15 +52,10 @@ namespace ANTs.Core
             moveStrategy.data = data;
             moveStrategy.data.rb = rb;
         }
+
         public void SetDestination(Vector2 destination)
         {
             moveStrategy.data.destination = destination;
-        }
-
-        private void LoadMoveStrategy(MoveStrategy moveStrategy)
-        {
-            this.moveStrategy = moveStrategy;
-            SetMoveData(initialMoveData);
         }
 
         private bool IsFacingLeft()

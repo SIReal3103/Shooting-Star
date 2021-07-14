@@ -25,9 +25,18 @@ namespace ANTs.Core
             move = GetComponent<MoveAction>();
             attack = GetComponent<MeleeAttackAction>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
 
+        private void OnEnable()
+        {
             move.OnArrivedEvent += OnActorArrived;
             attack.OnActionStopEvent += OnActorAttackFinished;
+        }
+
+        private void OnDisable()
+        {
+            move.OnArrivedEvent -= OnActorArrived;
+            attack.OnActionStopEvent -= OnActorAttackFinished;
         }
 
         #region ==================================================Tasks        

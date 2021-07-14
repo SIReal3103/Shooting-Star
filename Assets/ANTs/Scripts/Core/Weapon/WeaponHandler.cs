@@ -13,32 +13,37 @@ namespace ANTs.Core
         [SerializeField] string initialAmmoName;
 
         [ReadOnly]
-        public Weapon currentWeapon;
+        public LazyANTs<Weapon> currentWeapon;
 
         private ProjectileWeapon currentProjectileWeapon;
         private MeleeWeapon currentMeleeWeapon;
         private ANTsPool currentAmmoPool;
 
 
+        private void Awake()
+        {
+            currentWeapon = new LazyANTs<Weapon>(null);
+        }
+
         private void Start()
         {
             if (initialWeaponIsMelee)
             {
                 InitMeleeWeapon();
-                currentWeapon = currentMeleeWeapon;
+                currentWeapon.value = currentMeleeWeapon;
             }
             else
             {
                 InitAmmo();
                 InitProjectileWeapon(currentAmmoPool);
-                currentWeapon = currentProjectileWeapon;
+                currentWeapon.value = currentProjectileWeapon;
             }
         }
 
         #region ==================================== TRIGGERS
         public void TriggerCurrentWeapon()
         {
-            currentWeapon.TriggerWeapon();
+            currentWeapon.value.TriggerWeapon();
         }
 
         public void TriggerMeleeWeapon()
