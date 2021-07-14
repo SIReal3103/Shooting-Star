@@ -46,6 +46,15 @@
             }
         }
 
+        public ref T refValue
+        {
+            get
+            {
+                ForceInit();
+                return ref _value;
+            }
+        }
+
         /// <summary>
         /// Force the initialisation of the value via the delegate.
         /// </summary>
