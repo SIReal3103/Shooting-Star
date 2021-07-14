@@ -21,7 +21,7 @@ namespace ANTs.Core
         [Space(10)]
         [SerializeField] MovementType movementType;
         [SerializeField] MoveData initialMoveData;
-        [SerializeField] float destinationOffset = 0.1f;
+        [SerializeField] float destinationOffset = 0.5f;
 
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
@@ -67,7 +67,7 @@ namespace ANTs.Core
 
 
         #region ============================================ActionBase Implementation
-        protected override void ActionUpdate()
+        protected override void ActionFixedUpdate()
         {
             if (FacingWithDirection)
                 model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);

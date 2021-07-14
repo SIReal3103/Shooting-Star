@@ -768,6 +768,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
+    - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: destinationOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: prepareZone

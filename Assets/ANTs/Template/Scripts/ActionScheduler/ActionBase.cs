@@ -50,11 +50,7 @@ namespace ANTs.Template
         {
             if (actionStartOnPlay) ActionStart();
         }
-
-        protected virtual void Update()
-        {
-            if (IsActionActive) ActionUpdate();
-        }
+        
 
         #region =================================== Overrideable
         public virtual void ActionStart()
@@ -89,7 +85,21 @@ namespace ANTs.Template
             if (!isTransitionTrigger) SetAnimatorBool(false);
         }
 
+        #region ===================================Updates
+        protected virtual void Update()
+        {
+            if (IsActionActive) ActionUpdate();
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (isActionActive) ActionFixedUpdate();
+        }
+
         protected virtual void ActionUpdate() { }
+        protected virtual void ActionFixedUpdate() { }
+        #endregion
+
         #endregion
 
         #region ====================================== Sync Animation Logics
