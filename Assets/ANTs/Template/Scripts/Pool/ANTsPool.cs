@@ -14,7 +14,6 @@ namespace ANTs.Template
         public void LoadNewPrefab(GameObject prefab)
         {
             this.prefab = prefab;
-            ResetPool();
             Init();
         }
 
@@ -68,16 +67,6 @@ namespace ANTs.Template
             pool.Enqueue(objectPool);
             objectPool.SetActive(false);
             return objectPool;
-        }
-
-        private void ResetPool()
-        {
-            if (pool == null) return;
-            while (pool.Count > 0)
-            {
-                Destroy(pool.Dequeue());
-            }
-            pool = null;
         }
     }
 }

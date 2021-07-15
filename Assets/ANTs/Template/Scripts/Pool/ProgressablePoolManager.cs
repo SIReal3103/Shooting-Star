@@ -42,7 +42,7 @@ namespace ANTs.Template
             base.Awake();
             foreach (TObject prefab in prefabs)
             {
-                ANTsPool pool = prefab.gameObject.GetOrCreatePool(transform);
+                ANTsPool pool = prefab.gameObject.CreatePool(transform);
                 ANTsPoolDecorator decorator = new ANTsPoolDecorator(pool, prefab.CurrentLevel, prefab.NextLevel, prefab.name);
                 pool2Decorator.Add(pool, decorator);
                 id2Decorator.Add(prefab.CurrentLevel, decorator);
