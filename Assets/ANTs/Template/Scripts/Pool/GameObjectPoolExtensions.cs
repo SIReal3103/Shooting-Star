@@ -6,12 +6,6 @@ static public class GameObjectPoolExtensions
 {
     static public Dictionary<GameObject, ANTsPool> poolDict = new Dictionary<GameObject, ANTsPool>();
 
-    /// <summary>
-    /// Get pool the prefab belong to, automatically create one if don't have
-    /// </summary>
-    /// <param name="prefab"></param>
-    /// <param name="parent"> The parent for the new pool, null if don't specify </param>
-    /// <returns>The pool this gameObject belong to</returns>
     static public ANTsPool CreatePool(this GameObject prefab, Transform parent = null)
     {                   
         ANTsPool result = new GameObject(prefab.name + "_pool").AddComponent<ANTsPool>();

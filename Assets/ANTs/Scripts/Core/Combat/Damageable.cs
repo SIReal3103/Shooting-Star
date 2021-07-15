@@ -43,7 +43,7 @@ namespace ANTs.Core
         public void TakeDamageFrom(Damager damager)
         {
             DamageCalculator calculator = new DamageCalculator(this, damager);
-            DrawHealth(calculator.GetDamageDealt());
+            DrawHealth(calculator.GetCalculatedDamage());
         }
 
         private void DrawHealth(int health)

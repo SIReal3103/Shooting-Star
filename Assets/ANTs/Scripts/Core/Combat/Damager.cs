@@ -6,7 +6,7 @@ namespace ANTs.Core
     {
         [SerializeField] int initialDamage = 10;
         [SerializeField] float criticalChance = 0;
-        [SerializeField] float critEfficent = 0;
+        [SerializeField] float critModifier = 0;
 
         public bool IsEnemy(Damageable damageable)
         {
@@ -17,9 +17,8 @@ namespace ANTs.Core
         {
             if (Random.value < criticalChance)
             {
-                return (int)(initialDamage * (1f + critEfficent));
+                return (int)(initialDamage * (1f + critModifier));
             }
-
             return initialDamage;
         }
     }

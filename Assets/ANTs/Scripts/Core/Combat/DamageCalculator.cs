@@ -13,7 +13,7 @@ namespace ANTs.Core
             this.damager = damager;
         }
 
-        public int GetDamageDealt()
+        public int GetCalculatedDamage()
         {
             if (IsDodgeSuccess()) return 0;
             return GetFinalDamage();
