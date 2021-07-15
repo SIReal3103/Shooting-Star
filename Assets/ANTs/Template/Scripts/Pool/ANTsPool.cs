@@ -27,17 +27,17 @@ namespace ANTs.Template
         {
             objects = new Queue<GameObject>();
             for (int i = 0; i < initialPoolSize; i++)
+            {
                 CreateNewPoolObject();
+            }
         }
 
         public GameObject Pop(object args)
         {
-            if (objects.Count == 0)
-                CreateNewPoolObject();
+            if (objects.Count == 0) CreateNewPoolObject();
 
             GameObject obj = objects.Dequeue();
             obj.WakeUp(args);
-
             return obj;
         }
 

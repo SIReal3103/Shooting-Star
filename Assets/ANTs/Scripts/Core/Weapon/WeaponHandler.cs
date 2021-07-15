@@ -54,7 +54,7 @@ namespace ANTs.Core
         }
         #endregion
 
-        public void WeaponOwnerDieNotifying()
+        public void NotifyWeaponOwnerDie()
         {
             currentProjectileWeapon.value.OwnerDie();
             currentMeleeWeapon.value.OwnerDie();

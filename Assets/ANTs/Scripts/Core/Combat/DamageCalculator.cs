@@ -7,19 +7,19 @@ namespace ANTs.Core
         private Damager damager;
         private Damageable damageable;
 
-        public DamageCalculator(Damageable damageTarget, Damager damager)
+        public DamageCalculator(Damageable damageable, Damager damager)
         {
-            this.damageable = damageTarget;
+            this.damageable = damageable;
             this.damager = damager;
         }
 
         public int GetDamageDealt()
         {
             if (IsDodgeSuccess()) return 0;
-            return FomularResult();
+            return GetFinalDamage();
         }
 
-        private int FomularResult()
+        private int GetFinalDamage()
         {
             return Mathf.Min(damageable.Health, Mathf.Max(0, damager.GetFinalDamage() - damageable.DefenseByValue));
         }
