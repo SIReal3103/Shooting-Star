@@ -4,24 +4,13 @@ using UnityEngine;
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Collider2D))]
-    public class DieAction : ActionBase
+    public class DieAction : ActionBase, IPoolable
     {
         [Header("Die Action")]
         [Space(10)]
         [Tooltip("How long before the return to pool")]
         [SerializeField] float timeBeforeReturnPool = 5f;
         [SerializeField] bool isDisableColliderWhenDie = true;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            gameObject.SetWakeUpDelegate(args =>
-            {
-                EnemyData data = args as EnemyData;
-                gameObject.SetActive(true);
-                transform.position = data.spawnPosition;
-            });
-        }
 
         public override void ActionStart()
         {
@@ -38,6 +27,15 @@ namespace ANTs.Core
         {
             gameObject.ReturnToPoolOrDestroy();
         }
+
+        public void WakeUp(object param)
+        {
+            EnemyData data = param as EnemyData;
+            gameObject.SetActive(true);
+            transform.position = data.spawnPosition;
+        }
+
+        public void Sleep() { }
     }
 
     public class EnemyData

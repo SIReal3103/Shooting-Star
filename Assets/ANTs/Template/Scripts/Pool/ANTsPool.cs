@@ -8,7 +8,7 @@ namespace ANTs.Template
         [SerializeField] private GameObject prefab;
         [SerializeField] private int initialPoolSize = 10;
 
-        private Queue<GameObject> objects;
+        private Queue<GameObject> pool;
         public GameObject GetPrefab() { return prefab; }
 
         public void LoadNewPrefab(GameObject prefab)
@@ -25,47 +25,59 @@ namespace ANTs.Template
 
         private void Init()
         {
-            objects = new Queue<GameObject>();
+            pool = new Queue<GameObject>();
             for (int i = 0; i < initialPoolSize; i++)
             {
                 CreateNewPoolObject();
             }
         }
 
-        public GameObject Pop(object args)
+        public GameObject Pop(object param)
         {
-            if (objects.Count == 0) CreateNewPoolObject();
+            if (pool.Count == 0) CreateNewPoolObject();
 
-            GameObject obj = objects.Dequeue();
-            obj.WakeUp(args);
+            GameObject obj = pool.Dequeue();
+            WakeUpWrapper(obj, param);
             return obj;
         }
 
-        public void ReturnToPool(GameObject obj)
+        public void ReturnToPool(GameObject objectPool)
         {
-            obj.transform.SetParentPreserve(transform);
-            objects.Enqueue(obj);
-            obj.Sleep();
+            objectPool.transform.SetParentPreserve(transform);
+            pool.Enqueue(objectPool);
+            SleepWrapper(objectPool);
+        }
+
+        private void WakeUpWrapper(GameObject objectPool, object param)
+        {
+            objectPool.SetActive(true);
+            objectPool.GetComponent<IPoolable>().WakeUp(param);
+        }
+
+        private void SleepWrapper(GameObject objectPool)
+        {
+            objectPool.SetActive(false);
+            objectPool.GetComponent<IPoolable>().Sleep();
         }
 
         private GameObject CreateNewPoolObject()
         {
-            GameObject go = Instantiate(prefab);
-            go.transform.SetParentPreserve(transform);
-            go.SetPool(this);
-            objects.Enqueue(go);
-            go.SetActive(false);
-            return go;
+            GameObject objectPool = Instantiate(prefab);
+            objectPool.transform.SetParentPreserve(transform);
+            objectPool.AddToDictionary(this);
+            pool.Enqueue(objectPool);
+            objectPool.SetActive(false);
+            return objectPool;
         }
 
         private void ResetPool()
         {
-            if (objects == null) return;
-            while (objects.Count > 0)
+            if (pool == null) return;
+            while (pool.Count > 0)
             {
-                Destroy(objects.Dequeue());
+                Destroy(pool.Dequeue());
             }
-            objects = null;
+            pool = null;
         }
     }
 }

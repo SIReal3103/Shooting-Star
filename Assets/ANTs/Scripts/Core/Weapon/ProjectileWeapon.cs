@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    public class ProjectileWeapon : Weapon
+    public class ProjectileWeapon : Weapon, IPoolable
     {
         [Tooltip("The direction which bullets start firing")]
         [SerializeField] Transform[] projectileTransforms;
@@ -12,14 +12,6 @@ namespace ANTs.Core
 
         public ANTsPool GetAmmoPool() { return ammoPool; }
         public void SetAmmoPool(ANTsPool pool) { ammoPool = pool; }
-
-        private void Awake()
-        {
-            gameObject.SetWakeUpDelegate(args =>
-            {
-                Init((ProjectileWeaponData)args);
-            });
-        }
 
         public override void Init(WeaponData data)
         {
@@ -54,6 +46,13 @@ namespace ANTs.Core
                 Gizmos.DrawRay(new Ray(projectileTransform.position, projectileTransform.up));
             }
         }
+
+        public void WakeUp(object param)
+        {
+            Init((ProjectileWeaponData)param);
+        }
+
+        public void Sleep() { }
     }
 
     public class ProjectileWeaponData : WeaponData

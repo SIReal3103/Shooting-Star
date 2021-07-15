@@ -50,7 +50,7 @@ namespace ANTs.Template
         {
             if (actionStartOnPlay) ActionStart();
         }
-        
+
 
         #region =================================== Overrideable
         public virtual void ActionStart()

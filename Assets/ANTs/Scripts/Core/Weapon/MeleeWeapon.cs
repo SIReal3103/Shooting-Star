@@ -1,21 +1,14 @@
-﻿using UnityEngine;
+﻿using ANTs.Template;
+using UnityEngine;
 
 namespace ANTs.Core
 {
     [RequireComponent(typeof(Damager))]
     [RequireComponent(typeof(MeleeWeaponAction))]
-    public class MeleeWeapon : Weapon
+    public class MeleeWeapon : Weapon, IPoolable
     {
         [SerializeField] AttackArea attackArea;
         public AttackArea GetAttackArea() { return attackArea; }
-
-        private void Awake()
-        {
-            gameObject.SetWakeUpDelegate(args =>
-            {
-                Init((MeleeWeaponData)args);
-            });
-        }
 
         public override void Init(WeaponData data)
         {
@@ -38,6 +31,13 @@ namespace ANTs.Core
         {
             attackArea.Attack(GetComponent<Damager>());
         }
+
+        public void WakeUp(object param)
+        {
+            Init((MeleeWeaponData)param);
+        }
+
+        public void Sleep() { }
     }
 
     public class MeleeWeaponData : WeaponData
