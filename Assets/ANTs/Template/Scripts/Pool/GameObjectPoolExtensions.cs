@@ -52,7 +52,8 @@ static public class GameObjectPoolExtensions
         else UnityEngine.Object.Destroy(poolObject);
     }
 
-    static public void AddToDictionary(this GameObject go, ANTsPool pool)
+    // Should only be called by ANTsPool
+    static public void AddToPoolDict(this GameObject go, ANTsPool pool)
     {
         if (poolDict.ContainsKey(go))
         {

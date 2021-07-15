@@ -5,8 +5,8 @@ namespace ANTs.Template
 {
     public class ANTsPool : MonoBehaviour
     {
-        [SerializeField] private GameObject prefab;
-        [SerializeField] private int initialPoolSize = 10;
+        [SerializeField] GameObject prefab;
+        [SerializeField] int initialPoolSize = 10;
 
         private Queue<GameObject> pool;
         public GameObject GetPrefab() { return prefab; }
@@ -28,23 +28,27 @@ namespace ANTs.Template
             for (int i = 0; i < initialPoolSize; i++)
             {
                 CreateNewPoolObject();
-            }
+            }            
         }
 
         public GameObject Pop(object param)
         {
             if (pool.Count == 0) CreateNewPoolObject();
+            GameObject poolObject = pool.Dequeue();
+            WakeUpWrapper(poolObject, param);
+            return poolObject;
+        }
 
-            GameObject obj = pool.Dequeue();
-            WakeUpWrapper(obj, param);
-            return obj;
+        private void Push(GameObject objectPool)
+        {
+            pool.Enqueue(objectPool);
+            SleepWrapper(objectPool);
         }
 
         public void ReturnToPool(GameObject objectPool)
         {
             objectPool.transform.SetParentPreserve(transform);
-            pool.Enqueue(objectPool);
-            SleepWrapper(objectPool);
+            Push(objectPool);
         }
 
         private void WakeUpWrapper(GameObject objectPool, object param)
@@ -61,13 +65,18 @@ namespace ANTs.Template
 
         private GameObject CreateNewPoolObject()
         {
+            if(prefab.GetComponent<IPoolable>() == null)
+            {
+                throw new UnityException(prefab + " is not a Poolable object.");
+            }
+
             GameObject objectPool = Instantiate(prefab);
             objectPool.transform.SetParentPreserve(transform);
-            objectPool.AddToDictionary(this);
-            pool.Enqueue(objectPool);
-            objectPool.SetActive(false);
+            objectPool.AddToPoolDict(this);
+
+            Push(objectPool);
             return objectPool;
-        }
+        }        
     }
 }
 
