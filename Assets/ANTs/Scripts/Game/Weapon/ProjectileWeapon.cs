@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Game
 {
-    [RequireComponent(typeof(Damager))]    
+    [RequireComponent(typeof(Damager))]
     public class ProjectileWeapon : Weapon, IPoolable
     {
         [Tooltip("The direction which bullets start firing")]

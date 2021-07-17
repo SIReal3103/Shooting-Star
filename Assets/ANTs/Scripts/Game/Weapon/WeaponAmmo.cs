@@ -44,7 +44,7 @@ namespace ANTs.Game
             transform.position = data.origin;
             SetDirection(data.moveDirection);
             touchDamager.SetSource(data.shooter);
-            if(data.weaponFireFrom.TryGetComponent(out Damager weaponDamager))
+            if (data.weaponFireFrom.TryGetComponent(out Damager weaponDamager))
             {
                 GetComponent<Damager>().AddToDamageData(weaponDamager.GetDamageData());
             }

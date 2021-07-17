@@ -10,14 +10,18 @@ namespace ANTs.Game
         private DamageData damageData = null;
 
         public DamageData GetDamageData() { return damageData; }
-        public void AddToDamageData(DamageData damageData) { this.damageData = this.damageData.Combine(damageData); }
+
+        public void AddToDamageData(DamageData damageData)
+        {
+            this.damageData = this.damageData.Combine(damageData);
+        }
 
         private void Awake()
         {
-            if(TryGetComponent(out BaseStat baseStat))
+            if (TryGetComponent(out BaseStat baseStat))
             {
                 damageData = new DamageData(
-                    baseStat.GetStat(StatType.DamageBonus), 
+                    baseStat.GetStat(StatType.DamageBonus),
                     baseStat.GetStat(StatType.DamageModifier)
                 );
             }
