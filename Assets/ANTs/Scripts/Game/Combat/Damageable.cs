@@ -50,6 +50,7 @@ namespace ANTs.Game
         {
             DamageCalculator calculator = new DamageCalculator(this, damager);
             DrawHealth(calculator.GetCalculatedDamage());
+            Debug.Log(damager + " deal " + calculator.GetCalculatedDamage() + ": " + this);
         }
 
         private void DrawHealth(float health)

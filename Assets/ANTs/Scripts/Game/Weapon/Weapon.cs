@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Game
 {
+    [RequireComponent(typeof(Damager))]
     public abstract class Weapon : MonoBehaviour, IProgressable
     {
         [SerializeField] ProgressIdentifier currentLevel;
@@ -18,6 +19,10 @@ namespace ANTs.Game
         {
             transform.SetParentPreserve(data.parent);
             this.owner = data.owner;
+            if(TryGetComponent(out Damager ownerDamager))
+            {
+                GetComponent<Damager>().AddToDamageData(ownerDamager.GetDamageData());
+            }
         }
 
         public abstract void TriggerWeapon();

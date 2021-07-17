@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3900950865971724827}
   - component: {fileID: 6163323762143553855}
   - component: {fileID: 5378356823086788069}
+  - component: {fileID: 6257799816927288913}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -157,9 +158,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  maxHealth: 100
-  defenseByValue: 0
-  dodgeChance: 0
+  defenseBonus: 0
+  defenseModifier: 0
 --- !u!114 &6163323762143553855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +188,21 @@ MonoBehaviour:
   level: 1
   characterClass: 0
   statManager: {fileID: 11400000, guid: 62bebab619c3f2147a6c0671c3cf9f93, type: 2}
+--- !u!114 &6257799816927288913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726713874072087784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageData:
+    damageBonus: 0
+    damageModifier: 0
 --- !u!1 &3726713875333373734
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,15 +3,22 @@ using UnityEngine;
 
 namespace ANTs.Game
 {
+    [RequireComponent(typeof(Damager))]    
     public class ProjectileWeapon : Weapon, IPoolable
     {
         [Tooltip("The direction which bullets start firing")]
         [SerializeField] Transform[] projectileTransforms;
 
         private ANTsPool ammoPool;
+        private Damager damager;
 
         public ANTsPool GetAmmoPool() { return ammoPool; }
         public void SetAmmoPool(ANTsPool pool) { ammoPool = pool; }
+
+        private void Awake()
+        {
+            damager = GetComponent<Damager>();
+        }
 
         public override void Init(WeaponData data)
         {
@@ -30,7 +37,7 @@ namespace ANTs.Game
 
             foreach (Transform projectileTransform in projectileTransforms)
             {
-                ammoPool.Pop(new AmmoData(owner, projectileTransform.position, projectileTransform.up));
+                ammoPool.Pop(new AmmoData(owner, this, projectileTransform.position, projectileTransform.up));
             }
         }
 

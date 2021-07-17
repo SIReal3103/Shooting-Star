@@ -7,7 +7,7 @@ namespace ANTs.Game
     public class TouchDamager : MonoBehaviour
     {
         /// <summary>
-        /// When touch damager hit a dammageble enemy
+        /// When touch damager hit a damageble enemy
         /// </summary>
         public event Action OnHitEvent;
 
@@ -16,7 +16,10 @@ namespace ANTs.Game
         [Tooltip("If the enemy stay in the collider, how long between dammages occur")]
         [SerializeField] float timeBetweenHits = 0.5f;
 
-        public GameObject Source { get => source; set => source = value; }
+        public void SetSource(GameObject source)
+        {
+            this.source = source;
+        }
 
         private float timeSinceLastHit;
 
@@ -45,7 +48,7 @@ namespace ANTs.Game
 
         private bool IsEnemy(Collision2D collision)
         {
-            return !collision.transform.CompareTag(Source.tag);
+            return !collision.transform.CompareTag(source.tag);
         }
 
         private void Attack(Damageable damageable)

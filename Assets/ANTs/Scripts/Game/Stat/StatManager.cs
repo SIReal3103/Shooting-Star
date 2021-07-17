@@ -65,7 +65,7 @@ namespace ANTs.Game
         {
             BuildStatDict();
 
-            return statDict[characterClass][statType][level];
+            return statDict[characterClass][statType][level - 1];
         }
     }
 }

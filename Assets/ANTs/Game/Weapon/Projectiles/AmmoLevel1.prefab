@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 2465691811505759138, guid: 1b8b737626a42dd4f86e7de802f71d6d,
         type: 3}
       propertyPath: m_Name
-      value: BulletLevel1
+      value: AmmoLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 2465691811505759141, guid: 1b8b737626a42dd4f86e7de802f71d6d,
         type: 3}
