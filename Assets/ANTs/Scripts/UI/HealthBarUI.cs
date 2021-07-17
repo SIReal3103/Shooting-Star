@@ -9,8 +9,8 @@ namespace ANTs.UI
 
         [SerializeField] Damageable observer;
 
-        private int currentHealth;
-        private int maxHealth;
+        private float currentHealth;
+        private float maxHealth;
 
         private Transform healthBar;
 
@@ -31,13 +31,13 @@ namespace ANTs.UI
             observer.OnMaxHealthUpdateEvent -= OnMaxHealthUpdate;
         }
 
-        private void OnHealthUpdate(int currentHealth)
+        private void OnHealthUpdate(float currentHealth)
         {
             this.currentHealth = currentHealth;
             UpdateHealthBar();
         }
 
-        private void OnMaxHealthUpdate(int maxHealth)
+        private void OnMaxHealthUpdate(float maxHealth)
         {
             this.maxHealth = maxHealth;
             UpdateHealthBar();

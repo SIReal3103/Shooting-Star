@@ -13,13 +13,13 @@ namespace ANTs.Game
             this.damager = damager;
         }
 
-        public int GetCalculatedDamage()
+        public float GetCalculatedDamage()
         {
             if (IsDodgeSuccess()) return 0;
             return GetFinalDamage();
         }
 
-        private int GetFinalDamage()
+        private float GetFinalDamage()
         {
             return Mathf.Min(damageable.Health, Mathf.Max(0, damager.GetFinalDamage() - damageable.DefenseByValue));
         }

@@ -4,8 +4,8 @@ namespace ANTs.Game
 {
     public class Damager : MonoBehaviour
     {
-        [SerializeField] int initialDamage = 10;
-        [SerializeField] float criticalChance = 0;
+        [SerializeField] float initialDamage = 10;
+        [SerializeField] float criticalChance = 1;
         [SerializeField] float critModifier = 0;
 
         public bool IsEnemy(Damageable damageable)
@@ -13,7 +13,7 @@ namespace ANTs.Game
             return damageable.tag != tag;
         }
 
-        public int GetFinalDamage()
+        public float GetFinalDamage()
         {
             if (Random.value < criticalChance)
             {
