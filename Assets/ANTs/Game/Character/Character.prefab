@@ -143,6 +143,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a1093ea441e5743a800b4f24791c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHealthUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7506211031067187818}
+        m_MethodName: OnHealthUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maxHealth: 100
   defenseByValue: 0
   dodgeChance: 0
@@ -340,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 4907063608624285311, guid: 6a32375b1e8db3640b0063dad59c7a9f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 4907063608624285311, guid: 6a32375b1e8db3640b0063dad59c7a9f,
         type: 3}
@@ -400,3 +414,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2610349998982892705}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7506211031067187818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5481646383204259531, guid: 6a32375b1e8db3640b0063dad59c7a9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2610349998982892705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3eb704835276b4ba9d25e9bcbb1423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

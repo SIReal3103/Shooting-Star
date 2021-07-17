@@ -1,26 +1,18 @@
 ﻿using ANTs.Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ANTs.UI
 {
     public class HealthBarUI : MonoBehaviour
     {
-        [SerializeField] Damageable observer;
-        [SerializeField] Transform healthBarTransform;
+        [SerializeField] Transform Foreground;
+        [SerializeField] Text text;
 
-        private void OnEnable()
+        public void OnHealthUpdate(float health, float maxHealth)
         {
-            observer.OnHealthFractionUpdateEvent += OnHealthUpdate;
-        }
-
-        private void OnDisable()
-        {
-            observer.OnHealthFractionUpdateEvent -= OnHealthUpdate;
-        }
-
-        private void OnHealthUpdate(float healthFraction)
-        {
-            healthBarTransform.localScale = new Vector3(healthFraction, 1);
+            Foreground.localScale = new Vector3(health / maxHealth, 1);
+            text.text = string.Format("{0:0}/{1:0}", health, maxHealth);
         }
     }
 }

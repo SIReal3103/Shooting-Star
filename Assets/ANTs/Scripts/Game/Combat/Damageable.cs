@@ -1,15 +1,18 @@
 ﻿using ANTs.Template;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ANTs.Game
 {
     public class Damageable : MonoBehaviour
     {
-        public event Action<float> OnHealthFractionUpdateEvent;
+        [System.Serializable]
+        class OnHealthUpdateEvent : UnityEvent<float, float> { }
         public event Action OnHealthReachZeroEvent;
 
         #region ===============================SERIALIZEFIELD
+        [SerializeField] OnHealthUpdateEvent OnHealthUpdate;
         [SerializeField] float maxHealth = 100;
         [SerializeField] float defenseByValue = 0;
         [SerializeField] float dodgeChance = 0;
@@ -24,10 +27,9 @@ namespace ANTs.Game
             get => health.value;
             set
             {
-                if (health.value == 0 && value <= 0) return;
                 health.value = Mathf.Clamp(value, 0, MaxHealth);
-                OnHealthFractionUpdateEvent?.Invoke(GetHealthFraction());
-                if (health.value == 0) OnHealthReachZeroEvent?.Invoke();
+                OnHealthUpdate.Invoke(health.value, GetMaxHealth());
+                if (Mathf.Approximately(health.value, 0)) OnHealthReachZeroEvent?.Invoke();
             }
         }
         public float DefenseByValue { get => defenseByValue; }
@@ -43,7 +45,7 @@ namespace ANTs.Game
 
         private void Start()
         {
-            OnHealthFractionUpdateEvent?.Invoke(GetHealthFraction());
+            OnHealthUpdate.Invoke(health.value, GetMaxHealth());
         }
 
         public void TakeDamageFrom(Damager damager)
@@ -62,7 +64,7 @@ namespace ANTs.Game
             this.Health += health;
         }
 
-        private float GetHealthFraction()
+        public float GetHealthFraction()
         {
            return health.value / GetMaxHealth();
         }

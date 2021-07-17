@@ -12,4 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79260a4a12ce0144aae1fbbf909adf85, type: 3}
   m_Name: Stat
   m_EditorClassIdentifier: 
-  characterClassQueries: []
+  characterClassQueries:
+  - characterClass: 0
+    stats:
+    - statType: 0
+      levels:
+      - 50
+      - 100
+      - 300
+      - 400
+      - 700
+    - statType: 4
+      levels:
+      - 10
+      - 20
+      - 50
+      - 70
+      - 100
+  - characterClass: 2
+    stats:
+    - statType: 0
+      levels:
+      - 50
+      - 100
+      - 300
+      - 400
+      - 700
+    - statType: 4
+      levels:
+      - 10
+      - 20
+      - 50
+      - 70
+      - 100
+  - characterClass: 1
+    stats:
+    - statType: 0
+      levels:
+      - 50
+      - 100
+      - 300
+      - 400
+      - 700
+    - statType: 4
+      levels:
+      - 10
+      - 20
+      - 50
+      - 70
+      - 100
