@@ -48,11 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponAttachment: {fileID: 2086773933299614599}
-  rotateWithMouse: 0
   initialWeaponIsMelee: 0
   initialWeaponName: Gun1Shot
-  initialAmmoName: BulletLevel1
-  currentWeapon: {fileID: 0}
+  initialAmmoName: AmmoLevel1
 --- !u!114 &7511532444828102719
 MonoBehaviour:
   m_ObjectHideFlags: 0

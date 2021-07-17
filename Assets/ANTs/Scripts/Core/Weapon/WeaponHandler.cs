@@ -56,11 +56,10 @@ namespace ANTs.Core
 
         public void NotifyWeaponOwnerDie()
         {
-            currentProjectileWeapon.value.OwnerDie();
-            currentMeleeWeapon.value.OwnerDie();
+            currentWeapon.value.OwnerDie();
         }
 
-        public void DirectWeaponTo(Vector2 position)
+        public void DirectWeaponAttachmentTo(Vector2 position)
         {
             Vector2 delt = position - (Vector2)transform.position;
             float ang = Mathf.Atan2(delt.y, delt.x) * Mathf.Rad2Deg;

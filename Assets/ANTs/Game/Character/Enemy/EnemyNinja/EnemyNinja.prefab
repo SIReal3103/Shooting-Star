@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponAttachment: {fileID: 6459191288796496263}
-  rotateWithMouse: 0
   initialWeaponIsMelee: 1
   initialWeaponName: NinjaSword
   initialAmmoName: 
-  currentWeapon: {fileID: 0}
 --- !u!114 &5414274874121336222
 MonoBehaviour:
   m_ObjectHideFlags: 0

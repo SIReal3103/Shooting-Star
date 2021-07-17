@@ -1255,24 +1255,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
-    - target: {fileID: 490839717, guid: 445e380a067a260448138bd6e7ce26c4, type: 3}
-      propertyPath: initialWeaponIsMelee
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883870, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
@@ -1328,16 +1314,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919006091832826131, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7755206236174971246, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 445e380a067a260448138bd6e7ce26c4, type: 3}

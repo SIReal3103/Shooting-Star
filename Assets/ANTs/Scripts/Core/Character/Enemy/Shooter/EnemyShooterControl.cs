@@ -48,7 +48,7 @@ namespace ANTs.Core
         {
             if (Task.current.isStarting)
             {
-                weaponHandler.DirectWeaponTo(playerTransform.position);
+                weaponHandler.DirectWeaponAttachmentTo(playerTransform.position);
                 weaponHandler.TriggerProjectileWeapon();
                 Task.current.Succeed();
             }

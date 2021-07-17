@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6742497220475862775}
   - component: {fileID: 5239362829091667820}
   - component: {fileID: 6268203358679428382}
+  - component: {fileID: 253328170560283549}
   m_Layer: 0
   m_Name: NinjaSword
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1dd39c15c61884fa16f6ad9308a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maskTable: 00
+  maskTable: 00000000
 --- !u!114 &5239362829091667820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +97,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDamage: 30
   criticalChance: 0
-  critEfficent: 0
+  critModifier: 0
+--- !u!114 &253328170560283549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000757619593086653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ce7d7e900a33049b8393a0f76a09e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfAction: 0
+  isActionActive: 0
+  actionStartOnPlay: 0
+  isAttachWithAnimator: 1
+  isTransitionTrigger: 1
+  syncWithAnimation: 1
 --- !u!1 &7852748619624759019
 GameObject:
   m_ObjectHideFlags: 0

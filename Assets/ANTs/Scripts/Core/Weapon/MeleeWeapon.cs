@@ -2,13 +2,11 @@
 using UnityEngine;
 
 namespace ANTs.Core
-{
-    [RequireComponent(typeof(Damager))]
+{    
     [RequireComponent(typeof(MeleeWeaponAction))]
     public class MeleeWeapon : Weapon, IPoolable
     {
         [SerializeField] AttackArea attackArea;
-        public AttackArea GetAttackArea() { return attackArea; }
 
         public override void Init(WeaponData data)
         {
