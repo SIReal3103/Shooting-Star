@@ -20,7 +20,7 @@ namespace ANTs.Core
 
         private void AttackBehaviour()
         {
-            GetComponent<MeleeWeapon>().TriggerAttackArea();
+            GetComponent<IHaveAttackArea>().TriggerAttackArea();
         }
     }
 }

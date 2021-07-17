@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ANTs.Core
 {    
     [RequireComponent(typeof(MeleeWeaponAction))]
-    public class MeleeWeapon : Weapon, IPoolable
+    public class MeleeWeapon : Weapon, IPoolable, IHaveAttackArea
     {
         [SerializeField] AttackArea attackArea;
 
