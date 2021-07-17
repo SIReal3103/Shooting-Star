@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(MoveAction))]
     public abstract class Projectile : MonoBehaviour

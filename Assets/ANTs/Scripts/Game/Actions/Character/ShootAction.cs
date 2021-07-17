@@ -1,7 +1,7 @@
 ﻿using ANTs.Template;
 using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(WeaponHandler))]
     public class ShootAction : ActionBase

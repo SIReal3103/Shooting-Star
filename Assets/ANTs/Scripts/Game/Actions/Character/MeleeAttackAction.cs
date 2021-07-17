@@ -1,6 +1,6 @@
 ﻿using ANTs.Template;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     public class MeleeAttackAction : ActionBase
     {

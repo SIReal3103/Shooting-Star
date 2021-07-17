@@ -1,7 +1,7 @@
 ﻿using ANTs.Template;
 using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(TouchDamager))]
     public class WeaponAmmo : Projectile, IProgressable, IPoolable

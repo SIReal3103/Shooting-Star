@@ -1,7 +1,7 @@
 ﻿using Panda;
 using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(WeaponHandler))]
     [RequireComponent(typeof(MoveAction))]

@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [AttributeUsage(AttributeTargets.Field, Inherited = true)]
     public class ConditionalAttribute : PropertyAttribute

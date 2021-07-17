@@ -2,7 +2,7 @@
 using Panda;
 using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(EnemyControl))]
     [RequireComponent(typeof(MoveAction))]

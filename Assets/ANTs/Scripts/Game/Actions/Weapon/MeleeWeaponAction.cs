@@ -1,7 +1,7 @@
 ﻿using ANTs.Template;
 using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     public class MeleeWeaponAction : ActionBase
     {

@@ -1,4 +1,4 @@
-﻿using ANTs.Core;
+﻿using ANTs.Game;
 using UnityEngine;
 
 namespace ANTs.UI

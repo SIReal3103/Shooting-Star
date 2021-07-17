@@ -1,7 +1,7 @@
 ﻿using ANTs.Template;
 using System.Collections.Generic;
 using UnityEngine;
-namespace ANTs.Core
+namespace ANTs.Game
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public class AttackArea : MonoBehaviour

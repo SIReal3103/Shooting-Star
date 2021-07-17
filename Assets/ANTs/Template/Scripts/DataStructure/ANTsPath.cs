@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ANTs.Core
+namespace ANTs.Game
 {
     public class ANTsPath : MonoBehaviour
     {

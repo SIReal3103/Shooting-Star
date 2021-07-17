@@ -1,7 +1,7 @@
 ﻿using ANTs.Template;
 using System;
 using UnityEngine;
-namespace ANTs.Core
+namespace ANTs.Game
 {
     public enum MovementType
     {

@@ -1,4 +1,4 @@
-﻿namespace ANTs.Core
+﻿namespace ANTs.Game
 {
     internal interface IHaveAttackArea
     {
