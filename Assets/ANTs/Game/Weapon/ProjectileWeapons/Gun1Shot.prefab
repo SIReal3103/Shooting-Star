@@ -52,6 +52,16 @@ PrefabInstance:
       propertyPath: projectileTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 2837063245928197130}
+    - target: {fileID: 1438256851632597734, guid: e03a8ef53c6693e4bb6bf2a2f890fc01,
+        type: 3}
+      propertyPath: initialDamageData.damageBonus
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772938575230269711, guid: e03a8ef53c6693e4bb6bf2a2f890fc01,
+        type: 3}
+      propertyPath: maskTable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4065225073663523168, guid: e03a8ef53c6693e4bb6bf2a2f890fc01,
         type: 3}
       propertyPath: m_Sprite

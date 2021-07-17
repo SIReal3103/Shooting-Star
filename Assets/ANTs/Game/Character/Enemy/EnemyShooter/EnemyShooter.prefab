@@ -182,12 +182,12 @@ PrefabInstance:
     - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: maskTable.Array.data[3]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: maskTable.Array.data[5]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215028331467832096, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}

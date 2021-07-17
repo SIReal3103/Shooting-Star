@@ -16,7 +16,7 @@ namespace ANTs.Game
         public float GetCalculatedDamage()
         {
             return Mathf.Min(damageable.Health,
-                 Mathf.Max(0, (damager.GetFinalDamage() - damageable.GetDefenseBonus())) *
+                 Mathf.Max(0, (damager.GetFinalDamage() - damageable.GetDefenseBonus())) * 
                 (1 - damageable.GetDefenseModifier())
             );
         }

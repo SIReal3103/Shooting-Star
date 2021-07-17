@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using ANTs.Template;
+using System;
+using UnityEngine;
 
 namespace ANTs.Game
 {
@@ -6,30 +8,41 @@ namespace ANTs.Game
     {
         const float NONE_VALUE = -1;
 
-        [SerializeField]
-        private DamageData damageData = null;
+        [SerializeField] DamageData initialDamageData = null;
 
-        public DamageData GetDamageData() { return damageData; }
+        [ReadOnly] [SerializeField] 
+        DamageData currentDamageData;
 
-        public void AddToDamageData(DamageData damageData)
+        public DamageData GetDamageData() { return currentDamageData; }
+
+        public void AddToDamageData(DamageData damageData) 
         {
-            this.damageData = this.damageData.Combine(damageData);
+            currentDamageData = GetInitialDamageData().Combine(damageData);
         }
 
         private void Awake()
         {
+            currentDamageData = GetInitialDamageData();
+        }
+
+        private DamageData GetInitialDamageData()
+        {
             if (TryGetComponent(out BaseStat baseStat))
             {
-                damageData = new DamageData(
+                return new DamageData(
                     baseStat.GetStat(StatType.DamageBonus),
                     baseStat.GetStat(StatType.DamageModifier)
                 );
+            }
+            else
+            {
+                return initialDamageData.Clone();
             }
         }
 
         public float GetFinalDamage()
         {
-            return damageData.damageBonus * (1f + damageData.damageModifier);
+            return currentDamageData.damageBonus * (1f + currentDamageData.damageModifier);
         }
 
         public bool IsEnemy(Damageable damageable)
@@ -48,11 +61,16 @@ namespace ANTs.Game
         {
             this.damageBonus = damageBonus;
             this.damageModifier = damageModifier;
-        }
+        }        
 
         public DamageData Combine(DamageData damageData)
         {
             return new DamageData(damageData.damageBonus + damageBonus, damageData.damageModifier + damageModifier);
+        }
+
+        public DamageData Clone()
+        {
+            return new DamageData(damageBonus, damageModifier);
         }
     }
 }
