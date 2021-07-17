@@ -1,42 +1,49 @@
-﻿using System;
+﻿using ANTs.Template;
+using System;
 using UnityEngine;
 
 namespace ANTs.Game
 {
     public class Damageable : MonoBehaviour
     {
-        public event Action<float> OnHealthUpdateEvent;
-        public event Action<float> OnMaxHealthUpdateEvent;
+        public event Action<float> OnHealthFractionUpdateEvent;
         public event Action OnHealthReachZeroEvent;
 
         #region ===============================SERIALIZEFIELD
         [SerializeField] float maxHealth = 100;
-        [SerializeField] float health = 100;
         [SerializeField] float defenseByValue = 0;
         [SerializeField] float dodgeChance = 0;
         #endregion
+
+        private LazyANTs<float> health;
 
         #region ===============================ACCESSORS
         public float MaxHealth { get => maxHealth; }
         public float Health
         {
-            get => health;
+            get => health.value;
             set
             {
-                if (health == 0 && value <= 0) return;
-                health = Mathf.Clamp(value, 0, MaxHealth);
-                OnHealthUpdateEvent?.Invoke(health);
-                if (health == 0) OnHealthReachZeroEvent?.Invoke();
+                if (health.value == 0 && value <= 0) return;
+                health.value = Mathf.Clamp(value, 0, MaxHealth);
+                OnHealthFractionUpdateEvent?.Invoke(GetHealthFraction());
+                if (health.value == 0) OnHealthReachZeroEvent?.Invoke();
             }
         }
         public float DefenseByValue { get => defenseByValue; }
         public float DodgeChance { get => dodgeChance; }
         #endregion
 
+        public float GetMaxHealth() { return GetComponent<BaseStat>().GetStat(StatType.Health); }
+
+        private void Awake()
+        {
+            health = new LazyANTs<float>(GetMaxHealth);
+        }
+
         private void Start()
         {
-            OnMaxHealthUpdateEvent?.Invoke(maxHealth);
-            OnHealthUpdateEvent?.Invoke(health);
+            OnHealthFractionUpdateEvent?.Invoke(GetHealthFraction());
         }
 
         public void TakeDamageFrom(Damager damager)
@@ -49,9 +56,15 @@ namespace ANTs.Game
         {
             this.Health -= health;
         }
+
         public void GainHealth(float health)
         {
             this.Health += health;
+        }
+
+        private float GetHealthFraction()
+        {
+           return health.value / GetMaxHealth();
         }
     }
 }

@@ -271,6 +271,11 @@ PrefabInstance:
       propertyPath: gizmoViewMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 9215028331467832096, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: characterClass
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9222022420a554187c138db3b69c93, type: 3}
 --- !u!1 &7973814678278962949 stripped

@@ -44,8 +44,13 @@ namespace ANTs.Game
         private Dictionary<CharacterClass, Dictionary<StatType, float[]>> statDict = 
             new Dictionary<CharacterClass, Dictionary<StatType, float[]>>();
 
-        private void Awake()
+        static private bool statDictBuilded = false;
+
+        private void BuildStatDict()
         {
+            if (statDictBuilded) return;
+            statDictBuilded = true;
+
             foreach(CharacterClassQuery character in characterClassQueries)
             {
                 statDict[character.characterClass] = new Dictionary<StatType, float[]>();
@@ -58,6 +63,8 @@ namespace ANTs.Game
 
         public float GetStat(CharacterClass characterClass, StatType statType, int level)
         {
+            BuildStatDict();
+
             return statDict[characterClass][statType][level];
         }
     }
