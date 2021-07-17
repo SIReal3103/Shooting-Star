@@ -13,9 +13,9 @@ namespace ANTs.Game
 
         public DamageData GetDamageData() { return currentDamageData; }
 
-        public void AddToDamageData(DamageData damageData)
+        public void AddToDamageData(DamageData additiveData)
         {
-            currentDamageData = GetInitialDamageData().Combine(damageData);
+            currentDamageData = GetInitialDamageData().Combine(additiveData);
         }
 
         private void Awake()
