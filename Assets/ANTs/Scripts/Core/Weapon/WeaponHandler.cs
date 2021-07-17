@@ -61,9 +61,7 @@ namespace ANTs.Core
 
         public void DirectWeaponAttachmentTo(Vector2 position)
         {
-            Vector2 delt = position - (Vector2)transform.position;
-            float ang = Mathf.Atan2(delt.y, delt.x) * Mathf.Rad2Deg;
-            weaponAttachment.eulerAngles = new Vector3(0, 0, ang - 90f);
+            weaponAttachment.right = position - (Vector2)transform.position;
         }
 
         public void UpgradeProjectileWeapon()

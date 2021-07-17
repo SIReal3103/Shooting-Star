@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace ANTs.Core
 {
+    [RequireComponent(typeof(BoxCollider2D))]
     public class AttackArea : MonoBehaviour
     {
         [ReadOnly]

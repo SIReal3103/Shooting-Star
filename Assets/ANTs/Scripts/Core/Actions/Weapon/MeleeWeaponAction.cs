@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace ANTs.Core
 {
-    [RequireComponent(typeof(MeleeWeapon))]
     public class MeleeWeaponAction : ActionBase
     {
         public override void ActionStart()
