@@ -1,21 +1,19 @@
 ﻿using ANTs.Template;
-using System;
 using UnityEngine;
 
 namespace ANTs.Game
 {
     public class Damager : MonoBehaviour
     {
-        const float NONE_VALUE = -1;
-
         [SerializeField] DamageData initialDamageData = null;
 
-        [ReadOnly] [SerializeField] 
+        [ReadOnly]
+        [SerializeField]
         DamageData currentDamageData;
 
         public DamageData GetDamageData() { return currentDamageData; }
 
-        public void AddToDamageData(DamageData damageData) 
+        public void AddToDamageData(DamageData damageData)
         {
             currentDamageData = GetInitialDamageData().Combine(damageData);
         }
@@ -61,7 +59,7 @@ namespace ANTs.Game
         {
             this.damageBonus = damageBonus;
             this.damageModifier = damageModifier;
-        }        
+        }
 
         public DamageData Combine(DamageData damageData)
         {

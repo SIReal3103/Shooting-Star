@@ -19,7 +19,7 @@ namespace ANTs.Game
         {
             transform.SetParentPreserve(data.parent);
             this.owner = data.owner;
-            if(owner.TryGetComponent(out Damager ownerDamager))
+            if (owner.TryGetComponent(out Damager ownerDamager))
             {
                 GetComponent<Damager>().AddToDamageData(ownerDamager.GetDamageData());
             }
