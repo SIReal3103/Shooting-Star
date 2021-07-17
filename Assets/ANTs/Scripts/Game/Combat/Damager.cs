@@ -4,22 +4,33 @@ namespace ANTs.Game
 {
     public class Damager : MonoBehaviour
     {
-        [SerializeField] float initialDamage = 10;
-        [SerializeField] float criticalChance = 1;
-        [SerializeField] float critModifier = 0;
+        [SerializeField] float damageBonusOverride = 10;
+        [SerializeField] float damageModifierOverride = 1;
 
         public bool IsEnemy(Damageable damageable)
         {
             return damageable.tag != tag;
         }
 
-        public float GetFinalDamage()
+        public float CalculateFinalDamage()
         {
-            if (Random.value < criticalChance)
+            float totalDamageBonus = 0;
+            float totalDamageModifier = 0;
+
+            for (Transform currentTransform = transform; currentTransform != null; currentTransform = currentTransform.parent)
             {
-                return (int)(initialDamage * (1f + critModifier));
+                if (!TryGetComponent(out Damager damager)) continue;
+                totalDamageBonus += GetDamageStat(damager, StatType.DamageBonus);
+                totalDamageModifier += GetDamageStat(damager, StatType.DamageModifier);                
             }
-            return initialDamage;
+
+            return 0;
+        }
+
+        private float GetDamageStat(Damager damager, StatType damageStat)
+        {
+            if (!damager.TryGetComponent(out BaseStat baseStat)) return 0;
+            return baseStat.GetStat(damageStat);
         }
     }
 }

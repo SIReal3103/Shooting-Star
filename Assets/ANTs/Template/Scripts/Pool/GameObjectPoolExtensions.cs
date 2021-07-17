@@ -7,7 +7,7 @@ static public class GameObjectPoolExtensions
     static public Dictionary<GameObject, ANTsPool> poolDict = new Dictionary<GameObject, ANTsPool>();
 
     static public ANTsPool CreatePool(this GameObject prefab, Transform parent = null)
-    {                   
+    {
         ANTsPool result = new GameObject(prefab.name + "_pool").AddComponent<ANTsPool>();
         result.LoadNewPrefab(prefab);
         if (parent != null) result.transform.SetParentPreserve(parent);
@@ -21,7 +21,7 @@ static public class GameObjectPoolExtensions
             pool = GetPool(poolObject);
             return true;
         }
-        catch(UnityException)
+        catch (UnityException)
         {
             pool = null;
             return false;

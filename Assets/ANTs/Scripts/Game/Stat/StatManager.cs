@@ -23,7 +23,7 @@ namespace ANTs.Game
 
     [CreateAssetMenu(fileName = "Stat", menuName = "ANTs/New Stat", order = 0)]
     public class StatManager : ScriptableObject
-    {        
+    {
         [System.Serializable]
         class CharacterClassQuery
         {
@@ -41,7 +41,7 @@ namespace ANTs.Game
         [SerializeField]
         CharacterClassQuery[] characterClassQueries;
 
-        private Dictionary<CharacterClass, Dictionary<StatType, float[]>> statDict = 
+        private Dictionary<CharacterClass, Dictionary<StatType, float[]>> statDict =
             new Dictionary<CharacterClass, Dictionary<StatType, float[]>>();
 
         static private bool statDictBuilded = false;
@@ -51,10 +51,10 @@ namespace ANTs.Game
             if (statDictBuilded) return;
             statDictBuilded = true;
 
-            foreach(CharacterClassQuery character in characterClassQueries)
+            foreach (CharacterClassQuery character in characterClassQueries)
             {
                 statDict[character.characterClass] = new Dictionary<StatType, float[]>();
-                foreach(StatTypeQuery stat in character.stats)
+                foreach (StatTypeQuery stat in character.stats)
                 {
                     statDict[character.characterClass].Add(stat.statType, stat.levels);
                 }

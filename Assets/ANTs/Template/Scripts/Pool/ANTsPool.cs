@@ -28,7 +28,7 @@ namespace ANTs.Template
             for (int i = 0; i < initialPoolSize; i++)
             {
                 CreateNewPoolObject();
-            }            
+            }
         }
 
         public GameObject Pop(object param)
@@ -65,7 +65,7 @@ namespace ANTs.Template
 
         private GameObject CreateNewPoolObject()
         {
-            if(prefab.GetComponent<IPoolable>() == null)
+            if (prefab.GetComponent<IPoolable>() == null)
             {
                 throw new UnityException(prefab + " is not a Poolable object.");
             }
@@ -76,7 +76,7 @@ namespace ANTs.Template
 
             Push(objectPool);
             return objectPool;
-        }        
+        }
     }
 }
 

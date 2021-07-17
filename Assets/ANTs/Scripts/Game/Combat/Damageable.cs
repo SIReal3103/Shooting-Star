@@ -13,8 +13,8 @@ namespace ANTs.Game
 
         #region ===============================SERIALIZEFIELD
         [SerializeField] OnHealthUpdateEvent OnHealthUpdate;
-        [SerializeField] float defenseByValue = 0;
-        [SerializeField] float dodgeChance = 0;
+        [SerializeField] float defenseBonus = 0;
+        [SerializeField] float defenseModifier = 0;
         #endregion
 
         private LazyANTs<float> health;
@@ -23,15 +23,15 @@ namespace ANTs.Game
         public float Health
         {
             get => health.value;
-            set
+            private set
             {
                 health.value = Mathf.Clamp(value, 0, GetMaxHealth());
                 OnHealthUpdate.Invoke(health.value, GetMaxHealth());
                 if (Mathf.Approximately(health.value, 0)) OnHealthReachZeroEvent?.Invoke();
             }
         }
-        public float DefenseByValue { get => defenseByValue; }
-        public float DodgeChance { get => dodgeChance; }
+        public float GetDefenseBonus() { return defenseBonus; }
+        public float GetDefenseModifier() { return defenseModifier; }
         #endregion
 
         public float GetMaxHealth() { return GetComponent<BaseStat>().GetStat(StatType.Health); }

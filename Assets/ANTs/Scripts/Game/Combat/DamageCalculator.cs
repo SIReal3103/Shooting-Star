@@ -15,18 +15,12 @@ namespace ANTs.Game
 
         public float GetCalculatedDamage()
         {
-            if (IsDodgeSuccess()) return 0;
             return GetFinalDamage();
         }
 
         private float GetFinalDamage()
         {
-            return Mathf.Min(damageable.Health, Mathf.Max(0, damager.GetFinalDamage() - damageable.DefenseByValue));
-        }
-
-        private bool IsDodgeSuccess()
-        {
-            return Random.value < damageable.DodgeChance;
+            return Mathf.Min(damageable.Health, Mathf.Max(0, damager.CalculateFindalDamage() - damageable.DefenseByValue));
         }
     }
 }
