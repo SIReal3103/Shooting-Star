@@ -32,6 +32,13 @@ MonoBehaviour:
     - statType: 3
       levels:
       - 0
+    - statType: 1
+      levels:
+      - 10
+      - 20
+      - 30
+      - 40
+      - 50
   - characterClass: 2
     stats:
     - statType: 0

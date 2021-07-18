@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using ANTs.Template;
+using System;
+using UnityEngine;
 
 namespace ANTs.Game
 {
@@ -8,9 +10,53 @@ namespace ANTs.Game
         [SerializeField] int level = 1;
         [SerializeField] CharacterClass characterClass = CharacterClass.Player;
         [SerializeField] StatManager statManager;
+        
+        private Experience currentExperience;
 
-        public float GetStat(StatType statType)
+        private void Awake()
         {
+            currentExperience = GetComponent<Experience>();
+
+            if(currentExperience != null && level > 1)
+            {
+                currentExperience.GainExperience(GetStat(StatType.ExperienceToLevelUp, level - 1));
+            }
+        }
+
+        private void OnEnable()
+        {
+            if(currentExperience != null)
+            {
+                currentExperience.OnExperienceUpdateEvent += OnLevelUpdate;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if(currentExperience != null)
+            {
+                currentExperience.OnExperienceUpdateEvent -= OnLevelUpdate;
+            }
+        }
+
+        private void OnLevelUpdate()
+        {
+            level = CalculateLevel(currentExperience.GetExperience());
+        }
+
+        private int CalculateLevel(float currentExperience)
+        {
+            float[] experiences = statManager.GetLevels(characterClass, StatType.ExperienceToLevelUp);
+            for(int i = 0; i < experiences.Length; i++)
+            {
+                if (experiences[i] > currentExperience) return i + 1;
+            }
+            return experiences.Length;
+        }
+
+        public float GetStat(StatType statType, int level = -1)
+        {
+            if (level == -1) level = this.level;
             return statManager.GetStat(characterClass, statType, level);
         }
     }

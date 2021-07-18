@@ -5,6 +5,7 @@ namespace ANTs.Game
 {
     public class Damager : MonoBehaviour
     {
+        [SerializeField] bool tryUseBaseStat = true;
         [SerializeField] DamageData initialDamageData = null;
 
         [ReadOnly]
@@ -25,7 +26,7 @@ namespace ANTs.Game
 
         private DamageData GetInitialDamageData()
         {
-            if (TryGetComponent(out BaseStat baseStat))
+            if (tryUseBaseStat && TryGetComponent(out BaseStat baseStat))
             {
                 return new DamageData(
                     baseStat.GetStat(StatType.DamageBonus),

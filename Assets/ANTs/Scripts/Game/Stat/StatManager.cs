@@ -67,5 +67,11 @@ namespace ANTs.Game
 
             return statDict[characterClass][statType][level - 1];
         }
+
+        public float[] GetLevels(CharacterClass characterClass, StatType statType)
+        {
+            BuildStatDict();
+            return statDict[characterClass][statType];
+        }
     }
 }
