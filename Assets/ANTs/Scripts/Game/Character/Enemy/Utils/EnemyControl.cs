@@ -8,12 +8,12 @@ namespace ANTs.Game
     {
         private void OnEnable()
         {
-            GetComponent<Damageable>().OnHealthReachZeroEvent += DeadBehaviour;
+            GetComponent<Damageable>().OnActorDieEvent += DeadBehaviour;
         }
 
         private void OnDisable()
         {
-            GetComponent<Damageable>().OnHealthReachZeroEvent -= DeadBehaviour;
+            GetComponent<Damageable>().OnActorDieEvent -= DeadBehaviour;
         }
 
         private void DeadBehaviour()

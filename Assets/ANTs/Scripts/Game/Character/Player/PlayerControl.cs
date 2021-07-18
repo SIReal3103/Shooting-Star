@@ -16,12 +16,12 @@ namespace ANTs.Game
 
         private void OnEnable()
         {
-            GetComponent<Damageable>().OnHealthReachZeroEvent += GetComponent<DieAction>().ActionStart;
+            GetComponent<Damageable>().OnActorDieEvent += GetComponent<DieAction>().ActionStart;
         }
 
         private void OnDisable()
         {
-            GetComponent<Damageable>().OnHealthReachZeroEvent += GetComponent<DieAction>().ActionStop;
+            GetComponent<Damageable>().OnActorDieEvent -= GetComponent<DieAction>().ActionStart;
         }
 
         public void StartMovingTo(Vector2 position)

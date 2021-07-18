@@ -19,9 +19,9 @@ namespace ANTs.Game
         {
             transform.SetParentPreserve(data.parent);
             this.owner = data.owner;
-            if (owner.TryGetComponent(out Damager ownerDamager))
+            if (owner.TryGetComponent(out Damager weaponOwner))
             {
-                GetComponent<Damager>().AddToDamageData(ownerDamager.GetDamageData());
+                GetComponent<Damager>().CombineDamageData(weaponOwner.GetDamageData(), weaponOwner);
             }
         }
 

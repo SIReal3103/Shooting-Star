@@ -6,22 +6,19 @@ namespace ANTs.Game
     [RequireComponent(typeof(TouchDamager))]
     public class WeaponAmmo : Projectile, IProgressable, IPoolable
     {
-        #region ==================================SerializeField
-
-        [Space]
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextBulletId;
-
-        #endregion
         public ProgressIdentifier CurrentLevel { get => currentLevel; }
         public ProgressIdentifier NextLevel { get => nextBulletId; }
 
         private TouchDamager touchDamager;
+        private Damager damager;
 
         protected override void Awake()
         {
             base.Awake();
             touchDamager = GetComponent<TouchDamager>();
+            damager = GetComponent<Damager>();
         }
 
         private void OnEnable()
@@ -44,9 +41,10 @@ namespace ANTs.Game
             transform.position = data.spawnPosition;
             SetDirection(data.moveDirection);
             touchDamager.SetSource(data.shooter);
-            if (data.projectileWeapon.TryGetComponent(out Damager weaponDamager))
+
+            if (data.projectileWeapon.TryGetComponent(out Damager weapon))
             {
-                GetComponent<Damager>().AddToDamageData(weaponDamager.GetDamageData());
+                damager.CombineDamageData(weapon.GetDamageData(), weapon.GetDamageCauser());
             }
         }
 

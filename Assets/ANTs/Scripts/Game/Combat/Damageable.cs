@@ -12,16 +12,17 @@ namespace ANTs.Game
         [System.Serializable]
         class OnHealthTakeDamageEvent : UnityEvent<float> { }
 
-        public event Action OnHealthReachZeroEvent;
+        public event Action OnActorDieEvent;
 
         #region ===============================SERIALIZEFIELD
         [SerializeField] OnHealthUpdateEvent OnHealthUpdate;
-        [SerializeField] OnHealthTakeDamageEvent OnHealthTakeDamage;
+        [SerializeField] OnHealthTakeDamageEvent OnActorTakeDamage;
         [SerializeField] float defenseBonus = 0;
         [SerializeField] float defenseModifier = 0;
         #endregion
 
         private LazyANTs<float> health;
+        private BaseStat baseStat;
 
         #region ===============================ACCESSORS
         public float Health
@@ -31,18 +32,18 @@ namespace ANTs.Game
             {
                 health.value = Mathf.Clamp(value, 0, GetMaxHealth());
                 OnHealthUpdate.Invoke(health.value, GetMaxHealth());
-                if (Mathf.Approximately(health.value, 0)) OnHealthReachZeroEvent?.Invoke();
             }
         }
         public float GetDefenseBonus() { return defenseBonus; }
         public float GetDefenseModifier() { return defenseModifier; }
         #endregion
 
-        public float GetMaxHealth() { return GetComponent<BaseStat>().GetStat(StatType.Health); }
+        public float GetMaxHealth() { return baseStat.GetStat(StatType.Health); }
 
         private void Awake()
         {
             health = new LazyANTs<float>(GetMaxHealth);
+            baseStat = GetComponent<BaseStat>();
         }
 
         private void Start()
@@ -56,13 +57,25 @@ namespace ANTs.Game
             float calculatedDamage = calculator.GetCalculatedDamage();
             if (Mathf.Approximately(calculatedDamage, 0)) return;
 
-            DrawHealth(calculatedDamage);
-            OnHealthTakeDamage.Invoke(calculatedDamage);
+            float remainedHealth = DrawHealth(calculatedDamage);
+            OnActorTakeDamage.Invoke(calculatedDamage);
+
+            if(Mathf.Approximately(remainedHealth, 0))
+            {
+                OnActorDieEvent?.Invoke();
+
+                Damager damageCauser = damager.GetDamageCauser();
+                if (damageCauser.TryGetComponent(out Experience causerXP))
+                {
+                    causerXP.GainExperience(baseStat.GetStat(StatType.ExperienceToAward));
+                }
+            }
         }
 
-        private void DrawHealth(float health)
+        private float DrawHealth(float health)
         {
             this.Health -= health;
+            return this.Health;
         }
 
         public void GainHealth(float health)

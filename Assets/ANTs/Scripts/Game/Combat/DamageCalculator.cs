@@ -4,20 +4,20 @@ namespace ANTs.Game
 {
     public class DamageCalculator
     {
-        private Damager damager;
-        private Damageable damageable;
+        private Damager attacker;
+        private Damageable defender;
 
-        public DamageCalculator(Damageable damageable, Damager damager)
+        public DamageCalculator(Damageable defender, Damager attacker)
         {
-            this.damageable = damageable;
-            this.damager = damager;
+            this.defender = defender;
+            this.attacker = attacker;
         }
 
         public float GetCalculatedDamage()
         {
-            return Mathf.Min(damageable.Health,
-                 Mathf.Max(0, (GetFinalDamage(damager) - damageable.GetDefenseBonus())) *
-                (1 - damageable.GetDefenseModifier())
+            return Mathf.Min(defender.Health,
+                 Mathf.Max(0, (GetFinalDamage(attacker) - defender.GetDefenseBonus())) *
+                (1 - defender.GetDefenseModifier())
             );
         }
 

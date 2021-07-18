@@ -9,19 +9,23 @@ namespace ANTs.Game
         [SerializeField] DamageData initialDamageData = null;
 
         [ReadOnly]
-        [SerializeField]
-        DamageData currentDamageData;
+        [SerializeField] DamageData currentDamageData;
 
         public DamageData GetDamageData() { return currentDamageData; }
-
-        public void AddToDamageData(DamageData additiveData)
-        {
-            currentDamageData = GetInitialDamageData().Combine(additiveData);
-        }
 
         private void Awake()
         {
             currentDamageData = GetInitialDamageData();
+        }
+
+        public void CombineDamageData(DamageData otherData, Damager damageCauser)
+        {
+            currentDamageData = GetInitialDamageData().Combine(otherData, damageCauser);
+        }
+
+        public Damager GetDamageCauser()
+        {
+            return currentDamageData.damageCauser;
         }
 
         private DamageData GetInitialDamageData()
@@ -30,18 +34,16 @@ namespace ANTs.Game
             {
                 return new DamageData(
                     baseStat.GetStat(StatType.DamageBonus),
-                    baseStat.GetStat(StatType.DamageModifier)
+                    baseStat.GetStat(StatType.DamageModifier),
+                    this
                 );
             }
             else
             {
-                return initialDamageData.Clone();
+                DamageData data = initialDamageData.Clone();
+                data.damageCauser = this;
+                return data;
             }
-        }
-
-        public bool IsEnemy(Damageable target)
-        {
-            return target.tag != this.tag;
         }
     }
 
@@ -50,21 +52,27 @@ namespace ANTs.Game
     {
         public float damageBonus = 10;
         public float damageModifier = 0;
+        [HideInInspector]
+        public Damager damageCauser;
 
-        public DamageData(float damageBonus, float damageModifier)
+        public DamageData(float damageBonus, float damageModifier, Damager damageCauser)
         {
             this.damageBonus = damageBonus;
             this.damageModifier = damageModifier;
+            this.damageCauser = damageCauser;
         }
 
-        public DamageData Combine(DamageData damageData)
+        public DamageData Combine(DamageData damageData, Damager damageCauser)
         {
-            return new DamageData(damageData.damageBonus + damageBonus, damageData.damageModifier + damageModifier);
+            return new DamageData(
+                damageData.damageBonus + damageBonus, 
+                damageData.damageModifier + damageModifier, 
+                damageCauser);
         }
 
         public DamageData Clone()
         {
-            return new DamageData(damageBonus, damageModifier);
+            return new DamageData(damageBonus, damageModifier, damageCauser);
         }
     }
 }
