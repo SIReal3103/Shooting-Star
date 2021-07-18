@@ -39,11 +39,6 @@ namespace ANTs.Game
             }
         }
 
-        public float GetFinalDamage()
-        {
-            return currentDamageData.damageBonus * (1f + currentDamageData.damageModifier);
-        }
-
         public bool IsEnemy(Damageable target)
         {
             return target.tag != this.tag;
