@@ -8,7 +8,7 @@ namespace ANTs.UI
         [SerializeField] Transform Foreground;
         [SerializeField] Text text;
 
-        public void OnHealthUpdate(float health, float maxHealth)
+        public void UpdateHealth(float health, float maxHealth)
         {
             Foreground.localScale = new Vector3(health / maxHealth, 1);
             text.text = string.Format("{0:0}/{1:0}", health, maxHealth);

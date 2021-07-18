@@ -9,10 +9,14 @@ namespace ANTs.Game
     {
         [System.Serializable]
         class OnHealthUpdateEvent : UnityEvent<float, float> { }
+        [System.Serializable]
+        class OnHealthTakeDamageEvent : UnityEvent<float> { }
+
         public event Action OnHealthReachZeroEvent;
 
         #region ===============================SERIALIZEFIELD
         [SerializeField] OnHealthUpdateEvent OnHealthUpdate;
+        [SerializeField] OnHealthTakeDamageEvent OnHealthTakeDamage;
         [SerializeField] float defenseBonus = 0;
         [SerializeField] float defenseModifier = 0;
         #endregion
@@ -49,8 +53,11 @@ namespace ANTs.Game
         public void TakeDamageFrom(Damager damager)
         {
             DamageCalculator calculator = new DamageCalculator(this, damager);
-            DrawHealth(calculator.GetCalculatedDamage());
-            Debug.Log(damager + " deal " + calculator.GetCalculatedDamage() + ": " + this);
+            float calculatedDamage = calculator.GetCalculatedDamage();
+            if (Mathf.Approximately(calculatedDamage, 0)) return;
+
+            DrawHealth(calculatedDamage);
+            OnHealthTakeDamage.Invoke(calculatedDamage);
         }
 
         private void DrawHealth(float health)
