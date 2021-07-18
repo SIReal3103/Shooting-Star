@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace ANTs.Game
 {
     public class BaseStat : MonoBehaviour
     {
+        [System.Serializable]
+        public class OnExperienceUpdateEvent : UnityEvent<float, float> { }
+
+        [SerializeField] OnExperienceUpdateEvent OnExperienceUpdate;
         [Range(1, 100)]
         [SerializeField] int level = 1;
         [SerializeField] CharacterClass characterClass = CharacterClass.Player;
         [SerializeField] StatManager statManager;
+
 
         private Experience currentExperience;
 
@@ -40,6 +46,7 @@ namespace ANTs.Game
         private void OnLevelUpdate()
         {
             level = CalculateLevel(currentExperience.GetExperience());
+            OnExperienceUpdate.Invoke(currentExperience.GetExperience(), GetStat(StatType.ExperienceToLevelUp));
         }
 
         private int CalculateLevel(float currentExperience)

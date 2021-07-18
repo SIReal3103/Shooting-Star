@@ -32,6 +32,10 @@ MonoBehaviour:
     - statType: 3
       levels:
       - 0
+      - 0
+      - 0
+      - 0
+      - 0
     - statType: 1
       levels:
       - 10

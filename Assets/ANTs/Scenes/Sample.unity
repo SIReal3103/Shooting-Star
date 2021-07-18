@@ -778,6 +778,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.00012207031
       objectReference: {fileID: 0}
+    - target: {fileID: 5474221105151906951, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: prepareZone
@@ -1270,16 +1275,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
-    - target: {fileID: 512339790768595267, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: currentExperience
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4420248351766522832, guid: 445e380a067a260448138bd6e7ce26c4,
-        type: 3}
-      propertyPath: level
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name
@@ -1341,6 +1336,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5334012051252443867, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994979583202296159, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

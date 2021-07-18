@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace ANTs.Game
 {
@@ -6,7 +7,6 @@ namespace ANTs.Game
     public class Experience : MonoBehaviour
     {
         public event System.Action OnExperienceUpdateEvent;
-
         [SerializeField] float currentExperience = 0;
 
         private void Start()
