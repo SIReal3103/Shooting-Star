@@ -14,7 +14,6 @@ namespace ANTs.Game
         [SerializeField] CharacterClass characterClass = CharacterClass.Player;
         [SerializeField] StatManager statManager;
 
-
         private Experience currentExperience;
 
         private void Awake()
@@ -33,6 +32,11 @@ namespace ANTs.Game
             {
                 currentExperience.OnExperienceUpdateEvent += OnLevelUpdate;
             }
+        }
+
+        public int GetLevel()
+        {
+            return level;
         }
 
         private void OnDisable()

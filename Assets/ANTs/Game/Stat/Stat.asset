@@ -62,6 +62,9 @@ MonoBehaviour:
     - statType: 3
       levels:
       - 0
+    - statType: 2
+      levels:
+      - 2
   - characterClass: 1
     stats:
     - statType: 0
@@ -81,3 +84,6 @@ MonoBehaviour:
     - statType: 3
       levels:
       - 0
+    - statType: 2
+      levels:
+      - 2
