@@ -656,7 +656,7 @@ PrefabInstance:
     - target: {fileID: 8811048296046412269, guid: 2028ddd66b393454db8c1c2d038830e0,
         type: 3}
       propertyPath: m_Name
-      value: Abilities
+      value: Upgrades
       objectReference: {fileID: 0}
     - target: {fileID: 9108569623169528796, guid: 2028ddd66b393454db8c1c2d038830e0,
         type: 3}

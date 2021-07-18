@@ -7,7 +7,16 @@ namespace ANTs.Game
 {
     public class Upgrade : MonoBehaviour
     {
+        public event Action OnUpgradeUpdateEvent;
+
         [SerializeField] List<UpgradeBase> upgrades;
+
+        public List<UpgradeBase> GetUpgrades() { return upgrades; }
+
+        private void Start()
+        {
+            OnUpgradeUpdateEvent?.Invoke();
+        }
 
         public float GetBonus(StatType statType)
         {

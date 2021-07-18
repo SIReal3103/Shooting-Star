@@ -108,11 +108,25 @@ MonoBehaviour:
   OnHealthUpdate:
     m_PersistentCalls:
       m_Calls: []
-  OnHealthTakeDamage:
+  OnActorTakeDamage:
     m_PersistentCalls:
       m_Calls: []
   defenseBonus: 0
   defenseModifier: 0
+--- !u!114 &8869659547963184606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396a2d6b522885498a4963dbc6347b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: f2672f3904f40624e9a08beba788c6ca, type: 2}
 --- !u!1001 &2771048053187035676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,7 +205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3eb704835276b4ba9d25e9bcbb1423, type: 3}
+  m_Script: {fileID: 11500000, guid: 0423cac17bf19bf43810afeb5a7ced48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8643572601143051829
@@ -257,6 +271,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 73ee784a886703349a797f0782da93b7,
         type: 2}
+    - target: {fileID: 2010660201861666935, guid: f1188bb4d42b505469f668b121697e34,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 2041297795313579867, guid: f1188bb4d42b505469f668b121697e34,
         type: 3}
       propertyPath: m_Icon

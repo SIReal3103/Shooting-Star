@@ -5,7 +5,7 @@ namespace ANTs.Game
 {
     public abstract class UpgradeBase : ScriptableObject
     {
-        [SerializeField] Texture2D icon;
+        [SerializeField] public Sprite icon;
 
         public abstract IEnumerable<float> GetBonus(StatType statType);
     }
