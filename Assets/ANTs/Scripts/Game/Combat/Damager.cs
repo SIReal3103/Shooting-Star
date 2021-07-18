@@ -43,9 +43,9 @@ namespace ANTs.Game
             return currentDamageData.damageBonus * (1f + currentDamageData.damageModifier);
         }
 
-        public bool IsEnemy(Damageable damageable)
+        public bool IsEnemy(Damageable target)
         {
-            return damageable.tag != tag;
+            return target.tag != this.tag;
         }
     }
 

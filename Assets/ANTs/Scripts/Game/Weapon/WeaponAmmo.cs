@@ -41,10 +41,10 @@ namespace ANTs.Game
         public void WakeUp(object param)
         {
             AmmoData data = (AmmoData)param;
-            transform.position = data.origin;
+            transform.position = data.spawnPosition;
             SetDirection(data.moveDirection);
             touchDamager.SetSource(data.shooter);
-            if (data.weaponFireFrom.TryGetComponent(out Damager weaponDamager))
+            if (data.projectileWeapon.TryGetComponent(out Damager weaponDamager))
             {
                 GetComponent<Damager>().AddToDamageData(weaponDamager.GetDamageData());
             }
@@ -56,16 +56,16 @@ namespace ANTs.Game
     public class AmmoData
     {
         public GameObject shooter;
-        public ProjectileWeapon weaponFireFrom;
-        public Vector2 origin;
+        public ProjectileWeapon projectileWeapon;
+        public Vector2 spawnPosition;
         public Vector2 moveDirection;
 
-        public AmmoData(GameObject shooter, ProjectileWeapon weaponFireFrom, Vector2 origin, Vector2 moveDirection)
+        public AmmoData(GameObject shooter, ProjectileWeapon projectileWeapon, Vector2 spawnPosition, Vector2 moveDirection)
         {
             this.shooter = shooter;
-            this.origin = origin;
+            this.spawnPosition = spawnPosition;
             this.moveDirection = moveDirection;
-            this.weaponFireFrom = weaponFireFrom;
+            this.projectileWeapon = projectileWeapon;
         }
     }
 }
