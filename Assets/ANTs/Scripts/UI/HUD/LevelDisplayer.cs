@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelTracker : MonoBehaviour
+public class LevelDisplayer : MonoBehaviour
 {
     private Text text;
     private BaseStat playerStat;
