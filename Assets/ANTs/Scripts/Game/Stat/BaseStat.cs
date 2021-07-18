@@ -13,6 +13,7 @@ namespace ANTs.Game
         [SerializeField] int level = 1;
         [SerializeField] CharacterClass characterClass = CharacterClass.Player;
         [SerializeField] StatManager statManager;
+        [SerializeField] bool shouldUseAdditiveProvider = true;
 
         private Experience currentExperience;
 
@@ -66,6 +67,20 @@ namespace ANTs.Game
         public float GetStat(StatType statType, int level = -1)
         {
             if (level == -1) level = this.level;
+
+            float result = GetBaseStat(statType, level);
+            foreach (IAdditiveProvider provider in GetComponents<IAdditiveProvider>())
+            {
+                foreach (float additiveStat in provider.GetAdditiveBonus())
+                {
+                    result += additiveStat;
+                }
+            }
+            return result;
+        }
+
+        private float GetBaseStat(StatType statType, int level)
+        {
             return statManager.GetStat(characterClass, statType, level);
         }
     }
