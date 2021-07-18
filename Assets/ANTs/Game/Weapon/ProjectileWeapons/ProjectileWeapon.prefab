@@ -23,6 +23,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 253328170560283549, guid: 0eac4f02bba04d54d80d51eb5198c8ea,
+        type: 3}
+      propertyPath: isAttachWithAnimator
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1915543006436008020, guid: 0eac4f02bba04d54d80d51eb5198c8ea,
         type: 3}
       propertyPath: m_Controller

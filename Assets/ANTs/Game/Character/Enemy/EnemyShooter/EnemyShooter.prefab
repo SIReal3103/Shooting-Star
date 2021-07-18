@@ -144,6 +144,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2617504585147442672, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 32c8e01712defac43993e905a11a0c7d,
+        type: 2}
     - target: {fileID: 3602154633942238383, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -181,12 +187,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
-      propertyPath: maskTable.Array.data[3]
+      propertyPath: maskTable.Array.data[2]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
+      propertyPath: maskTable.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
       propertyPath: maskTable.Array.data[5]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: maskTable.Array.data[6]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9215028331467832096, guid: 9e9222022420a554187c138db3b69c93,
