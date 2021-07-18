@@ -69,12 +69,9 @@ namespace ANTs.Game
             if (level == -1) level = this.level;
 
             float result = GetBaseStat(statType, level);
-            foreach (IAdditiveProvider provider in GetComponents<IAdditiveProvider>())
+            if (TryGetComponent(out Upgrade upgrade))
             {
-                foreach (float additiveStat in provider.GetAdditiveBonus())
-                {
-                    result += additiveStat;
-                }
+                result += upgrade.GetBonus(statType);
             }
             return result;
         }
