@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
-using ANTs.Game;
+﻿using ANTs.Game;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ANTs.UI
 {
@@ -30,7 +28,7 @@ namespace ANTs.UI
 
         public void UpdateUI()
         {
-            ClearChilds();
+            ClearChilden();
             DisplayUpgradeCell();
         }
 
@@ -44,7 +42,7 @@ namespace ANTs.UI
             }
         }
 
-        private void ClearChilds()
+        private void ClearChilden()
         {
             foreach (Transform child in transform)
             {

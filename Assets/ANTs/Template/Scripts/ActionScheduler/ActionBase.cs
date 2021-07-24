@@ -131,10 +131,7 @@ namespace ANTs.Template
             {
                 if (isTransitionTrigger)
                 {
-                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " +
-                        this +
-                        " which set isTransitionTrigger true"
-                    );
+                    Debug.LogWarning("SetAnimationBool function shouldn't be called by " + this + " which set isTransitionTrigger true");
                     return;
                 }
                 animator.SetBool("Is" + GetName(), value);

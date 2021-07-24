@@ -6,9 +6,7 @@ namespace ANTs.Game
     [RequireComponent(typeof(Damager))]
     public class TouchDamager : MonoBehaviour
     {
-        /// <summary>
-        /// When touch damager hit a damageble enemy
-        /// </summary>
+        /// When TouchDamager hit Enemy target
         public event Action OnHitEvent;
 
         [Tooltip("The source of the attacker, use to compare tag")]

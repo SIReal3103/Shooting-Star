@@ -8,6 +8,8 @@ namespace ANTs.Game
         [System.Serializable]
         public class OnExperienceUpdateEvent : UnityEvent<float, float> { }
 
+        const int DEFAULT_LEVEL_VALUE = -1;
+
         [SerializeField] OnExperienceUpdateEvent OnExperienceUpdate;
         [Range(1, 100)]
         [SerializeField] int level = 1;
@@ -33,12 +35,7 @@ namespace ANTs.Game
             {
                 currentExperience.OnExperienceUpdateEvent += OnLevelUpdate;
             }
-        }
-
-        public int GetLevel()
-        {
-            return level;
-        }
+        }        
 
         private void OnDisable()
         {
@@ -46,6 +43,11 @@ namespace ANTs.Game
             {
                 currentExperience.OnExperienceUpdateEvent -= OnLevelUpdate;
             }
+        }
+
+        public int GetLevel()
+        {
+            return level;
         }
 
         private void OnLevelUpdate()
@@ -63,10 +65,10 @@ namespace ANTs.Game
             }
             return experiences.Length;
         }
-
-        public float GetStat(StatType statType, int level = -1)
+        
+        public float GetStat(StatType statType, int level = DEFAULT_LEVEL_VALUE)
         {
-            if (level == -1) level = this.level;
+            if (level == DEFAULT_LEVEL_VALUE) level = this.level;
 
             float result = GetBaseStat(statType, level);
             if (TryGetComponent(out Upgrade upgrade))

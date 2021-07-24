@@ -10,10 +10,10 @@ namespace ANTs.Game
 
         public override IEnumerable<float> GetBonus(StatType statType)
         {
-            if(statType == StatType.Health)
+            if (statType == StatType.Health)
             {
                 yield return 10;
-            }            
+            }
         }
     }
 }

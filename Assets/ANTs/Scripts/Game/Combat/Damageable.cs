@@ -60,7 +60,7 @@ namespace ANTs.Game
             float remainedHealth = DrawHealth(calculatedDamage);
             OnActorTakeDamage.Invoke(calculatedDamage);
 
-            if(Mathf.Approximately(remainedHealth, 0))
+            if (Mathf.Approximately(remainedHealth, 0))
             {
                 OnActorDieEvent?.Invoke();
 

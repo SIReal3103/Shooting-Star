@@ -65,8 +65,8 @@ namespace ANTs.Game
         public DamageData Combine(DamageData damageData, Damager damageCauser)
         {
             return new DamageData(
-                damageData.damageBonus + damageBonus, 
-                damageData.damageModifier + damageModifier, 
+                damageData.damageBonus + damageBonus,
+                damageData.damageModifier + damageModifier,
                 damageCauser);
         }
 

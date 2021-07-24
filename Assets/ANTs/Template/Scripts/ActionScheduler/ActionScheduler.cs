@@ -7,8 +7,6 @@ namespace ANTs.Template
     public class ActionScheduler : MonoBehaviour
     {
         [SerializeField] bool[] maskTable;
-        [Tooltip("Default animator (in model) if null")]
-
         private Dictionary<IAction, int> getMaskId;
         private IAction[] actions;
 
