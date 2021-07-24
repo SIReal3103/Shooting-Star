@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ANTs.UI
 {
-    public class BarDisplayer : MonoBehaviour
+    public class BarUI : MonoBehaviour
     {
         [SerializeField] Transform Foreground;
         [SerializeField] Text text;
