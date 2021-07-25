@@ -150,10 +150,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 32c8e01712defac43993e905a11a0c7d,
         type: 2}
+    - target: {fileID: 3361608048565341874, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 3602154633942238383, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3602154633942238383, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
@@ -168,12 +173,17 @@ PrefabInstance:
     - target: {fileID: 3602154633942238383, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3602154633942238383, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: FacingWithDirection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5279204710837894691, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}

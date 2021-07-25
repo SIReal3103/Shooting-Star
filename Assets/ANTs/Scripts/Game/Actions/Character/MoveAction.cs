@@ -59,7 +59,7 @@ namespace ANTs.Game
             moveStrategy.data.destination = destination;
         }
 
-        private bool IsFacingLeft()
+        private bool IsMovingLeft()
         {
             return GetMoveDirection().x < 0f;
         }
@@ -67,7 +67,9 @@ namespace ANTs.Game
         protected override void ActionFixedUpdate()
         {
             if (FacingWithDirection)
-                model.localScale = new Vector2(IsFacingLeft() ? -1 : 1, 1);
+            {
+                model.right = new Vector2(IsMovingLeft() ? -1 : 1, 0);
+            }
 
             SetAnimatorBool(IsMoving());
 

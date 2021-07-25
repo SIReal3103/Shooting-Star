@@ -36,8 +36,7 @@ namespace ANTs.Game
         {
             currentWeapon.ForceInit();
         }
-
-        #region ==================================== TRIGGERS
+        
         public void TriggerCurrentWeapon()
         {
             currentWeapon.value.TriggerWeapon();
@@ -52,7 +51,6 @@ namespace ANTs.Game
         {
             currentProjectileWeapon.value.TriggerWeapon();
         }
-        #endregion
 
         public void NotifyWeaponOwnerDie()
         {
