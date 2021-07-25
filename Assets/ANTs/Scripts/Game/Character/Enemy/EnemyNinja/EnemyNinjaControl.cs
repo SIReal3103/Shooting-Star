@@ -17,7 +17,6 @@ namespace ANTs.Game
         private MoveAction move;
         private MeleeAttackAction attack;
         private Transform player;
-        private bool isArrived;
         private bool isAttackDone;
 
         private void Awake()
@@ -43,29 +42,29 @@ namespace ANTs.Game
         {
             if (Task.current.isStarting)
             {
-                isArrived = false;
                 move.SetMoveData(runSpeed);
-                move.StartMovingTo(player.position, OnActorArrived);
+                move.StartMovingTo(player.position);
             }
-
-            if (isArrived)
+            
+            if(move.IsArrived())
             {
                 Task.current.Succeed();
             }
-            Task.current.debugInfo = Task.current.status.ToString();
         }
 
         [Task]
         public void MoveToPreparePosition()
         {
             if (Task.current.isStarting)
-            {
-                isArrived = false;
+            {                
                 move.SetMoveData(normalSpeed);
-                move.StartMovingTo(prepareZone.GetRandomPointOnSurface(), OnActorArrived);
+                move.StartMovingTo(prepareZone.GetRandomPointOnSurface(), Task.current.Succeed);
             }
 
-            if (isArrived) Task.current.Succeed();
+            if(move.IsArrived())
+            {
+                Task.current.Succeed();
+            }
         }
 
         [Task]
@@ -73,16 +72,16 @@ namespace ANTs.Game
         {
             if (Task.current.isStarting)
             {
+                isAttackDone = false;
                 attack.ActionStart();
             }
-
-            if (isAttackDone) Task.current.Succeed();
+            if (isAttackDone) Task.current.Succeed();            
         }
         #endregion
 
-        public void OnActorArrived()
+        void Succeed(Task task)
         {
-            isArrived = true;
+            task.Succeed();
         }
 
         private void OnActorAttackFinished()

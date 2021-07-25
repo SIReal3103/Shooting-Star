@@ -86,7 +86,7 @@ namespace ANTs.Game
             return IsActionActive && !IsArrived();
         }
 
-        private bool IsArrived()
+        public bool IsArrived()
         {
             return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
