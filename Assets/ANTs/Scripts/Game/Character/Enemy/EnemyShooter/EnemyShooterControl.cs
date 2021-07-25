@@ -21,22 +21,12 @@ namespace ANTs.Game
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        private void OnEnable()
-        {
-            move.OnArrivedEvent += OnArrived;
-        }
-
-        private void OnDisable()
-        {
-            move.OnArrivedEvent -= OnArrived;
-        }
-
         [Task]
         public void ProgressNextPosition()
         {
             if (Task.current.isStarting)
             {
-                move.StartMovingTo(path.GetPosition());
+                move.StartMovingTo(path.GetPosition(), OnActorArrived);
                 isArrived = false;
                 path.Progress();
             }
@@ -54,7 +44,7 @@ namespace ANTs.Game
             }
         }
 
-        public void OnArrived()
+        public void OnActorArrived()
         {
             isArrived = true;
         }

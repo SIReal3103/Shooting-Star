@@ -29,13 +29,11 @@ namespace ANTs.Game
 
         private void OnEnable()
         {
-            move.OnArrivedEvent += OnActorArrived;
             attack.OnActionStopEvent += OnActorAttackFinished;
         }
 
         private void OnDisable()
         {
-            move.OnArrivedEvent -= OnActorArrived;
             attack.OnActionStopEvent -= OnActorAttackFinished;
         }
 
@@ -47,7 +45,7 @@ namespace ANTs.Game
             {
                 isArrived = false;
                 move.SetMoveData(runSpeed);
-                move.SetDestination(player.position);
+                move.StartMovingTo(player.position, OnActorArrived);
             }
 
             if (isArrived)
@@ -64,7 +62,7 @@ namespace ANTs.Game
             {
                 isArrived = false;
                 move.SetMoveData(normalSpeed);
-                move.SetDestination(prepareZone.GetRandomPointOnSurface());
+                move.StartMovingTo(prepareZone.GetRandomPointOnSurface(), OnActorArrived);
             }
 
             if (isArrived) Task.current.Succeed();

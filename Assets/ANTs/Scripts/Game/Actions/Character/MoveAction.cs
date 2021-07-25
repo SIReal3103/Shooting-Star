@@ -12,8 +12,6 @@ namespace ANTs.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class MoveAction : ActionBase
     {
-        public event Action OnArrivedEvent;
-
         [Tooltip("To control actor's facing direction")]
         [SerializeField] Transform model;
         [SerializeField] bool FacingWithDirection;
@@ -26,6 +24,8 @@ namespace ANTs.Game
         private Rigidbody2D rb;
         private MoveStrategy moveStrategy;
 
+        private Action CurrentArrivedCallBack;
+
         protected override void Awake()
         {
             base.Awake();
@@ -34,12 +34,13 @@ namespace ANTs.Game
             SetMoveData(initialMoveData);
         }
 
-        #region ===========================================Behaviours
-
-        public void StartMovingTo(Vector2 destination)
+        public void StartMovingTo(Vector2 destination, Action OnArrivedCallBack = null)
         {
             ActionStart();
             SetDestination(destination);
+
+            CurrentArrivedCallBack?.Invoke();
+            CurrentArrivedCallBack = OnArrivedCallBack;
         }
 
         public Vector2 GetMoveDirection()
@@ -53,7 +54,7 @@ namespace ANTs.Game
             moveStrategy.data.rb = rb;
         }
 
-        public void SetDestination(Vector2 destination)
+        private void SetDestination(Vector2 destination)
         {
             moveStrategy.data.destination = destination;
         }
@@ -63,10 +64,6 @@ namespace ANTs.Game
             return GetMoveDirection().x < 0f;
         }
 
-        #endregion
-
-
-        #region ============================================ActionBase Implementation
         protected override void ActionFixedUpdate()
         {
             if (FacingWithDirection)
@@ -76,7 +73,7 @@ namespace ANTs.Game
 
             if (IsArrived())
             {
-                OnArrivedEvent?.Invoke();
+                CurrentArrivedCallBack?.Invoke();
                 return;
             }
             moveStrategy?.UpdatePath();
@@ -91,7 +88,6 @@ namespace ANTs.Game
         {
             return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
         }
-        #endregion
     }
 
     public abstract class MoveFactory

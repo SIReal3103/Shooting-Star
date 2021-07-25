@@ -26,8 +26,7 @@ namespace ANTs.Game
 
         public void StartMovingTo(Vector2 position)
         {
-            mover.ActionStart();
-            mover.SetDestination(position);
+            mover.StartMovingTo(position);
         }
 
         public void UpgradeWeapon()

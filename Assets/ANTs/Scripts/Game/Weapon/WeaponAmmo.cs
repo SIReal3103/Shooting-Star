@@ -39,7 +39,7 @@ namespace ANTs.Game
         {
             AmmoData data = (AmmoData)param;
             transform.position = data.spawnPosition;
-            SetDirection(data.moveDirection);
+            StartMovingTo(data.moveDirection);
             touchDamager.SetSource(data.shooter);
 
             if (data.projectileWeapon.TryGetComponent(out Damager weapon))

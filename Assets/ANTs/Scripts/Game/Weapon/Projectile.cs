@@ -26,9 +26,9 @@ namespace ANTs.Game
             }
         }
 
-        public void SetDirection(Vector2 direction)
+        public void StartMovingTo(Vector2 direction)
         {
-            mover.SetDestination(direction * 1000);
+            mover.StartMovingTo(direction * 1000);
         }
 
         private bool IsOutOfScreen()
