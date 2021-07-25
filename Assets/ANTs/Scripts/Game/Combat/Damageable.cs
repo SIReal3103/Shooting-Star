@@ -2,10 +2,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using ANTs.Template.UI;
+using System.Collections.Generic;
 
 namespace ANTs.Game
 {
-    public class Damageable : MonoBehaviour
+    public class Damageable : MonoBehaviour, IDisplayOnHUD
     {
         [System.Serializable]
         class OnHealthUpdateEvent : UnityEvent<float, float> { }
@@ -14,17 +16,14 @@ namespace ANTs.Game
 
         public event Action OnActorDieEvent;
 
-        #region ===============================SERIALIZEFIELD
         [SerializeField] OnHealthUpdateEvent OnHealthUpdate;
         [SerializeField] OnHealthTakeDamageEvent OnActorTakeDamage;
         [SerializeField] float defenseBonus = 0;
         [SerializeField] float defenseModifier = 0;
-        #endregion
 
         private LazyANTs<float> health;
         private BaseStat baseStat;
 
-        #region ===============================ACCESSORS
         public float Health
         {
             get => health.value;
@@ -36,8 +35,6 @@ namespace ANTs.Game
         }
         public float GetDefenseBonus() { return defenseBonus; }
         public float GetDefenseModifier() { return defenseModifier; }
-        #endregion
-
         public float GetMaxHealth() { return baseStat.GetStat(StatType.Health); }
 
         private void Awake()
@@ -81,6 +78,11 @@ namespace ANTs.Game
         public void GainHealth(float health)
         {
             this.Health += health;
+        }
+
+        public IEnumerable<string> GetDisplayInfos()
+        {
+            yield return $"{this}";
         }
     }
 }

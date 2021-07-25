@@ -1,5 +1,9 @@
 ﻿using ANTs.Template;
 using UnityEngine;
+using ANTs.UI;
+using ANTs.Template.UI;
+using System.Collections.Generic;
+using System;
 
 namespace ANTs.Game
 {
@@ -7,7 +11,6 @@ namespace ANTs.Game
     {
         [SerializeField] bool tryUseBaseStat = true;
         [SerializeField] DamageData initialDamageData = null;
-
         [ReadOnly]
         [SerializeField] DamageData currentDamageData;
 

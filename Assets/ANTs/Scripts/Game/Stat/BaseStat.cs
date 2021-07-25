@@ -14,7 +14,7 @@ namespace ANTs.Game
         [Range(1, 100)]
         [SerializeField] int level = 1;
         [SerializeField] CharacterClass characterClass = CharacterClass.Player;
-        [SerializeField] StatManager statManager;
+        [SerializeField] StatManager statManager;        
         [SerializeField] bool shouldUseAdditiveProvider = true;
 
         private Experience currentExperience;

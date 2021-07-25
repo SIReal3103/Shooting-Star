@@ -32,22 +32,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d0c315b32a1e744a67bd6552e4bdf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8220768280498765288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501706053503171117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a1093ea441e5743a800b4f24791c78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
-  defenseByValue: 0
-  dodgeChance: 0
 --- !u!1001 &3837516004551694021
 PrefabInstance:
   m_ObjectHideFlags: 0
