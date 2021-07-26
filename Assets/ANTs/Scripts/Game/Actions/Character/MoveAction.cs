@@ -12,16 +12,16 @@ namespace ANTs.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class MoveAction : ActionBase
     {
-        [Tooltip("To control actor's facing direction")]
-        [SerializeField] Transform model;
         [SerializeField] bool FacingWithDirection;
-        [Header("Movement Data")]
+        [Conditional("FacingWithDirection", true)]
+        [SerializeField] Transform model;
         [Space(10)]
         [SerializeField] MoveData initialMoveData;
+        [Space(5)]
         [SerializeField] float destinationOffset = 0.5f;
 
         private Rigidbody2D rb;
-        private MoveStrategy moveStrategy;
+        private MoveStrategy currentMove;
 
         private Action CurrentArrivedCallBack;
 
@@ -29,7 +29,6 @@ namespace ANTs.Game
         {
             base.Awake();
             rb = GetComponent<Rigidbody2D>();
-            moveStrategy = MoveFactory.CreateMove(initialMoveData.GetMovementType());
             SetMoveData(initialMoveData);
         }
 
@@ -44,18 +43,18 @@ namespace ANTs.Game
 
         public Vector2 GetMoveDirection()
         {
-            return moveStrategy.data.GetMoveDirection();
+            return currentMove.data.GetMoveDirection();
         }
 
         public void SetMoveData(MoveData data)
         {
-            moveStrategy.data = data;
-            moveStrategy.data.rb = rb;
+            data.rb = rb;
+            currentMove = MoveFactory.CreateMove(data);
         }
 
         private void SetDestination(Vector2 destination)
         {
-            moveStrategy.data.destination = destination;
+            currentMove.SetDestination(destination);
         }
 
         private bool IsMovingLeft()
@@ -77,7 +76,7 @@ namespace ANTs.Game
                 CurrentArrivedCallBack?.Invoke();
                 return;
             }
-            moveStrategy?.UpdatePath();
+            currentMove?.UpdatePath();
         }
 
         private bool IsMoving()
@@ -87,22 +86,20 @@ namespace ANTs.Game
 
         public bool IsArrived()
         {
-            return (moveStrategy.data.destination - rb.position).magnitude < destinationOffset;
+            return (currentMove.data.destination - rb.position).magnitude < destinationOffset;
         }
     }
 
-    public abstract class MoveFactory
+    public static class MoveFactory
     {
-        private MoveFactory() { }
-
-        public static MoveStrategy CreateMove(MovementType moveType)
+        public static MoveStrategy CreateMove(MoveData data)
         {
-            switch (moveType)
+            switch (data.GetMovementType())
             {
                 case MovementType.Linearity:
-                    return new MoveLinearity();
+                    return new MoveLinearity(data);
                 case MovementType.Lerp:
-                    return new LerpMovement();
+                    return new LerpMovement(data);
                 default:
                     throw new UnityException("Invalid moveStrategy");
             }
@@ -112,11 +109,24 @@ namespace ANTs.Game
     public abstract class MoveStrategy
     {
         public MoveData data;
+
+        public MoveStrategy(MoveData data)
+        {
+            this.data = data;
+        }
+
+        public void SetDestination(Vector2 destination)
+        {
+            data.destination = destination;
+        }
+
         public abstract void UpdatePath();
     }
 
     public class MoveLinearity : MoveStrategy
     {
+        public MoveLinearity(MoveData data) : base(data) { }
+
         public override void UpdatePath()
         {
             Vector2 direction = (data.destination - data.rb.position).normalized;
@@ -126,9 +136,15 @@ namespace ANTs.Game
 
     public class LerpMovement : MoveStrategy
     {
+        public LerpMovement(MoveData data) : base(data) { }
+
         public override void UpdatePath()
         {
-            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.Speed * Time.deltaTime));
+            Vector2 direction = (data.destination - data.rb.position).normalized;
+            data.rb.MovePosition(
+                Vector2.Lerp(data.rb.position, data.rb.position + direction * data.Speed, 
+                data.TiltSpeed * Time.deltaTime)
+            );
         }
     }
 
@@ -141,7 +157,7 @@ namespace ANTs.Game
         [SerializeField] float tiltSpeed = 0.1f;
 
         [HideInInspector]
-        public Vector2 destination;
+        public Vector2 destination = new Vector2();
         [HideInInspector]
         public Rigidbody2D rb;
 
@@ -151,6 +167,17 @@ namespace ANTs.Game
         }
 
         public float Speed { get => speed; }
+        public float TiltSpeed
+        {
+            get
+            {
+                if(movementType != MovementType.Lerp)
+                {
+                    throw new UnityException("TiltSpeed is not comparable with " + movementType);
+                }
+                return tiltSpeed;
+            }
+        }
 
         public Vector2 GetMoveDirection()
         {

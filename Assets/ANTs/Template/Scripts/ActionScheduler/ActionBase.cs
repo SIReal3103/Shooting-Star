@@ -51,8 +51,6 @@ namespace ANTs.Template
             if (actionStartOnPlay) ActionStart();
         }
 
-
-        #region =================================== Overrideable
         public virtual void ActionStart()
         {
             if (isActionActive) return;
@@ -85,7 +83,6 @@ namespace ANTs.Template
             if (!isTransitionTrigger) SetAnimatorBool(false);
         }
 
-        #region ===================================Updates
         protected virtual void Update()
         {
             if (IsActionActive) ActionUpdate();
@@ -98,11 +95,7 @@ namespace ANTs.Template
 
         protected virtual void ActionUpdate() { }
         protected virtual void ActionFixedUpdate() { }
-        #endregion
 
-        #endregion
-
-        #region ====================================== Sync Animation Logics
         private void InitSyncLogic()
         {
             if (isAttachWithAnimator)
@@ -118,9 +111,7 @@ namespace ANTs.Template
             calculator.OnTransitionExitEvent -= ActionStop;
             ActionStop();
         }
-        #endregion               
 
-        #region ===================================Animator control
         /// <summary>
         /// Only allow in Boolean or Custom with isTransitionTrigger on option in ActionType.
         /// </summary>
@@ -150,6 +141,5 @@ namespace ANTs.Template
         {
             return GetType().Name.Replace("Action", "");
         }
-        #endregion
     }
 }

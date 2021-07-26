@@ -693,6 +693,11 @@ PrefabInstance:
       propertyPath: destinationOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: initialMoveData.movementType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5113855489292110746, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -717,6 +722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyNinja
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
         type: 3}
@@ -1108,10 +1118,30 @@ PrefabInstance:
       propertyPath: movementType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: FacingWithDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialMoveData.tiltSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialMoveData.movementType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: isAutoFire
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}

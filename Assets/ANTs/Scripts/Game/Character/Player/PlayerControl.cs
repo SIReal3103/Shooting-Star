@@ -29,6 +29,11 @@ namespace ANTs.Game
             mover.StartMovingTo((Vector2)transform.position + direction.normalized);
         }
 
+        public void StartMovingTo(Vector2 destination)
+        {
+            mover.StartMovingTo(destination);
+        }
+
         public void DirectWeaponTo(Vector2 position)
         {
             GetComponent<WeaponHandler>().DirectWeaponAttachmentTo(position);

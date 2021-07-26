@@ -14,7 +14,9 @@ namespace ANTs.Game
 
         private void Update()
         {
-            player.StartMovingWith(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+            //player.StartMovingWith(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+
+            player.StartMovingTo(GetMousePosition());
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
