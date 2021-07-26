@@ -2,8 +2,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using ANTs.Template.UI;
-using System.Collections.Generic;
 
 namespace ANTs.Game
 {

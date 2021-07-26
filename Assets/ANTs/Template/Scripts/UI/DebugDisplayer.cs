@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 namespace ANTs.Template.UI
 {
@@ -25,9 +24,9 @@ namespace ANTs.Template.UI
             }
 
             public bool MoveNext()
-            {                
+            {
                 if (++position >= texts.Count)
-                {      
+                {
                     texts.Add(Instantiate(infoPrefab, rootInfo).GetComponentInChildren<Text>());
                 }
                 return true;
@@ -68,7 +67,7 @@ namespace ANTs.Template.UI
         public void UpdateUI()
         {
             textPool.Reset();
-            foreach(IDisplayOnHUD displayee in displayees)
+            foreach (IDisplayOnHUD displayee in displayees)
             {
                 foreach (string info in displayee.GetDisplayInfos())
                 {
@@ -77,11 +76,11 @@ namespace ANTs.Template.UI
                         ((Text)textPool.Current).text = info;
                     }
                 }
-            }                
+            }
         }
 
         private IEnumerable<IDisplayOnHUD> FindAllDisplayees()
-        {            
+        {
             return FindObjectsOfType<MonoBehaviour>().OfType<IDisplayOnHUD>();
         }
 

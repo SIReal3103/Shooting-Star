@@ -16,8 +16,7 @@ namespace ANTs.Game
         [Range(1, 100)]
         [SerializeField] int level = 1;
         [SerializeField] CharacterClass characterClass = CharacterClass.Player;
-        [SerializeField] StatManager statManager;        
-        [SerializeField] bool shouldUseAdditiveProvider = true;
+        [SerializeField] StatManager statManager;
 
         private Experience currentExperience;
 
@@ -37,7 +36,7 @@ namespace ANTs.Game
             {
                 currentExperience.OnExperienceUpdateEvent += OnLevelUpdate;
             }
-        }        
+        }
 
         private void OnDisable()
         {
@@ -67,7 +66,7 @@ namespace ANTs.Game
             }
             return experiences.Length;
         }
-        
+
         public float GetStat(StatType statType, int level = DEFAULT_LEVEL_VALUE)
         {
             if (level == DEFAULT_LEVEL_VALUE) level = this.level;

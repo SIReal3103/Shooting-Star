@@ -45,8 +45,8 @@ namespace ANTs.Game
                 move.SetMoveData(runSpeed);
                 move.StartMovingTo(player.position);
             }
-            
-            if(move.IsArrived())
+
+            if (move.IsArrived())
             {
                 Task.current.Succeed();
             }
@@ -56,12 +56,12 @@ namespace ANTs.Game
         public void MoveToPreparePosition()
         {
             if (Task.current.isStarting)
-            {                
+            {
                 move.SetMoveData(normalSpeed);
                 move.StartMovingTo(prepareZone.GetRandomPointOnSurface(), Task.current.Succeed);
             }
 
-            if(move.IsArrived())
+            if (move.IsArrived())
             {
                 Task.current.Succeed();
             }
@@ -75,7 +75,7 @@ namespace ANTs.Game
                 isAttackDone = false;
                 attack.ActionStart();
             }
-            if (isAttackDone) Task.current.Succeed();            
+            if (isAttackDone) Task.current.Succeed();
         }
         #endregion
 

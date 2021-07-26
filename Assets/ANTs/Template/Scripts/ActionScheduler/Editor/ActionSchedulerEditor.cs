@@ -120,7 +120,7 @@ namespace ANTs.Template
         Vector2 GetTextSize(string text)
         {
             return GUI.skin.label.CalcSize(new GUIContent(text + "_"));
-        }        
+        }
 
         private IAction[] GetActions()
         {

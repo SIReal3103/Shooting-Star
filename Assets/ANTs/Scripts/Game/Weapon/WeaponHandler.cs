@@ -36,7 +36,7 @@ namespace ANTs.Game
         {
             currentWeapon.ForceInit();
         }
-        
+
         public void TriggerCurrentWeapon()
         {
             currentWeapon.value.TriggerWeapon();

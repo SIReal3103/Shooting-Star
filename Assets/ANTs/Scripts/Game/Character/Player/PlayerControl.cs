@@ -1,6 +1,4 @@
-﻿using ANTs.Template.UI;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ANTs.Game
 {
@@ -27,7 +25,7 @@ namespace ANTs.Game
         }
 
         public void StartMovingWith(Vector2 direction)
-        {            
+        {
             mover.StartMovingTo((Vector2)transform.position + direction.normalized);
         }
 

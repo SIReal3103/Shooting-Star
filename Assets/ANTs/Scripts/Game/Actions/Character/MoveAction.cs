@@ -17,7 +17,6 @@ namespace ANTs.Game
         [SerializeField] bool FacingWithDirection;
         [Header("Movement Data")]
         [Space(10)]
-        [SerializeField] MovementType movementType;
         [SerializeField] MoveData initialMoveData;
         [SerializeField] float destinationOffset = 0.5f;
 
@@ -30,7 +29,7 @@ namespace ANTs.Game
         {
             base.Awake();
             rb = GetComponent<Rigidbody2D>();
-            moveStrategy = MoveFactory.CreateMove(movementType);
+            moveStrategy = MoveFactory.CreateMove(initialMoveData.GetMovementType());
             SetMoveData(initialMoveData);
         }
 
@@ -136,12 +135,20 @@ namespace ANTs.Game
     [System.Serializable]
     public class MoveData
     {
+        [SerializeField] MovementType movementType = MovementType.Linearity;
         [SerializeField] float speed = 10f;
+        [Conditional("movementType", MovementType.Lerp)]
+        [SerializeField] float tiltSpeed = 0.1f;
 
         [HideInInspector]
         public Vector2 destination;
         [HideInInspector]
         public Rigidbody2D rb;
+
+        public MovementType GetMovementType()
+        {
+            return movementType;
+        }
 
         public float Speed { get => speed; }
 

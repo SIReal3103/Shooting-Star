@@ -1,9 +1,5 @@
 ﻿using ANTs.Template;
 using UnityEngine;
-using ANTs.UI;
-using ANTs.Template.UI;
-using System.Collections.Generic;
-using System;
 
 namespace ANTs.Game
 {

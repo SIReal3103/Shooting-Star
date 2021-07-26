@@ -13,7 +13,7 @@ namespace ANTs.Game
         }
 
         private void Update()
-        {            
+        {
             player.StartMovingWith(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
 
             if (Input.GetKeyDown(KeyCode.Z))
