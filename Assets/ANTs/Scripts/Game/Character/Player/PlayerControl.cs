@@ -26,7 +26,7 @@ namespace ANTs.Game
 
         public void StartMovingWith(Vector2 direction)
         {
-            mover.StartMovingTo((Vector2)transform.position + direction.normalized);
+            mover.StartMovingWith(direction);
         }
 
         public void StartMovingTo(Vector2 destination)

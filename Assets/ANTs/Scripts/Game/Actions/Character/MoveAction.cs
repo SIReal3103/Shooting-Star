@@ -29,10 +29,16 @@ namespace ANTs.Game
         public void StartMovingTo(Vector2 destination, Action OnArrivedCallBack = null)
         {
             ActionStart();
-            SetDestination(destination);
-
+            currentMove.SetDestination(destination);
             CurrentArrivedCallBack?.Invoke();
             CurrentArrivedCallBack = OnArrivedCallBack;
+        }
+        
+        public void StartMovingWith(Vector2 destination)
+        {
+            ActionStart();
+            currentMove.SetDirection(destination);
+            CurrentArrivedCallBack = null;
         }
 
         public Vector2 GetMoveDirection()
@@ -46,9 +52,9 @@ namespace ANTs.Game
             currentMove = MoveFactory.CreateMove(data);
         }
 
-        private void SetDestination(Vector2 destination)
+        public void SetVelocity(Vector2 velocity)
         {
-            currentMove.SetDestination(destination);
+            currentMove.SetDirection(velocity);
         }
 
         private bool IsMovingLeft()
@@ -94,6 +100,8 @@ namespace ANTs.Game
                     return new MoveLinearity(data);
                 case MovementType.Lerp:
                     return new LerpMovement(data);
+                case MovementType.Smooth:
+                    return new SmoothMovement(data);
                 default:
                     throw new UnityException("Invalid moveStrategy");
             }
@@ -114,6 +122,13 @@ namespace ANTs.Game
             data.destination = destination;
         }
 
+        public void SetDirection(Vector2 velocity)
+        {
+            data.direction = velocity;
+            OnDirectionUpdated();
+        }
+
+        public virtual void OnDirectionUpdated() { }
         public abstract void UpdatePath();
     }
 
@@ -123,8 +138,8 @@ namespace ANTs.Game
 
         public override void UpdatePath()
         {
-            Vector2 direction = (data.destination - data.rb.position).normalized;
-            data.rb.MovePosition(data.rb.position + data.Speed * Time.deltaTime * direction);
+            data.direction = (data.destination - data.rb.position).normalized;
+            data.rb.MovePosition(data.rb.position + data.Speed * Time.deltaTime * data.direction);
         }
     }
 
@@ -134,6 +149,7 @@ namespace ANTs.Game
 
         public override void UpdatePath()
         {
+            data.direction = (data.destination - data.rb.position).normalized;
             data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
         }
     }
@@ -142,10 +158,16 @@ namespace ANTs.Game
     {
         public SmoothMovement(MoveData data) : base(data) { }
 
+        public override void OnDirectionUpdated()
+        {
+            base.OnDirectionUpdated();
+            data.rb.velocity = Vector2.Lerp(data.rb.velocity, data.direction.normalized * data.Speed, data.TiltSpeed * Time.deltaTime);
+        }
+
         public override void UpdatePath()
         {
-            Vector2 velocity = (data.destination - data.rb.position).normalized * data.Speed;
-            data.rb.velocity = Vector2.Lerp(data.rb.velocity, velocity, data.TiltSpeed * Time.deltaTime);
+            Debug.Log(data.TiltSpeed);
+            data.rb.velocity = Vector2.Lerp(data.rb.velocity, Vector2.zero, data.TiltSpeed * Time.deltaTime);
         }
     }
 
@@ -167,7 +189,9 @@ namespace ANTs.Game
         [SerializeField] public Rigidbody2D rigidBody2D = null;
 
         [HideInInspector]
-        public Vector2 destination = new Vector2();
+        public Vector2 destination = Vector2.positiveInfinity;
+        [HideInInspector]
+        public Vector2 direction = Vector2.positiveInfinity;
 
         public MovementType GetMovementType()
         {
@@ -179,7 +203,7 @@ namespace ANTs.Game
         {
             get
             {
-                if (movementType != MovementType.Lerp)
+                if (movementType != MovementType.Lerp && movementType != MovementType.Smooth)
                 {
                     throw new UnityException("TiltSpeed is not comparable with " + movementType);
                 }
@@ -190,7 +214,7 @@ namespace ANTs.Game
 
         public Vector2 GetMoveDirection()
         {
-            return (destination - rb.position).normalized;
+            return direction.normalized;
         }
     }
 }
