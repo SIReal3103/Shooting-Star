@@ -673,6 +673,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
+    - target: {fileID: 619204247476550354, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: maskTable.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 619204247476550354, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: maskTable.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 619204247476550354, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: maskTable.Array.data[5]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3364041784894538626, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: destinationOffset
@@ -1048,6 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7f22df23d21974ba2a03201a7d5cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetFPS: -1
 --- !u!1 &1713065282
 GameObject:
   m_ObjectHideFlags: 0

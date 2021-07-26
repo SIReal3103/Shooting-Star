@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using ANTs.Template.UI;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ANTs.Game
 {
     [RequireComponent(typeof(MoveAction))]
-    [RequireComponent(typeof(ShootAction))]
+    [RequireComponent(typeof(WeaponHandler))]
     [RequireComponent(typeof(Damageable))]
     public class PlayerControl : MonoBehaviour
     {
@@ -24,9 +26,14 @@ namespace ANTs.Game
             GetComponent<Damageable>().OnActorDieEvent -= GetComponent<DieAction>().ActionStart;
         }
 
-        public void StartMovingTo(Vector2 position)
+        public void StartMovingWith(Vector2 direction)
+        {            
+            mover.StartMovingTo((Vector2)transform.position + direction.normalized);
+        }
+
+        public void DirectWeaponTo(Vector2 position)
         {
-            mover.StartMovingTo(position);
+            GetComponent<WeaponHandler>().DirectWeaponAttachmentTo(position);
         }
 
         public void UpgradeWeapon()

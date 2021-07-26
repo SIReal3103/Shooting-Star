@@ -2,8 +2,10 @@
 
 public class HubAndLimitFPS : MonoBehaviour
 {
+    [SerializeField] int targetFPS = 60;
+
     private void Awake()
     {
-        Application.targetFrameRate = -1;
+        Application.targetFrameRate = targetFPS;
     }
 }

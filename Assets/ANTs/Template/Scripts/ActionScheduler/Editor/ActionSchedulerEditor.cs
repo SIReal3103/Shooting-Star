@@ -43,7 +43,6 @@ namespace ANTs.Template
             serializedObject.ApplyModifiedProperties();
         }
 
-        #region ============================================================Display logics
         private void DisplayMaskTable()
         {
             if (numLabel > 1)
@@ -110,9 +109,7 @@ namespace ANTs.Template
                 offSetY += HORIZONTAL_TEXT_OFFSET;
             }
         }
-        #endregion
 
-        #region =========================================Utils
         private Rect GetVertcalArea()
         {
             float maxHeight = labelNames.Max(name => GetTextSize(name).x) + VERTICAL_DISTANCE;
@@ -123,11 +120,11 @@ namespace ANTs.Template
         Vector2 GetTextSize(string text)
         {
             return GUI.skin.label.CalcSize(new GUIContent(text + "_"));
-        }
+        }        
 
         private IAction[] GetActions()
         {
-            GameObject selected = Selection.activeGameObject;
+            GameObject selected = ((ActionScheduler)target).gameObject;
             if (selected == null)
             {
                 return new IAction[] { }; //HACK: Protential bug
@@ -146,7 +143,6 @@ namespace ANTs.Template
             s.normal.textColor = color;
             return s;
         }
-        #endregion
     }
 }
 

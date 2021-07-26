@@ -13,16 +13,17 @@ namespace ANTs.Game
         }
 
         private void Update()
-        {
-            player.StartMovingTo(GetMousePosition());
+        {            
+            player.StartMovingWith(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                player.ChangeStrongerBullet();
+            }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 player.UpgradeWeapon();
-            }
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                player.ChangeStrongerBullet();
             }
         }
 
