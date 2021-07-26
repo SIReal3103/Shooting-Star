@@ -17,6 +17,9 @@ namespace ANTs.Game
             player.StartMovingWith(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
             //player.StartMovingTo(GetMousePosition());
 
+            player.DirectWeaponTo(GetMousePosition());
+            player.FacingTo(GetMousePosition());
+
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 player.ChangeStrongerBullet();
@@ -26,6 +29,7 @@ namespace ANTs.Game
             {
                 player.UpgradeWeapon();
             }
+
         }
 
         private static Vector2 GetMousePosition()

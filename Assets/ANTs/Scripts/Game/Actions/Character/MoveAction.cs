@@ -7,7 +7,6 @@ namespace ANTs.Game
     public class MoveAction : ActionBase
     {
         [SerializeField] bool FacingWithDirection;
-        [Conditional("FacingWithDirection", true)]
         [SerializeField] Transform model;
         [Space(10)]
         [SerializeField] MoveData initialMoveData;
@@ -44,6 +43,13 @@ namespace ANTs.Game
         public Vector2 GetMoveDirection()
         {
             return currentMove.data.GetMoveDirection();
+        }
+
+        public void FacingTo(Vector2 position)
+        {
+            model.right = new Vector2((
+                ((Vector2)transform.position - position).x > 0) ? -1 : 1, 0
+            );
         }
 
         public void SetMoveData(MoveData data)
@@ -186,7 +192,7 @@ namespace ANTs.Game
         [SerializeField] float speed = 10f;
         [Conditional("movementType", MovementType.Lerp, MovementType.Smooth)]
         [SerializeField] float tiltSpeed = 0.1f;
-        [SerializeField] public Rigidbody2D rigidBody2D = null;
+        [SerializeField] public Rigidbody2D rigidbody2D = null;
 
         [HideInInspector]
         public Vector2 destination = Vector2.positiveInfinity;
@@ -210,7 +216,7 @@ namespace ANTs.Game
                 return tiltSpeed;
             }
         }
-        public Rigidbody2D rb { get => rigidBody2D; set { rigidBody2D = value; } }
+        public Rigidbody2D rb { get => rigidbody2D; set { rigidbody2D = value; } }
 
         public Vector2 GetMoveDirection()
         {

@@ -59,6 +59,7 @@ namespace ANTs.Game
 
         public void DirectWeaponAttachmentTo(Vector2 position)
         {
+            Debug.Log(weaponAttachment.rotation.eulerAngles);
             weaponAttachment.right = position - (Vector2)transform.position;
         }
 

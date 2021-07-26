@@ -124,13 +124,15 @@ MonoBehaviour:
   isAttachWithAnimator: 0
   isTransitionTrigger: 0
   syncWithAnimation: 0
-  model: {fileID: 3726713875333373735}
   FacingWithDirection: 0
-  movementType: 0
+  model: {fileID: 3726713875333373735}
   initialMoveData:
+    movementType: 0
     speed: 10
+    tiltSpeed: 0.1
+    rigidbody2D: {fileID: 3726713874072087786}
     destination: {x: 0, y: 0}
-    rb: {fileID: 0}
+    direction: {x: Infinity, y: Infinity}
   destinationOffset: 0.1
 --- !u!114 &3900950865971724827
 MonoBehaviour:
@@ -158,20 +160,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHealthTakeDamage:
+  OnActorTakeDamage:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8034760853031809068}
-        m_MethodName: Spawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   defenseBonus: 0
   defenseModifier: 0
 --- !u!114 &6163323762143553855
@@ -232,9 +223,11 @@ MonoBehaviour:
   initialDamageData:
     damageBonus: 0
     damageModifier: 0
+    damageCauser: {fileID: 0}
   currentDamageData:
     damageBonus: 0
     damageModifier: 0
+    damageCauser: {fileID: 0}
 --- !u!1 &3726713875333373734
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +464,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3eb704835276b4ba9d25e9bcbb1423, type: 3}
+  m_Script: {fileID: 11500000, guid: 0423cac17bf19bf43810afeb5a7ced48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7102672920223789688
@@ -549,15 +542,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7102672920223789688}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8034760853031809068 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 941523964467167828, guid: 8c885b5e4bfa3a34abdaf6e5966e6fd9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7102672920223789688}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 004197f5711936041b99411723e44c64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

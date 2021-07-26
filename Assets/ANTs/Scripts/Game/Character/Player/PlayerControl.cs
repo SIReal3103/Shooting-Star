@@ -39,6 +39,11 @@ namespace ANTs.Game
             GetComponent<WeaponHandler>().DirectWeaponAttachmentTo(position);
         }
 
+        public void FacingTo(Vector2 position)
+        {
+            mover.FacingTo(position);
+        }
+
         public void UpgradeWeapon()
         {
             GetComponent<WeaponHandler>().UpgradeProjectileWeapon();
