@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using ANTs.Template.UI;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace ANTs.Game
 {
-    public class BaseStat : MonoBehaviour
+    public class BaseStat : MonoBehaviour, IDisplayOnHUD
     {
         [System.Serializable]
         public class OnExperienceUpdateEvent : UnityEvent<float, float> { }
@@ -81,6 +83,11 @@ namespace ANTs.Game
         private float GetBaseStat(StatType statType, int level)
         {
             return statManager.GetStat(characterClass, statType, level);
+        }
+
+        public IEnumerable<string> GetDisplayInfos()
+        {
+            if (tag == "Player") yield return $"Level = {GetLevel()}";
         }
     }
 }

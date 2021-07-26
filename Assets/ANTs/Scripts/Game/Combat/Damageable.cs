@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ANTs.Game
 {
-    public class Damageable : MonoBehaviour, IDisplayOnHUD
+    public class Damageable : MonoBehaviour
     {
         [System.Serializable]
         class OnHealthUpdateEvent : UnityEvent<float, float> { }
@@ -78,11 +78,6 @@ namespace ANTs.Game
         public void GainHealth(float health)
         {
             this.Health += health;
-        }
-
-        public IEnumerable<string> GetDisplayInfos()
-        {
-            yield return $"{this}";
         }
     }
 }
