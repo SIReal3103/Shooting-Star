@@ -61,7 +61,7 @@ namespace ANTs.Template.UI
         {
             DestroyChildTransforms();
             textPool = new TextIEnumerator(rootInfo, infoPrefab);
-            displayees = FindAllDisplayees().Distinct<IDisplayOnHUD>().ToList();
+            displayees = FindAllDisplayees().ToList();
             UpdateUI();
         }
 
@@ -84,6 +84,7 @@ namespace ANTs.Template.UI
         {            
             return FindObjectsOfType<MonoBehaviour>().OfType<IDisplayOnHUD>();
         }
+
         private void DestroyChildTransforms()
         {
             foreach (Transform child in rootInfo)
