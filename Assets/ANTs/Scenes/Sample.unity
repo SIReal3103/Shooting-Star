@@ -1131,7 +1131,7 @@ PrefabInstance:
     - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: initialMoveData.movementType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1435031981315433058, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}

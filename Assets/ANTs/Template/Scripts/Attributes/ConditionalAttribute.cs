@@ -12,7 +12,8 @@ namespace ANTs.Game
         public enum ConditionType
         {
             Boolean,
-            Enum
+            Enum,
+            EnumMask
         }
 
         public ConditionType type;
@@ -20,6 +21,7 @@ namespace ANTs.Game
 
         public bool boolValue;
         public int enumValue;
+        public int[] enumMask;
 
         public ConditionalAttribute(string targetName, bool boolValue)
         {
@@ -34,6 +36,13 @@ namespace ANTs.Game
             this.targetName = targetName;
             this.enumValue = (int)enumValue;
         }
+
+        public ConditionalAttribute(string targetName, params object[] enumMask)
+        {
+            type = ConditionType.EnumMask;
+            this.targetName = targetName;
+            this.enumMask = enumMask.Cast<int>().ToArray();
+        }
     }
 
 #if UNITY_EDITOR
@@ -42,18 +51,15 @@ namespace ANTs.Game
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            ConditionalAttribute myAttribute = (ConditionalAttribute)attribute;
-            SerializedProperty targetProperty = GetTargetProperty(property, myAttribute);
-
-            if (targetProperty == null)
-            {
-                throw new UnityException("there is no " + myAttribute.targetName + " in " + property.serializedObject);
-            }
-
-            if (CheckEqual(myAttribute, targetProperty))
+            if (CheckEqual(GetAttribute(), GetTargetProperty(property)))
             {
                 EditorGUI.PropertyField(position, property);
             }
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return CheckEqual(GetAttribute(), GetTargetProperty(property)) ? 18 : 0;
         }
 
         private bool CheckEqual(ConditionalAttribute myAttribute, SerializedProperty targetProperty)
@@ -64,25 +70,38 @@ namespace ANTs.Game
                     return targetProperty.boolValue == myAttribute.boolValue;
                 case ConditionalAttribute.ConditionType.Enum:
                     return targetProperty.enumValueIndex == myAttribute.enumValue;
+                case ConditionalAttribute.ConditionType.EnumMask:
+                    return myAttribute.enumMask.Contains(targetProperty.enumValueIndex);
                 default:
                     throw new UnityException("Invalid parameter type");
             }
         }
 
-        private SerializedProperty GetTargetProperty(SerializedProperty property, ConditionalAttribute myAttribute)
+        private SerializedProperty GetTargetProperty(SerializedProperty property)
         {
             SerializedProperty result;
+            string targetName = GetTargetName();
             if (GetParentPath(property.propertyPath) == "")
             {
-                result = property.serializedObject.FindProperty(myAttribute.targetName);
+                result = property.serializedObject.FindProperty(GetTargetName());
             }
             else
             {
                 SerializedProperty myProperty = GetPropertyRelative(property.serializedObject, GetParentPath(property.propertyPath));
-                result = myProperty.FindPropertyRelative(myAttribute.targetName);
+                result = myProperty.FindPropertyRelative(GetTargetName());
             }
 
             return result;
+        }
+
+        private string GetTargetName()
+        {
+            return GetAttribute().targetName;
+        }
+
+        private ConditionalAttribute GetAttribute()
+        {
+            return (ConditionalAttribute)attribute;
         }
 
         public SerializedProperty GetPropertyRelative(SerializedObject myObject, string path)

@@ -3,12 +3,6 @@ using System;
 using UnityEngine;
 namespace ANTs.Game
 {
-    public enum MovementType
-    {
-        Linearity,
-        Lerp
-    }
-
     [RequireComponent(typeof(Rigidbody2D))]
     public class MoveAction : ActionBase
     {
@@ -48,7 +42,7 @@ namespace ANTs.Game
 
         public void SetMoveData(MoveData data)
         {
-            data.rb = rb;
+            if (data.rb == null) data.rb = rb;
             currentMove = MoveFactory.CreateMove(data);
         }
 
@@ -140,26 +134,40 @@ namespace ANTs.Game
 
         public override void UpdatePath()
         {
-            Vector2 direction = (data.destination - data.rb.position).normalized;
-            data.rb.MovePosition(
-                Vector2.Lerp(data.rb.position, data.rb.position + direction * data.Speed, 
-                data.TiltSpeed * Time.deltaTime)
-            );
+            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
         }
+    }
+
+    public class SmoothMovement : MoveStrategy
+    {
+        public SmoothMovement(MoveData data) : base(data) { }
+
+        public override void UpdatePath()
+        {
+            Vector2 velocity = (data.destination - data.rb.position).normalized * data.Speed;
+            data.rb.velocity = Vector2.Lerp(data.rb.velocity, velocity, data.TiltSpeed * Time.deltaTime);
+        }
+    }
+
+    public enum MovementType
+    {
+        Linearity,
+        Lerp,
+        Smooth
     }
 
     [System.Serializable]
     public class MoveData
     {
         [SerializeField] MovementType movementType = MovementType.Linearity;
+        [Conditional("movementType", MovementType.Linearity, MovementType.Smooth)]
         [SerializeField] float speed = 10f;
-        [Conditional("movementType", MovementType.Lerp)]
+        [Conditional("movementType", MovementType.Lerp, MovementType.Smooth)]
         [SerializeField] float tiltSpeed = 0.1f;
+        [SerializeField] public Rigidbody2D rigidBody2D = null;
 
         [HideInInspector]
         public Vector2 destination = new Vector2();
-        [HideInInspector]
-        public Rigidbody2D rb;
 
         public MovementType GetMovementType()
         {
@@ -171,13 +179,14 @@ namespace ANTs.Game
         {
             get
             {
-                if(movementType != MovementType.Lerp)
+                if (movementType != MovementType.Lerp)
                 {
                     throw new UnityException("TiltSpeed is not comparable with " + movementType);
                 }
                 return tiltSpeed;
             }
         }
+        public Rigidbody2D rb { get => rigidBody2D; set { rigidBody2D = value; } }
 
         public Vector2 GetMoveDirection()
         {
