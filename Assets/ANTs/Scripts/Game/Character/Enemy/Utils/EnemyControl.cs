@@ -19,9 +19,9 @@ namespace ANTs.Game
         private void DeadBehaviour()
         {
             GetComponent<DieAction>().ActionStart();
-            if (TryGetComponent(out WeaponHandler handler))
+            if (TryGetComponent(out WeaponHandler weaponHandler))
             {
-                handler.NotifyWeaponOwnerDie();
+                weaponHandler.NotifyWeaponOwnerDie();
             }
         }
     }

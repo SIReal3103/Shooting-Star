@@ -13,7 +13,7 @@ namespace ANTs.UI
 
         private void Awake()
         {
-            playerUpgrades = GameObject.FindGameObjectWithTag("Player").GetComponent<Upgrade>();
+            playerUpgrades = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<Upgrade>();
         }
 
         private void OnEnable()

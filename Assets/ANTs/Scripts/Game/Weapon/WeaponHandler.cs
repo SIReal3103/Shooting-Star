@@ -21,7 +21,7 @@ namespace ANTs.Game
         {
             if (initialWeaponIsMelee)
             {
-                currentMeleeWeapon = new LazyANTs<MeleeWeapon>(InitMeleeWeapon);
+                currentMeleeWeapon = new LazyANTs<MeleeWeapon>(GetDefaultMeleeWeapon);
                 currentWeapon = new LazyANTs<Weapon>(() => currentMeleeWeapon.value);
             }
             else
@@ -58,7 +58,7 @@ namespace ANTs.Game
         }
 
         public void DirectWeaponAttachmentTo(Vector2 targetPosition)
-        {            
+        {
             Vector2 targetDirection = targetPosition - (Vector2)transform.position;
 
             Quaternion targetRotation = Quaternion.LookRotation(
@@ -66,8 +66,8 @@ namespace ANTs.Game
                 targetDirection);
 
             targetRotation = Quaternion.Euler(
-                targetRotation.eulerAngles.x, 
-                targetRotation.eulerAngles.y, 
+                targetRotation.eulerAngles.x,
+                targetRotation.eulerAngles.y,
                 targetRotation.eulerAngles.z + 90);
 
             weaponAttachment.rotation = targetRotation;
@@ -85,7 +85,7 @@ namespace ANTs.Game
             WeaponUpgradeHandler.UpgradeWeaponAmmo(currentProjectileWeapon.value, ref currentAmmoPool.refValue);
         }
 
-        private MeleeWeapon InitMeleeWeapon()
+        private MeleeWeapon GetDefaultMeleeWeapon()
         {
             if (!MeleeWeaponManager.Instance.TryGetPool(initialWeaponName, out ANTsPool weaponPool))
             {

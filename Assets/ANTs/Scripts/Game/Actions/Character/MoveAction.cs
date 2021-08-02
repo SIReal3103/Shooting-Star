@@ -32,7 +32,7 @@ namespace ANTs.Game
             CurrentArrivedCallBack?.Invoke();
             CurrentArrivedCallBack = OnArrivedCallBack;
         }
-        
+
         public void StartMovingWith(Vector2 destination)
         {
             ActionStart();
@@ -172,7 +172,6 @@ namespace ANTs.Game
 
         public override void UpdatePath()
         {
-            Debug.Log(data.TiltSpeed);
             data.rb.velocity = Vector2.Lerp(data.rb.velocity, Vector2.zero, data.TiltSpeed * Time.deltaTime);
         }
     }
