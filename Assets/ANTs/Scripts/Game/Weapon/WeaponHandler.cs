@@ -57,10 +57,20 @@ namespace ANTs.Game
             currentWeapon.value.OwnerDie();
         }
 
-        public void DirectWeaponAttachmentTo(Vector2 position)
-        {
-            Debug.Log(weaponAttachment.rotation.eulerAngles);
-            weaponAttachment.right = position - (Vector2)transform.position;
+        public void DirectWeaponAttachmentTo(Vector2 targetPosition)
+        {            
+            Vector2 targetDirection = targetPosition - (Vector2)transform.position;
+
+            Quaternion targetRotation = Quaternion.LookRotation(
+                transform.position.x > targetPosition.x ? Vector3.back : Vector3.forward,
+                targetDirection);
+
+            targetRotation = Quaternion.Euler(
+                targetRotation.eulerAngles.x, 
+                targetRotation.eulerAngles.y, 
+                targetRotation.eulerAngles.z + 90);
+
+            weaponAttachment.rotation = targetRotation;
         }
 
         public void UpgradeProjectileWeapon()

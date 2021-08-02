@@ -8,12 +8,11 @@ namespace ANTs.Game
     {
         [SerializeField] ProgressIdentifier currentLevel;
         [SerializeField] ProgressIdentifier nextLevel;
+        public ProgressIdentifier CurrentLevel { get => currentLevel; }
+        public ProgressIdentifier NextLevel { get => nextLevel; }
 
         [ReadOnly]
         public GameObject owner;
-
-        public ProgressIdentifier CurrentLevel { get => currentLevel; }
-        public ProgressIdentifier NextLevel { get => nextLevel; }
 
         public virtual void Init(WeaponData data)
         {
