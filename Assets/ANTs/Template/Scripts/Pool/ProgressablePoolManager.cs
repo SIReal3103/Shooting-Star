@@ -19,7 +19,7 @@ namespace ANTs.Template
         }
     }
 
-    public abstract class ProgressablePoolManager<TManager, TObject> : Singleton<TManager>
+    public abstract class ProgressablePoolManager<TManager, TObject> : SingletonMonoBehaviour<TManager>
         where TManager : Component
         where TObject : Component, IProgressable
     {

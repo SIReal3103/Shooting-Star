@@ -2,7 +2,7 @@
 
 namespace ANTs.Template
 {
-    public abstract class Singleton<T> : MonoBehaviour
+    public abstract class SingletonMonoBehaviour<T> : MonoBehaviour
         where T : Component
     {
         private static T instance;
