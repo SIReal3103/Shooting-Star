@@ -51,6 +51,8 @@ MonoBehaviour:
   initialWeaponIsMelee: 0
   initialWeaponName: Gun1Shot
   initialAmmoName: AmmoLevel1
+  weaponAttachmentRotateSpeed: 5
+  rotationAcceptableRange: 0.01
 --- !u!114 &7511532444828102719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +185,16 @@ PrefabInstance:
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: FacingWithDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: initialMoveData.tiltSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: initialMoveData.movementType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5279204710837894691, guid: 9e9222022420a554187c138db3b69c93,

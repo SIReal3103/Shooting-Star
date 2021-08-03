@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -6507884906140856681}
   - component: {fileID: 5048698795676672721}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: AmmoBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,13 +77,14 @@ MonoBehaviour:
   isAttachWithAnimator: 0
   isTransitionTrigger: 0
   syncWithAnimation: 0
+  facingWithDirection: 0
   model: {fileID: 0}
-  FacingWithDirection: 0
-  movementType: 0
   initialMoveData:
+    movementType: 0
     speed: 10
+    tiltSpeed: 0.1
     destination: {x: 0, y: 0}
-    rb: {fileID: 0}
+    direction: {x: Infinity, y: Infinity}
   destinationOffset: 0.1
 --- !u!70 &409123565710036420
 CapsuleCollider2D:
@@ -113,9 +114,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6418326396b434d9c228f8a914a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDamage: 10
-  criticalChance: 0
-  critEfficent: 0
+  tryUseBaseStat: 1
+  initialDamageData:
+    damageBonus: 0
+    damageModifier: 0
+    damageCauser: {fileID: 0}
+  currentDamageData:
+    damageBonus: 0
+    damageModifier: 0
+    damageCauser: {fileID: 0}
 --- !u!114 &1130381535657301370
 MonoBehaviour:
   m_ObjectHideFlags: 0

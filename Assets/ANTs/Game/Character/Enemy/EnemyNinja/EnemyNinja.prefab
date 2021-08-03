@@ -16,6 +16,8 @@ MonoBehaviour:
   initialWeaponIsMelee: 1
   initialWeaponName: NinjaSword
   initialAmmoName: 
+  weaponAttachmentRotateSpeed: 5
+  rotationAcceptableRange: 0.01
 --- !u!114 &5414274874121336222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,13 +53,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSpeed:
+    movementType: 1
     speed: 10
+    tiltSpeed: 2
     destination: {x: 0, y: 0}
-    rb: {fileID: 0}
+    direction: {x: Infinity, y: Infinity}
   runSpeed:
+    movementType: 1
     speed: 20
+    tiltSpeed: 4
     destination: {x: 0, y: 0}
-    rb: {fileID: 0}
+    direction: {x: Infinity, y: Infinity}
   prepareZone: {fileID: 0}
 --- !u!114 &7773835127268301595
 MonoBehaviour:
@@ -77,6 +83,19 @@ MonoBehaviour:
   isAttachWithAnimator: 1
   isTransitionTrigger: 1
   syncWithAnimation: 1
+--- !u!114 &322974042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973814678278962949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bab4e98c6299e45822e495c374319b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayOrder: 1
 --- !u!1001 &7520664811280319784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,6 +245,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 5e6fb03a513d5a341be8b9e6d765b251,
         type: 2}
+    - target: {fileID: 3361608048565341874, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: movement
@@ -238,12 +262,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
+      propertyPath: destinationOffset
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
       propertyPath: FacingWithDirection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
         type: 3}
       propertyPath: isAttachWithAnimator
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: initialMoveData.tiltSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112076933019010730, guid: 9e9222022420a554187c138db3b69c93,
+        type: 3}
+      propertyPath: initialMoveData.movementType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6974138722910765050, guid: 9e9222022420a554187c138db3b69c93,

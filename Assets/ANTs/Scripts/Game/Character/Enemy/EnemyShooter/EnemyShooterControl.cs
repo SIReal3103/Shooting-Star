@@ -36,9 +36,8 @@ namespace ANTs.Game
         [Task]
         public void ShootAtPlayer()
         {
-            if (Task.current.isStarting)
+            if (weaponHandler.DirectWeaponAttachmentTo(playerTransform.position))
             {
-                weaponHandler.DirectWeaponAttachmentTo(playerTransform.position);
                 weaponHandler.TriggerProjectileWeapon();
                 Task.current.Succeed();
             }

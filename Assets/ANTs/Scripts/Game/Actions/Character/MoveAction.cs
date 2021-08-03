@@ -6,7 +6,9 @@ namespace ANTs.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class MoveAction : ActionBase
     {
-        [SerializeField] bool FacingWithDirection;
+        [SerializeField] bool facingWithDirection = true;
+        [SerializeField] float timeBetweenChangeFacingDirection = 0.5f;
+        [Conditional("facingWithDirection", true)]
         [SerializeField] Transform model;
         [Space(10)]
         [SerializeField] MoveData initialMoveData;
@@ -15,8 +17,8 @@ namespace ANTs.Game
 
         private Rigidbody2D rb;
         private MoveStrategy currentMove;
-
         private Action CurrentArrivedCallBack;
+        private float timeSinceLastChangeFacingDirection;
 
         protected override void Awake()
         {
@@ -69,10 +71,7 @@ namespace ANTs.Game
 
         protected override void ActionFixedUpdate()
         {
-            if (FacingWithDirection)
-            {
-                model.right = new Vector2(IsMovingLeft() ? -1 : 1, 0);
-            }
+            base.ActionFixedUpdate();
 
             SetAnimatorBool(IsMoving());
 
@@ -81,6 +80,15 @@ namespace ANTs.Game
                 CurrentArrivedCallBack?.Invoke();
                 return;
             }
+
+            if (facingWithDirection && timeBetweenChangeFacingDirection < timeSinceLastChangeFacingDirection)
+            {
+                model.right = new Vector2(IsMovingLeft() ? -1 : 1, 0);
+                timeSinceLastChangeFacingDirection = 0f;
+            }
+
+            timeSinceLastChangeFacingDirection += Time.deltaTime;
+
             currentMove?.UpdatePath();
         }
 
@@ -191,7 +199,7 @@ namespace ANTs.Game
         [Conditional("movementType", MovementType.Linearity, MovementType.Smooth)]
         [SerializeField] float speed = 10f;
         [Conditional("movementType", MovementType.Lerp, MovementType.Smooth)]
-        [SerializeField] float tiltSpeed = 0.1f;
+        [SerializeField] float tiltSpeed = 2f;
 
         [HideInInspector]
         public Vector2 destination = Vector2.positiveInfinity;

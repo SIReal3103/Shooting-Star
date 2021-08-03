@@ -11,6 +11,8 @@ namespace ANTs.Game
         [SerializeField] string initialWeaponName;
         [Conditional("initialWeaponIsMelee", false)]
         [SerializeField] string initialAmmoName;
+        [SerializeField] float weaponAttachmentRotateSpeed = 5f;
+        [SerializeField] float rotationAcceptableRange = 0.01f;
 
         private LazyANTs<Weapon> currentWeapon;
         private LazyANTs<ProjectileWeapon> currentProjectileWeapon = null;
@@ -57,8 +59,13 @@ namespace ANTs.Game
             currentWeapon.value.OwnerDie();
         }
 
-        public void DirectWeaponAttachmentTo(Vector2 targetPosition)
+        public bool DirectWeaponAttachmentTo(Vector2 targetPosition)
         {
+            if (TryGetComponent(out MoveAction move))
+            {
+                move.FacingTo(targetPosition);
+            }
+
             Vector2 targetDirection = targetPosition - (Vector2)transform.position;
 
             Quaternion targetRotation = Quaternion.LookRotation(
@@ -70,7 +77,8 @@ namespace ANTs.Game
                 targetRotation.eulerAngles.y,
                 targetRotation.eulerAngles.z + 90);
 
-            weaponAttachment.rotation = targetRotation;
+            weaponAttachment.rotation = Quaternion.Slerp(weaponAttachment.rotation, targetRotation, weaponAttachmentRotateSpeed * Time.deltaTime);
+            return 1f - Mathf.Abs(Quaternion.Dot(weaponAttachment.rotation, targetRotation)) < rotationAcceptableRange;
         }
 
         public void UpgradeProjectileWeapon()
