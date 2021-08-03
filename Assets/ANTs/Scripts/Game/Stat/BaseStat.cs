@@ -86,7 +86,7 @@ namespace ANTs.Game
 
         public IEnumerable<string> GetDisplayInfos()
         {
-            if (tag == "Player") yield return $"Level = {GetLevel()}";
+            yield return $"Level = {GetLevel()}";
         }
     }
 }

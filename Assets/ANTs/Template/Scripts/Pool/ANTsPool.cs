@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ANTs.Template
 {
+    [System.Serializable]
     public class ANTsPool : MonoBehaviour
     {
         [SerializeField] GameObject prefab;
