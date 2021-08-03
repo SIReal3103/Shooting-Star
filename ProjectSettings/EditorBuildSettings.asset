@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ANTs/Scenes/Sample.unity
     guid: 27cf98023e9c3904bb6ddabdf0af42db
+  - enabled: 1
+    path: Assets/ANTs/Scenes/PersistentScene.unity
+    guid: 99ddef9c875223c4a87dbe7fcf12f6cf
   m_configObjects: {}

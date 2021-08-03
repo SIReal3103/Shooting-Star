@@ -99,7 +99,7 @@ namespace ANTs.Game
 
         public bool IsArrived()
         {
-            return (currentMove.data.destination - rb.position).magnitude < destinationOffset;
+            return (currentMove.data.destination - rb.position).sqrMagnitude < destinationOffset * destinationOffset;
         }
     }
 
