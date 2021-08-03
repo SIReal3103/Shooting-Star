@@ -54,8 +54,7 @@ namespace ANTs.Game
 
         public void SetMoveData(MoveData data)
         {
-            if (data.rb == null) data.rb = rb;
-            currentMove = MoveFactory.CreateMove(data);
+            currentMove = MoveFactory.CreateMove(data, rb);
         }
 
         public void SetVelocity(Vector2 velocity)
@@ -98,16 +97,16 @@ namespace ANTs.Game
 
     public static class MoveFactory
     {
-        public static MoveStrategy CreateMove(MoveData data)
+        public static MoveStrategy CreateMove(MoveData data, Rigidbody2D rb)
         {
             switch (data.GetMovementType())
             {
                 case MovementType.Linearity:
-                    return new MoveLinearity(data);
+                    return new MoveLinearity(data, rb);
                 case MovementType.Lerp:
-                    return new LerpMovement(data);
+                    return new LerpMovement(data, rb);
                 case MovementType.Smooth:
-                    return new SmoothMovement(data);
+                    return new SmoothMovement(data, rb);
                 default:
                     throw new UnityException("Invalid moveStrategy");
             }
@@ -117,10 +116,12 @@ namespace ANTs.Game
     public abstract class MoveStrategy
     {
         public MoveData data;
+        public Rigidbody2D rb;
 
-        public MoveStrategy(MoveData data)
+        public MoveStrategy(MoveData data, Rigidbody2D rb)
         {
             this.data = data;
+            this.rb = rb;
         }
 
         public void SetDestination(Vector2 destination)
@@ -140,39 +141,39 @@ namespace ANTs.Game
 
     public class MoveLinearity : MoveStrategy
     {
-        public MoveLinearity(MoveData data) : base(data) { }
+        public MoveLinearity(MoveData data, Rigidbody2D rb) : base(data, rb) { }
 
         public override void UpdatePath()
         {
-            data.direction = (data.destination - data.rb.position).normalized;
-            data.rb.MovePosition(data.rb.position + data.Speed * Time.deltaTime * data.direction);
+            data.direction = (data.destination - rb.position).normalized;
+            rb.MovePosition(rb.position + data.Speed * Time.deltaTime * data.direction);
         }
     }
 
     public class LerpMovement : MoveStrategy
     {
-        public LerpMovement(MoveData data) : base(data) { }
+        public LerpMovement(MoveData data, Rigidbody2D rb) : base(data, rb) { }
 
         public override void UpdatePath()
         {
-            data.direction = (data.destination - data.rb.position).normalized;
-            data.rb.MovePosition(Vector2.Lerp(data.rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
+            data.direction = (data.destination - rb.position).normalized;
+            rb.MovePosition(Vector2.Lerp(rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
         }
     }
 
     public class SmoothMovement : MoveStrategy
     {
-        public SmoothMovement(MoveData data) : base(data) { }
+        public SmoothMovement(MoveData data, Rigidbody2D rb) : base(data, rb) { }
 
         public override void OnDirectionUpdated()
         {
             base.OnDirectionUpdated();
-            data.rb.velocity = Vector2.Lerp(data.rb.velocity, data.direction.normalized * data.Speed, data.TiltSpeed * Time.deltaTime);
+            rb.velocity = Vector2.Lerp(rb.velocity, data.direction.normalized * data.Speed, data.TiltSpeed * Time.deltaTime);
         }
 
         public override void UpdatePath()
         {
-            data.rb.velocity = Vector2.Lerp(data.rb.velocity, Vector2.zero, data.TiltSpeed * Time.deltaTime);
+            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, data.TiltSpeed * Time.deltaTime);
         }
     }
 
@@ -191,7 +192,6 @@ namespace ANTs.Game
         [SerializeField] float speed = 10f;
         [Conditional("movementType", MovementType.Lerp, MovementType.Smooth)]
         [SerializeField] float tiltSpeed = 0.1f;
-        [SerializeField] public Rigidbody2D rigidbody2D = null;
 
         [HideInInspector]
         public Vector2 destination = Vector2.positiveInfinity;
@@ -215,7 +215,6 @@ namespace ANTs.Game
                 return tiltSpeed;
             }
         }
-        public Rigidbody2D rb { get => rigidbody2D; set { rigidbody2D = value; } }
 
         public Vector2 GetMoveDirection()
         {

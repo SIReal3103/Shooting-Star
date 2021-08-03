@@ -29,7 +29,6 @@ namespace ANTs.Template
             if (instance == null)
             {
                 instance = this as T;
-                DontDestroyOnLoad(transform.root.gameObject);
             }
             else
             {

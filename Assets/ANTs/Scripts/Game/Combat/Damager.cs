@@ -6,7 +6,8 @@ namespace ANTs.Game
     public class Damager : MonoBehaviour
     {
         [SerializeField] bool tryUseBaseStat = true;
-        [SerializeField] DamageData initialDamageData = null;
+        [SerializeField] DamageData initialDamageData;
+
         [ReadOnly]
         [SerializeField] DamageData currentDamageData;
 
@@ -39,7 +40,7 @@ namespace ANTs.Game
             }
             else
             {
-                DamageData data = initialDamageData.Clone();
+                DamageData data = initialDamageData;
                 data.damageCauser = this;
                 return data;
             }
@@ -47,10 +48,10 @@ namespace ANTs.Game
     }
 
     [System.Serializable]
-    public class DamageData
+    public struct DamageData
     {
-        public float damageBonus = 10;
-        public float damageModifier = 0;
+        public float damageBonus;
+        public float damageModifier;
         [HideInInspector]
         public Damager damageCauser;
 
@@ -67,11 +68,6 @@ namespace ANTs.Game
                 damageData.damageBonus + damageBonus,
                 damageData.damageModifier + damageModifier,
                 damageCauser);
-        }
-
-        public DamageData Clone()
-        {
-            return new DamageData(damageBonus, damageModifier, damageCauser);
         }
     }
 }
