@@ -24,14 +24,9 @@ namespace ANTs.Game
             GetComponent<Damageable>().OnActorDieEvent -= GetComponent<DieAction>().ActionStart;
         }
 
-        public void StartMovingWith(Vector2 direction)
+        public void SetDirection(Vector2 direction)
         {
-            mover.StartMovingWith(direction);
-        }
-
-        public void StartMovingTo(Vector2 destination)
-        {
-            mover.StartMovingTo(destination);
+            mover.StartMovingTo(direction * 10000);
         }
 
         public void DirectWeaponTo(Vector2 position)
@@ -39,9 +34,9 @@ namespace ANTs.Game
             GetComponent<WeaponHandler>().DirectWeaponAttachmentTo(position);
         }
 
-        public void FacingTo(Vector2 position)
+        public void ChangeFacingDirection(Vector2 position)
         {
-            mover.FacingTo(position);
+            mover.ChangeFacingDirection(position);
         }
 
         public void UpgradeWeapon()

@@ -30,6 +30,19 @@ MonoBehaviour:
   initialAmmoName: AmmoLevel1
   weaponAttachmentRotateSpeed: 10
   rotationAcceptableRange: 0.01
+--- !u!114 &1324303537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919006090545883869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bab4e98c6299e45822e495c374319b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayOrder: 0
 --- !u!114 &512339790768595267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,19 +123,6 @@ MonoBehaviour:
   upgrades:
   - {fileID: 11400000, guid: f2672f3904f40624e9a08beba788c6ca, type: 2}
   - {fileID: 11400000, guid: f2672f3904f40624e9a08beba788c6ca, type: 2}
---- !u!114 &1324303537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919006090545883869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90bab4e98c6299e45822e495c374319b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOrder: 0
 --- !u!1001 &2771048053187035676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -423,51 +423,6 @@ PrefabInstance:
         type: 3}
       propertyPath: maskTable.Array.data[7]
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: movement
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: typeOfAction
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: actionStartOnPlay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: FacingWithDirection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: isAttachWithAnimator
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: initialData.tiltSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: initialMoveData.speed
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: initialMoveData.tiltSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336205361287467119, guid: f1188bb4d42b505469f668b121697e34,
-        type: 3}
-      propertyPath: initialMoveData.movementType
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1188bb4d42b505469f668b121697e34, type: 3}

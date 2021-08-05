@@ -63,7 +63,7 @@ namespace ANTs.Game
         {
             if (TryGetComponent(out MoveAction move))
             {
-                move.FacingTo(targetPosition);
+                move.ChangeFacingDirection(targetPosition);
             }
 
             Vector2 targetDirection = targetPosition - (Vector2)transform.position;

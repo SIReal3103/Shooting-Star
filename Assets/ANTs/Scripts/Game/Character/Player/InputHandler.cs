@@ -14,11 +14,14 @@ namespace ANTs.Game
 
         private void Update()
         {
-            player.StartMovingWith(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
-            //player.StartMovingTo(GetMousePosition());
+            Vector2 inputAxis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (inputAxis.sqrMagnitude > 0)
+            {
+                player.SetDirection(inputAxis);
+            }
 
             player.DirectWeaponTo(GetMousePosition());
-            player.FacingTo(GetMousePosition());
+            player.ChangeFacingDirection(GetMousePosition());
 
             if (Input.GetKeyDown(KeyCode.Z))
             {

@@ -12,7 +12,6 @@ namespace ANTs.Game
         private WeaponHandler weaponHandler;
         private Transform playerTransform;
         private MoveAction move;
-        private bool isArrived;
 
         private void Awake()
         {
@@ -26,11 +25,10 @@ namespace ANTs.Game
         {
             if (Task.current.isStarting)
             {
-                move.StartMovingTo(path.GetPosition(), OnActorArrived);
-                isArrived = false;
+                move.StartMovingTo(path.GetPosition());
                 path.Progress();
             }
-            if (isArrived) Task.current.Succeed();
+            if (move.IsArrived()) Task.current.Succeed();
         }
 
         [Task]
@@ -41,11 +39,6 @@ namespace ANTs.Game
                 weaponHandler.TriggerProjectileWeapon();
                 Task.current.Succeed();
             }
-        }
-
-        public void OnActorArrived()
-        {
-            isArrived = true;
         }
     }
 }

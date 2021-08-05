@@ -396,10 +396,25 @@ PrefabInstance:
       propertyPath: prepareZone
       value: 
       objectReference: {fileID: 1402188611}
+    - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: runSpeed.movementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6759450018504768848, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: normalSpeed.movementType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
         type: 3}
       propertyPath: m_Name
       value: EnemyNinja
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973814678278962949, guid: f632e97329d23334ba582429bc989481,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7973814678278962950, guid: f632e97329d23334ba582429bc989481,
         type: 3}
@@ -480,6 +495,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyShooter
       objectReference: {fileID: 0}
+    - target: {fileID: 3170168707460758789, guid: b280f5196060880489710847aedcdf57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3170168707460758790, guid: b280f5196060880489710847aedcdf57,
         type: 3}
       propertyPath: m_RootOrder
@@ -533,6 +553,11 @@ PrefabInstance:
     - target: {fileID: 3170168707460758790, guid: b280f5196060880489710847aedcdf57,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780363876665180546, guid: b280f5196060880489710847aedcdf57,
+        type: 3}
+      propertyPath: initialMoveData.movementType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -683,10 +708,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 359742205}
     m_Modifications:
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialMoveData.maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialMoveData.acceleration
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialMoveData.movementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 307377167876052570, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: initialMoveData.deacceleration
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919006090545883869, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4919006090545883870, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
@@ -741,6 +796,11 @@ PrefabInstance:
     - target: {fileID: 4919006090545883870, guid: 445e380a067a260448138bd6e7ce26c4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919006090545883871, guid: 445e380a067a260448138bd6e7ce26c4,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

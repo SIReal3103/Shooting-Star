@@ -9,7 +9,6 @@ namespace ANTs.UI
         [SerializeField] UpgradeCellDisplayer cellPrefab;
 
         Upgrade playerUpgrades;
-        private int avaiableSlot = 0;
 
         private void Awake()
         {

@@ -77,7 +77,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3726713874072087784}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -118,22 +118,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52cd87cc157c7f43b40083c872be931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfAction: 0
+  typeOfAction: 2
   isActionActive: 0
   actionStartOnPlay: 1
-  isAttachWithAnimator: 0
+  isAttachWithAnimator: 1
   isTransitionTrigger: 0
   syncWithAnimation: 0
-  FacingWithDirection: 0
+  facingWithDirection: 1
+  timeBetweenChangeFacingDirection: 0.5
   model: {fileID: 3726713875333373735}
   initialMoveData:
     movementType: 0
     speed: 10
-    tiltSpeed: 0.1
-    rigidbody2D: {fileID: 3726713874072087786}
-    destination: {x: 0, y: 0}
-    direction: {x: Infinity, y: Infinity}
-  destinationOffset: 0.1
+    tiltSpeed: 2
+  destinationOffset: 0.5
 --- !u!114 &3900950865971724827
 MonoBehaviour:
   m_ObjectHideFlags: 0

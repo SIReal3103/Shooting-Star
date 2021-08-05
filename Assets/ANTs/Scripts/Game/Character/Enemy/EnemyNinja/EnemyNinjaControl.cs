@@ -13,11 +13,9 @@ namespace ANTs.Game
         [SerializeField] MoveData runSpeed;
         [SerializeField] ANTsPolygon prepareZone;
 
-
         private MoveAction move;
         private MeleeAttackAction attack;
         private Transform player;
-        private bool isAttackDone;
 
         private void Awake()
         {
@@ -26,17 +24,6 @@ namespace ANTs.Game
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        private void OnEnable()
-        {
-            attack.OnActionStopEvent += OnActorAttackFinished;
-        }
-
-        private void OnDisable()
-        {
-            attack.OnActionStopEvent -= OnActorAttackFinished;
-        }
-
-        #region ==================================================Tasks        
         [Task]
         public void ApproachPlayer()
         {
@@ -58,7 +45,7 @@ namespace ANTs.Game
             if (Task.current.isStarting)
             {
                 move.SetMoveData(normalSpeed);
-                move.StartMovingTo(prepareZone.GetRandomPointOnSurface(), Task.current.Succeed);
+                move.StartMovingTo(prepareZone.GetRandomPointOnSurface());
             }
 
             if (move.IsArrived())
@@ -72,21 +59,9 @@ namespace ANTs.Game
         {
             if (Task.current.isStarting)
             {
-                isAttackDone = false;
                 attack.ActionStart();
             }
-            if (isAttackDone) Task.current.Succeed();
-        }
-        #endregion
-
-        void Succeed(Task task)
-        {
-            task.Succeed();
-        }
-
-        private void OnActorAttackFinished()
-        {
-            isAttackDone = true;
+            if (!attack.IsActionActive) Task.current.Succeed();
         }
     }
 }

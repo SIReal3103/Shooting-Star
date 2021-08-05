@@ -12,7 +12,7 @@ namespace ANTs.Game
         {
             if (statType == StatType.Health)
             {
-                yield return 10;
+                yield return healthBonus;
             }
         }
     }

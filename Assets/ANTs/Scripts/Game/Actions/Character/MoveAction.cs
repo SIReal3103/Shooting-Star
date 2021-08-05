@@ -1,5 +1,4 @@
 ﻿using ANTs.Template;
-using System;
 using UnityEngine;
 namespace ANTs.Game
 {
@@ -10,14 +9,11 @@ namespace ANTs.Game
         [SerializeField] float timeBetweenChangeFacingDirection = 0.5f;
         [Conditional("facingWithDirection", true)]
         [SerializeField] Transform model;
-        [Space(10)]
         [SerializeField] MoveData initialMoveData;
-        [Space(5)]
         [SerializeField] float destinationOffset = 0.5f;
 
         private Rigidbody2D rb;
         private MoveStrategy currentMove;
-        private Action CurrentArrivedCallBack;
         private float timeSinceLastChangeFacingDirection;
 
         protected override void Awake()
@@ -27,27 +23,18 @@ namespace ANTs.Game
             SetMoveData(initialMoveData);
         }
 
-        public void StartMovingTo(Vector2 destination, Action OnArrivedCallBack = null)
+        public void StartMovingTo(Vector2 destination)
         {
             ActionStart();
-            currentMove.SetDestination(destination);
-            CurrentArrivedCallBack?.Invoke();
-            CurrentArrivedCallBack = OnArrivedCallBack;
+            currentMove.Destination = destination;
         }
 
-        public void StartMovingWith(Vector2 destination)
+        public Vector2 GetMovingDirection()
         {
-            ActionStart();
-            currentMove.SetDirection(destination);
-            CurrentArrivedCallBack = null;
+            return currentMove.GetDirection();
         }
 
-        public Vector2 GetMoveDirection()
-        {
-            return currentMove.data.GetMoveDirection();
-        }
-
-        public void FacingTo(Vector2 position)
+        public void ChangeFacingDirection(Vector2 position)
         {
             model.right = new Vector2((
                 ((Vector2)transform.position - position).x > 0) ? -1 : 1, 0
@@ -59,14 +46,9 @@ namespace ANTs.Game
             currentMove = MoveFactory.CreateMove(data, rb);
         }
 
-        public void SetVelocity(Vector2 velocity)
-        {
-            currentMove.SetDirection(velocity);
-        }
-
         private bool IsMovingLeft()
         {
-            return GetMoveDirection().x < 0f;
+            return GetMovingDirection().x < 0f;
         }
 
         protected override void ActionFixedUpdate()
@@ -77,19 +59,23 @@ namespace ANTs.Game
 
             if (IsArrived())
             {
-                CurrentArrivedCallBack?.Invoke();
+                currentMove.Stop();
                 return;
             }
 
             if (facingWithDirection && timeBetweenChangeFacingDirection < timeSinceLastChangeFacingDirection)
             {
-                model.right = new Vector2(IsMovingLeft() ? -1 : 1, 0);
-                timeSinceLastChangeFacingDirection = 0f;
+                UpdateFacingDirection();
             }
 
-            timeSinceLastChangeFacingDirection += Time.deltaTime;
-
             currentMove?.UpdatePath();
+            timeSinceLastChangeFacingDirection += Time.deltaTime;
+        }
+
+        private void UpdateFacingDirection()
+        {
+            model.right = new Vector2(IsMovingLeft() ? -1 : 1, 0);
+            timeSinceLastChangeFacingDirection = 0f;
         }
 
         private bool IsMoving()
@@ -99,7 +85,7 @@ namespace ANTs.Game
 
         public bool IsArrived()
         {
-            return (currentMove.data.destination - rb.position).sqrMagnitude < destinationOffset * destinationOffset;
+            return currentMove.IsArrived(destinationOffset);
         }
     }
 
@@ -110,11 +96,9 @@ namespace ANTs.Game
             switch (data.GetMovementType())
             {
                 case MovementType.Linearity:
-                    return new MoveLinearity(data, rb);
-                case MovementType.Lerp:
-                    return new LerpMovement(data, rb);
+                    return new DynamicLinearity(data, rb);
                 case MovementType.Smooth:
-                    return new SmoothMovement(data, rb);
+                    return new DynamicSmooth(data, rb);
                 default:
                     throw new UnityException("Invalid moveStrategy");
             }
@@ -125,6 +109,9 @@ namespace ANTs.Game
     {
         public MoveData data;
         public Rigidbody2D rb;
+        private Vector2 destination = Vector2.one * 10000;
+
+        public Vector2 Destination { get => destination; set { destination = value; OnDestinationUpdated(); } }
 
         public MoveStrategy(MoveData data, Rigidbody2D rb)
         {
@@ -132,63 +119,63 @@ namespace ANTs.Game
             this.rb = rb;
         }
 
-        public void SetDestination(Vector2 destination)
+        public bool IsArrived(float destinationOffset)
         {
-            data.destination = destination;
+            return (Destination - rb.position).sqrMagnitude < destinationOffset * destinationOffset;
         }
 
-        public void SetDirection(Vector2 velocity)
+        public Vector2 GetDirection()
         {
-            data.direction = velocity;
-            OnDirectionUpdated();
+            return (Destination - rb.position).normalized;
         }
 
-        public virtual void OnDirectionUpdated() { }
+        public void Stop()
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+        public virtual void OnDestinationUpdated() { }
         public abstract void UpdatePath();
     }
 
-    public class MoveLinearity : MoveStrategy
+    public class DynamicLinearity : MoveStrategy
     {
-        public MoveLinearity(MoveData data, Rigidbody2D rb) : base(data, rb) { }
+        public DynamicLinearity(MoveData data, Rigidbody2D rb) : base(data, rb) { }
 
         public override void UpdatePath()
         {
-            data.direction = (data.destination - rb.position).normalized;
-            rb.MovePosition(rb.position + data.Speed * Time.deltaTime * data.direction);
+            rb.velocity = GetDirection() * data.MaxSpeed;
         }
     }
 
-    public class LerpMovement : MoveStrategy
+    public class DynamicSmooth : MoveStrategy
     {
-        public LerpMovement(MoveData data, Rigidbody2D rb) : base(data, rb) { }
+        public DynamicSmooth(MoveData data, Rigidbody2D rb) : base(data, rb) { }
+        private float currentVelocityMagnitude = 0f;
 
-        public override void UpdatePath()
+        public float CurrentVelocityMagnitude { get => currentVelocityMagnitude; set => currentVelocityMagnitude = Mathf.Clamp(value, 0f, data.MaxSpeed); }
+
+        public override void OnDestinationUpdated()
         {
-            data.direction = (data.destination - rb.position).normalized;
-            rb.MovePosition(Vector2.Lerp(rb.position, data.destination, data.TiltSpeed * Time.deltaTime));
-        }
-    }
-
-    public class SmoothMovement : MoveStrategy
-    {
-        public SmoothMovement(MoveData data, Rigidbody2D rb) : base(data, rb) { }
-
-        public override void OnDirectionUpdated()
-        {
-            base.OnDirectionUpdated();
-            rb.velocity = Vector2.Lerp(rb.velocity, data.direction.normalized * data.Speed, data.TiltSpeed * Time.deltaTime);
+            base.OnDestinationUpdated();
+            CurrentVelocityMagnitude += data.Acceleration * Time.deltaTime;
         }
 
         public override void UpdatePath()
         {
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, data.TiltSpeed * Time.deltaTime);
+            CurrentVelocityMagnitude -= data.Deacceleration * Time.deltaTime;
+            SetRigidbody2DVelocity(CurrentVelocityMagnitude);
+        }
+
+        private void SetRigidbody2DVelocity(float velocityMagnitude)
+        {
+            rb.velocity = velocityMagnitude * GetDirection();
         }
     }
 
     public enum MovementType
     {
         Linearity,
-        Lerp,
         Smooth
     }
 
@@ -197,36 +184,19 @@ namespace ANTs.Game
     {
         [SerializeField] MovementType movementType = MovementType.Linearity;
         [Conditional("movementType", MovementType.Linearity, MovementType.Smooth)]
-        [SerializeField] float speed = 10f;
-        [Conditional("movementType", MovementType.Lerp, MovementType.Smooth)]
-        [SerializeField] float tiltSpeed = 2f;
-
-        [HideInInspector]
-        public Vector2 destination = Vector2.positiveInfinity;
-        [HideInInspector]
-        public Vector2 direction = Vector2.positiveInfinity;
+        [SerializeField] float maxSpeed = 10f;
+        [Conditional("movementType", MovementType.Smooth)]
+        [SerializeField] float acceleration = 50f;
+        [Conditional("movementType", MovementType.Smooth)]
+        [SerializeField] float deacceleration = 50f;
 
         public MovementType GetMovementType()
         {
             return movementType;
         }
 
-        public float Speed { get => speed; }
-        public float TiltSpeed
-        {
-            get
-            {
-                if (movementType != MovementType.Lerp && movementType != MovementType.Smooth)
-                {
-                    throw new UnityException("TiltSpeed is not comparable with " + movementType);
-                }
-                return tiltSpeed;
-            }
-        }
-
-        public Vector2 GetMoveDirection()
-        {
-            return direction.normalized;
-        }
+        public float MaxSpeed { get => maxSpeed; }
+        public float Acceleration { get => acceleration; }
+        public float Deacceleration { get => deacceleration; }
     }
 }

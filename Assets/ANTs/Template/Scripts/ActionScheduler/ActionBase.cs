@@ -128,6 +128,7 @@ namespace ANTs.Template
                 animator.SetBool("Is" + GetName(), value);
             }
         }
+
         private void TriggerAnimator()
         {
             if (isAttachWithAnimator)
